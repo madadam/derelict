@@ -108,15 +108,25 @@ protected:
 	SharedLib lib()
 	{
 		return _lib;
-	}	
+	}
+	
+	void bindFunc(void** ptr, string funcName)
+	{
+		void* func = lib.loadSymbol(funcName);
+		*ptr = func;
+	}
 	
 private:
 	string _libNames;
 	SharedLib _lib;
 }
 
+/*
+* These templates need to stick around a bit longer, until the macinit stuff
+in Derelict SDL gets sorted
+*/
 package struct Binder(T) {
-    void opCall(string n, SharedLib lib) {
+    void opCall(in char[] n, SharedLib lib) {
         *fptr = lib.loadSymbol(n);
     }
 
@@ -132,5 +142,5 @@ template bindFunc(T) {
         Binder!(T) res;
         res.fptr = cast(void**)&a;
         return res;
-    }
+    } 
 }

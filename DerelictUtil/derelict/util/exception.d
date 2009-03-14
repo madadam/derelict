@@ -65,7 +65,7 @@ struct FailedSharedLib
 class SharedLibLoadException : DerelictException
 {
 public:
-	static void throwNew(string[] libNames, string[] reasons)
+	static void throwNew(in char[][] libNames, in char[][] reasons)
 	{
 		assert(libNames.length == reasons.length);
 		
@@ -159,17 +159,18 @@ alias MissingSymbolCallback MissingProcCallback;
 
 private MissingSymbolCallback missingSymbolCallback;
 
-public void Derelict_HandleMissingSymbol(string libName, string procName)
+public void Derelict_HandleMissingSymbol(string libName, string symbolName)
 {
     bool result = false;
     if(missingSymbolCallback !is null)
-        result = missingSymbolCallback(libName, procName);
+        result = missingSymbolCallback(libName, symbolName);
     if(!result)
-        throw new SharedLibProcLoadException(libName, procName);
+        throw new SharedLibProcLoadException(libName, symbolName);
 }
 alias Derelict_HandleMissingSymbol Derelict_HandleMissingProc;
 
-void Derelict_SetMissingProcCallback(MissingSymbolCallback callback)
+void Derelict_SetMissingSymbolCallback(MissingSymbolCallback callback)
 {
     missingSymbolCallback = callback;
 }
+alias Derelict_SetMissingSymbolCallback Derelict_SetMissingProcCallback;
