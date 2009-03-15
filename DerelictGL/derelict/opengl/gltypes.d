@@ -268,7 +268,7 @@ enum : GLenum
     GL_DST_COLOR                           = 0x0306,
     GL_ONE_MINUS_DST_COLOR                 = 0x0307,
     GL_SRC_ALPHA_SATURATE                  = 0x0308,
-    
+
     // Render Mode
     GL_FEEDBACK                            = 0x1C01,
     GL_RENDER                              = 0x1C00,

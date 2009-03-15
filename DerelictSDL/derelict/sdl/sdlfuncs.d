@@ -33,7 +33,7 @@ module derelict.sdl.sdlfuncs;
 
 private
 {
-	import derelict.sdl.sdltypes;
+    import derelict.sdl.sdltypes;
     import derelict.util.compat;
 
     version(Tango)
@@ -218,8 +218,8 @@ extern(C)
     // SDL_version.h
     private
     {
-	    version(D_Version2) mixin("alias const(SDL_version*) CSDLVERPTR;" );
-	    else alias SDL_version* CSDLVERPTR;
+        version(D_Version2) mixin("alias const(SDL_version*) CSDLVERPTR;" );
+        else alias SDL_version* CSDLVERPTR;
     }
     CSDLVERPTR function() SDL_Linked_Version;
 
@@ -245,12 +245,12 @@ extern(C)
     void function() SDL_VideoQuit;
     char* function(char*,int) SDL_VideoDriverName;
     SDL_Surface* function() SDL_GetVideoSurface;
-    
+
     version(D_Version2) mixin("alias const(SDL_VideoInfo*) SDLVIPTR;");
     else alias SDL_VideoInfo* SDLVIPTR;
     SDLVIPTR function() SDL_GetVideoInfo;
-    
-    
+
+
     int function(int,int,int,Uint32) SDL_VideoModeOK;
     SDL_Rect** function(SDL_PixelFormat*,Uint32) SDL_ListModes;
     SDL_Surface* function(int,int,int,Uint32) SDL_SetVideoMode;

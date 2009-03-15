@@ -33,8 +33,8 @@ module derelict.opengl.glfuncs;
 
 private
 {
-	import derelict.opengl.gltypes;
-	import derelict.util.compat;
+    import derelict.opengl.gltypes;
+    import derelict.util.compat;
 }
 
 extern(System)
@@ -77,7 +77,7 @@ extern(System)
     void function(GLbitfield) glPushClientAttrib;
     void function() glPopClientAttrib;
     GLint function(GLenum) glRenderMode;
-    GLenum function() glGetError;    
+    GLenum function() glGetError;
     CCPTR function(GLenum) glGetString;
     void function() glFinish;
     void function() glFlush;
@@ -390,49 +390,49 @@ extern(System)
     void function(GLenum,GLint,GLsizei) glDrawArrays;
     void function(GLenum,GLsizei,GLenum,in void*) glDrawElements;
     void function(GLenum,GLsizei,in void*) glInterleavedArrays;
-    
+
     // gl 1.2
     void function(GLenum, GLuint, GLuint, GLsizei, GLenum, in void*) glDrawRangeElements;
-	void function(GLenum, GLint, GLint, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, void*) glTexImage3D;
-	void function(GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLenum, void*) glTexSubImage3D;
-	void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage3D;
-	
-	/* This is GL_ARB_Imaging Extension
-	void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glColorTable;
-	void function(GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glColorSubTable;
-	void function(GLenum, GLenum, in GLint*) glColorTableParameteriv;
-	void function(GLenum, GLenum, in GLfloat*) glColorTableParameterfv;
-	void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTable;
-	void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyColorTable;
-	void function(GLenum, GLenum, GLenum, void*) glGetColorTable;
-	void function(GLenum, GLenum, GLfloat*) glGetColorTableParameterfv;
-	void function(GLenum, GLenum, GLint*) glGetColorTableParameteriv;	
-	void function(GLenum, GLsizei, GLenum, GLboolean) glHistogram;
-	void function(GLenum) glResetHistogram;
-	void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetHistogram;
-	void function(GLenum, GLenum, GLfloat*) glGetHistogramParameterfv;
-	void function(GLenum, GLenum, GLint*) glGetHistogramParameteriv;
-	void function(GLenum, GLenum, GLboolean) glMinmax;
-	void function(GLenum) glResetMinmax;
-	void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetMinmax;
-	void function(GLenum, GLenum, GLfloat*) glGetMinmaxParameterfv;
-	void function(GLenum, GLenum, GLint*) glGetMinmaxParameteriv;
-	void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter1D;
-	void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter2D;
-	void function(GLenum, GLenum, GLfloat) glConvolutionParameterf;
-	void function(GLenum, GLenum, in GLfloat*) glConvolutionParameterfv;
-	void function(GLenum, GLenum, GLint) glConvolutionParameteri;
-	void function(GLenum, GLenum, in GLint*) glConvolutionParameteriv;
-	void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyConvolutionFilter1D;
-	void function(GLenum, GLenum, GLint, GLint, GLsizei, GLsizei) glCopyConvolutionFilter2D;
-	void function(GLenum, GLenum, GLenum, void*) glGetConvolutionFilter;
-	void function(GLenum, GLenum, GLfloat*) glGetConvolutionParameterfv;
-	void function(GLenum, GLenum, GLint*) glGetConvolutionParameteriv;
-	void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*, in void*) glSeparableFilter2D;
-	void function(GLenum, GLenum, GLenum, void*, void*, void*) glSeparableFilter2D;
-	*/
-	// gl 1.3
-	void function(GLenum) glActiveTexture;
+    void function(GLenum, GLint, GLint, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, void*) glTexImage3D;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLenum, void*) glTexSubImage3D;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage3D;
+
+    /* This is GL_ARB_Imaging Extension
+    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glColorTable;
+    void function(GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glColorSubTable;
+    void function(GLenum, GLenum, in GLint*) glColorTableParameteriv;
+    void function(GLenum, GLenum, in GLfloat*) glColorTableParameterfv;
+    void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTable;
+    void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyColorTable;
+    void function(GLenum, GLenum, GLenum, void*) glGetColorTable;
+    void function(GLenum, GLenum, GLfloat*) glGetColorTableParameterfv;
+    void function(GLenum, GLenum, GLint*) glGetColorTableParameteriv;
+    void function(GLenum, GLsizei, GLenum, GLboolean) glHistogram;
+    void function(GLenum) glResetHistogram;
+    void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetHistogram;
+    void function(GLenum, GLenum, GLfloat*) glGetHistogramParameterfv;
+    void function(GLenum, GLenum, GLint*) glGetHistogramParameteriv;
+    void function(GLenum, GLenum, GLboolean) glMinmax;
+    void function(GLenum) glResetMinmax;
+    void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetMinmax;
+    void function(GLenum, GLenum, GLfloat*) glGetMinmaxParameterfv;
+    void function(GLenum, GLenum, GLint*) glGetMinmaxParameteriv;
+    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter1D;
+    void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter2D;
+    void function(GLenum, GLenum, GLfloat) glConvolutionParameterf;
+    void function(GLenum, GLenum, in GLfloat*) glConvolutionParameterfv;
+    void function(GLenum, GLenum, GLint) glConvolutionParameteri;
+    void function(GLenum, GLenum, in GLint*) glConvolutionParameteriv;
+    void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyConvolutionFilter1D;
+    void function(GLenum, GLenum, GLint, GLint, GLsizei, GLsizei) glCopyConvolutionFilter2D;
+    void function(GLenum, GLenum, GLenum, void*) glGetConvolutionFilter;
+    void function(GLenum, GLenum, GLfloat*) glGetConvolutionParameterfv;
+    void function(GLenum, GLenum, GLint*) glGetConvolutionParameteriv;
+    void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*, in void*) glSeparableFilter2D;
+    void function(GLenum, GLenum, GLenum, void*, void*, void*) glSeparableFilter2D;
+    */
+    // gl 1.3
+    void function(GLenum) glActiveTexture;
     void function(GLenum) glClientActiveTexture;
     void function(GLenum, GLdouble) glMultiTexCoord1d;
     void function(GLenum, in GLdouble*) glMultiTexCoord1dv;
@@ -478,9 +478,9 @@ extern(System)
     void function(GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLsizei, in void*) glCompressedTexSubImage2D;
     void function(GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLsizei, in void*) glCompressedTexSubImage3D;
     void function(GLenum, GLint, void*) glGetCompressedTexImage;
-    
+
     // gl 1.4
-	void function(GLenum, GLenum, GLenum, GLenum) glBlendFuncSeparate;
+    void function(GLenum, GLenum, GLenum, GLenum) glBlendFuncSeparate;
     void function(GLfloat) glFogCoordf;
     void function(in GLfloat*) glFogCoordfv;
     void function(GLdouble) glFogCoordd;
@@ -527,7 +527,7 @@ extern(System)
     void function(in GLshort*) glWindowPos3sv;
     void function(GLclampf, GLclampf, GLclampf, GLclampf) glBlendColor;
     void function(GLenum) glBlendEquation;
-    
+
     // gl 1.5
     void function(GLsizei, GLuint*) glGenQueries;
     void function(GLsizei,in GLuint*) glDeleteQueries;
@@ -548,104 +548,104 @@ extern(System)
     GLboolean function(GLenum) glUnmapBuffer;
     void function(GLenum, GLenum, GLint*) glGetBufferParameteriv;
     void function(GLenum, GLenum, void**) glGetBufferPointerv;
-    
+
     // gl 2.0
     void function(GLenum, GLenum) glBlendEquationSeparate;
-	void function(GLsizei, in GLenum*) glDrawBuffers;
-	void function(GLenum, GLenum, GLenum, GLenum) glStencilOpSeparate;
-	void function(GLenum, GLenum, GLint, GLuint) glStencilFuncSeparate;
-	void function(GLenum, GLuint) glStencilMaskSeparate;
-	void function(GLuint, GLuint) glAttachShader;
-	void function(GLuint, GLuint, in GLchar*) glBindAttribLocation;
-	void function(GLuint) glCompileShader;
-	GLuint function() glCreateProgram;
-	GLuint function(GLenum) glCreateShader;
-	void function(GLuint) glDeleteProgram;
-	void function(GLuint) glDeleteShader;
-	void function(GLuint, GLuint) glDetachShader;
-	void function(GLuint) glDisableVertexAttribArray;
-	void function(GLuint) glEnableVertexAttribArray;
-	void function(GLuint, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLchar*) glGetActiveAttrib;
-	void function(GLuint, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLchar*) glGetActiveUniform;
-	void function(GLuint, GLsizei, GLsizei*, GLuint*) glGetAttachedShaders;
-	GLint function(GLuint, in GLchar*) glGetAttribLocation;
-	void function(GLuint, GLenum, GLint*) glGetProgramiv;
-	void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetProgramInfoLog;
-	void function(GLuint, GLenum, GLint *) glGetShaderiv;
-	void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetShaderInfoLog;
-	void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetShaderSource;
-	GLint function(GLuint, in GLchar*) glGetUniformLocation;
-	void function(GLuint, GLint, GLfloat*) glGetUniformfv;
-	void function(GLuint, GLint, GLint*) glGetUniformiv;
-	void function(GLuint, GLenum, GLdouble*) glGetVertexAttribdv;
-	void function(GLuint, GLenum, GLfloat*) glGetVertexAttribfv;
-	void function(GLuint, GLenum, GLint*) glGetVertexAttribiv;
-	void function(GLuint, GLenum, void**) glGetVertexAttribPointerv;
-	GLboolean function(GLuint) glIsProgram;
-	GLboolean function(GLuint) glIsShader;
-	void function(GLuint) glLinkProgram;
-	void function(GLuint, GLsizei, in GLchar**, in GLint*) glShaderSource;
-	void function(GLuint) glUseProgram;
-	void function(GLint, GLfloat) glUniform1f;
-	void function(GLint, GLfloat, GLfloat) glUniform2f;
-	void function(GLint, GLfloat, GLfloat, GLfloat) glUniform3f;
-	void function(GLint, GLfloat, GLfloat, GLfloat, GLfloat) glUniform4f;
-	void function(GLint, GLint) glUniform1i;
-	void function(GLint, GLint, GLint) glUniform2i;
-	void function(GLint, GLint, GLint, GLint) glUniform3i;
-	void function(GLint, GLint, GLint, GLint, GLint) glUniform4i;
-	void function(GLint, GLsizei, in GLfloat*) glUniform1fv;
-	void function(GLint, GLsizei, in GLfloat*) glUniform2fv;
-	void function(GLint, GLsizei, in GLfloat*) glUniform3fv;
-	void function(GLint, GLsizei, in GLfloat*) glUniform4fv;
-	void function(GLint, GLsizei, in GLint*) glUniform1iv;
-	void function(GLint, GLsizei, in GLint*) glUniform2iv;
-	void function(GLint, GLsizei, in GLint*) glUniform3iv;
-	void function(GLint, GLsizei, in GLint*) glUniform4iv;
-	void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix2fv;
-	void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix3fv;
-	void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix4fv;
-	void function(GLuint) glValidateProgram;
-	void function(GLuint, GLdouble) glVertexAttrib1d;
-	void function(GLuint, in GLdouble*) glVertexAttrib1dv;
-	void function(GLuint, GLfloat) glVertexAttrib1f;
-	void function(GLuint, in GLfloat*) glVertexAttrib1fv;
-	void function(GLuint, GLshort) glVertexAttrib1s;
-	void function(GLuint, in GLshort*) glVertexAttrib1sv;
-	void function(GLuint, GLdouble, GLdouble) glVertexAttrib2d;
-	void function(GLuint, in GLdouble*) glVertexAttrib2dv;
-	void function(GLuint, GLfloat, GLfloat) glVertexAttrib2f;
-	void function(GLuint, in GLfloat*) glVertexAttrib2fv;
-	void function(GLuint, GLshort, GLshort) glVertexAttrib2s;
-	void function(GLuint, in GLshort*) glVertexAttrib2sv;
-	void function(GLuint, GLdouble, GLdouble, GLdouble) glVertexAttrib3d;
-	void function(GLuint, in GLdouble*) glVertexAttrib3dv;
-	void function(GLuint, GLfloat, GLfloat, GLfloat) glVertexAttrib3f;
-	void function(GLuint, in GLfloat*) glVertexAttrib3fv;
-	void function(GLuint, GLshort, GLshort, GLshort) glVertexAttrib3s;
-	void function(GLuint, in GLshort*) glVertexAttrib3sv;
-	void function(GLuint, in GLbyte*) glVertexAttrib4Nbv;
-	void function(GLuint, in GLint*) glVertexAttrib4Niv;
-	void function(GLuint, in GLshort*) glVertexAttrib4Nsv;
-	void function(GLuint, GLubyte, GLubyte, GLubyte, GLubyte) glVertexAttrib4Nub;
-	void function(GLuint, in GLubyte*) glVertexAttrib4Nubv;
-	void function(GLuint, in GLuint*) glVertexAttrib4Nuiv;
-	void function(GLuint, in GLushort*) glVertexAttrib4Nusv;
-	void function(GLuint, in GLbyte*) glVertexAttrib4bv;
-	void function(GLuint, GLdouble, GLdouble, GLdouble, GLdouble) glVertexAttrib4d;
-	void function(GLuint, in GLdouble*) glVertexAttrib4dv;
-	void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat) glVertexAttrib4f;
-	void function(GLuint, in GLfloat*) glVertexAttrib4fv;
-	void function(GLuint, in GLint*) glVertexAttrib4iv;
-	void function(GLuint, GLshort, GLshort, GLshort, GLshort) glVertexAttrib4s;
-	void function(GLuint, in GLshort*) glVertexAttrib4sv;
-	void function(GLuint, in GLubyte*) glVertexAttrib4ubv;
-	void function(GLuint, in GLuint*) glVertexAttrib4uiv;
-	void function(GLuint, in GLushort*) glVertexAttrib4usv;
-	void function(GLuint, GLint, GLenum, GLboolean, GLsizei, in void*) glVertexAttribPointer;
-	
-	// gl 2.1
-	void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix2x3fv;
+    void function(GLsizei, in GLenum*) glDrawBuffers;
+    void function(GLenum, GLenum, GLenum, GLenum) glStencilOpSeparate;
+    void function(GLenum, GLenum, GLint, GLuint) glStencilFuncSeparate;
+    void function(GLenum, GLuint) glStencilMaskSeparate;
+    void function(GLuint, GLuint) glAttachShader;
+    void function(GLuint, GLuint, in GLchar*) glBindAttribLocation;
+    void function(GLuint) glCompileShader;
+    GLuint function() glCreateProgram;
+    GLuint function(GLenum) glCreateShader;
+    void function(GLuint) glDeleteProgram;
+    void function(GLuint) glDeleteShader;
+    void function(GLuint, GLuint) glDetachShader;
+    void function(GLuint) glDisableVertexAttribArray;
+    void function(GLuint) glEnableVertexAttribArray;
+    void function(GLuint, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLchar*) glGetActiveAttrib;
+    void function(GLuint, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLchar*) glGetActiveUniform;
+    void function(GLuint, GLsizei, GLsizei*, GLuint*) glGetAttachedShaders;
+    GLint function(GLuint, in GLchar*) glGetAttribLocation;
+    void function(GLuint, GLenum, GLint*) glGetProgramiv;
+    void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetProgramInfoLog;
+    void function(GLuint, GLenum, GLint *) glGetShaderiv;
+    void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetShaderInfoLog;
+    void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetShaderSource;
+    GLint function(GLuint, in GLchar*) glGetUniformLocation;
+    void function(GLuint, GLint, GLfloat*) glGetUniformfv;
+    void function(GLuint, GLint, GLint*) glGetUniformiv;
+    void function(GLuint, GLenum, GLdouble*) glGetVertexAttribdv;
+    void function(GLuint, GLenum, GLfloat*) glGetVertexAttribfv;
+    void function(GLuint, GLenum, GLint*) glGetVertexAttribiv;
+    void function(GLuint, GLenum, void**) glGetVertexAttribPointerv;
+    GLboolean function(GLuint) glIsProgram;
+    GLboolean function(GLuint) glIsShader;
+    void function(GLuint) glLinkProgram;
+    void function(GLuint, GLsizei, in GLchar**, in GLint*) glShaderSource;
+    void function(GLuint) glUseProgram;
+    void function(GLint, GLfloat) glUniform1f;
+    void function(GLint, GLfloat, GLfloat) glUniform2f;
+    void function(GLint, GLfloat, GLfloat, GLfloat) glUniform3f;
+    void function(GLint, GLfloat, GLfloat, GLfloat, GLfloat) glUniform4f;
+    void function(GLint, GLint) glUniform1i;
+    void function(GLint, GLint, GLint) glUniform2i;
+    void function(GLint, GLint, GLint, GLint) glUniform3i;
+    void function(GLint, GLint, GLint, GLint, GLint) glUniform4i;
+    void function(GLint, GLsizei, in GLfloat*) glUniform1fv;
+    void function(GLint, GLsizei, in GLfloat*) glUniform2fv;
+    void function(GLint, GLsizei, in GLfloat*) glUniform3fv;
+    void function(GLint, GLsizei, in GLfloat*) glUniform4fv;
+    void function(GLint, GLsizei, in GLint*) glUniform1iv;
+    void function(GLint, GLsizei, in GLint*) glUniform2iv;
+    void function(GLint, GLsizei, in GLint*) glUniform3iv;
+    void function(GLint, GLsizei, in GLint*) glUniform4iv;
+    void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix2fv;
+    void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix3fv;
+    void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix4fv;
+    void function(GLuint) glValidateProgram;
+    void function(GLuint, GLdouble) glVertexAttrib1d;
+    void function(GLuint, in GLdouble*) glVertexAttrib1dv;
+    void function(GLuint, GLfloat) glVertexAttrib1f;
+    void function(GLuint, in GLfloat*) glVertexAttrib1fv;
+    void function(GLuint, GLshort) glVertexAttrib1s;
+    void function(GLuint, in GLshort*) glVertexAttrib1sv;
+    void function(GLuint, GLdouble, GLdouble) glVertexAttrib2d;
+    void function(GLuint, in GLdouble*) glVertexAttrib2dv;
+    void function(GLuint, GLfloat, GLfloat) glVertexAttrib2f;
+    void function(GLuint, in GLfloat*) glVertexAttrib2fv;
+    void function(GLuint, GLshort, GLshort) glVertexAttrib2s;
+    void function(GLuint, in GLshort*) glVertexAttrib2sv;
+    void function(GLuint, GLdouble, GLdouble, GLdouble) glVertexAttrib3d;
+    void function(GLuint, in GLdouble*) glVertexAttrib3dv;
+    void function(GLuint, GLfloat, GLfloat, GLfloat) glVertexAttrib3f;
+    void function(GLuint, in GLfloat*) glVertexAttrib3fv;
+    void function(GLuint, GLshort, GLshort, GLshort) glVertexAttrib3s;
+    void function(GLuint, in GLshort*) glVertexAttrib3sv;
+    void function(GLuint, in GLbyte*) glVertexAttrib4Nbv;
+    void function(GLuint, in GLint*) glVertexAttrib4Niv;
+    void function(GLuint, in GLshort*) glVertexAttrib4Nsv;
+    void function(GLuint, GLubyte, GLubyte, GLubyte, GLubyte) glVertexAttrib4Nub;
+    void function(GLuint, in GLubyte*) glVertexAttrib4Nubv;
+    void function(GLuint, in GLuint*) glVertexAttrib4Nuiv;
+    void function(GLuint, in GLushort*) glVertexAttrib4Nusv;
+    void function(GLuint, in GLbyte*) glVertexAttrib4bv;
+    void function(GLuint, GLdouble, GLdouble, GLdouble, GLdouble) glVertexAttrib4d;
+    void function(GLuint, in GLdouble*) glVertexAttrib4dv;
+    void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat) glVertexAttrib4f;
+    void function(GLuint, in GLfloat*) glVertexAttrib4fv;
+    void function(GLuint, in GLint*) glVertexAttrib4iv;
+    void function(GLuint, GLshort, GLshort, GLshort, GLshort) glVertexAttrib4s;
+    void function(GLuint, in GLshort*) glVertexAttrib4sv;
+    void function(GLuint, in GLubyte*) glVertexAttrib4ubv;
+    void function(GLuint, in GLuint*) glVertexAttrib4uiv;
+    void function(GLuint, in GLushort*) glVertexAttrib4usv;
+    void function(GLuint, GLint, GLenum, GLboolean, GLsizei, in void*) glVertexAttribPointer;
+
+    // gl 2.1
+    void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix2x3fv;
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix3x2fv;
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix2x4fv;
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix4x2fv;

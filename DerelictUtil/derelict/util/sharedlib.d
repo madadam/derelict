@@ -30,53 +30,53 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 module derelict.util.sharedlib;
- 
+
 private
 {
-	import derelict.util.exception;
-	import derelict.util.compat;
+    import derelict.util.exception;
+    import derelict.util.compat;
 }
 
 version(linux)
 {
-	version = Nix;
+    version = Nix;
 }
 else version(darwin)
 {
-	version = Nix;
+    version = Nix;
 }
 else version(OSX)
 {
-	version = Nix;
+    version = Nix;
 }
 else version(Unix)
 {
-	version = Nix;
+    version = Nix;
 }
 else version(Posix)
 {
-	version = Nix;
+    version = Nix;
 }
 
 version(Nix)
 {
-	// for people using DSSS, tell it to link the executable with libdl
-	version(build)
-	{
-		pragma(link, "dl");
-	}
-	
-	version(Tango)
-	{
-		private import tango.sys.Common;
-	}
-	else version(linux)
-	{
-		private import std.c.linux.linux;
-	}
-	else
-	{
-		extern(C)
+    // for people using DSSS, tell it to link the executable with libdl
+    version(build)
+    {
+        pragma(link, "dl");
+    }
+
+    version(Tango)
+    {
+        private import tango.sys.Common;
+    }
+    else version(linux)
+    {
+        private import std.c.linux.linux;
+    }
+    else
+    {
+        extern(C)
         {
             /* From <dlfcn.h>
             *  See http://www.opengroup.org/onlinepubs/007908799/xsh/dlsym.html
@@ -89,148 +89,148 @@ version(Nix)
             void *dlsym(void* handle, CCPTR name);
             CCPTR dlerror();
         }
-        
+
         alias void* SharedLibHandle;
-        
+
         private SharedLibHandle LoadSharedLib(string libName)
         {
-	        return dlopen(toCString(libName), RTLD_NOW);
+            return dlopen(toCString(libName), RTLD_NOW);
         }
-        
+
         private void UnloadSharedLib(SharedLibHandle hlib)
         {
-	        dlclose(hlib);
+            dlclose(hlib);
         }
-        
+
         private void* GetSymbol(SharedLibHandle hlib, string symbolName)
         {
-	        return dlsym(hlib, toCString(symbolName));
+            return dlsym(hlib, toCString(symbolName));
         }
-        
+
         private string GetErrorStr()
         {
-	        CCPTR err = dlerror();
-	        if(err is null)
-	        	return "Uknown Error";
-	        
-	        return toDString(err);
+            CCPTR err = dlerror();
+            if(err is null)
+                return "Uknown Error";
+
+            return toDString(err);
         }
-	}	
+    }
 }
 else version(Windows)
 {
-	private import derelict.util.wintypes;
-	alias HMODULE SharedLibHandle;
-	
-	private SharedLibHandle LoadSharedLib(string libName)
-	{
-		return LoadLibraryA(toCString(libName));
-	}
-	
-	private void UnloadSharedLib(SharedLibHandle hlib)
-	{
-		FreeLibrary(hlib);
-	}
-	
-	private void* GetSymbol(SharedLibHandle hlib, string symbolName)
-	{
-		return GetProcAddress(hlib, toCString(symbolName));		
-	}
-	
-	private string GetErrorStr()
-	{
-		// adapted from Tango
-		
-		DWORD errcode = GetLastError();
-		
-		LPCSTR msgBuf;
-		DWORD i = FormatMessageA(
-			FORMAT_MESSAGE_ALLOCATE_BUFFER |
-			FORMAT_MESSAGE_FROM_SYSTEM |
-			FORMAT_MESSAGE_IGNORE_INSERTS,
-			null,
-			errcode,
-			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-			cast(LPCSTR)&msgBuf,
-			0,
-			null);
-			
-		string text = toDString(msgBuf);
-		LocalFree(cast(HLOCAL)msgBuf);
-		
-		if(i >= 2) 
-			i -= 2;			
-		return text[0 .. i];		
-	}
+    private import derelict.util.wintypes;
+    alias HMODULE SharedLibHandle;
+
+    private SharedLibHandle LoadSharedLib(string libName)
+    {
+        return LoadLibraryA(toCString(libName));
+    }
+
+    private void UnloadSharedLib(SharedLibHandle hlib)
+    {
+        FreeLibrary(hlib);
+    }
+
+    private void* GetSymbol(SharedLibHandle hlib, string symbolName)
+    {
+        return GetProcAddress(hlib, toCString(symbolName));
+    }
+
+    private string GetErrorStr()
+    {
+        // adapted from Tango
+
+        DWORD errcode = GetLastError();
+
+        LPCSTR msgBuf;
+        DWORD i = FormatMessageA(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER |
+            FORMAT_MESSAGE_FROM_SYSTEM |
+            FORMAT_MESSAGE_IGNORE_INSERTS,
+            null,
+            errcode,
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+            cast(LPCSTR)&msgBuf,
+            0,
+            null);
+
+        string text = toDString(msgBuf);
+        LocalFree(cast(HLOCAL)msgBuf);
+
+        if(i >= 2)
+            i -= 2;
+        return text[0 .. i];
+    }
 }
 else
 {
-	static assert(0, "Derelict does not support this platform.");
+    static assert(0, "Derelict does not support this platform.");
 }
 
 final class SharedLib
 {
 public:
-	this()
-	{			
-	}
-	
-	string name()
-	{
-		return _name;
-	}
-	
-	bool isLoaded()
-	{
-		return (_hlib !is null);
-	}
-	
-	void load(string[] names)
-	{
-		if(isLoaded)
-			return;
-		
-		string[] failedLibs;
-		string[] reasons;
-		
-		foreach(n; names)
-		{					
-			_hlib = LoadSharedLib(n);
-			if(_hlib is null)
-			{
-				failedLibs ~= n;
-				reasons ~= GetErrorStr();
-				continue;
-			}	
-			_name = n;
-			break;
-		}
-		
-		if(!isLoaded)
-		{
-			SharedLibLoadException.throwNew(failedLibs, reasons);
-		}
-	}
-	
-	void* loadSymbol(string symbolName)
-	{
-		void* sym = GetSymbol(_hlib, symbolName);
-		if(sym is null)
-			Derelict_HandleMissingSymbol(name, symbolName);
-			
-		return sym;
-	}
-	
-	void unload()
-	{
-		if(isLoaded)
-		{
-			UnloadSharedLib(_hlib);
-			_hlib = null;
-		}
-	}
-	
+    this()
+    {
+    }
+
+    string name()
+    {
+        return _name;
+    }
+
+    bool isLoaded()
+    {
+        return (_hlib !is null);
+    }
+
+    void load(string[] names)
+    {
+        if(isLoaded)
+            return;
+
+        string[] failedLibs;
+        string[] reasons;
+
+        foreach(n; names)
+        {
+            _hlib = LoadSharedLib(n);
+            if(_hlib is null)
+            {
+                failedLibs ~= n;
+                reasons ~= GetErrorStr();
+                continue;
+            }
+            _name = n;
+            break;
+        }
+
+        if(!isLoaded)
+        {
+            SharedLibLoadException.throwNew(failedLibs, reasons);
+        }
+    }
+
+    void* loadSymbol(string symbolName)
+    {
+        void* sym = GetSymbol(_hlib, symbolName);
+        if(sym is null)
+            Derelict_HandleMissingSymbol(name, symbolName);
+
+        return sym;
+    }
+
+    void unload()
+    {
+        if(isLoaded)
+        {
+            UnloadSharedLib(_hlib);
+            _hlib = null;
+        }
+    }
+
 private:
-	string _name;
-	SharedLibHandle _hlib;
+    string _name;
+    SharedLibHandle _hlib;
 }

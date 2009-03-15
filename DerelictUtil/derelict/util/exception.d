@@ -33,7 +33,7 @@ module derelict.util.exception;
 
 private
 {
-	import derelict.util.compat;
+    import derelict.util.compat;
 }
 
 /**
@@ -54,8 +54,8 @@ public:
 */
 struct FailedSharedLib
 {
-	string name;
-	string reason;
+    string name;
+    string reason;
 }
 
 /**
@@ -65,24 +65,32 @@ struct FailedSharedLib
 class SharedLibLoadException : DerelictException
 {
 public:
-	static void throwNew(in char[][] libNames, in char[][] reasons)
-	{
-		assert(libNames.length == reasons.length);
-		
-		string msg = "Failed to load one or more shared libraries:";
-		foreach(i, n; libNames)
-		{
-			msg ~= "\n\t" ~ n ~ " - " ~ reasons[i];
-		}
-		throw new SharedLibLoadException(msg);
-	}
+    static void throwNew(in char[][] libNames, in char[][] reasons)
+    {
+        string msg = "Failed to load one or more shared libraries:";
+        foreach(i, n; libNames)
+        {
+            msg ~= "\n\t" ~ n ~ " - ";
+            if(i < reasons.length)
+                msg ~= reasons[i];
+            else
+                msg ~= "Unknown";
+        }
+        throw new SharedLibLoadException(msg);
+    }
 
     this(string msg)
     {
         super(msg);
+        _sharedLibName = "";
+    }
+
+    this(string msg, string sharedLibName)
+    {
+        super(msg);
         _sharedLibName = sharedLibName;
     }
-    
+
     string sharedLibName()
     {
         return _sharedLibName;
