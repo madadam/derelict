@@ -62,9 +62,9 @@ enum GLVersion
     GL15 = 15,
     GL20 = 20,
     GL21 = 21,
-    GL30 = 30,
+ //   GL30 = 30,
 
-    HigestSupported = 30
+    HigestSupported = 21
 }
 
 
@@ -83,9 +83,9 @@ private:
     GLVersion findMaxAvailable()
     {
         string verstr = toDString(glGetString(GL_VERSION));
-        if(verstr.findStr("3.0") == 0)
+       /* if(verstr.findStr("3.0") == 0)
             return GLVersion.GL30;
-        else if(verstr.findStr("2.1") == 0)
+        else */if(verstr.findStr("2.1") == 0)
             return GLVersion.GL21;
         else if(verstr.findStr("2.0") == 0)
             return GLVersion.GL20;
@@ -100,7 +100,10 @@ private:
         else if(verstr.findStr("1.1") == 0)
             return GLVersion.GL11;
 
-        throw new DerelictException("Unsupported OpenGL version: " ~ verstr);
+        // assume new version of OpenGL
+        // TODO this needs to be more robust -- check to make sure that there this
+        // is a valid version number and actually is higher than the highest supported
+        return GLVersion.HighestSupported;
     }
 
     GLVersion _maxVersion;
@@ -428,22 +431,22 @@ public:
     {
         switch(ver)
         {
-            case GLVersion.GL30:
-                return "OpenGL Version 3.0";
+          /*  case GLVersion.GL30:
+                return "OpenGL Version 3.0"; */
             case GLVersion.GL21:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 2.1";
             case GLVersion.GL20:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 2.0";
             case GLVersion.GL15:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 1.5";
             case GLVersion.GL14:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 1.4";
             case GLVersion.GL13:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 1.3";
             case GLVersion.GL12:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 1.2";
             case GLVersion.GL11:
-                return "OpenGL Version 3.0";
+                return "OpenGL Version 1.1";
             case GLVersion.None:
                 return "OpenGL Version None";
             default:
