@@ -64,7 +64,7 @@ enum GLVersion
     GL21 = 21,
  //   GL30 = 30,
 
-    HigestSupported = 21
+    HighestSupported = 21
 }
 
 
