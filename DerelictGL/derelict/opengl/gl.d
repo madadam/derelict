@@ -42,8 +42,6 @@ private
     import derelict.util.loader;
     import derelict.util.exception;
     import derelict.util.compat;
-    import std.conv;
-    import std.stdio;
 
     version(Windows)
         import derelict.opengl.wgl;
