@@ -1,4 +1,4 @@
-PACKAGE_NAME = DerelictSDL
+PACKAGE_NAME = DerelictGL
 
 LIB_TARGET=$(PACKAGE_NAME).lib
 
@@ -23,9 +23,14 @@ all : $(PACKAGE_NAME)
 $(PACKAGE_NAME) : $(LIB_TARGET)
 
 ALL_OBJS= \
-    derelict\sdl\sdl.obj \
-    derelict\sdl\sdlfuncs.obj \
-    derelict\sdl\sdltypes.obj
+    derelict\opengl\extfuncs.obj \
+    derelict\opengl\extloader.obj \
+    derelict\opengl\exttypes.obj \
+    derelict\opengl\gl.obj \
+    derelict\opengl\glext.obj \
+    derelict\opengl\glfuncs.obj \
+    derelict\opengl\gltypes.obj \
+    derelict\opengl\wgl.obj
 
 $(LIB_TARGET) : $(ALL_OBJS)
 	$(LC) -c -n $@ $(ALL_OBJS)

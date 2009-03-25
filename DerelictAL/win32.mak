@@ -2,11 +2,11 @@ PACKAGE_NAME = DerelictAL
 
 LIB_TARGET=$(PACKAGE_NAME).lib
 
-CP=xcopy /y
-RM=del /f
+CP=copy /y
+RM=del /f /q
 MD=mkdir
 
-DFLAGS=-release -O -inline -w -I..\DerelictUtil
+DFLAGS=-release -O -inline -I..\DerelictUtil
 
 DC=dmd
 LC=lib

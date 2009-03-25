@@ -33,6 +33,6 @@ module derelict.opengl.glext;
 
 public
 {
-	import derelict.opengl.exttypes;
-	import derelict.opengl.extfuncs;
+    import derelict.opengl.exttypes;
+    import derelict.opengl.extfuncs;
 }

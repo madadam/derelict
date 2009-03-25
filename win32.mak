@@ -1,12 +1,17 @@
 
 DMAKE=make
-RM=del /f
+RM=del /f /q
 LIB_DIR=lib
 
 all : DerelictAL DerelictSDL DerelictUtil
 
 DerelictAL :
 	cd DerelictAL
+	$(DMAKE) -fwin32.mak
+	cd ..
+	
+DerelictGL :
+	cd DerelictGL
 	$(DMAKE) -fwin32.mak
 	cd ..
 	
@@ -21,5 +26,6 @@ DerelictUtil :
 	cd ..
 	
 clean :
-	$(RM) $(LIB_DIR)\*.lib
-	
+	cd $(LIB_DIR)
+	$(RM) *.lib
+	cd ..
