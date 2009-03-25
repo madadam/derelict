@@ -42,6 +42,7 @@ private
     import derelict.util.loader;
     import derelict.util.exception;
     import derelict.util.compat;
+    import derelict.opengl.extloader;
 
     version(Windows)
         import derelict.opengl.wgl;
@@ -66,7 +67,6 @@ enum GLVersion
 
     HighestSupported = 21
 }
-
 
 class DerelictGLLoader : SharedLibLoader
 {
@@ -112,6 +112,39 @@ public:
     GLVersion maxVersion()
     {
         return _maxVersion;
+    }
+
+    void loadExtensions()
+    {
+        if(!hasValidContext())
+            throw new DerelictException("An OpenGL context must be created and activated before attempting to load extensions.");
+        extLoadAll();
+    }
+
+    string[] loadedExtensionNames()
+    {
+        return getLoadedExtensionNames();
+    }
+
+    string[] notLoadedExtensionNames()
+    {
+        return getNotLoadedExtensionNames();
+    }
+
+    bool isExtensionSupported(string extName)
+    {
+        if(!hasValidContext())
+            throw new DerelictException("An OpenGL context must be created and activated before attempting to check for supported extensions.");
+
+        return extIsSupported(extName);
+    }
+
+    bool isExtensionLoaded(string extName)
+    {
+        if(!hasValidContext())
+            throw new DerelictException("An OpenGL context must be created and activated before attempting to check for loaded extensions.");
+
+        return extIsLoaded(extName);
     }
 
     GLVersion loadExtendedVersions(GLVersion minRequired = GLVersion.GL11)

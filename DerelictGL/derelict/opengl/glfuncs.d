@@ -397,40 +397,6 @@ extern(System)
     void function(GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLenum, void*) glTexSubImage3D;
     void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage3D;
 
-    /* This is GL_ARB_Imaging Extension
-    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glColorTable;
-    void function(GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glColorSubTable;
-    void function(GLenum, GLenum, in GLint*) glColorTableParameteriv;
-    void function(GLenum, GLenum, in GLfloat*) glColorTableParameterfv;
-    void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTable;
-    void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyColorTable;
-    void function(GLenum, GLenum, GLenum, void*) glGetColorTable;
-    void function(GLenum, GLenum, GLfloat*) glGetColorTableParameterfv;
-    void function(GLenum, GLenum, GLint*) glGetColorTableParameteriv;
-    void function(GLenum, GLsizei, GLenum, GLboolean) glHistogram;
-    void function(GLenum) glResetHistogram;
-    void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetHistogram;
-    void function(GLenum, GLenum, GLfloat*) glGetHistogramParameterfv;
-    void function(GLenum, GLenum, GLint*) glGetHistogramParameteriv;
-    void function(GLenum, GLenum, GLboolean) glMinmax;
-    void function(GLenum) glResetMinmax;
-    void function(GLenum, GLboolean, GLenum, GLenum, void*) glGetMinmax;
-    void function(GLenum, GLenum, GLfloat*) glGetMinmaxParameterfv;
-    void function(GLenum, GLenum, GLint*) glGetMinmaxParameteriv;
-    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter1D;
-    void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*) glConvolutionFilter2D;
-    void function(GLenum, GLenum, GLfloat) glConvolutionParameterf;
-    void function(GLenum, GLenum, in GLfloat*) glConvolutionParameterfv;
-    void function(GLenum, GLenum, GLint) glConvolutionParameteri;
-    void function(GLenum, GLenum, in GLint*) glConvolutionParameteriv;
-    void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyConvolutionFilter1D;
-    void function(GLenum, GLenum, GLint, GLint, GLsizei, GLsizei) glCopyConvolutionFilter2D;
-    void function(GLenum, GLenum, GLenum, void*) glGetConvolutionFilter;
-    void function(GLenum, GLenum, GLfloat*) glGetConvolutionParameterfv;
-    void function(GLenum, GLenum, GLint*) glGetConvolutionParameteriv;
-    void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, in void*, in void*) glSeparableFilter2D;
-    void function(GLenum, GLenum, GLenum, void*, void*, void*) glSeparableFilter2D;
-    */
     // gl 1.3
     void function(GLenum) glActiveTexture;
     void function(GLenum) glClientActiveTexture;
