@@ -1,7 +1,3 @@
-PACKAGE_NAME = DerelictGL
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
 MD=mkdir
@@ -19,10 +15,11 @@ LIB_DEST=..\lib
 .d.obj:
 	$(DC) -c $(DFLAGS) $< -of$@
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
+all : DerelictGL DerelictGLU
+DerelictGL : DerelictGL.lib
+DerelictGLU : DerelictGLU.lib
 
-ALL_OBJS= \
+GL_OBJS= \
     derelict\opengl\extfuncs.obj \
     derelict\opengl\extloader.obj \
     derelict\opengl\exttypes.obj \
@@ -32,12 +29,24 @@ ALL_OBJS= \
     derelict\opengl\gltypes.obj \
     derelict\opengl\wgl.obj
 
-$(LIB_TARGET) : $(ALL_OBJS)
-	$(LC) -c -n $@ $(ALL_OBJS)
-	$(RM) $(ALL_OBJS)
+DerelictGL.lib : $(GL_OBJS)
+	$(LC) -c -n $@ $(GL_OBJS)
+	$(RM) $(GL_OBJS)
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+GLU_OBJS= \
+    derelict\opengl\glu.obj \
+    derelict\opengl\glufuncs.obj \
+    derelict\opengl\glutypes.obj
+
+DerelictGLU.lib : $(GLU_OBJS)
+	$(LC) -c -n $@ $(GLU_OBJS)
+	$(RM) $(GLU_OBJS)
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 
 clean:
-	$(RM) $(ALL_OBJS)
+	$(RM) $(GL_OBJS)
+	$(RM) $(GLU_OBJS)

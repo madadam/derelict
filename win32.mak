@@ -3,7 +3,7 @@ DMAKE=make
 RM=del /f /q
 LIB_DIR=lib
 
-all : DerelictAL DerelictSDL DerelictUtil
+all : DerelictAL DerelictGL DerelictSDL DerelictUtil
 
 DerelictAL :
 	cd DerelictAL
