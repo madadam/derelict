@@ -101,7 +101,7 @@ package
         loaded["GL_ARB_framebuffer_sRGB"] = load_GL_ARB_framebuffer_sRGB();
         loaded["GL_ARB_geometry_shader4"] = load_GL_ARB_geometry_shader4();
         loaded["GL_ARB_half_float_vertex"] = load_GL_ARB_half_float_vertex();
-        loaded["GL_ARB_imgaging"] = load_GL_ARB_imaging();
+        loaded["GL_ARB_imaging"] = load_GL_ARB_imaging();
         loaded["GL_ARB_instanced_arrays"] = load_GL_ARB_instanced_arrays();
         loaded["GL_ARB_texture_buffer_object"] = load_GL_ARB_texture_buffer_object();
         loaded["GL_ARB_texture_compression_rgtc"] = load_GL_ARB_texture_compression_rgtc();
