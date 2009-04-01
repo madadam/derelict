@@ -1,7 +1,13 @@
 module dgl;
 
+pragma(lib, "lib\\DerelictGL.lib");
+pragma(lib, "lib\\DerelictGLU.lib");
+pragma(lib, "lib\\DerelictSDL.lib");
+pragma(lib, "lib\\DerelictUtil.lib");
+
 import derelict.sdl.sdl;
 import derelict.opengl.gl;
+import derelict.opengl.glu;
 import std.string;
 import std.stdio;
 
@@ -9,6 +15,7 @@ void main()
 {
 	DerelictSDL.load();
 	DerelictGL.load();
+	DerelictGLU.load();
 	
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -27,6 +34,8 @@ void main()
 	
 	GLVersion ver = DerelictGL.loadExtendedVersions(GLVersion.GL21);
 	writefln("Max GL version = %d", ver);
+	char[] gluver = toString(gluGetString(GLU_VERSION));
+	writefln("GLU version string = %s", gluver);
 	
 	glClearColor(0.0, 0.0, 1.0, 1.0);
 	
