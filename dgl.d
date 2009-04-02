@@ -1,7 +1,6 @@
 module dgl;
 
 pragma(lib, "lib\\DerelictGL.lib");
-pragma(lib, "lib\\DerelictGLU.lib");
 pragma(lib, "lib\\DerelictSDL.lib");
 pragma(lib, "lib\\DerelictUtil.lib");
 
@@ -21,7 +20,11 @@ void main()
 	{
 		throw new Exception("Couldn't init SDL: " ~ .toString(SDL_GetError()));
 	}	
-	scope(exit) SDL_Quit();
+	scope(exit) 
+	{
+		if(SDL_Quit !is null)
+			SDL_Quit();
+	}
 	
 	SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
@@ -37,6 +40,18 @@ void main()
 	char[] gluver = toString(gluGetString(GLU_VERSION));
 	writefln("GLU version string = %s", gluver);
 	
+	DerelictGL.loadExtensions();
+
+	writefln("Loaded OpenGL Extensions:");
+	string[] extlist = DerelictGL.loadedExtensionNames;
+	foreach(s; extlist)
+		writefln("\t%s", s);
+		
+	writefln("Not Loaded OpenGL Extensions:");
+	extlist = DerelictGL.notLoadedExtensionNames;
+	foreach(s; extlist)
+		writefln("\t%s", s);
+		
 	glClearColor(0.0, 0.0, 1.0, 1.0);
 	
 	bool running = true;

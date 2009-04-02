@@ -37,15 +37,12 @@ private
     import derelict.opengl.gltypes;
     import derelict.opengl.glfuncs;
     import derelict.util.compat;
-
-    debug
-    {
-        import derelict.util.exception;
-    }
+    import derelict.util.exception;
 
     version(Windows)
     {
         import derelict.opengl.wgl;
+        import derelict.util.wintypes;
         alias wglGetProcAddress getAddress;
     }
 }
@@ -53,6 +50,7 @@ private
 private
 {
     string extStr;
+    version(Windows) string winExtStr;
     bool[string] loaded;
 }
 
@@ -108,6 +106,8 @@ package
         loaded["GL_ARB_teture_rg"] = load_GL_ARB_teture_rg();
         loaded["GL_ARB_vertex_array_object"] = load_GL_ARB_vertex_array_object();
         loaded["GL_ARB_uniform_buffer_object"] = load_GL_ARB_uniform_buffer_object();
+
+        extLoadPlatform();
     }
 
     string[] getLoadedExtensionNames()
@@ -142,7 +142,13 @@ package
     bool extIsSupported(string extName)
     {
         if(extStr is null) extStr = toDString(glGetString(GL_EXTENSIONS));
-        return (extStr.findStr(extName) != -1);
+        bool found = (extStr.findStr(extName) != -1);
+        version(Windows)
+        {
+            if(!found && winExtStr !is null)
+                return (winExtStr.findStr(extName) != -1);
+        }
+        return found;
     }
 
     bool extIsLoaded(string extName)
@@ -154,6 +160,34 @@ package
 
 private
 {
+    version(Windows)
+    {
+        void extLoadPlatform()
+        {
+            // wgl extensions (mostly) all rely on WGL_ARB_extensions string, so load it first
+            loaded["WGL_ARB_extensions_string"] = load_WGL_ARB_extensions_string();
+
+            // load the wgl extensions string
+            if(wglGetExtensionsStringARB !is null)
+            {
+                HDC dc = wglGetCurrentDC();
+                if(dc !is null)
+                    winExtStr = toDString(wglGetExtensionsStringARB(dc));
+                else
+                	throw new DerelictException("Cannot load WGL extensions: No valid Device Context!");
+            }
+
+            // now load the other WGL extensions
+            loaded["WGL_ARB_buffer_region"] = load_WGL_ARB_buffer_region();
+            loaded["WGL_ARB_multisample"] = load_WGL_ARB_multisample();
+            loaded["WGL_ARB_pixel_format"] = load_WGL_ARB_pixel_format();
+            loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();
+            loaded["WGL_ARB_pbuffer"] = load_WGL_ARB_pbuffer();
+            loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
+            loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
+            loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
+        }
+    }
     bool bindExtFunc(void** ptr, string funcName)
     {
         *ptr = getAddress(toCString(funcName));
@@ -1067,5 +1101,106 @@ private
         if(!bindExtFunc(cast(void**)&glUniformBlockBindingARB, "glUniformBlockBindingARB"))
             return false;
         return true;
+    }
+
+    version(Windows)
+    {
+        bool load_WGL_ARB_extensions_string()
+        {
+	        // don't bother checking for support, as it probably won't even be reported by the driver
+            if(!bindExtFunc(cast(void**)&wglGetExtensionsStringARB, "wglGetExtensionsStringARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_buffer_region()
+        {
+            if(!extIsSupported("WGL_ARB_buffer_region"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglCreateBufferRegionARB, "wglCreateBufferRegionARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglDeleteBufferRegionARB, "wglDeleteBufferRegionARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglSaveBufferRegionARB, "wglSaveBufferRegionARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglRestoreBufferRegionARB, "wglRestoreBufferRegionARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_multisample()
+        {
+            if(!extIsSupported("WGL_ARB_multisample"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_pixel_format()
+        {
+            if(!extIsSupported("WGL_ARB_pixel_format"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglGetPixelFormatAttribivARB, "wglGetPixelFormatAttribivARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglGetPixelFormatAttribfvARB, "wglGetPixelFormatAttribfvARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglChoosePixelFormatARB, "wglChoosePixelFormatARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_make_current_read()
+        {
+            if(!extIsSupported("WGL_ARB_make_current_read"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglMakeContextCurrentARB, "wglMakeContextCurrentARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglGetCurrentReadDCARB, "wglGetCurrentReadDCARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_pbuffer()
+        {
+            if(!extIsSupported("WGL_ARB_pbuffer"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglGetPbufferDCARB, "wglGetPbufferDCARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglReleasePbufferDCARB, "wglReleasePbufferDCARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglDestroyPbufferARB, "wglDestroyPbufferARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglQueryPbufferARB, "wglQueryPbufferARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_render_texture()
+        {
+            if(!extIsSupported("WGL_ARB_render_texture"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglBindTexImageARB, "wglBindTexImageARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglReleaseTexImageARB, "wglReleaseTexImageARB"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglSetPbufferAttribARB, "wglSetPbufferAttribARB"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_pixel_format_float()
+        {
+            if(!extIsSupported("WGL_ARB_pixel_format_float"))
+                return false;
+            return true;
+        }
+
+        bool load_WGL_ARB_create_context()
+        {
+            if(!extIsSupported("WGL_ARB_create_context"))
+                return false;
+            if(!bindExtFunc(cast(void**)&wglCreateContextAttribsARB, "wglCreateContextAttribsARB"))
+                return false;
+            return true;
+        }
     }
 }

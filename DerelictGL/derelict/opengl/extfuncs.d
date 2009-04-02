@@ -35,6 +35,12 @@ private
 {
     import derelict.opengl.gltypes;
     import derelict.opengl.exttypes;
+
+    version(Windows)
+    {
+        import derelict.util.wintypes;
+        import derelict.util.compat;
+    }
 }
 
 extern(System)
@@ -366,4 +372,41 @@ extern(System)
     void function(GLenum, GLuint, GLuint) glBindBufferBase;
     void function(GLenum, GLuint, GLint*) glGetIntegeri_v;
     void function(GLuint, GLuint, GLuint) glUniformBlockBindingARB;
+
+    version(Windows)
+    {
+        // WGL_ARB_buffer_region
+        HANDLE function(HDC, int, UINT) wglCreateBufferRegionARB;
+        void function(HANDLE) wglDeleteBufferRegionARB;
+        BOOL function(HANDLE, int, int, int, int) wglSaveBufferRegionARB;
+        BOOL function(HANDLE, int, int, int, int, int, int) wglRestoreBufferRegionARB;
+
+        // WGL_ARB_extensions_string
+        CCPTR function(HDC) wglGetExtensionsStringARB;
+
+        // WGL_ARB_pixel_format
+        BOOL function(HDC, int, int, UINT, in int*, int*) wglGetPixelFormatAttribivARB;
+        BOOL function(HDC, int, int, UINT, in int*, float*) wglGetPixelFormatAttribfvARB;
+        BOOL function(HDC, in int*, in float*, UINT, int*, UINT) wglChoosePixelFormatARB;
+
+        // WGL_ARB_make_current_read
+        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentARB;
+        HDC function() wglGetCurrentReadDCARB;
+
+        // WGL_ARB_pbuffer
+        HPBUFFERARB function(HDC, int, int, int, in int*) wglCreatePbufferARB;
+        HDC function(HPBUFFERARB) wglGetPbufferDCARB;
+        int function(HPBUFFERARB, HDC) wglReleasePbufferDCARB;
+        BOOL function(HPBUFFERARB) wglDestroyPbufferARB;
+        BOOL function(HPBUFFERARB, int, int*) wglQueryPbufferARB;
+
+        // WGL_ARB_render_texture
+        BOOL function(HPBUFFERARB, int) wglBindTexImageARB;
+        BOOL function(HPBUFFERARB, int) wglReleaseTexImageARB;
+        BOOL function(HPBUFFERARB, in int*) wglSetPbufferAttribARB;
+
+        // WGL_ARB_create_context
+        HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
+    }
+
 }
