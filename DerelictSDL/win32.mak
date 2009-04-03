@@ -23,9 +23,13 @@ all : $(PACKAGE_NAME)
 $(PACKAGE_NAME) : $(LIB_TARGET)
 
 ALL_OBJS= \
+	derelict\sdl\image.obj \
+	derelict\sdl\mixer.obj \
+	derelict\sdl\net.obj \
     derelict\sdl\sdl.obj \
     derelict\sdl\sdlfuncs.obj \
-    derelict\sdl\sdltypes.obj
+    derelict\sdl\sdltypes.obj \
+    derelict\sdl\ttf.obj
 
 $(LIB_TARGET) : $(ALL_OBJS)
 	$(LC) -c -n $@ $(ALL_OBJS)

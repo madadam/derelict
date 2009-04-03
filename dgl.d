@@ -5,16 +5,29 @@ pragma(lib, "lib\\DerelictSDL.lib");
 pragma(lib, "lib\\DerelictUtil.lib");
 
 import derelict.sdl.sdl;
+import derelict.sdl.image;
+import derelict.sdl.mixer;
+import derelict.sdl.net;
+import derelict.sdl.ttf;
 import derelict.opengl.gl;
 import derelict.opengl.glu;
 import std.string;
 import std.stdio;
+
+void dumpver(char[] sdlLib, SDL_version* ver)
+{
+	writefln("%s version: %d.%d.%d", sdlLib, ver.major, ver.minor, ver.patch);
+}
 
 void main()
 {
 	DerelictSDL.load();
 	DerelictGL.load();
 	DerelictGLU.load();
+	DerelictSDLImage.load();
+	DerelictSDLMixer.load();
+	DerelictSDLNet.load();
+	DerelictSDLttf.load();
 	
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -35,8 +48,24 @@ void main()
 		throw new Exception("Failed to set video mode: " ~ toString(SDL_GetError()));
 	}
 	
+	SDL_version* sdlver = SDL_Linked_Version();
+	dumpver("SDL", sdlver);
+	
+	sdlver = IMG_Linked_Version();
+	dumpver("SDL_image", sdlver);
+	
+	sdlver = Mix_Linked_Version();
+	dumpver("SDL_mixer", sdlver);
+	
+	sdlver = SDLNet_Linked_Version();
+	dumpver("SDL_net", sdlver);
+	
+	sdlver = TTF_Linked_Version();
+	dumpver("SDL_ttf", sdlver);
+	
 	GLVersion ver = DerelictGL.loadExtendedVersions(GLVersion.GL21);
-	writefln("Max GL version = %d", ver);
+	writefln("Max GL version = %s", DerelictGL.versionToString(ver));
+	
 	char[] gluver = toString(gluGetString(GLU_VERSION));
 	writefln("GLU version string = %s", gluver);
 	

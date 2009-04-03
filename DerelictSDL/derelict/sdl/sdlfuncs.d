@@ -216,11 +216,6 @@ extern(C)
     Uint64 function(SDL_RWops*,Uint64) SDL_WriteBE64;
 
     // SDL_version.h
-    private
-    {
-        version(D_Version2) mixin("alias const(SDL_version*) CSDLVERPTR;" );
-        else alias SDL_version* CSDLVERPTR;
-    }
     CSDLVERPTR function() SDL_Linked_Version;
 
     // SDL_syswm.h
