@@ -89,33 +89,34 @@ version(Nix)
             void *dlsym(void* handle, CCPTR name);
             CCPTR dlerror();
         }
-
-        alias void* SharedLibHandle;
-
-        private SharedLibHandle LoadSharedLib(string libName)
-        {
-            return dlopen(toCString(libName), RTLD_NOW);
-        }
-
-        private void UnloadSharedLib(SharedLibHandle hlib)
-        {
-            dlclose(hlib);
-        }
-
-        private void* GetSymbol(SharedLibHandle hlib, string symbolName)
-        {
-            return dlsym(hlib, toCString(symbolName));
-        }
-
-        private string GetErrorStr()
-        {
-            CCPTR err = dlerror();
-            if(err is null)
-                return "Uknown Error";
-
-            return toDString(err);
-        }
     }
+
+    alias void* SharedLibHandle;
+
+    private SharedLibHandle LoadSharedLib(string libName)
+    {
+        return dlopen(toCString(libName), RTLD_NOW);
+    }
+
+    private void UnloadSharedLib(SharedLibHandle hlib)
+    {
+        dlclose(hlib);
+    }
+
+    private void* GetSymbol(SharedLibHandle hlib, string symbolName)
+    {
+        return dlsym(hlib, toCString(symbolName));
+    }
+
+    private string GetErrorStr()
+    {
+        CCPTR err = dlerror();
+        if(err is null)
+            return "Uknown Error";
+
+        return toDString(err);
+    }
+
 }
 else version(Windows)
 {
