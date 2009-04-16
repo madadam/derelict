@@ -37,7 +37,7 @@ private
     import derelict.util.compat;
 }
 
-version(linux)
+version(linux)e
 {
     version = Nix;
 }
@@ -114,7 +114,7 @@ version(Nix)
         if(err is null)
             return "Uknown Error";
 
-        return toDString(err);
+        return toDString(err).dup;
     }
 
 }
