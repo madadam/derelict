@@ -37,7 +37,7 @@ private
     import derelict.util.compat;
 }
 
-version(linux)e
+version(linux)
 {
     version = Nix;
 }
