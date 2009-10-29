@@ -43,7 +43,7 @@ enum : Uint8
 {
     SDL_MIXER_MAJOR_VERSION     = 1,
     SDL_MIXER_MINOR_VERSION     = 2,
-    SDL_MIXER_PATCHLEVEL        = 8,
+    SDL_MIXER_PATCHLEVEL        = 9,
 }
 alias SDL_MIXER_MAJOR_VERSION MIX_MAJOR_VERSION;
 alias SDL_MIXER_MINOR_VERSION MIX_MINOR_VERSION;
@@ -77,6 +77,7 @@ enum Mix_MusicType
    MUS_OGG,
    MUS_MP3,
    MUS_MP3_MAD,
+   MUS_FLAC,
 };
 
 struct _Mix_Music {}
@@ -142,6 +143,10 @@ extern (C)
     Mix_Chunk* function(Uint8*, Uint32) Mix_QuickLoad_RAW;
     void function(Mix_Chunk*) Mix_FreeChunk;
     void function(Mix_Music*) Mix_FreeMusic;
+    int function() Mix_GetNumChunkDecoders;
+    CCPTR function(int) Mix_GetChunkDecoder;
+    int function() Mix_GetNumMusicDecoders;
+    CCPTR function() Mix_GetMusicDecoder;
     Mix_MusicType function(in Mix_Music*) Mix_GetMusicType;
     void function(void (*mix_func)(void*, Uint8*, int), void*) Mix_SetPostMix;
     void function(void (*mix_func)(void*, Uint8*, int), void*) Mix_HookMusic;
@@ -228,6 +233,10 @@ protected:
         bindFunc(cast(void**)&Mix_QuickLoad_RAW, "Mix_QuickLoad_RAW");
         bindFunc(cast(void**)&Mix_FreeChunk, "Mix_FreeChunk");
         bindFunc(cast(void**)&Mix_FreeMusic, "Mix_FreeMusic");
+        bindFunc(cast(void**)&Mix_GetNumChunkDecoders, "Mix_GetNumChunkDecoders");
+        bindFunc(cast(void**)&Mix_GetChunkDecoder, "Mix_GetChunkDecoder");
+        bindFunc(cast(void**)&Mix_GetNumMusicDecoders, "Mix_GetNumMusicDecoders");
+        bindFunc(cast(void**)&Mix_GetMusicDecoder, "Mix_GetMusicDecoder");
         bindFunc(cast(void**)&Mix_GetMusicType, "Mix_GetMusicType");
         bindFunc(cast(void**)&Mix_SetPostMix, "Mix_SetPostMix");
         bindFunc(cast(void**)&Mix_HookMusic, "Mix_HookMusic");

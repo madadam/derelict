@@ -45,7 +45,7 @@ enum : Uint8
 {
     SDL_IMAGE_MAJOR_VERSION     = 1,
     SDL_IMAGE_MINOR_VERSION     = 2,
-    SDL_IMAGE_PATCHLEVEL        = 7,
+    SDL_IMAGE_PATCHLEVEL        = 8,
 }
 
 void SDL_IMAGE_VERSION(SDL_version* X)
@@ -55,8 +55,17 @@ void SDL_IMAGE_VERSION(SDL_version* X)
     X.patch     = SDL_IMAGE_PATCHLEVEL;
 }
 
+enum
+{
+    IMG_INIT_JPG    = 0x00000001,
+    IMG_INIT_PNG    = 0x00000002,
+    IMG_INIT_TIF    = 0x00000004,
+}
+
 extern(C)
 {
+    int function(int) IMG_Init;
+    int function() IMG_Quit;
     CSDLVERPTR function() IMG_Linked_Version;
     SDL_Surface* function(SDL_RWops*, int, char*) IMG_LoadTyped_RW;
     SDL_Surface* function(in char*) IMG_Load;
@@ -73,6 +82,8 @@ extern(C)
     int function(SDL_RWops*) IMG_isXCF;
     int function(SDL_RWops*) IMG_isXPM;
     int function(SDL_RWops*) IMG_isXV;
+    int function(SDL_RWops*) IMG_isICO;
+    int function(SDL_RWops*) IMG_isCUR;
     SDL_Surface* function(SDL_RWops*) IMG_LoadBMP_RW;
     SDL_Surface* function(SDL_RWops*) IMG_LoadGIF_RW;
     SDL_Surface* function(SDL_RWops*) IMG_LoadJPG_RW;
@@ -85,6 +96,8 @@ extern(C)
     SDL_Surface* function(SDL_RWops*) IMG_LoadXCF_RW;
     SDL_Surface* function(SDL_RWops*) IMG_LoadXPM_RW;
     SDL_Surface* function(SDL_RWops*) IMG_LoadXV_RW;
+    SDL_Surface* function(SDL_RWops*) IMG_LoadICO_RW;
+    SDL_Surface* function(SDL_RWops*) IMG_LoadCUR_RW;
     SDL_Surface* function(char**) IMG_ReadXPMFromArray;
 }
 
@@ -107,6 +120,8 @@ protected:
         {
             throw new SharedLibLoadException("DerelictSDL must be loaded before attempting to load DerelictSDLImage!");
         }
+        bindFunc(cast(void**)&IMG_Init, "IMG_Init");
+        bindFunc(cast(void**)&IMG_Quit, "IMG_Quit");
         bindFunc(cast(void**)&IMG_Linked_Version, "IMG_Linked_Version");
         bindFunc(cast(void**)&IMG_LoadTyped_RW, "IMG_LoadTyped_RW");
         bindFunc(cast(void**)&IMG_Load, "IMG_Load");
@@ -123,6 +138,8 @@ protected:
         bindFunc(cast(void**)&IMG_isXCF, "IMG_isXCF");
         bindFunc(cast(void**)&IMG_isXPM, "IMG_isXPM");
         bindFunc(cast(void**)&IMG_isXV, "IMG_isXV");
+        bindFunc(cast(void**)&IMG_isICO, "IMG_isICO");
+        bindFunc(cast(void**)&IMG_isCUR, "IMG_isCUR");
         bindFunc(cast(void**)&IMG_LoadBMP_RW, "IMG_LoadBMP_RW");
         bindFunc(cast(void**)&IMG_LoadGIF_RW, "IMG_LoadGIF_RW");
         bindFunc(cast(void**)&IMG_LoadJPG_RW, "IMG_LoadJPG_RW");
@@ -135,6 +152,8 @@ protected:
         bindFunc(cast(void**)&IMG_LoadXCF_RW, "IMG_LoadXCF_RW");
         bindFunc(cast(void**)&IMG_LoadXPM_RW, "IMG_LoadXPM_RW");
         bindFunc(cast(void**)&IMG_LoadXV_RW, "IMG_LoadXV_RW");
+        bindFunc(cast(void**)&IMG_LoadICO_RW, "IMG_LoadICO_RW");
+        bindFunc(cast(void**)&IMG_LoadCUR_RW, "IMG_LoadCUR_RW");
         bindFunc(cast(void**)&IMG_ReadXPMFromArray, "IMG_ReadXPMFromArray");
     }
 }
