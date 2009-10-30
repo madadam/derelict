@@ -24,10 +24,10 @@ void main()
 	DerelictSDL.load();
 	DerelictGL.load();
 	DerelictGLU.load();
-	DerelictSDLImage.load();
-	DerelictSDLMixer.load();
-	DerelictSDLNet.load();
-	DerelictSDLttf.load();
+//	DerelictSDLImage.load();
+//	DerelictSDLMixer.load();
+//	DerelictSDLNet.load();
+//	DerelictSDLttf.load();
 	
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -50,7 +50,7 @@ void main()
 	
 	SDL_version* sdlver = SDL_Linked_Version();
 	dumpver("SDL", sdlver);
-	
+/*	
 	sdlver = IMG_Linked_Version();
 	dumpver("SDL_image", sdlver);
 	
@@ -62,9 +62,12 @@ void main()
 	
 	sdlver = TTF_Linked_Version();
 	dumpver("SDL_ttf", sdlver);
-	
+*/	
 	GLVersion ver = DerelictGL.loadExtendedVersions(GLVersion.GL21);
 	writefln("Max GL version = %s", DerelictGL.versionToString(ver));
+	
+	char[] glver = toString(glGetString(GL_VERSION));
+	writefln("GL version string = %s", glver);
 	
 	char[] gluver = toString(gluGetString(GLU_VERSION));
 	writefln("GLU version string = %s", gluver);

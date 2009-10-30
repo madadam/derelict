@@ -58,55 +58,7 @@ package
 {
     void extLoadAll()
     {
-        loaded["GL_ARB_multitexture"] = load_GL_ARB_multitexture();
-        loaded["GL_ARB_transpose_matrix"] = load_GL_ARB_transpose_matrix();
-        loaded["GL_ARB_multisample"] = load_GL_ARB_multisample();
-        loaded["GL_ARB_texture_env_add"] = load_GL_ARB_texture_env_add();
-        loaded["GL_ARB_texture_cube_map"] = load_GL_ARB_texture_cube_map();
-        loaded["GL_ARB_texture_compression"] = load_GL_ARB_texture_compression();
-        loaded["GL_ARB_texture_border_clamp"] = load_GL_ARB_texture_border_clamp();
-        loaded["GL_ARB_point_parameters"] = load_GL_ARB_point_parameters();
-        loaded["GL_ARB_vertex_blend"] = load_GL_ARB_vertex_blend();
-        loaded["GL_ARB_matrix_palette"] = load_GL_ARB_matrix_palette();
-        loaded["GL_ARB_texture_env_combine"] = load_GL_ARB_texture_env_combine();
-        loaded["GL_ARB_texture_env_crossbar"] = load_GL_ARB_texture_env_crossbar();
-        loaded["GL_ARB_texture_env_dot3"] = load_GL_ARB_texture_env_dot3();
-        loaded["GL_ARB_texture_mirrored_repeat"] = load_GL_ARB_texture_mirrored_repeat();
-        loaded["GL_ARB_depth_texture"] = load_GL_ARB_depth_texture();
-        loaded["GL_ARB_shadow"] = load_GL_ARB_shadow();
-        loaded["GL_ARB_shadow_ambient"] = load_GL_ARB_shadow_ambient();
-        loaded["GL_ARB_window_pos"] = load_GL_ARB_window_pos();
-        loaded["GL_ARB_vertex_program"] = load_GL_ARB_vertex_program();
-        loaded["GL_ARB_fragment_program"] = load_GL_ARB_fragment_program();
-        loaded["GL_ARB_vertex_buffer_object"] = load_GL_ARB_vertex_buffer_object();
-        loaded["GL_ARB_occlusion_query"] = load_GL_ARB_occlusion_query();
-        loaded["GL_ARB_shader_objects"] = load_GL_ARB_shader_objects();
-        loaded["GL_ARB_vertex_shader"] = load_GL_ARB_vertex_shader();
-        loaded["GL_ARB_fragment_shader"] = load_GL_ARB_fragment_shader();
-        loaded["GL_ARB_shading_language_100"] = load_GL_ARB_shading_language_100();
-        loaded["GL_ARB_texture_non_power_of_two"] = load_GL_ARB_texture_non_power_of_two();
-        loaded["GL_ARB_point_sprite"] = load_GL_ARB_point_sprite();
-        loaded["GL_ARB_fragment_program_shadow"] = load_GL_ARB_fragment_program_shadow();
-        loaded["GL_ARB_draw_buffers"] = load_GL_ARB_draw_buffers();
-        loaded["GL_ARB_texture_rectangle"] = load_GL_ARB_texture_rectangle();
-        loaded["GL_ARB_color_buffer_float"] = load_GL_ARB_color_buffer_float();
-        loaded["GL_ARB_half_float_pixel"] = load_GL_ARB_half_float_pixel();
-        loaded["GL_ARB_texture_float"] = load_GL_ARB_texture_float();
-        loaded["GL_ARB_pixel_buffer_object"] = load_GL_ARB_pixel_buffer_object();
-        loaded["GL_ARB_depth_buffer_float"] = load_GL_ARB_depth_buffer_float();
-        loaded["GL_ARB_draw_instanced"] = load_GL_ARB_draw_instanced();
-        loaded["GL_ARB_framebuffer_object"] = load_GL_ARB_framebuffer_object();
-        loaded["GL_ARB_framebuffer_sRGB"] = load_GL_ARB_framebuffer_sRGB();
-        loaded["GL_ARB_geometry_shader4"] = load_GL_ARB_geometry_shader4();
-        loaded["GL_ARB_half_float_vertex"] = load_GL_ARB_half_float_vertex();
-        loaded["GL_ARB_imaging"] = load_GL_ARB_imaging();
-        loaded["GL_ARB_instanced_arrays"] = load_GL_ARB_instanced_arrays();
-        loaded["GL_ARB_texture_buffer_object"] = load_GL_ARB_texture_buffer_object();
-        loaded["GL_ARB_texture_compression_rgtc"] = load_GL_ARB_texture_compression_rgtc();
-        loaded["GL_ARB_teture_rg"] = load_GL_ARB_teture_rg();
-        loaded["GL_ARB_vertex_array_object"] = load_GL_ARB_vertex_array_object();
-        loaded["GL_ARB_uniform_buffer_object"] = load_GL_ARB_uniform_buffer_object();
-
+        extLoadCommon();		
         extLoadPlatform();
     }
 
@@ -160,6 +112,75 @@ package
 
 private
 {
+	void extLoadCommon()
+	{
+		loaded["GL_ARB_multitexture"] = load_GL_ARB_multitexture();
+        loaded["GL_ARB_transpose_matrix"] = load_GL_ARB_transpose_matrix();
+        loaded["GL_ARB_multisample"] = load_GL_ARB_multisample();
+        loaded["GL_ARB_texture_env_add"] = load_GL_ARB_texture_env_add();
+        loaded["GL_ARB_texture_cube_map"] = load_GL_ARB_texture_cube_map();
+        loaded["GL_ARB_texture_compression"] = load_GL_ARB_texture_compression();
+        loaded["GL_ARB_texture_border_clamp"] = load_GL_ARB_texture_border_clamp();
+        loaded["GL_ARB_point_parameters"] = load_GL_ARB_point_parameters();
+        loaded["GL_ARB_vertex_blend"] = load_GL_ARB_vertex_blend();
+        loaded["GL_ARB_matrix_palette"] = load_GL_ARB_matrix_palette();
+        loaded["GL_ARB_texture_env_combine"] = load_GL_ARB_texture_env_combine();
+        loaded["GL_ARB_texture_env_crossbar"] = load_GL_ARB_texture_env_crossbar();
+        loaded["GL_ARB_texture_env_dot3"] = load_GL_ARB_texture_env_dot3();
+        loaded["GL_ARB_texture_mirrored_repeat"] = load_GL_ARB_texture_mirrored_repeat();
+        loaded["GL_ARB_depth_texture"] = load_GL_ARB_depth_texture();
+        loaded["GL_ARB_shadow"] = load_GL_ARB_shadow();
+        loaded["GL_ARB_shadow_ambient"] = load_GL_ARB_shadow_ambient();
+        loaded["GL_ARB_window_pos"] = load_GL_ARB_window_pos();
+        loaded["GL_ARB_vertex_program"] = load_GL_ARB_vertex_program();
+        loaded["GL_ARB_fragment_program"] = load_GL_ARB_fragment_program();
+        loaded["GL_ARB_vertex_buffer_object"] = load_GL_ARB_vertex_buffer_object();
+        loaded["GL_ARB_occlusion_query"] = load_GL_ARB_occlusion_query();
+        loaded["GL_ARB_shader_objects"] = load_GL_ARB_shader_objects();
+        loaded["GL_ARB_vertex_shader"] = load_GL_ARB_vertex_shader();
+        loaded["GL_ARB_fragment_shader"] = load_GL_ARB_fragment_shader();
+        loaded["GL_ARB_shading_language_100"] = load_GL_ARB_shading_language_100();
+        loaded["GL_ARB_texture_non_power_of_two"] = load_GL_ARB_texture_non_power_of_two();
+        loaded["GL_ARB_point_sprite"] = load_GL_ARB_point_sprite();
+        loaded["GL_ARB_fragment_program_shadow"] = load_GL_ARB_fragment_program_shadow();
+        loaded["GL_ARB_draw_buffers"] = load_GL_ARB_draw_buffers();
+        loaded["GL_ARB_texture_rectangle"] = load_GL_ARB_texture_rectangle();
+        loaded["GL_ARB_color_buffer_float"] = load_GL_ARB_color_buffer_float();
+        loaded["GL_ARB_half_float_pixel"] = load_GL_ARB_half_float_pixel();
+        loaded["GL_ARB_texture_float"] = load_GL_ARB_texture_float();
+        loaded["GL_ARB_pixel_buffer_object"] = load_GL_ARB_pixel_buffer_object();
+        loaded["GL_ARB_depth_buffer_float"] = load_GL_ARB_depth_buffer_float();
+        loaded["GL_ARB_draw_instanced"] = load_GL_ARB_draw_instanced();
+        loaded["GL_ARB_framebuffer_object"] = load_GL_ARB_framebuffer_object();
+        loaded["GL_ARB_framebuffer_sRGB"] = load_GL_ARB_framebuffer_sRGB();
+        loaded["GL_ARB_geometry_shader4"] = load_GL_ARB_geometry_shader4();
+        loaded["GL_ARB_half_float_vertex"] = load_GL_ARB_half_float_vertex();
+        loaded["GL_ARB_imaging"] = load_GL_ARB_imaging();
+        loaded["GL_ARB_instanced_arrays"] = load_GL_ARB_instanced_arrays();
+        loaded["GL_ARB_texture_buffer_object"] = load_GL_ARB_texture_buffer_object();
+        loaded["GL_ARB_texture_compression_rgtc"] = load_GL_ARB_texture_compression_rgtc();
+        loaded["GL_ARB_teture_rg"] = load_GL_ARB_teture_rg();
+        loaded["GL_ARB_vertex_array_object"] = load_GL_ARB_vertex_array_object();
+        loaded["GL_ARB_uniform_buffer_object"] = load_GL_ARB_uniform_buffer_object();
+        
+        loaded["GL_EXT_abgr"] = load_GL_EXT_abgr();
+        loaded["GL_EXT_blend_color"] = load_GL_EXT_blend_color();
+		loaded["GL_EXT_polygon_offset"] = load_GL_EXT_polygon_offset();
+		loaded["GL_EXT_texture"] = load_GL_EXT_texture();
+		loaded["GL_EXT_texture3D"] = load_GL_EXT_texture3D();
+		loaded["GL_EXT_texture_filter4"] = load_GL_SGIS_texture_filter4;
+		loaded["GL_EXT_subtexture"] = load_GL_EXT_subtexture();
+		loaded["GL_EXT_copy_texture"] = load_GL_EXT_copy_texture();
+		loaded["GL_EXT_histogram"] = load_GL_EXT_histogram();
+		loaded["GL_EXT_convolution"] = load_GL_EXT_convolution();
+		loaded["GL_SGI_color_matrix"] = load_GL_SGI_color_matrix();
+		loaded["GL_SGI_color_table"] = load_GL_SGI_color_table();
+		loaded["GL_SGIS_pixel_texture"] = load_GL_SGIS_pixel_texture();
+		loaded["GL_SGIX_pixel_texture"] = load_GL_SGIX_pixel_texture();
+		loaded["GL_SGIS_texture4D"] = load_GL_SGIS_texture4D();
+		loaded["GL_SGI_texture_color_table"] = load_GL_SGI_texture_color_table();
+	}
+	
     version(Windows)
     {
         void extLoadPlatform()
@@ -1102,6 +1123,222 @@ private
             return false;
         return true;
     }
+    
+    bool load_GL_EXT_abgr()
+    {
+	    if(!extIsSupported("GL_EXT_abgr"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_blend_color()
+    {
+	    if(!extIsSupported("GL_EXT_blend_color"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glBlendColorEXT, "glBlendColorEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_polygon_offset()
+    {
+	    if(!extIsSupported("GL_EXT_polygon_offset"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPolygonOffsetEXT, "glPolygonOffsetEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_texture()
+    {
+	    if(!extIsSupported("GL_EXT_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexImage3DEXT, "glTexImage3DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexSubImage3DEXT, "glTexSubImage3DEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_texture3D()
+    {
+	    if(!extIsSupported("GL_EXT_texture3D"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture_filter4()
+    {
+	    if(!extIsSupported("GL_SGIS_texture_filter4"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetTexFilterFuncSGIS, "glGetTexFilterFuncSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexFilterFuncSGIS, "glTexFilterFuncSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_subtexture()
+    {
+	    if(!extIsSupported("GL_EXT_subtexture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexSubImage1DEXT, "glTexSubImage1DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexSubImage21DEXT, "glTexSubImage21DEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_copy_texture()
+    {
+	    if(!extIsSupported("GL_EXT_copy_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyTexImage1DEXT, "glCopyTexImage1DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyTexImage2DEXT, "glCopyTexImage2DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyTexSubImage1DEXT, "glCopyTexSubImage1DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyTexSubImage2DEXT, "glCopyTexSubImage2DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyTexSubImage3DEXT, "glCopyTexSubImage3DEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_histogram()
+    {
+	    if(!extIsSupported("GL_EXT_histogram"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetHistogramEXT, "glGetHistogramEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetHistogramParameterfvEXT, "glGetHistogramParameterfvEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetHistogramParameterivEXT, "glGetHistogramParameterivEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetMinmaxEXT, "glGetMinmaxEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetMinmaxParameterfvEXT, "glGetMinmaxParameterfvEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetMinmaxParameterivEXT, "glGetMinmaxParameterivEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glHistogramEXT, "glHistogramEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glMinmaxEXT, "glMinmaxEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glResetHistogramEXT, "glResetHistogramEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glResetMinmaxEXT, "glResetMinmaxEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_convolution()
+    {
+	    if(!extIsSupported("GL_EXT_convolution"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionFilter1DEXT, "glConvolutionFilter1DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionFilter2DEXT, "glConvolutionFilter2DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionParameterfEXT, "glConvolutionParameterfEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionParameterfvEXT, "glConvolutionParameterfvEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionParameteriEXT, "glConvolutionParameteriEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glConvolutionParameterivEXT, "glConvolutionParameterivEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyConvolutionFilter1DEXT, "glCopyConvolutionFilter1DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyConvolutionFilter2DEXT, "glCopyConvolutionFilter2DEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetConvolutionFilterEXT, "glGetConvolutionFilterEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetConvolutionParameterfvEXT, "glGetConvolutionParameterfvEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetConvolutionParameterivEXT, "glGetConvolutionParameterivEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetSeparableFilterEXT, "glGetSeparableFilterEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSeparableFilter2DEXT, "glSeparableFilter2DEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGI_color_matrix()
+    {
+	    if(!extIsSupported("GL_SGI_color_matrix"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGI_color_table()
+    {
+	    if(!extIsSupported("GL_SGI_color_table"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glColorTableSGI, "glColorTableSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glColorTableParameterfvSGI, "glColorTableParameterfvSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glColorTableParameterivSGI, "glColorTableParameterivSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glCopyColorTableSGI, "glCopyColorTableSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetColorTableSGI, "glGetColorTableSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetColorTableParameterfvSGI, "glGetColorTableParameterfvSGI"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetColorTableParameterivSGI, "glGetColorTableParameterivSGI"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_pixel_texture()
+    {
+	    if(!extIsSupported("GL_SGIS_pixel_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPixelTexGenParameteriSGIS, "glPixelTexGenParameteriSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPixelTexGenParameterivSGIS, "glPixelTexGenParameterivSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPixelTexGenParameterfSGIS, "glPixelTexGenParameterfSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPixelTexGenParameterfvSGIS, "glPixelTexGenParameterfvSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetPixelTexGenParameterivSGIS, "glGetPixelTexGenParameterivSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetPixelTexGenParameterfvSGIS, "glGetPixelTexGenParameterfvSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_pixel_texture()
+    {
+	    if(!extIsSupported("GL_SGIX_pixel_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPixelTexGenSGIX, "glPixelTexGenSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture4D()
+    {
+	    if(!extIsSupported("GL_SGIS_texture4D"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexImage4DSGIS, "glTexImage4DSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexSubImage4DSGIS, "glTexSubImage4DSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGI_texture_color_table()
+    {
+	    if(!extIsSupported("GL_SGI_texture_color_table"))
+	    	return false;
+	    return true;
+    }
 
     version(Windows)
     {
@@ -1202,5 +1439,6 @@ private
                 return false;
             return true;
         }
+        
     }
 }
