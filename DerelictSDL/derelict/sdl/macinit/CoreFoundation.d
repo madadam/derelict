@@ -74,23 +74,15 @@ extern (C)
 
 
     //   CFBundle bindings from the CoreFoundation framework
-    typedef CFDictionaryRef function(CFBundleRef bundle) pfCFBundleGetInfoDictionary;
-    pfCFBundleGetInfoDictionary CFBundleGetInfoDictionary;
-
-    typedef CFBundleRef function() pfCFBundleGetMainBundle;
-    pfCFBundleGetMainBundle CFBundleGetMainBundle;
-
-    typedef CFURLRef function(CFBundleRef bundle) pfCFBundleCopyBundleURL;
-    pfCFBundleCopyBundleURL CFBundleCopyBundleURL;
+    CFDictionaryRef function(CFBundleRef bundle) CFBundleGetInfoDictionary;
+    CFBundleRef function() CFBundleGetMainBundle;
+    CFURLRef function(CFBundleRef bundle) CFBundleCopyBundleURL;
 
 
 
     //   CFURL bindings from the CoreFoundation framework
-    typedef CFURLRef function(CFAllocatorRef allocator, CFURLRef url) pfCFURLCreateCopyDeletingLastPathComponent;
-    pfCFURLCreateCopyDeletingLastPathComponent CFURLCreateCopyDeletingLastPathComponent;
-
-    typedef bool function(CFURLRef url, bool resolveAgainstBase, ubyte* buffer, CFIndex maxBufLen) pfCFURLGetFileSystemRepresentation;
-    pfCFURLGetFileSystemRepresentation CFURLGetFileSystemRepresentation;
+    CFURLRef function(CFAllocatorRef allocator, CFURLRef url) CFURLCreateCopyDeletingLastPathComponent;
+    bool function(CFURLRef url, bool resolveAgainstBase, ubyte* buffer, CFIndex maxBufLen) CFURLGetFileSystemRepresentation;
 }
 
 static this ()

@@ -13,14 +13,22 @@ version (darwin)
 
 private
 {
-
     version (Tango)
-        import tango.stdc.posix.unistd;
+    {
+    	import tango.stdc.posix.unistd;
+    	import tango.stdc.stdlib;
+    	import tango.stdc.string;
+    }
 
     else
-        import std.c.linux.linux;
+    {
+    	import std.c.linux.linux;
+    	import std.c.stdlib;
+    	import std.c.string;
+    }
 
-    import derelict.sdl.events;
+    import derelict.sdl.sdltypes;
+    import derelict.sdl.sdlfuncs;
     import derelict.sdl.macinit.CoreFoundation;
     import derelict.sdl.macinit.ID;
     import derelict.sdl.macinit.MacTypes;
@@ -42,6 +50,7 @@ private
     import derelict.util.loader;
 }
 
+private:
 
 private const int MAXPATHLEN = 1024; // from sys/param.h
 
@@ -88,8 +97,9 @@ private
 }
 
 static this ()
-{
+{   
     registerSubclasses;
+    CustomApplicationMain;
 }
 
 static ~this()
@@ -102,21 +112,135 @@ static ~this()
 }
 
 private void registerSubclasses ()
+{		
+	objc_method terminateMethod;
+	terminateMethod.method_imp = cast(IMP) &terminate;
+	terminateMethod.method_name = sel_terminate.ptr;
+	terminateMethod.method_types = sel_registerName!("v@:").ptr;
+		
+	objc_method_list* terminateMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+	terminateMethodList.method_count = 1;
+	terminateMethodList.method_list[0] = terminateMethod;
+	
+	
+	
+	objc_method setupWorkingDirectoryMethod;
+	setupWorkingDirectoryMethod.method_imp = cast(IMP) &setupWorkingDirectory;
+	setupWorkingDirectoryMethod.method_name = sel_setupWorkingDirectory.ptr;
+	setupWorkingDirectoryMethod.method_types = sel_registerName!("v@:B").ptr;
+	
+	objc_method_list* setupWorkingDirectoryMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+	setupWorkingDirectoryMethodList.method_count = 1;
+	setupWorkingDirectoryMethodList.method_list[0] = setupWorkingDirectoryMethod;
+	
+	
+	
+	objc_method applicationMethod;
+	applicationMethod.method_imp = cast(IMP) &application;
+	applicationMethod.method_name = sel_application.ptr;
+	applicationMethod.method_types = sel_registerName!("B@:@@").ptr;
+	
+	objc_method_list* applicationMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+	applicationMethodList.method_count = 1;
+	applicationMethodList.method_list[0] = applicationMethod;
+	
+	
+	
+	objc_method applicationDidFinishLaunchingMethod;
+	applicationDidFinishLaunchingMethod.method_imp = cast(IMP) &applicationDidFinishLaunching;
+	applicationDidFinishLaunchingMethod.method_name = sel_applicationDidFinishLaunching.ptr;
+	applicationDidFinishLaunchingMethod.method_types = sel_registerName!("v@:@").ptr;
+	
+	objc_method_list* applicationDidFinishLaunchingMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+	applicationDidFinishLaunchingMethodList.method_count = 1;
+	applicationDidFinishLaunchingMethodList.method_list[0] = applicationDidFinishLaunchingMethod;
+	
+	
+	
+	auto sdlApplicationMethodList = [terminateMethodList];
+	auto sdlMainMethodList = [setupWorkingDirectoryMethodList, applicationMethodList, applicationDidFinishLaunchingMethodList];
+	
+	registerClass!("SDLApplication")(cast(Class) class_NSApplication, sdlApplicationMethodList);
+	registerClass!("SDLMain")(cast(Class) class_NSObject, sdlMainMethodList);
+	
+	class_SDLApplication = objc_getClass!("SDLApplication");
+}
+
+private void registerClass (string className) (Class superClass, objc_method_list*[] methodList)
 {
-    Class clazz;
+	Class newClass;
+	
+	// Leopard and above
+	if (!objc_addClass)
+    {    
+    	newClass = objc_allocateClassPair!(className)(cast(Class) superClass, 0);
+    	
+    	foreach (method ; methodList)
+    		class_addMethods(newClass, method);
+    	
+    	objc_registerClassPair(newClass);
+    }
+    
+    // Tiger and below
+    else
+    {
+    	enum
+    	{
+    		CLS_CLASS = 0x1,
+    		CLS_META = 0x2
+    	}
+    	
+    	Class metaClass;
+    	Class rootClass = superClass;
 
-    clazz = objc_allocateClassPair(cast(Class) class_NSApplication, "SDLApplication", 0);
-    class_addMethod(clazz, sel_terminate, cast(IMP) &terminate, "v@:");
-    objc_registerClassPair(clazz);
+    	// Find the root class
+    	while (rootClass.super_class !is null)
+    		rootClass = rootClass.super_class;    	
 
-    clazz = objc_allocateClassPair(cast(Class) class_NSObject, "SDLMain", 0);
-    class_addMethod(clazz, sel_setupWorkingDirectory, cast(IMP) &setupWorkingDirectory, "v@:B");
+    	// Allocate space for the class and its metaclass
+    	newClass = cast(Class) calloc(2, objc_class.sizeof);
+    	metaClass = &newClass[1];
 
-    class_addMethod(clazz, sel_application, cast(IMP) &application, "B@:@@");
-    class_addMethod(clazz, sel_applicationDidFinishLaunching, cast(IMP) &applicationDidFinishLaunching, "v@:@");
-    objc_registerClassPair(clazz);
+    	// Setup class
+    	newClass.isa = metaClass;
+    	newClass.info = CLS_CLASS;
+    	metaClass.info = CLS_META;
 
-    class_SDLApplication = objc_getClass("SDLApplication");
+    	/*
+    	 * Create a copy of the class name.
+    	 * For efficiency, we have the metaclass and the class itself
+    	 * to share this copy of the name, but this is not a requirement
+    	 * imposed by the runtime.
+    	 */
+    	newClass.name = ((className ~ '\0').dup).ptr;
+        metaClass.name = newClass.name;
+
+    	// Allocate method lists.
+        newClass.methodLists = cast(objc_method_list**) calloc(1, (objc_method_list*).sizeof);
+        *(newClass.methodLists) = cast(objc_method_list*) -1;
+        metaClass.methodLists = cast(objc_method_list**) calloc(1, (objc_method_list*).sizeof);
+        *(metaClass.methodLists) = cast(objc_method_list*) -1;
+
+        foreach (method ; methodList)
+    		class_addMethods(newClass, method);
+
+    	/*
+    	 * Connect the class definition to the class hierarchy:
+    	 * Connect the class to the superclass.
+    	 * Connect the metaclass to the metaclass of the superclass.
+    	 * Connect the metaclass of the metaclass to the metaclass of  the root class.
+    	 */    	
+    	newClass.super_class = superClass;
+    	metaClass.super_class = superClass.isa;
+    	metaClass.isa = rootClass.isa;
+
+    	// Set the sizes of the class and the metaclass.
+    	newClass.instance_size = superClass.instance_size;
+    	metaClass.instance_size = metaClass.super_class.instance_size;
+
+    	// Finally, register the class with the runtime.
+    	objc_addClass(newClass);
+    }
 }
 
 private NSString getApplicationName ()
@@ -156,13 +280,7 @@ class SDLApplication : NSApplication
 
     static Class class_ ()
     {
-        string name = this.classinfo.name;
-        size_t index = name.lastIndexOf('.');
-
-        if (index != -1)
-            name = name[index + 1 .. $];
-
-        return cast(Class) objc_getClass(name);
+    	return cast(Class) objc_getClass!(this.stringof);
     }
 
     static void poseAsClass (Class aClass)
@@ -215,13 +333,7 @@ class SDLMain : NSObject
 
     static Class class_ ()
     {
-        string name = this.classinfo.name;
-        size_t index = name.lastIndexOf('.');
-
-        if (index != -1)
-            name = name[index + 1 .. $];
-
-        return cast(Class) objc_getClass(name);
+    	return cast(Class) objc_getClass!(this.stringof);
     }
 
     SDLMain init ()
@@ -303,26 +415,27 @@ private void setApplicationMenu ()
 
     /* Add menu items */
     title = NSString.stringWith("About ").stringByAppendingString(appName);
-    appleMenu.addItemWithTitle(title, sel_registerName("orderFrontStandardAboutPanel:"), NSString.stringWith(""));
+    appleMenu.addItemWithTitle(title, sel_registerName!("orderFrontStandardAboutPanel:"), NSString.stringWith(""));
 
     appleMenu.addItem(NSMenuItem.separatorItem);
 
     title = NSString.stringWith("Hide ").stringByAppendingString(appName);
-    appleMenu.addItemWithTitle(title, sel_registerName("hide:"), NSString.stringWith("h"));
+    appleMenu.addItemWithTitle(title, sel_registerName!("hide:"), NSString.stringWith("h"));
 
-    menuItem = appleMenu.addItemWithTitle(NSString.stringWith("Hide Others"), sel_registerName("hideOtherApplications:"), NSString.stringWith("h"));
+    menuItem = appleMenu.addItemWithTitle(NSString.stringWith("Hide Others"), sel_registerName!("hideOtherApplications:"), NSString.stringWith("h"));
     menuItem.setKeyEquivalentModifierMask(NSAlternateKeyMask | NSCommandKeyMask);
 
-    appleMenu.addItemWithTitle(NSString.stringWith("Show All"), sel_registerName("unhideAllApplications:"), NSString.stringWith(""));
+    appleMenu.addItemWithTitle(NSString.stringWith("Show All"), sel_registerName!("unhideAllApplications:"), NSString.stringWith(""));
 
     appleMenu.addItem(NSMenuItem.separatorItem);
 
     title = NSString.stringWith("Quit ").stringByAppendingString(appName);
-    appleMenu.addItemWithTitle(title, sel_registerName("terminate:"), NSString.stringWith("q"));
+    appleMenu.addItemWithTitle(title, sel_registerName!("terminate:"), NSString.stringWith("q"));
 
 
     /* Put menu into the menubar */
-    menuItem = NSMenuItem.alloc.initWithTitle(NSString.stringWith(""), null, NSString.stringWith(""));
+    menuItem = NSMenuItem.alloc;
+    menuItem = menuItem.initWithTitle(NSString.stringWith(""), null, NSString.stringWith(""));
     menuItem.setSubmenu = appleMenu;
     NSApp.mainMenu.addItem(menuItem);
 
@@ -344,12 +457,14 @@ private void setupWindowMenu ()
     windowMenu = NSMenu.alloc.initWithTitle(NSString.stringWith("Window"));
 
     /* "Minimize" item */
-    menuItem = NSMenuItem.alloc.initWithTitle(NSString.stringWith("Minimize"), "performMiniaturize:", NSString.stringWith("m"));
+    menuItem = NSMenuItem.alloc;
+    menuItem = menuItem.initWithTitle(NSString.stringWith("Minimize"), "performMiniaturize:", NSString.stringWith("m"));
     windowMenu.addItem(menuItem);
     menuItem.release;
 
     /* Put menu into the menubar */
-    windowMenuItem = NSMenuItem.alloc.initWithTitle(NSString.stringWith("Window"), null, NSString.stringWith(""));
+    windowMenuItem = NSMenuItem.alloc;
+    windowMenuItem = windowMenuItem.initWithTitle(NSString.stringWith("Window"), null, NSString.stringWith(""));
     windowMenuItem.setSubmenu = windowMenu;
     NSApp.mainMenu.addItem(windowMenuItem);
 
@@ -365,7 +480,7 @@ private void setupWindowMenu ()
 private void CustomApplicationMain ()
 {
     pool = NSAutoreleasePool.alloc.init;
-
+    
     /* Ensure the application object is initialised */
     SDLApplication.sharedApplication;
 
@@ -393,14 +508,5 @@ private void CustomApplicationMain ()
     /* Start the main event loop */
     NSApp.run;
 }
-
-
-public void macInit ()
-{
-    CustomApplicationMain();
-}
-
-
-
 
 } // version(darwin)

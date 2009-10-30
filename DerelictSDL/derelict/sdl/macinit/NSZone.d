@@ -40,11 +40,8 @@ package:
 
 extern (C)
 {
-    typedef void* function(NSUInteger bytes) pfNSAllocateMemoryPages;
-    pfNSAllocateMemoryPages NSAllocateMemoryPages;
-
-    typedef void function (void* ptr, NSUInteger bytes) pfNSDeallocateMemoryPages;
-    pfNSDeallocateMemoryPages NSDeallocateMemoryPages;
+    void* function(NSUInteger bytes) NSAllocateMemoryPages;
+    void function (void* ptr, NSUInteger bytes) NSDeallocateMemoryPages;
 }
 
 static this ()

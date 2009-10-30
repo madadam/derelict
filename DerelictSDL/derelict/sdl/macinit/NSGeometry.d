@@ -55,8 +55,8 @@ else
 
 struct NSPoint
 {
-    public CGFloat x;
-    public CGFloat y;
+   CGFloat x;
+   CGFloat y;
 }
 
 struct NSRange

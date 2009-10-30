@@ -64,13 +64,7 @@ class NSMenuItem : NSObject
 
     static Class class_ ()
     {
-        string name = this.classinfo.name;
-        size_t index = name.lastIndexOf('.');
-
-        if (index != -1)
-            name = name[index + 1 .. $];
-
-        return cast(Class) objc_getClass(name);
+    	return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSMenuItem init ()
@@ -87,7 +81,7 @@ class NSMenuItem : NSObject
 
     NSMenuItem initWithTitle (NSString itemName, string anAction, NSString charCode)
     {
-        id result = objc_msgSend(this.id_, sel_initWithTitle_action_keyEquivalent, itemName ? itemName.id_ : null, sel_registerName(anAction).ptr, charCode ? charCode.id_ : null);
+        id result = objc_msgSend(this.id_, sel_initWithTitle_action_keyEquivalent, itemName ? itemName.id_ : null, sel_registerName!(anAction).ptr, charCode ? charCode.id_ : null);
         return result ? new NSMenuItem(result) : null;
     }
 

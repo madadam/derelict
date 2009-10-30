@@ -73,13 +73,7 @@ class NSString : NSObject
 
     static Class class_ ()
     {
-        string name = this.classinfo.name;
-        size_t index = name.lastIndexOf('.');
-
-        if (index != -1)
-            name = name[index + 1 .. $];
-
-        return cast(Class) objc_getClass(name);
+    	return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSString init ()
