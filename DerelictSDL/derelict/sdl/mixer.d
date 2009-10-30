@@ -115,7 +115,7 @@ void SDL_MIXER_VERSION(SDL_version* X)
 alias SDL_MIXER_VERSION MIX_VERSION;
 
 
-Mix_Chunk* Mix_LoadWAV(in char[] file)
+Mix_Chunk* Mix_LoadWAV(string file)
 {
     return Mix_LoadWAV_RW(SDL_RWFromFile(toCString(file), toCString("rb")), 1);
 }

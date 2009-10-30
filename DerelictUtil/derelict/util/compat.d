@@ -56,6 +56,10 @@ else
 {
     private
     {
+	    version(D_Version2)
+	    {
+		    import std.conv;
+	    }
         import std.string;
         import std.c.string;
     }
@@ -74,7 +78,14 @@ string toDString(CCPTR cstr)
     }
     else
     {
-        return toString(cstr);
+	    version(D_Version2)
+	    {
+	    	mixin("return to!string(cstr);");
+    	}
+    	else
+    	{
+        	return toString(cstr);
+    	}
     }
 }
 
@@ -87,7 +98,14 @@ int findStr(string str, string match)
     }
     else
     {
-        return find(str, match);
+	    version(D_Version2)
+	    {
+		    mixin("return indexOf(str, match);");
+	    }
+	    else
+	    {
+        	return find(str, match);
+    	}
     }
 }
 
