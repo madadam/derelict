@@ -179,6 +179,22 @@ private
 		loaded["GL_SGIX_pixel_texture"] = load_GL_SGIX_pixel_texture();
 		loaded["GL_SGIS_texture4D"] = load_GL_SGIS_texture4D();
 		loaded["GL_SGI_texture_color_table"] = load_GL_SGI_texture_color_table();
+		loaded["GL_EXT_cmyka"] = load_GL_EXT_cmyka();
+		loaded["GL_EXT_texture_object"] = load_GL_EXT_texture_object();
+		loaded["GL_SGIS_detail_texture"] = load_GL_SGIS_detail_texture();
+		loaded["GL_SGIS_sharpen_texture"] = load_GL_SGIS_sharpen_texture();
+		loaded["GL_EXT_packed_pixels"] = load_GL_EXT_packed_pixels();
+		loaded["GL_SGIS_texture_lod"] = load_GL_SGIS_texture_lod();
+		loaded["GL_SGIS_multisample"] = load_GL_SGIS_multisample();
+		loaded["GL_EXT_rescale_normal"] = load_GL_EXT_rescale_normal();
+		loaded["GL_EXT_vertex_array"] = load_GL_EXT_vertex_array();
+		loaded["GL_EXT_misc_attribute"] = load_GL_EXT_misc_attribute();
+		loaded["GL_SGIS_generate_mipmap"] = load_GL_SGIS_generate_mipmap();
+		loaded["GL_SGIX_clipmap"] = load_GL_SGIX_clipmap();
+		loaded["GL_SGIX_shadow"] = load_GL_SGIX_shadow();
+		loaded["GL_SGIS_texture_edge_clamp"] = load_GL_SGIS_texture_edge_clamp();
+		loaded["GL_SGIS_texture_border_clamp"] = load_GL_SGIS_texture_border_clamp();
+		loaded["GL_EXT_blend_minmax"] = load_GL_EXT_blend_minmax();
 	}
 	
     version(Windows)
@@ -1339,7 +1355,165 @@ private
 	    	return false;
 	    return true;
     }
-
+    
+    bool load_GL_EXT_cmyka()
+    {
+	    if(!extIsSupported("GL_EXT_cmyka"))
+	    	return false;
+	    return true;
+    }
+    
+	bool load_GL_EXT_texture_object()
+    {
+	    if(!extIsSupported("GL_EXT_texture_object"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glAreTexturesResidentEXT, "glAreTexturesResidentEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glBindTextureEXT, "glBindTextureEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDeleteTexturesEXT, "glDeleteTexturesEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGenTexturesEXT, "glGenTexturesEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glIsTextureEXT, "glIsTextureEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPrioritizeTexturesEXT, "glPrioritizeTexturesEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_detail_texture()
+    {
+	    if(!extIsSupported("GL_SGIS_detail_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDetailTexFuncSGIS, "glDetailTexFuncSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetDetailTexFuncSGIS, "glGetDetailTexFuncSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_sharpen_texture()
+    {
+	    if(!extIsSupported("GL_SGIS_sharpen_texture"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSharpenTexFuncSGIS, "glSharpenTexFuncSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetSharpenTexFuncSGIS, "glGetSharpenTexFuncSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_packed_pixels()
+    {
+	    if(!extIsSupported("GL_EXT_packed_pixels"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture_lod()
+    {
+	    if(!extIsSupported("GL_SGIS_texture_lod"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_multisample()
+    {
+	    if(!extIsSupported("GL_SGIS_multisample"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSampleMaskSGIS, "glSampleMaskSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSamplePatternSGIS, "glSamplePatternSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_rescale_normal()
+    {
+	    if(!extIsSupported("GL_EXT_rescale_normal"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_vertex_array()
+    {
+	    if(!extIsSupported("GL_EXT_vertex_array"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glArrayElementEXT, "glArrayElementEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glColorPointerEXT, "glColorPointerEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDrawArraysEXT, "glDrawArraysEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glEdgeFlagPointerEXT, "glEdgeFlagPointerEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetPointervEXT, "glGetPointervEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glIndexPointerEXT, "glIndexPointerEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDrawArraysEXT, "glDrawArraysEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glNormalPointerEXT, "glNormalPointerEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTexCoordPointerEXT, "glTexCoordPointerEXT"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glVertexPointerEXT, "glVertexPointerEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_misc_attribute()
+    {
+	    if(!extIsSupported("GL_EXT_misc_attribute"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_generate_mipmap()
+    {
+	    if(!extIsSupported("GL_SGIS_generate_mipmap"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_clipmap()
+    {
+	    if(!extIsSupported("GL_SGIX_clipmap"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_shadow()
+    {
+	    if(!extIsSupported("GL_SGIX_shadow"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture_edge_clamp()
+    {
+	    if(!extIsSupported("GL_SGIS_texture_edge_clamp"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture_border_clamp()
+    {
+	    if(!extIsSupported("GL_SGIS_texture_border_clamp"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_blend_minmax()
+    {
+	    if(!extIsSupported("GL_EXT_blend_minmax"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glBlendEquationEXT, "glBlendEquationEXT"))
+	    	return false;
+	    return true;
+    }
+    
     version(Windows)
     {
         bool load_WGL_ARB_extensions_string()

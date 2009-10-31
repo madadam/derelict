@@ -269,9 +269,9 @@ extern(System)
     void function(GLhandleARB, GLsizei, GLsizei*, GLcharARB*) glGetShaderSourceARB;
 
     // GL_ARB_vertex_shader
-    void function (GLhandleARB, GLuint, in GLcharARB*) glBindAttribLocationARB;
-    void function (GLhandleARB, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLcharARB*) glGetActiveAttribARB;
-    GLint function (GLhandleARB, in GLcharARB* name) glGetAttribLocationARB;
+    void function(GLhandleARB, GLuint, in GLcharARB*) glBindAttribLocationARB;
+    void function(GLhandleARB, GLuint, GLsizei, GLsizei*, GLint*, GLenum*, GLcharARB*) glGetActiveAttribARB;
+    GLint function(GLhandleARB, in GLcharARB* name) glGetAttribLocationARB;
 
     // GL_ARB_draw_buffers
     void function(GLsizei, in GLenum*) glDrawBuffersARB;
@@ -372,46 +372,46 @@ extern(System)
     void function(GLenum, GLuint, GLuint) glBindBufferBase;
     void function(GLenum, GLuint, GLint*) glGetIntegeri_v;
     void function(GLuint, GLuint, GLuint) glUniformBlockBindingARB;
-    
+
     // GL_EXT_blend_color
     void function(GLclampf, GLclampf, GLclampf, GLclampf) glBlendColorEXT;
-    
+
     // GL_EXT_polygon_offset
     void function(GLfloat, GLfloat) glPolygonOffsetEXT;
-    
+
     // GL_EXT_texture3D
     void function(GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, GLvoid*) glTexImage3DEXT;
     void function(GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLenum, GLenum, GLvoid*) glTexSubImage3DEXT;
-    
+
     // GL_SGIS_texture_filter4
     void function(GLenum, GLenum, GLfloat*) glGetTexFilterFuncSGIS;
     void function(GLenum, GLenum, in GLfloat*) glTexFilterFuncSGIS;
-    
+
     // GL_EXT_subtexture
     void function(GLenum, GLint, GLint, GLsizei, GLenum, GLenum, in GLvoid*) glTexSubImage1DEXT;
     void function(GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, in GLvoid*) glTexSubImage21DEXT;
-    
+
     // GL_EXT_copy_texture
-	void function (GLenum, GLint, GLenum, GLint, GLint, GLsizei, GLint) glCopyTexImage1DEXT;
-	void function (GLenum, GLint, GLenum, GLint, GLint, GLsizei, GLsizei, GLint)glCopyTexImage2DEXT;
-	void function (GLenum, GLint, GLint, GLint, GLint, GLsizei) glCopyTexSubImage1DEXT;
-	void function (GLenum, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage2DEXT;
-	void function (GLenum, GLint, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage3DEXT;
-	
-	// GL_EXT_histogram
-	void function(GLenum, GLboolean, GLenum, GLenum, GLvoid*) glGetHistogramEXT;
-	void function(GLenum, GLenum, GLfloat*) glGetHistogramParameterfvEXT;
-	void function(GLenum, GLenum, GLint*) glGetHistogramParameterivEXT;
-	void function(GLenum, GLboolean, GLenum, GLenum, GLvoid*) glGetMinmaxEXT;
-	void function(GLenum, GLenum, GLfloat*) glGetMinmaxParameterfvEXT;
-	void function(GLenum, GLsizei, GLenum, GLint*) glGetMinmaxParameterivEXT;
-	void function(GLenum, GLsizei, GLenum, GLboolean) glHistogramEXT;
-	void function(GLenum, GLenum, GLboolean) glMinmaxEXT;
-	void function(GLenum) glResetHistogramEXT;
-	void function(GLenum) glResetMinmaxEXT;
-	
-	// GL_EXT_convolution
-	void function(GLenum, GLenum, GLsizei, GLenum, GLenum, GLvoid*) glConvolutionFilter1DEXT;
+    void function(GLenum, GLint, GLenum, GLint, GLint, GLsizei, GLint) glCopyTexImage1DEXT;
+    void function(GLenum, GLint, GLenum, GLint, GLint, GLsizei, GLsizei, GLint)glCopyTexImage2DEXT;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLsizei) glCopyTexSubImage1DEXT;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage2DEXT;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei) glCopyTexSubImage3DEXT;
+
+    // GL_EXT_histogram
+    void function(GLenum, GLboolean, GLenum, GLenum, GLvoid*) glGetHistogramEXT;
+    void function(GLenum, GLenum, GLfloat*) glGetHistogramParameterfvEXT;
+    void function(GLenum, GLenum, GLint*) glGetHistogramParameterivEXT;
+    void function(GLenum, GLboolean, GLenum, GLenum, GLvoid*) glGetMinmaxEXT;
+    void function(GLenum, GLenum, GLfloat*) glGetMinmaxParameterfvEXT;
+    void function(GLenum, GLsizei, GLenum, GLint*) glGetMinmaxParameterivEXT;
+    void function(GLenum, GLsizei, GLenum, GLboolean) glHistogramEXT;
+    void function(GLenum, GLenum, GLboolean) glMinmaxEXT;
+    void function(GLenum) glResetHistogramEXT;
+    void function(GLenum) glResetMinmaxEXT;
+
+    // GL_EXT_convolution
+    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, GLvoid*) glConvolutionFilter1DEXT;
     void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, GLvoid*) glConvolutionFilter2DEXT;
     void function(GLenum, GLenum, GLfloat) glConvolutionParameterfEXT;
     void function(GLenum, GLenum, GLfloat*) glConvolutionParameterfvEXT;
@@ -424,30 +424,64 @@ extern(System)
     void function(GLenum, GLenum, GLint*) glGetConvolutionParameterivEXT;
     void function(GLenum, GLenum, GLenum, GLvoid*, GLvoid*, GLvoid*) glGetSeparableFilterEXT;
     void function(GLenum, GLenum, GLsizei, GLsizei, GLenum, GLenum, GLvoid*, GLvoid*) glSeparableFilter2DEXT;
-    
+
     // GL_SGI_color_table
-    void function (GLenum, GLenum, GLsizei, GLenum, GLenum, in GLvoid *) glColorTableSGI;
-	void function (GLenum, GLenum, in GLfloat *) glColorTableParameterfvSGI;
-	void function (GLenum, GLenum, in GLint *) glColorTableParameterivSGI;
-	void function (GLenum, GLenum, GLint, GLint, GLsizei) glCopyColorTableSGI;
-	void function (GLenum, GLenum, GLenum, GLvoid *) glGetColorTableSGI;
-	void function (GLenum, GLenum, GLfloat *) glGetColorTableParameterfvSGI;
-	void function (GLenum, GLenum, GLint *) glGetColorTableParameterivSGI;
+    void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in GLvoid *) glColorTableSGI;
+    void function(GLenum, GLenum, in GLfloat *) glColorTableParameterfvSGI;
+    void function(GLenum, GLenum, in GLint *) glColorTableParameterivSGI;
+    void function(GLenum, GLenum, GLint, GLint, GLsizei) glCopyColorTableSGI;
+    void function(GLenum, GLenum, GLenum, GLvoid *) glGetColorTableSGI;
+    void function(GLenum, GLenum, GLfloat *) glGetColorTableParameterfvSGI;
+    void function(GLenum, GLenum, GLint *) glGetColorTableParameterivSGI;
+
+    // GL_SGIS_pixel_texture
+    void function(GLenum, GLint) glPixelTexGenParameteriSGIS;
+    void function(GLenum, in GLint *) glPixelTexGenParameterivSGIS;
+    void function(GLenum, GLfloat) glPixelTexGenParameterfSGIS;
+    void function(GLenum, in GLfloat *) glPixelTexGenParameterfvSGIS;
+    void function(GLenum, GLint *) glGetPixelTexGenParameterivSGIS;
+    void function(GLenum, GLfloat *) glGetPixelTexGenParameterfvSGIS;
+
+    // GL_SGIX_pixel_texture
+    void function(GLenum) glPixelTexGenSGIX;
+
+    // GL_SGIS_texture4D
+    void function(GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, in GLvoid *) glTexImage4DSGIS;
+    void function(GLenum, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLsizei, GLenum, GLenum, in GLvoid *) glTexSubImage4DSGIS;
+    
+    // GL_EXT_texture_object
+    GLboolean function(GLsizei, in GLuint *, GLboolean *) glAreTexturesResidentEXT;
+	void function(GLenum, GLuint) glBindTextureEXT;
+	void function(GLsizei, in GLuint *) glDeleteTexturesEXT;
+	void function(GLsizei, GLuint *) glGenTexturesEXT;
+	GLboolean function(GLuint) glIsTextureEXT;
+	void function(GLsizei, in GLuint *, in GLclampf *) glPrioritizeTexturesEXT;
 	
-	// GL_SGIS_pixel_texture
-	void function (GLenum, GLint) glPixelTexGenParameteriSGIS;
-	void function (GLenum, in GLint *) glPixelTexGenParameterivSGIS;
-	void function (GLenum, GLfloat) glPixelTexGenParameterfSGIS;
-	void function (GLenum, in GLfloat *) glPixelTexGenParameterfvSGIS;
-	void function (GLenum, GLint *) glGetPixelTexGenParameterivSGIS;
-	void function (GLenum, GLfloat *) glGetPixelTexGenParameterfvSGIS;
+	// GL_SGIS_detail_texture
+	void function(GLenum, GLsizei, in GLfloat *) glDetailTexFuncSGIS;
+	void function(GLenum, GLfloat *) glGetDetailTexFuncSGIS;
 	
-	// GL_SGIX_pixel_texture
-	void function(GLenum) glPixelTexGenSGIX;
+	// GL_SGIS_sharpen_texture
+	void function(GLenum, GLsizei, in GLfloat *) glSharpenTexFuncSGIS;
+	void function(GLenum, GLfloat *) glGetSharpenTexFuncSGIS;
 	
-	// GL_SGIS_texture4D
-	void function (GLenum, GLint, GLenum, GLsizei, GLsizei, GLsizei, GLsizei, GLint, GLenum, GLenum, in GLvoid *) glTexImage4DSGIS;
-	void function (GLenum, GLint, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei, GLsizei, GLenum, GLenum, in GLvoid *) glTexSubImage4DSGIS;
+	// GL_SGIS_multisample
+	void function(GLclampf, GLboolean) glSampleMaskSGIS;
+	void function(GLenum) glSamplePatternSGIS;
+	
+	// GL_EXT_vertex_array
+	void function(GLint) glArrayElementEXT;
+	void function(GLint, GLenum, GLsizei, GLsizei, in GLvoid *) glColorPointerEXT;
+	void function(GLenum, GLint, GLsizei) glDrawArraysEXT;
+	void function(GLsizei, GLsizei, in GLboolean *) glEdgeFlagPointerEXT;
+	void function(GLenum, GLvoid* *) glGetPointervEXT;
+	void function(GLenum, GLsizei, GLsizei, in GLvoid *) glIndexPointerEXT;
+	void function(GLenum, GLsizei, GLsizei, in GLvoid *) glNormalPointerEXT;
+	void function(GLint, GLenum, GLsizei, GLsizei, in GLvoid *) glTexCoordPointerEXT;
+	void function(GLint, GLenum, GLsizei, GLsizei, in GLvoid *) glVertexPointerEXT;
+	
+	// GL_EXT_blend_minmax
+	void function(GLenum) glBlendEquationEXT;
 
     version(Windows)
     {
