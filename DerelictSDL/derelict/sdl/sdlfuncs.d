@@ -51,8 +51,8 @@ extern(C)
     // SDL.h
     int function(Uint32) SDL_Init;
     int function(Uint32) SDL_InitSubSystem;
-    int function(Uint32) SDL_QuitSubSystem;
-    int function(Uint32) SDL_WasInit;
+    void function(Uint32) SDL_QuitSubSystem;
+    Uint32 function(Uint32) SDL_WasInit;
     void function() SDL_Quit;
 
     // SDL_active.h
