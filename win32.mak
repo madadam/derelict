@@ -25,6 +25,11 @@ DerelictSDL :
 	$(DMAKE) -fwin32.mak
 	cd ..
 
+DerelictSFML :
+	cd DerelictSFML
+	$(DMAKE) -fwin32.mak
+	cd ..
+	
 DerelictUtil :
 	cd DerelictUtil
 	$(DMAKE) -fwin32.mak
