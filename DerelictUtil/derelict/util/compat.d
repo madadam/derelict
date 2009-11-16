@@ -30,10 +30,12 @@ module derelict.util.compat;
 version(D_Version2)
 {
 	mixin("alias const(char)* CCPTR;");
+	mixin("alias const(dchar)* CDCPTR;");
 }
 else
 {
 	alias char* CCPTR;
+	alias dchar* CDCPTR;
 }
 
 version(Tango)

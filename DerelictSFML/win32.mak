@@ -33,8 +33,13 @@ WIN_OBJS= \
 	derelict\sfml\wtypes.obj \
 	derelict\sfml\wfuncs.obj \
 	derelict\sfml\window.obj
+	
+GFX_OBJS= \
+	derelict\sfml\gtypes.obj \
+	derelict\sfml\gfuncs.obj \
+	derelict\sfml\graphics.obj
 
-ALL_OBJS= $(CONFIG_OBJ) $(SYS_OBJS) $(WIN_OBJS) \
+ALL_OBJS= $(CONFIG_OBJ) $(SYS_OBJS) $(WIN_OBJS) $(GFX_OBJS) \
 	derelict\sfml\sfml.obj
 
 $(LIB_TARGET) : $(ALL_OBJS)
@@ -52,6 +57,12 @@ DerelictSFMLWindow.lib : $(CONFIG_OBJ) $(WIN_OBJS)
 DerelictSFMLSystem.lib : $(CONFIG_OBJ) $(SYS_OBJS)
 	$(LC) -c -n $@ $(CONFIG_OBJ) $(SYS_OBJS)
 	$(RM) $(CONFIG_OBJ) $(SYS_OBJS)
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLGraphics.lib : $(CONFIG_OBJ) $(GFX_OBJS)
+	$(LC) -c -n $@ $(CONFIG_OBJ) $(GFX_OBJS)
+	$(RM) $(CONFIG_OBJ) $(GFX_OBJS)
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

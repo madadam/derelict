@@ -31,4 +31,5 @@ public
 {
     import derelict.sfml.system;
     import derelict.sfml.window;
+    import derelict.sfml.graphics;
 }
