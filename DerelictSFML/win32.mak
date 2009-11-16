@@ -4,68 +4,49 @@ LIB_TARGET=$(PACKAGE_NAME).lib
 
 CP=copy /y
 RM=del /f /q
-MD=mkdir
-
 DFLAGS=-release -O -inline -I..\DerelictUtil
-
 DC=dmd
-LC=lib
-
-
 LIB_DEST=..\lib
-
-.DEFAULT: .d .obj
-
-.d.obj:
-	$(DC) -c $(DFLAGS) $< -of$@
 
 all : $(PACKAGE_NAME)
 $(PACKAGE_NAME) : $(LIB_TARGET)
 
-CONFIG_OBJ = derelict\sfml\config.obj
+CONFIG_SRC = derelict\sfml\config.d
 
-SYS_OBJS= \
-	derelict\sfml\stypes.obj \
-	derelict\sfml\sfuncs.obj \
-	derelict\sfml\system.obj
+SYS_SRC= \
+	derelict\sfml\stypes.d \
+	derelict\sfml\sfuncs.d \
+	derelict\sfml\system.d
 
-WIN_OBJS= \
-	derelict\sfml\wtypes.obj \
-	derelict\sfml\wfuncs.obj \
-	derelict\sfml\window.obj
+WIN_SRC= \
+	derelict\sfml\wtypes.d \
+	derelict\sfml\wfuncs.d \
+	derelict\sfml\window.d
 	
-GFX_OBJS= \
-	derelict\sfml\gtypes.obj \
-	derelict\sfml\gfuncs.obj \
-	derelict\sfml\graphics.obj
+GFX_SRC= \
+	derelict\sfml\gtypes.d \
+	derelict\sfml\gfuncs.d \
+	derelict\sfml\graphics.d
 
-ALL_OBJS= $(CONFIG_OBJ) $(SYS_OBJS) $(WIN_OBJS) $(GFX_OBJS) \
-	derelict\sfml\sfml.obj
+ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) \
+	derelict\sfml\sfml.d
 
-$(LIB_TARGET) : $(ALL_OBJS)
-	$(LC) -c -n $@ $(ALL_OBJS)
-	$(RM) $(ALL_OBJS)
+$(LIB_TARGET) :
+	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
-DerelictSFMLWindow.lib : $(CONFIG_OBJ) $(WIN_OBJS)
-	$(LC) -c -n $@ $(CONFIG_OBJ) $(WIN_OBJS)
-	$(RM) $(CONFIG_OBJ) $(WIN_OBJS)
+DerelictSFMLWindow.lib :
+	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(WIN_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
-DerelictSFMLSystem.lib : $(CONFIG_OBJ) $(SYS_OBJS)
-	$(LC) -c -n $@ $(CONFIG_OBJ) $(SYS_OBJS)
-	$(RM) $(CONFIG_OBJ) $(SYS_OBJS)
+DerelictSFMLSystem.lib :
+	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(SYS_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
-DerelictSFMLGraphics.lib : $(CONFIG_OBJ) $(GFX_OBJS)
-	$(LC) -c -n $@ $(CONFIG_OBJ) $(GFX_OBJS)
-	$(RM) $(CONFIG_OBJ) $(GFX_OBJS)
+DerelictSFMLGraphics.lib :
+	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(GFX_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
-	
-
-clean:
-	$(RM) $(ALL_OBJS)
