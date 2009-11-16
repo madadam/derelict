@@ -37,7 +37,7 @@ private
 class SharedLibLoader
 {
 public:
-	this(string winLibs, string linLibs, string macLibs)
+	this(string winLibs, string nixLibs, string macLibs)
 	{
 		version(Windows)
 		{
@@ -53,7 +53,7 @@ public:
 		}
 		else
 		{
-			_libNames = linLibs;
+			_libNames = nixLibs;
 		}
 		
 		_lib = new SharedLib();

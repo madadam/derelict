@@ -45,6 +45,15 @@ else version(OSX)
 {
     version = Nix;
 }
+else version(FreeBSD)
+{
+    version = Nix;
+    version = freebsd;
+}
+else version(freebsd)
+{
+    version = Nix;
+}
 else version(Unix)
 {
     version = Nix;
@@ -59,7 +68,11 @@ version(Nix)
     // for people using DSSS, tell it to link the executable with libdl
     version(build)
     {
-        pragma(link, "dl");
+        version(freebsd)
+        {
+            // the dl* functions are in libc on FreeBSD
+        }
+        else pragma(link, "dl");
     }
 
     version(Tango)
