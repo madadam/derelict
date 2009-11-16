@@ -1049,10 +1049,114 @@ enum : GLenum
 	GL_CLAMP_TO_BORDER_SGIS				= 0x812D,
 	
 	// GL_EXT_blend_minmax
-	GL_FUNC_ADD_EXT                   = 0x8006,
-    GL_MIN_EXT                        = 0x8007,
-    GL_MAX_EXT                        = 0x8008,
-    GL_BLEND_EQUATION_EXT             = 0x8009,
+	GL_FUNC_ADD_EXT                   	= 0x8006,
+    GL_MIN_EXT                        	= 0x8007,
+    GL_MAX_EXT                        	= 0x8008,
+    GL_BLEND_EQUATION_EXT             	= 0x8009,
+    
+    // GL_EXT_blend_subtract
+    GL_FUNC_SUBTRACT_EXT              	= 0x800A,
+	GL_FUNC_REVERSE_SUBTRACT_EXT      	= 0x800B,
+	
+	// GL_SGIX_interlace
+	GL_INTERLACE_SGIX					= 0x8094,
+	
+	// GL_SGIX_pixel_tiles
+	GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX 	= 0x813E,
+	GL_PIXEL_TILE_CACHE_INCREMENT_SGIX 	= 0x813F,
+	GL_PIXEL_TILE_WIDTH_SGIX          	= 0x8140,
+	GL_PIXEL_TILE_HEIGHT_SGIX         	= 0x8141,
+	GL_PIXEL_TILE_GRID_WIDTH_SGIX     	= 0x8142,
+	GL_PIXEL_TILE_GRID_HEIGHT_SGIX    	= 0x8143,
+	GL_PIXEL_TILE_GRID_DEPTH_SGIX     	= 0x8144,
+	GL_PIXEL_TILE_CACHE_SIZE_SGIX     	= 0x8145,
+	
+	// GL_SGIS_texture_select
+	GL_DUAL_ALPHA4_SGIS               	= 0x8110,
+	GL_DUAL_ALPHA8_SGIS               	= 0x8111,
+	GL_DUAL_ALPHA12_SGIS              	= 0x8112,
+	GL_DUAL_ALPHA16_SGIS              	= 0x8113,
+	GL_DUAL_LUMINANCE4_SGIS           	= 0x8114,
+	GL_DUAL_LUMINANCE8_SGIS           	= 0x8115,
+	GL_DUAL_LUMINANCE12_SGIS          	= 0x8116,
+	GL_DUAL_LUMINANCE16_SGIS          	= 0x8117,
+	GL_DUAL_INTENSITY4_SGIS           	= 0x8118,
+	GL_DUAL_INTENSITY8_SGIS           	= 0x8119,
+	GL_DUAL_INTENSITY12_SGIS          	= 0x811A,
+	GL_DUAL_INTENSITY16_SGIS          	= 0x811B,
+	GL_DUAL_LUMINANCE_ALPHA4_SGIS     	= 0x811C,
+	GL_DUAL_LUMINANCE_ALPHA8_SGIS     	= 0x811D,
+	GL_QUAD_ALPHA4_SGIS               	= 0x811E,
+	GL_QUAD_ALPHA8_SGIS               	= 0x811F,
+	GL_QUAD_LUMINANCE4_SGIS           	= 0x8120,
+	GL_QUAD_LUMINANCE8_SGIS           	= 0x8121,
+	GL_QUAD_INTENSITY4_SGIS           	= 0x8122,
+	GL_QUAD_INTENSITY8_SGIS           	= 0x8123,
+	GL_DUAL_TEXTURE_SELECT_SGIS       	= 0x8124,
+	GL_QUAD_TEXTURE_SELECT_SGIS       	= 0x8125,
+	
+	// GL_SGIX_sprite
+	GL_SPRITE_SGIX                    	= 0x8148,
+	GL_SPRITE_MODE_SGIX               	= 0x8149,
+	GL_SPRITE_AXIS_SGIX               	= 0x814A,
+	GL_SPRITE_TRANSLATION_SGIX        	= 0x814B,
+	GL_SPRITE_AXIAL_SGIX              	= 0x814C,
+	GL_SPRITE_OBJECT_ALIGNED_SGIX     	= 0x814D,
+	GL_SPRITE_EYE_ALIGNED_SGIX        	= 0x814E,
+	
+	// GL_SGIX_texture_multi_buffer
+	GL_TEXTURE_MULTI_BUFFER_HINT_SGIX 	= 0x812E,
+	
+	// GL_EXT_point_parameters
+	GL_POINT_SIZE_MIN_EXT             	= 0x8126,
+	GL_POINT_SIZE_MAX_EXT             	= 0x8127,
+	GL_POINT_FADE_THRESHOLD_SIZE_EXT  	= 0x8128,
+	GL_DISTANCE_ATTENUATION_EXT       	= 0x8129,
+	
+	// GL_SGIS_point_parameters
+	GL_POINT_SIZE_MIN_SGIS             	= 0x8126,
+	GL_POINT_SIZE_MAX_SGIS             	= 0x8127,
+	GL_POINT_FADE_THRESHOLD_SIZE_SGIS  	= 0x8128,
+	GL_DISTANCE_ATTENUATION_SGIS       	= 0x8129,
+	
+	// GL_SGIX_instruments
+	GL_INSTRUMENT_BUFFER_POINTER_SGIX 	= 0x8180,
+	GL_INSTRUMENT_MEASUREMENTS_SGIX   	= 0x8181,
+	
+	// GL_SGIX_texture_scale_bias
+	GL_POST_TEXTURE_FILTER_BIAS_SGIX  		= 0x8179,
+	GL_POST_TEXTURE_FILTER_SCALE_SGIX 		= 0x817A,
+	GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX 	= 0x817B,
+	GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX = 0x817C,
+	
+	// GL_SGIX_framezoom
+	GL_FRAMEZOOM_SGIX                 	= 0x818B,
+	GL_FRAMEZOOM_FACTOR_SGIX          	= 0x818C,
+	GL_MAX_FRAMEZOOM_FACTOR_SGIX      	= 0x818D,
+	
+	// GL_SGIX_polynomial_ffd
+	GL_GEOMETRY_DEFORMATION_SGIX      	= 0x8194,
+	GL_TEXTURE_DEFORMATION_SGIX       	= 0x8195,
+	GL_DEFORMATIONS_MASK_SGIX         	= 0x8196,
+	GL_MAX_DEFORMATION_ORDER_SGIX     	= 0x8197,
+	
+	// GL_SGIX_reference_plane
+	GL_REFERENCE_PLANE_SGIX           	= 0x817D,
+	GL_REFERENCE_PLANE_EQUATION_SGIX  	= 0x817E,
+	
+	// GL_SGIX_depth_texture
+	GL_DEPTH_COMPONENT16_SGIX         	= 0x81A5,
+	GL_DEPTH_COMPONENT24_SGIX         	= 0x81A6,
+	GL_DEPTH_COMPONENT32_SGIX         	= 0x81A7,
+	
+	// GL_SGIS_fog_function
+	GL_FOG_FUNC_SGIS                  	= 0x812A,
+	GL_FOG_FUNC_POINTS_SGIS           	= 0x812B,
+	GL_MAX_FOG_FUNC_POINTS_SGIS       	= 0x812C,
+	
+	// GL_SGIX_fog_offset
+	GL_FOG_OFFSET_SGIX                	= 0x8198,
+	GL_FOG_OFFSET_VALUE_SGIX          	= 0x8199,
 }
 
 version(Windows)

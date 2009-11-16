@@ -191,6 +191,25 @@ private
 		loaded["GL_SGIS_texture_edge_clamp"] = load_GL_SGIS_texture_edge_clamp();
 		loaded["GL_SGIS_texture_border_clamp"] = load_GL_SGIS_texture_border_clamp();
 		loaded["GL_EXT_blend_minmax"] = load_GL_EXT_blend_minmax();
+		loaded["GL_EXT_blend_subtract"] = load_GL_EXT_blend_subtract();
+		loaded["GL_EXT_blend_logic_op"] = load_GL_EXT_blend_logic_op();
+		loaded["GL_SGIX_interlace"] = load_GL_SGIX_interlace();
+		loaded["GL_SGIX_pixel_tiles"] = load_GL_SGIX_pixel_tiles();
+		loaded["GL_SGIS_texture_select"] = load_GL_SGIS_texture_select();
+		loaded["GL_SGIX_sprite"] = load_GL_SGIX_sprite();
+		loaded["GL_SGIX_texture_multi_buffer"] = load_GL_SGIX_texture_multi_buffer();
+		loaded["GL_EXT_point_parameters"] = load_GL_EXT_point_parameters();
+		loaded["GL_SGIS_point_parameters"] = load_GL_SGIS_point_parameters();
+		loaded["GL_SGIX_instruments"] = load_GL_SGIX_instruments();
+		loaded["GL_SGIX_texture_scale_bias"] = load_GL_SGIX_texture_scale_bias();
+		loaded["GL_SGIX_framezoom"] = load_GL_SGIX_framezoom();
+		loaded["GL_SGIX_tag_sample_buffer"] = load_GL_SGIX_tag_sample_buffer();
+		loaded["GL_SGIX_polynomial_ffd"] = load_GL_SGIX_polynomial_ffd();
+		loaded["GL_SGIX_reference_plane"] = load_GL_SGIX_reference_plane();
+		loaded["GL_SGIX_flush_raster"] = load_GL_SGIX_flush_raster();
+		loaded["GL_SGIX_depth_texture"] = load_GL_SGIX_depth_texture();
+		loaded["GL_SGIS_fog_function"] = load_GL_SGIS_fog_function();
+		loaded["GL_SGIX_fog_offset"] = load_GL_SGIX_fog_offset();
 	}
 	
     version(Windows)
@@ -1506,6 +1525,187 @@ private
 	    if(!extIsSupported("GL_EXT_blend_minmax"))
 	    	return false;
 	    if(!bindExtFunc(cast(void**)&glBlendEquationEXT, "glBlendEquationEXT"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_blend_subtract()
+    {
+	    if(!extIsSupported("GL_EXT_blend_subtract"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_blend_logic_op()
+    {
+	    if(!extIsSupported("GL_EXT_blend_logic_op"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_interlace()
+    {
+	    if(!extIsSupported("GL_SGIX_interlace"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_pixel_tiles()
+    {
+	    if(!extIsSupported("GL_SGIX_pixel_tiles"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_texture_select()
+    {
+	    if(!extIsSupported("GL_SGIS_texture_select"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_sprite()
+    {
+	    if(!extIsSupported("GL_SGIX_sprite"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSpriteParameterfSGIX, "glSpriteParameterfSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSpriteParameterfvSGIX, "glSpriteParameterfvSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSpriteParameteriSGIX, "glSpriteParameteriSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glSpriteParameterivSGIX, "glSpriteParameterivSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_texture_multi_buffer()
+    {
+	    if(!extIsSupported("GL_SGIX_texture_multi_buffer"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_EXT_point_parameters()
+    {
+	    if(!extIsSupported("GL_EXT_point_parameters"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPointParameterfExt, "glPointParameterfExt"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPointParameterfvExt, "glPointParameterfvExt"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_point_parameters()
+    {
+	    if(!extIsSupported("GL_SGIS_point_parameters"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPointParameterfSGIS, "glPointParameterfSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPointParameterfvSGIS, "glPointParameterfvSGIS"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_instruments()
+    {
+	    if(!extIsSupported("GL_SGIX_instruments"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetInstrumentsSGIX, "glGetInstrumentsSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glInstrumentsBufferSGIX, "glInstrumentsBufferSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glPollInstrumentsSGIX, "glPollInstrumentsSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glReadInstrumentsSGIX, "glReadInstrumentsSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glStartInstrumentsSGIX, "glStartInstrumentsSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glStopInstrumentsSGIX, "glStopInstrumentsSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_texture_scale_bias()
+    {
+	    if(!extIsSupported("GL_SGIX_texture_scale_bias"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_framezoom()
+    {
+	    if(!extIsSupported("GL_SGIX_framezoom"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glFrameZoomSGIX, "glFrameZoomSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_tag_sample_buffer()
+    {
+	    if(!extIsSupported("GL_SGIX_tag_sample_buffer"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glTagSampleBufferSGIX, "glTagSampleBufferSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_polynomial_ffd()
+    {
+	    if(!extIsSupported("GL_SGIX_polynomial_ffd"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDeformationMap3dSGIX, "glDeformationMap3dSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDeformationMap3fSGIX, "glDeformationMap3fSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glDeformSGIX, "glDeformSGIX"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glLoadIdentityDeformationMapSGIX, "glLoadIdentityDeformationMapSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_reference_plane()
+    {
+	    if(!extIsSupported("GL_SGIX_reference_plane"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glReferencePlaneSGIX, "glReferencePlaneSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_flush_raster()
+    {
+	    if(!extIsSupported("GL_SGIX_flush_raster"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glFLushRasterSGIX, "glFLushRasterSGIX"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIX_depth_texture()
+    {
+	    if(!extIsSupported("GL_SGIX_depth_texture"))
+	    	return false;
+	    return true;
+    }
+    
+    bool load_GL_SGIS_fog_function()
+    {
+	    if(!extIsSupported("GL_SGIS_fog_function"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glFogFuncSGIS, "glFogFuncSGIS"))
+	    	return false;
+	    if(!bindExtFunc(cast(void**)&glGetFogFuncSGIS, "glGetFogFuncSGIS"))
+	    	return false;	    
+	    return true;
+    }
+    
+    bool load_GL_SGIX_fog_offset()
+    {
+	    if(!extIsSupported("GL_SGIX_fog_offset"))
 	    	return false;
 	    return true;
     }
