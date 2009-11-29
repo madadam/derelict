@@ -928,235 +928,320 @@ enum : GLenum
     GL_UNPACK_CMYK_HINT_EXT = 0x800F,
 
     // GL_EXT_texture_object
-    GL_TEXTURE_PRIORITY_EXT           	= 0x8066,
-    GL_TEXTURE_RESIDENT_EXT           	= 0x8067,
-    GL_TEXTURE_1D_BINDING_EXT         	= 0x8068,
-    GL_TEXTURE_2D_BINDING_EXT         	= 0x8069,
-    GL_TEXTURE_3D_BINDING_EXT         	= 0x806A,
-    
+    GL_TEXTURE_PRIORITY_EXT             = 0x8066,
+    GL_TEXTURE_RESIDENT_EXT             = 0x8067,
+    GL_TEXTURE_1D_BINDING_EXT           = 0x8068,
+    GL_TEXTURE_2D_BINDING_EXT           = 0x8069,
+    GL_TEXTURE_3D_BINDING_EXT           = 0x806A,
+
     // GL_SGIS_DETAIL_TEXTURE
-    GL_DETAIL_TEXTURE_2D_SGIS         	= 0x8095,
-	GL_DETAIL_TEXTURE_2D_BINDING_SGIS 	= 0x8096,
-	GL_LINEAR_DETAIL_SGIS             	= 0x8097,
-	GL_LINEAR_DETAIL_ALPHA_SGIS       	= 0x8098,
-	GL_LINEAR_DETAIL_COLOR_SGIS       	= 0x8099,
-	GL_DETAIL_TEXTURE_LEVEL_SGIS      	= 0x809A,
-	GL_DETAIL_TEXTURE_MODE_SGIS       	= 0x809B,
-	GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS 	= 0x809C,
-	
-	// GL_SGIS_sharpen_texture
-	GL_LINEAR_SHARPEN_SGIS            	= 0x80AD,
-	GL_LINEAR_SHARPEN_ALPHA_SGIS      	= 0x80AE,
-	GL_LINEAR_SHARPEN_COLOR_SGIS      	= 0x80AF,
-	GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS = 0x80B0,
-	
-	// GL_EXT_packed_pixels
-	GL_UNSIGNED_BYTE_3_3_2_EXT        	= 0x8032,
-	GL_UNSIGNED_SHORT_4_4_4_4_EXT     	= 0x8033,
-	GL_UNSIGNED_SHORT_5_5_5_1_EXT     	= 0x8034,
-	GL_UNSIGNED_INT_8_8_8_8_EXT       	= 0x8035,
-	GL_UNSIGNED_INT_10_10_10_2_EXT    	= 0x8036,
-	
-	// GL_SGIS_texture_lod
-	GL_TEXTURE_MIN_LOD_SGIS           	= 0x813A,
-	GL_TEXTURE_MAX_LOD_SGIS           	= 0x813B,
-	GL_TEXTURE_BASE_LEVEL_SGIS        	= 0x813C,
-	GL_TEXTURE_MAX_LEVEL_SGIS         	= 0x813D,
-	
-	// GL_SGIS_multisample
-	GL_MULTISAMPLE_SGIS               	= 0x809D,
-	GL_SAMPLE_ALPHA_TO_MASK_SGIS      	= 0x809E,
-	GL_SAMPLE_ALPHA_TO_ONE_SGIS       	= 0x809F,
-	GL_SAMPLE_MASK_SGIS               	= 0x80A0,
-	GL_1PASS_SGIS                     	= 0x80A1,
-	GL_2PASS_0_SGIS                   	= 0x80A2,
-	GL_2PASS_1_SGIS                   	= 0x80A3,
-	GL_4PASS_0_SGIS                   	= 0x80A4,
-	GL_4PASS_1_SGIS                   	= 0x80A5,
-	GL_4PASS_2_SGIS                   	= 0x80A6,
-	GL_4PASS_3_SGIS                   	= 0x80A7,
-	GL_SAMPLE_BUFFERS_SGIS            	= 0x80A8,
-	GL_SAMPLES_SGIS                   	= 0x80A9,
-	GL_SAMPLE_MASK_VALUE_SGIS         	= 0x80AA,
-	GL_SAMPLE_MASK_INVERT_SGIS        	= 0x80AB,
-	GL_SAMPLE_PATTERN_SGIS            	= 0x80AC,
-	
-	// GL_EXT_rescale_normal
-	GL_RESCALE_NORMAL_EXT = 0x803A,
-	
-	// GL_EXT_vertex_array
-	GL_VERTEX_ARRAY_EXT               	= 0x8074,
-	GL_NORMAL_ARRAY_EXT               	= 0x8075,
-	GL_COLOR_ARRAY_EXT                	= 0x8076,
-	GL_INDEX_ARRAY_EXT                	= 0x8077,
-	GL_TEXTURE_COORD_ARRAY_EXT        	= 0x8078,
-	GL_EDGE_FLAG_ARRAY_EXT            	= 0x8079,
-	GL_VERTEX_ARRAY_SIZE_EXT          	= 0x807A,
-	GL_VERTEX_ARRAY_TYPE_EXT          	= 0x807B,
-	GL_VERTEX_ARRAY_STRIDE_EXT        	= 0x807C,
-	GL_VERTEX_ARRAY_COUNT_EXT         	= 0x807D,
-	GL_NORMAL_ARRAY_TYPE_EXT          	= 0x807E,
-	GL_NORMAL_ARRAY_STRIDE_EXT        	= 0x807F,
-	GL_NORMAL_ARRAY_COUNT_EXT         	= 0x8080,
-	GL_COLOR_ARRAY_SIZE_EXT           	= 0x8081,
-	GL_COLOR_ARRAY_TYPE_EXT           	= 0x8082,
-	GL_COLOR_ARRAY_STRIDE_EXT         	= 0x8083,
-	GL_COLOR_ARRAY_COUNT_EXT          	= 0x8084,
-	GL_INDEX_ARRAY_TYPE_EXT           	= 0x8085,
-	GL_INDEX_ARRAY_STRIDE_EXT         	= 0x8086,
-	GL_INDEX_ARRAY_COUNT_EXT          	= 0x8087,
-	GL_TEXTURE_COORD_ARRAY_SIZE_EXT   	= 0x8088,
-	GL_TEXTURE_COORD_ARRAY_TYPE_EXT   	= 0x8089,
-	GL_TEXTURE_COORD_ARRAY_STRIDE_EXT 	= 0x808A,
-	GL_TEXTURE_COORD_ARRAY_COUNT_EXT  	= 0x808B,
-	GL_EDGE_FLAG_ARRAY_STRIDE_EXT     	= 0x808C,
-	GL_EDGE_FLAG_ARRAY_COUNT_EXT      	= 0x808D,
-	GL_VERTEX_ARRAY_POINTER_EXT       	= 0x808E,
-	GL_NORMAL_ARRAY_POINTER_EXT       	= 0x808F,
-	GL_COLOR_ARRAY_POINTER_EXT        	= 0x8090,
-	GL_INDEX_ARRAY_POINTER_EXT        	= 0x8091,
-	GL_TEXTURE_COORD_ARRAY_POINTER_EXT 	= 0x8092,
-	GL_EDGE_FLAG_ARRAY_POINTER_EXT    	= 0x8093,
-	
-	// GL_SGIS_generate_mipmap
-	GL_GENERATE_MIPMAP_SGIS           	= 0x8191,
-    GL_GENERATE_MIPMAP_HINT_SGIS      	= 0x8192,
-    
+    GL_DETAIL_TEXTURE_2D_SGIS           = 0x8095,
+    GL_DETAIL_TEXTURE_2D_BINDING_SGIS   = 0x8096,
+    GL_LINEAR_DETAIL_SGIS               = 0x8097,
+    GL_LINEAR_DETAIL_ALPHA_SGIS         = 0x8098,
+    GL_LINEAR_DETAIL_COLOR_SGIS         = 0x8099,
+    GL_DETAIL_TEXTURE_LEVEL_SGIS        = 0x809A,
+    GL_DETAIL_TEXTURE_MODE_SGIS         = 0x809B,
+    GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS  = 0x809C,
+
+    // GL_SGIS_sharpen_texture
+    GL_LINEAR_SHARPEN_SGIS              = 0x80AD,
+    GL_LINEAR_SHARPEN_ALPHA_SGIS        = 0x80AE,
+    GL_LINEAR_SHARPEN_COLOR_SGIS        = 0x80AF,
+    GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS = 0x80B0,
+
+    // GL_EXT_packed_pixels
+    GL_UNSIGNED_BYTE_3_3_2_EXT          = 0x8032,
+    GL_UNSIGNED_SHORT_4_4_4_4_EXT       = 0x8033,
+    GL_UNSIGNED_SHORT_5_5_5_1_EXT       = 0x8034,
+    GL_UNSIGNED_INT_8_8_8_8_EXT         = 0x8035,
+    GL_UNSIGNED_INT_10_10_10_2_EXT      = 0x8036,
+
+    // GL_SGIS_texture_lod
+    GL_TEXTURE_MIN_LOD_SGIS             = 0x813A,
+    GL_TEXTURE_MAX_LOD_SGIS             = 0x813B,
+    GL_TEXTURE_BASE_LEVEL_SGIS          = 0x813C,
+    GL_TEXTURE_MAX_LEVEL_SGIS           = 0x813D,
+
+    // GL_SGIS_multisample
+    GL_MULTISAMPLE_SGIS                 = 0x809D,
+    GL_SAMPLE_ALPHA_TO_MASK_SGIS        = 0x809E,
+    GL_SAMPLE_ALPHA_TO_ONE_SGIS         = 0x809F,
+    GL_SAMPLE_MASK_SGIS                 = 0x80A0,
+    GL_1PASS_SGIS                       = 0x80A1,
+    GL_2PASS_0_SGIS                     = 0x80A2,
+    GL_2PASS_1_SGIS                     = 0x80A3,
+    GL_4PASS_0_SGIS                     = 0x80A4,
+    GL_4PASS_1_SGIS                     = 0x80A5,
+    GL_4PASS_2_SGIS                     = 0x80A6,
+    GL_4PASS_3_SGIS                     = 0x80A7,
+    GL_SAMPLE_BUFFERS_SGIS              = 0x80A8,
+    GL_SAMPLES_SGIS                     = 0x80A9,
+    GL_SAMPLE_MASK_VALUE_SGIS           = 0x80AA,
+    GL_SAMPLE_MASK_INVERT_SGIS          = 0x80AB,
+    GL_SAMPLE_PATTERN_SGIS              = 0x80AC,
+
+    // GL_EXT_rescale_normal
+    GL_RESCALE_NORMAL_EXT = 0x803A,
+
+    // GL_EXT_vertex_array
+    GL_VERTEX_ARRAY_EXT                 = 0x8074,
+    GL_NORMAL_ARRAY_EXT                 = 0x8075,
+    GL_COLOR_ARRAY_EXT                  = 0x8076,
+    GL_INDEX_ARRAY_EXT                  = 0x8077,
+    GL_TEXTURE_COORD_ARRAY_EXT          = 0x8078,
+    GL_EDGE_FLAG_ARRAY_EXT              = 0x8079,
+    GL_VERTEX_ARRAY_SIZE_EXT            = 0x807A,
+    GL_VERTEX_ARRAY_TYPE_EXT            = 0x807B,
+    GL_VERTEX_ARRAY_STRIDE_EXT          = 0x807C,
+    GL_VERTEX_ARRAY_COUNT_EXT           = 0x807D,
+    GL_NORMAL_ARRAY_TYPE_EXT            = 0x807E,
+    GL_NORMAL_ARRAY_STRIDE_EXT          = 0x807F,
+    GL_NORMAL_ARRAY_COUNT_EXT           = 0x8080,
+    GL_COLOR_ARRAY_SIZE_EXT             = 0x8081,
+    GL_COLOR_ARRAY_TYPE_EXT             = 0x8082,
+    GL_COLOR_ARRAY_STRIDE_EXT           = 0x8083,
+    GL_COLOR_ARRAY_COUNT_EXT            = 0x8084,
+    GL_INDEX_ARRAY_TYPE_EXT             = 0x8085,
+    GL_INDEX_ARRAY_STRIDE_EXT           = 0x8086,
+    GL_INDEX_ARRAY_COUNT_EXT            = 0x8087,
+    GL_TEXTURE_COORD_ARRAY_SIZE_EXT     = 0x8088,
+    GL_TEXTURE_COORD_ARRAY_TYPE_EXT     = 0x8089,
+    GL_TEXTURE_COORD_ARRAY_STRIDE_EXT   = 0x808A,
+    GL_TEXTURE_COORD_ARRAY_COUNT_EXT    = 0x808B,
+    GL_EDGE_FLAG_ARRAY_STRIDE_EXT       = 0x808C,
+    GL_EDGE_FLAG_ARRAY_COUNT_EXT        = 0x808D,
+    GL_VERTEX_ARRAY_POINTER_EXT         = 0x808E,
+    GL_NORMAL_ARRAY_POINTER_EXT         = 0x808F,
+    GL_COLOR_ARRAY_POINTER_EXT          = 0x8090,
+    GL_INDEX_ARRAY_POINTER_EXT          = 0x8091,
+    GL_TEXTURE_COORD_ARRAY_POINTER_EXT  = 0x8092,
+    GL_EDGE_FLAG_ARRAY_POINTER_EXT      = 0x8093,
+
+    // GL_SGIS_generate_mipmap
+    GL_GENERATE_MIPMAP_SGIS             = 0x8191,
+    GL_GENERATE_MIPMAP_HINT_SGIS        = 0x8192,
+
     // GL_SGIX_clipmap
-    GL_LINEAR_CLIPMAP_LINEAR_SGIX     		= 0x8170,
-	GL_TEXTURE_CLIPMAP_CENTER_SGIX    		= 0x8171,
-	GL_TEXTURE_CLIPMAP_FRAME_SGIX     		= 0x8172,
-	GL_TEXTURE_CLIPMAP_OFFSET_SGIX    		= 0x8173,
-	GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX 	= 0x8174,
-	GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX 		= 0x8175,
-	GL_TEXTURE_CLIPMAP_DEPTH_SGIX     		= 0x8176,
-	GL_MAX_CLIPMAP_DEPTH_SGIX         		= 0x8177,
-	GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX 		= 0x8178,
-	GL_NEAREST_CLIPMAP_NEAREST_SGIX   		= 0x844D,
-	GL_NEAREST_CLIPMAP_LINEAR_SGIX    		= 0x844E,
-	GL_LINEAR_CLIPMAP_NEAREST_SGIX    		= 0x844F,
-	
-	// GL_SGIX_shadow
-	GL_TEXTURE_COMPARE_SGIX           	= 0x819A,
-	GL_TEXTURE_COMPARE_OPERATOR_SGIX  	= 0x819B,
-	GL_TEXTURE_LEQUAL_R_SGIX          	= 0x819C,
-	GL_TEXTURE_GEQUAL_R_SGIX          	= 0x819D,
-	
-	// GL_SGIS_texture_edge_clamp
-	GL_CLAMP_TO_EDGE_SGIS				= 0x812F,
-	
-	// GL_SGIS_texture_border_clamp
-	GL_CLAMP_TO_BORDER_SGIS				= 0x812D,
-	
-	// GL_EXT_blend_minmax
-	GL_FUNC_ADD_EXT                   	= 0x8006,
-    GL_MIN_EXT                        	= 0x8007,
-    GL_MAX_EXT                        	= 0x8008,
-    GL_BLEND_EQUATION_EXT             	= 0x8009,
-    
+    GL_LINEAR_CLIPMAP_LINEAR_SGIX           = 0x8170,
+    GL_TEXTURE_CLIPMAP_CENTER_SGIX          = 0x8171,
+    GL_TEXTURE_CLIPMAP_FRAME_SGIX           = 0x8172,
+    GL_TEXTURE_CLIPMAP_OFFSET_SGIX          = 0x8173,
+    GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX   = 0x8174,
+    GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX      = 0x8175,
+    GL_TEXTURE_CLIPMAP_DEPTH_SGIX           = 0x8176,
+    GL_MAX_CLIPMAP_DEPTH_SGIX               = 0x8177,
+    GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX       = 0x8178,
+    GL_NEAREST_CLIPMAP_NEAREST_SGIX         = 0x844D,
+    GL_NEAREST_CLIPMAP_LINEAR_SGIX          = 0x844E,
+    GL_LINEAR_CLIPMAP_NEAREST_SGIX          = 0x844F,
+
+    // GL_SGIX_shadow
+    GL_TEXTURE_COMPARE_SGIX             = 0x819A,
+    GL_TEXTURE_COMPARE_OPERATOR_SGIX    = 0x819B,
+    GL_TEXTURE_LEQUAL_R_SGIX            = 0x819C,
+    GL_TEXTURE_GEQUAL_R_SGIX            = 0x819D,
+
+    // GL_SGIS_texture_edge_clamp
+    GL_CLAMP_TO_EDGE_SGIS               = 0x812F,
+
+    // GL_SGIS_texture_border_clamp
+    GL_CLAMP_TO_BORDER_SGIS             = 0x812D,
+
+    // GL_EXT_blend_minmax
+    GL_FUNC_ADD_EXT                     = 0x8006,
+    GL_MIN_EXT                          = 0x8007,
+    GL_MAX_EXT                          = 0x8008,
+    GL_BLEND_EQUATION_EXT               = 0x8009,
+
     // GL_EXT_blend_subtract
-    GL_FUNC_SUBTRACT_EXT              	= 0x800A,
-	GL_FUNC_REVERSE_SUBTRACT_EXT      	= 0x800B,
-	
-	// GL_SGIX_interlace
-	GL_INTERLACE_SGIX					= 0x8094,
-	
-	// GL_SGIX_pixel_tiles
-	GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX 	= 0x813E,
-	GL_PIXEL_TILE_CACHE_INCREMENT_SGIX 	= 0x813F,
-	GL_PIXEL_TILE_WIDTH_SGIX          	= 0x8140,
-	GL_PIXEL_TILE_HEIGHT_SGIX         	= 0x8141,
-	GL_PIXEL_TILE_GRID_WIDTH_SGIX     	= 0x8142,
-	GL_PIXEL_TILE_GRID_HEIGHT_SGIX    	= 0x8143,
-	GL_PIXEL_TILE_GRID_DEPTH_SGIX     	= 0x8144,
-	GL_PIXEL_TILE_CACHE_SIZE_SGIX     	= 0x8145,
-	
-	// GL_SGIS_texture_select
-	GL_DUAL_ALPHA4_SGIS               	= 0x8110,
-	GL_DUAL_ALPHA8_SGIS               	= 0x8111,
-	GL_DUAL_ALPHA12_SGIS              	= 0x8112,
-	GL_DUAL_ALPHA16_SGIS              	= 0x8113,
-	GL_DUAL_LUMINANCE4_SGIS           	= 0x8114,
-	GL_DUAL_LUMINANCE8_SGIS           	= 0x8115,
-	GL_DUAL_LUMINANCE12_SGIS          	= 0x8116,
-	GL_DUAL_LUMINANCE16_SGIS          	= 0x8117,
-	GL_DUAL_INTENSITY4_SGIS           	= 0x8118,
-	GL_DUAL_INTENSITY8_SGIS           	= 0x8119,
-	GL_DUAL_INTENSITY12_SGIS          	= 0x811A,
-	GL_DUAL_INTENSITY16_SGIS          	= 0x811B,
-	GL_DUAL_LUMINANCE_ALPHA4_SGIS     	= 0x811C,
-	GL_DUAL_LUMINANCE_ALPHA8_SGIS     	= 0x811D,
-	GL_QUAD_ALPHA4_SGIS               	= 0x811E,
-	GL_QUAD_ALPHA8_SGIS               	= 0x811F,
-	GL_QUAD_LUMINANCE4_SGIS           	= 0x8120,
-	GL_QUAD_LUMINANCE8_SGIS           	= 0x8121,
-	GL_QUAD_INTENSITY4_SGIS           	= 0x8122,
-	GL_QUAD_INTENSITY8_SGIS           	= 0x8123,
-	GL_DUAL_TEXTURE_SELECT_SGIS       	= 0x8124,
-	GL_QUAD_TEXTURE_SELECT_SGIS       	= 0x8125,
-	
-	// GL_SGIX_sprite
-	GL_SPRITE_SGIX                    	= 0x8148,
-	GL_SPRITE_MODE_SGIX               	= 0x8149,
-	GL_SPRITE_AXIS_SGIX               	= 0x814A,
-	GL_SPRITE_TRANSLATION_SGIX        	= 0x814B,
-	GL_SPRITE_AXIAL_SGIX              	= 0x814C,
-	GL_SPRITE_OBJECT_ALIGNED_SGIX     	= 0x814D,
-	GL_SPRITE_EYE_ALIGNED_SGIX        	= 0x814E,
-	
-	// GL_SGIX_texture_multi_buffer
-	GL_TEXTURE_MULTI_BUFFER_HINT_SGIX 	= 0x812E,
-	
-	// GL_EXT_point_parameters
-	GL_POINT_SIZE_MIN_EXT             	= 0x8126,
-	GL_POINT_SIZE_MAX_EXT             	= 0x8127,
-	GL_POINT_FADE_THRESHOLD_SIZE_EXT  	= 0x8128,
-	GL_DISTANCE_ATTENUATION_EXT       	= 0x8129,
-	
-	// GL_SGIS_point_parameters
-	GL_POINT_SIZE_MIN_SGIS             	= 0x8126,
-	GL_POINT_SIZE_MAX_SGIS             	= 0x8127,
-	GL_POINT_FADE_THRESHOLD_SIZE_SGIS  	= 0x8128,
-	GL_DISTANCE_ATTENUATION_SGIS       	= 0x8129,
-	
-	// GL_SGIX_instruments
-	GL_INSTRUMENT_BUFFER_POINTER_SGIX 	= 0x8180,
-	GL_INSTRUMENT_MEASUREMENTS_SGIX   	= 0x8181,
-	
-	// GL_SGIX_texture_scale_bias
-	GL_POST_TEXTURE_FILTER_BIAS_SGIX  		= 0x8179,
-	GL_POST_TEXTURE_FILTER_SCALE_SGIX 		= 0x817A,
-	GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX 	= 0x817B,
-	GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX = 0x817C,
-	
-	// GL_SGIX_framezoom
-	GL_FRAMEZOOM_SGIX                 	= 0x818B,
-	GL_FRAMEZOOM_FACTOR_SGIX          	= 0x818C,
-	GL_MAX_FRAMEZOOM_FACTOR_SGIX      	= 0x818D,
-	
-	// GL_SGIX_polynomial_ffd
-	GL_GEOMETRY_DEFORMATION_SGIX      	= 0x8194,
-	GL_TEXTURE_DEFORMATION_SGIX       	= 0x8195,
-	GL_DEFORMATIONS_MASK_SGIX         	= 0x8196,
-	GL_MAX_DEFORMATION_ORDER_SGIX     	= 0x8197,
-	
-	// GL_SGIX_reference_plane
-	GL_REFERENCE_PLANE_SGIX           	= 0x817D,
-	GL_REFERENCE_PLANE_EQUATION_SGIX  	= 0x817E,
-	
-	// GL_SGIX_depth_texture
-	GL_DEPTH_COMPONENT16_SGIX         	= 0x81A5,
-	GL_DEPTH_COMPONENT24_SGIX         	= 0x81A6,
-	GL_DEPTH_COMPONENT32_SGIX         	= 0x81A7,
-	
-	// GL_SGIS_fog_function
-	GL_FOG_FUNC_SGIS                  	= 0x812A,
-	GL_FOG_FUNC_POINTS_SGIS           	= 0x812B,
-	GL_MAX_FOG_FUNC_POINTS_SGIS       	= 0x812C,
-	
-	// GL_SGIX_fog_offset
-	GL_FOG_OFFSET_SGIX                	= 0x8198,
-	GL_FOG_OFFSET_VALUE_SGIX          	= 0x8199,
+    GL_FUNC_SUBTRACT_EXT                = 0x800A,
+    GL_FUNC_REVERSE_SUBTRACT_EXT        = 0x800B,
+
+    // GL_SGIX_interlace
+    GL_INTERLACE_SGIX                   = 0x8094,
+
+    // GL_SGIX_pixel_tiles
+    GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX   = 0x813E,
+    GL_PIXEL_TILE_CACHE_INCREMENT_SGIX  = 0x813F,
+    GL_PIXEL_TILE_WIDTH_SGIX            = 0x8140,
+    GL_PIXEL_TILE_HEIGHT_SGIX           = 0x8141,
+    GL_PIXEL_TILE_GRID_WIDTH_SGIX       = 0x8142,
+    GL_PIXEL_TILE_GRID_HEIGHT_SGIX      = 0x8143,
+    GL_PIXEL_TILE_GRID_DEPTH_SGIX       = 0x8144,
+    GL_PIXEL_TILE_CACHE_SIZE_SGIX       = 0x8145,
+
+    // GL_SGIS_texture_select
+    GL_DUAL_ALPHA4_SGIS                 = 0x8110,
+    GL_DUAL_ALPHA8_SGIS                 = 0x8111,
+    GL_DUAL_ALPHA12_SGIS                = 0x8112,
+    GL_DUAL_ALPHA16_SGIS                = 0x8113,
+    GL_DUAL_LUMINANCE4_SGIS             = 0x8114,
+    GL_DUAL_LUMINANCE8_SGIS             = 0x8115,
+    GL_DUAL_LUMINANCE12_SGIS            = 0x8116,
+    GL_DUAL_LUMINANCE16_SGIS            = 0x8117,
+    GL_DUAL_INTENSITY4_SGIS             = 0x8118,
+    GL_DUAL_INTENSITY8_SGIS             = 0x8119,
+    GL_DUAL_INTENSITY12_SGIS            = 0x811A,
+    GL_DUAL_INTENSITY16_SGIS            = 0x811B,
+    GL_DUAL_LUMINANCE_ALPHA4_SGIS       = 0x811C,
+    GL_DUAL_LUMINANCE_ALPHA8_SGIS       = 0x811D,
+    GL_QUAD_ALPHA4_SGIS                 = 0x811E,
+    GL_QUAD_ALPHA8_SGIS                 = 0x811F,
+    GL_QUAD_LUMINANCE4_SGIS             = 0x8120,
+    GL_QUAD_LUMINANCE8_SGIS             = 0x8121,
+    GL_QUAD_INTENSITY4_SGIS             = 0x8122,
+    GL_QUAD_INTENSITY8_SGIS             = 0x8123,
+    GL_DUAL_TEXTURE_SELECT_SGIS         = 0x8124,
+    GL_QUAD_TEXTURE_SELECT_SGIS         = 0x8125,
+
+    // GL_SGIX_sprite
+    GL_SPRITE_SGIX                      = 0x8148,
+    GL_SPRITE_MODE_SGIX                 = 0x8149,
+    GL_SPRITE_AXIS_SGIX                 = 0x814A,
+    GL_SPRITE_TRANSLATION_SGIX          = 0x814B,
+    GL_SPRITE_AXIAL_SGIX                = 0x814C,
+    GL_SPRITE_OBJECT_ALIGNED_SGIX       = 0x814D,
+    GL_SPRITE_EYE_ALIGNED_SGIX          = 0x814E,
+
+    // GL_SGIX_texture_multi_buffer
+    GL_TEXTURE_MULTI_BUFFER_HINT_SGIX   = 0x812E,
+
+    // GL_EXT_point_parameters
+    GL_POINT_SIZE_MIN_EXT               = 0x8126,
+    GL_POINT_SIZE_MAX_EXT               = 0x8127,
+    GL_POINT_FADE_THRESHOLD_SIZE_EXT    = 0x8128,
+    GL_DISTANCE_ATTENUATION_EXT         = 0x8129,
+
+    // GL_SGIS_point_parameters
+    GL_POINT_SIZE_MIN_SGIS              = 0x8126,
+    GL_POINT_SIZE_MAX_SGIS              = 0x8127,
+    GL_POINT_FADE_THRESHOLD_SIZE_SGIS   = 0x8128,
+    GL_DISTANCE_ATTENUATION_SGIS        = 0x8129,
+
+    // GL_SGIX_instruments
+    GL_INSTRUMENT_BUFFER_POINTER_SGIX   = 0x8180,
+    GL_INSTRUMENT_MEASUREMENTS_SGIX     = 0x8181,
+
+    // GL_SGIX_texture_scale_bias
+    GL_POST_TEXTURE_FILTER_BIAS_SGIX        = 0x8179,
+    GL_POST_TEXTURE_FILTER_SCALE_SGIX       = 0x817A,
+    GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX  = 0x817B,
+    GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX = 0x817C,
+
+    // GL_SGIX_framezoom
+    GL_FRAMEZOOM_SGIX                   = 0x818B,
+    GL_FRAMEZOOM_FACTOR_SGIX            = 0x818C,
+    GL_MAX_FRAMEZOOM_FACTOR_SGIX        = 0x818D,
+
+    // GL_SGIX_polynomial_ffd
+    GL_GEOMETRY_DEFORMATION_SGIX        = 0x8194,
+    GL_TEXTURE_DEFORMATION_SGIX         = 0x8195,
+    GL_DEFORMATIONS_MASK_SGIX           = 0x8196,
+    GL_MAX_DEFORMATION_ORDER_SGIX       = 0x8197,
+
+    // GL_SGIX_reference_plane
+    GL_REFERENCE_PLANE_SGIX             = 0x817D,
+    GL_REFERENCE_PLANE_EQUATION_SGIX    = 0x817E,
+
+    // GL_SGIX_depth_texture
+    GL_DEPTH_COMPONENT16_SGIX           = 0x81A5,
+    GL_DEPTH_COMPONENT24_SGIX           = 0x81A6,
+    GL_DEPTH_COMPONENT32_SGIX           = 0x81A7,
+
+    // GL_SGIS_fog_function
+    GL_FOG_FUNC_SGIS                    = 0x812A,
+    GL_FOG_FUNC_POINTS_SGIS             = 0x812B,
+    GL_MAX_FOG_FUNC_POINTS_SGIS         = 0x812C,
+
+    // GL_SGIX_fog_offset
+    GL_FOG_OFFSET_SGIX                  = 0x8198,
+    GL_FOG_OFFSET_VALUE_SGIX            = 0x8199,
+
+    // GL_HP_image_transform
+    GL_IMAGE_SCALE_X_HP                 = 0x8155,
+    GL_IMAGE_SCALE_Y_HP                 = 0x8156,
+    GL_IMAGE_TRANSLATE_X_HP             = 0x8157,
+    GL_IMAGE_TRANSLATE_Y_HP             = 0x8158,
+    GL_IMAGE_ROTATE_ANGLE_HP            = 0x8159,
+    GL_IMAGE_ROTATE_ORIGIN_X_HP         = 0x815A,
+    GL_IMAGE_ROTATE_ORIGIN_Y_HP         = 0x815B,
+    GL_IMAGE_MAG_FILTER_HP              = 0x815C,
+    GL_IMAGE_MIN_FILTER_HP              = 0x815D,
+    GL_IMAGE_CUBIC_WEIGHT_HP            = 0x815E,
+    GL_CUBIC_HP                         = 0x815F,
+    GL_AVERAGE_HP                       = 0x8160,
+    GL_IMAGE_TRANSFORM_2D_HP            = 0x8161,
+    GL_POST_IMAGE_TRANSFORM_COLOR_TABLE_HP = 0x8162,
+    GL_PROXY_POST_IMAGE_TRANSFORM_COLOR_TABLE_HP = 0x8163,
+
+    // GL_HP_convolution_border_modes
+    GL_IGNORE_BORDER_HP                 = 0x8150,
+    GL_CONSTANT_BORDER_HP               = 0x8151,
+    GL_REPLICATE_BORDER_HP              = 0x8153,
+    GL_CONVOLUTION_BORDER_COLOR_HP      = 0x8154,
+
+    // GL_SGIX_texture_add_env
+    GL_TEXTURE_ENV_BIAS_SGIX            = 0x80BE,
+
+    // GL_PGI_vertex_hints
+    GL_VERTEX_DATA_HINT_PGI             = 0x1A22A,
+    GL_VERTEX_CONSISTENT_HINT_PGI       = 0x1A22B,
+    GL_MATERIAL_SIDE_HINT_PGI           = 0x1A22C,
+    GL_MAX_VERTEX_HINT_PGI              = 0x1A22D,
+    GL_COLOR3_BIT_PGI                   = 0x00010000,
+    GL_COLOR4_BIT_PGI                   = 0x00020000,
+    GL_EDGEFLAG_BIT_PGI                 = 0x00040000,
+    GL_INDEX_BIT_PGI                    = 0x00080000,
+    GL_MAT_AMBIENT_BIT_PGI              = 0x00100000,
+    GL_MAT_AMBIENT_AND_DIFFUSE_BIT_PGI  = 0x00200000,
+    GL_MAT_DIFFUSE_BIT_PGI              = 0x00400000,
+    GL_MAT_EMISSION_BIT_PGI             = 0x00800000,
+    GL_MAT_COLOR_INDEXES_BIT_PGI        = 0x01000000,
+    GL_MAT_SHININESS_BIT_PGI            = 0x02000000,
+    GL_MAT_SPECULAR_BIT_PGI             = 0x04000000,
+    GL_NORMAL_BIT_PGI                   = 0x08000000,
+    GL_TEXCOORD1_BIT_PGI                = 0x10000000,
+    GL_TEXCOORD2_BIT_PGI                = 0x20000000,
+    GL_TEXCOORD3_BIT_PGI                = 0x40000000,
+    GL_TEXCOORD4_BIT_PGI                = 0x80000000,
+    GL_VERTEX23_BIT_PGI                 = 0x00000004,
+    GL_VERTEX4_BIT_PGI                  = 0x00000008,
+
+    // GL_PGI_misc_hints
+    GL_PREFER_DOUBLEBUFFER_HINT_PGI     = 0x1A1F8,
+    GL_CONSERVE_MEMORY_HINT_PGI         = 0x1A1FD,
+    GL_RECLAIM_MEMORY_HINT_PGI          = 0x1A1FE,
+    GL_NATIVE_GRAPHICS_HANDLE_PGI       = 0x1A202,
+    GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI   = 0x1A203,
+    GL_NATIVE_GRAPHICS_END_HINT_PGI     = 0x1A204,
+    GL_ALWAYS_FAST_HINT_PGI             = 0x1A20C,
+    GL_ALWAYS_SOFT_HINT_PGI             = 0x1A20D,
+    GL_ALLOW_DRAW_OBJ_HINT_PGI          = 0x1A20E,
+    GL_ALLOW_DRAW_WIN_HINT_PGI          = 0x1A20F,
+    GL_ALLOW_DRAW_FRG_HINT_PGI          = 0x1A210,
+    GL_ALLOW_DRAW_MEM_HINT_PGI          = 0x1A211,
+    GL_STRICT_DEPTHFUNC_HINT_PGI        = 0x1A216,
+    GL_STRICT_LIGHTING_HINT_PGI         = 0x1A217,
+    GL_STRICT_SCISSOR_HINT_PGI          = 0x1A218,
+    GL_FULL_STIPPLE_HINT_PGI            = 0x1A219,
+    GL_CLIP_NEAR_HINT_PGI               = 0x1A220,
+    GL_CLIP_FAR_HINT_PGI                = 0x1A221,
+    GL_WIDE_LINE_HINT_PGI               = 0x1A222,
+    GL_BACK_NORMALS_HINT_PGI            = 0x1A223,
+
+    // GL_EXT_paletted_texture
+    GL_COLOR_INDEX1_EXT                 = 0x80E2,
+    GL_COLOR_INDEX2_EXT                 = 0x80E3,
+    GL_COLOR_INDEX4_EXT                 = 0x80E4,
+    GL_COLOR_INDEX8_EXT                 = 0x80E5,
+    GL_COLOR_INDEX12_EXT                = 0x80E6,
+    GL_COLOR_INDEX16_EXT                = 0x80E7,
+    GL_TEXTURE_INDEX_SIZE_EXT           = 0x80ED,
+
+    // GL_EXT_clip_volume_hint
+    GL_CLIP_VOLUME_CLIPPING_HINT_EXT    = 0x80F0,
+
 }
 
 version(Windows)
