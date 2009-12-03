@@ -27,8 +27,13 @@ GFX_SRC= \
 	derelict\sfml\gtypes.d \
 	derelict\sfml\gfuncs.d \
 	derelict\sfml\graphics.d
+	
+AUDIO_SRC= \
+	derelict\sfml\atypes.d \
+	derelict\sfml\afuncs.d \
+	derelict\sfml\audio.d
 
-ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) \
+ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC)\
 	derelict\sfml\sfml.d
 
 $(LIB_TARGET) :
@@ -48,5 +53,10 @@ DerelictSFMLSystem.lib :
 	
 DerelictSFMLGraphics.lib :
 	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(GFX_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLAudio.lib :
+	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(AUDIO_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@

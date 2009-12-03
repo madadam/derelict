@@ -25,12 +25,47 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.sfml.sfml;
+module derelict.sfml.atypes;
 
-public
+private
 {
-    import derelict.sfml.system;
-    import derelict.sfml.window;
-    import derelict.sfml.graphics;
-    import derelict.sfml.audio;
+    import derelict.sfml.config;
 }
+
+// SoundRecorder.h
+extern(C)
+{
+    alias sfBool function(void*) sfSoundRecorderStartCallback;
+    alias sfBool function(in sfInt16*, size_t, void*) sfSoundRecorderProcessCallback;
+    alias void function(void*) sfSoundRecorderStopCallback;
+}
+
+// SoundStatus.h
+alias int sfSoundStatus;
+enum
+{
+    sfStopped,
+    sfPaused,
+    sfPlaying,
+}
+
+// SoundStream.h
+struct sfSoundStreamChunk
+{
+    sfInt16* Samples;
+    uint NbSamples;
+}
+
+extern(C)
+{
+    alias sfBool function(void*) sfSoundStreamStartCallback;
+    alias sfBool function(sfSoundStreamChunk*, void*) sfSoundStreamGetDataCallback;
+}
+
+// Types.h
+struct sfMusic {}
+struct sfSound {}
+struct sfSoundBuffer {}
+struct sfSoundBufferRecorder {}
+struct sfSoundRecorder {}
+struct sfSoundStream {}
