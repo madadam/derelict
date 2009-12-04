@@ -29,13 +29,17 @@ module derelict.util.compat;
 
 version(D_Version2)
 {
-	mixin("alias const(char)* CCPTR;");
-	mixin("alias const(dchar)* CDCPTR;");
+    mixin("alias const(char)* CCPTR;");
+    mixin("alias const(wchar)* CWCPTR;");
+    mixin("alias const(dchar)* CDCPTR;");
+    mixin("alias const(ubyte)* CUBPTR;");
 }
 else
 {
-	alias char* CCPTR;
-	alias dchar* CDCPTR;
+    alias char* CCPTR;
+    alias wchar* CWCPTR;
+    alias dchar* CDCPTR;
+    alias ubyte* CUBPTR;
 }
 
 version(Tango)
@@ -43,21 +47,21 @@ version(Tango)
     private
     {
         import tango.stdc.string;
-        import tango.stdc.stringz;        
+        import tango.stdc.stringz;
         import tango.text.Util;
         import tango.core.Version;
     }
-    
+
     alias char[] string;
 }
 else
 {
     private
     {
-	    version(D_Version2)
-	    {
-		    import std.conv;
-	    }
+        version(D_Version2)
+        {
+            import std.conv;
+        }
         import std.string;
         import std.c.string;
     }
@@ -72,18 +76,18 @@ string toDString(CCPTR cstr)
 {
     version(Tango)
     {
-	    return fromStringz(cstr);
+        return fromStringz(cstr);
     }
     else
     {
-	    version(D_Version2)
-	    {
-	    	mixin("return to!string(cstr);");
-    	}
-    	else
-    	{
-        	return toString(cstr);
-    	}
+        version(D_Version2)
+        {
+            mixin("return to!string(cstr);");
+        }
+        else
+        {
+            return toString(cstr);
+        }
     }
 }
 
@@ -96,14 +100,14 @@ int findStr(string str, string match)
     }
     else
     {
-	    version(D_Version2)
-	    {
-		    mixin("return indexOf(str, match);");
-	    }
-	    else
-	    {
-        	return find(str, match);
-    	}
+        version(D_Version2)
+        {
+            mixin("return indexOf(str, match);");
+        }
+        else
+        {
+            return find(str, match);
+        }
     }
 }
 

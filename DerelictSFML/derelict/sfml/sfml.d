@@ -33,4 +33,5 @@ public
     import derelict.sfml.window;
     import derelict.sfml.graphics;
     import derelict.sfml.audio;
+    import derelict.sfml.network;
 }

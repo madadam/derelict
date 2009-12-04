@@ -32,8 +32,13 @@ AUDIO_SRC= \
 	derelict\sfml\atypes.d \
 	derelict\sfml\afuncs.d \
 	derelict\sfml\audio.d
+	
+NET_SRC= \
+	derelict\sfml\ntypes.d \
+	derelict\sfml\nfuncs.d \
+	derelict\sfml\network.d
 
-ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC)\
+ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC) $(NET_SRC)\
 	derelict\sfml\sfml.d
 
 $(LIB_TARGET) :
@@ -58,5 +63,10 @@ DerelictSFMLGraphics.lib :
 	
 DerelictSFMLAudio.lib :
 	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(AUDIO_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLNetwork.lib:
+	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(NET_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
