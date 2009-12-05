@@ -54,9 +54,12 @@ version(Windows)
     alias void* HANDLE;
     alias HANDLE HDC;
     alias HANDLE HGLRC;
+    alias HANDLE HINSTANCE;
     alias HANDLE HMODULE;
     alias HANDLE HWND;
     alias HANDLE HLOCAL;
+    alias HANDLE HPALETTE;
+    alias HANDLE HBITMAP;
 
     alias UINT WPARAM;
     alias LONG LPARAM;
@@ -181,6 +184,33 @@ version(Windows)
         FORMAT_MESSAGE_ALLOCATE_BUFFER  = 256,
         FORMAT_MESSAGE_IGNORE_INSERTS   = 512,
         FORMAT_MESSAGE_FROM_SYSTEM      = 4096
+    }
+
+    struct RGBQUAD {
+        BYTE    rgbBlue;
+        BYTE    rgbGreen;
+        BYTE    rgbRed;
+        BYTE    rgbReserved;
+    }
+
+    struct BITMAPINFOHEADER
+    {
+        DWORD      biSize;
+        LONG       biWidth;
+        LONG       biHeight;
+        WORD       biPlanes;
+        WORD       biBitCount;
+        DWORD      biCompression;
+        DWORD      biSizeImage;
+        LONG       biXPelsPerMeter;
+        LONG       biYPelsPerMeter;
+        DWORD      biClrUsed;
+        DWORD      biClrImportant;
+    }
+
+    struct BITMAPINFO {
+        BITMAPINFOHEADER    bmiHeader;
+        RGBQUAD             bmiColors[1];
     }
 
     extern(Windows)

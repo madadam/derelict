@@ -33,7 +33,8 @@ public
     import derelict.devil.ilfuncs;
 }
 
-private {
+private
+{
     import derelict.util.sharedlib;
     import derelict.util.loader;
 }
