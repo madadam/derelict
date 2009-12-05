@@ -23,3 +23,4 @@ $(LIB_TARGET) :
 	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+	
