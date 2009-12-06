@@ -43,16 +43,31 @@ alias double    ILdouble;
 alias double    ILclampd;
 alias void      ILvoid;
 
-//alias wchar_t*    ILstring;
 version(DerelictIL_Unicode)
 {
     alias wchar ILchar;
     alias wchar* ILstring;
+    version(D_Version2)
+    {
+        mixin("alias const(wchar)* ILconst_string;");
+    }
+    else
+    {
+        alias ILstring ILconst_string;
+    }
 }
 else
 {
     alias char ILchar;
     alias char* ILstring;
+    version(D_Version2)
+    {
+        mixin("alias const(char)* ILconst_string;");
+    }
+    else
+    {
+        alias ILstring ILconst_string;
+    }
 }
 
 enum : ILboolean
@@ -63,7 +78,6 @@ enum : ILboolean
 
 enum : ILenum
 {
-    // Matches OpenGL's right now.
     IL_COLOUR_INDEX=0x1900,
     IL_COLOR_INDEX=0x1900,
     IL_RGB=0x1907,
@@ -87,12 +101,9 @@ enum : ILenum
     IL_LOAD_EXT=0x1F01,
     IL_SAVE_EXT=0x1F02,
 
-    //
-    // IL-specific//
     IL_VERSION_1_7_3=1,
     IL_VERSION=173,
 
-    // Attribute Bits
     IL_ORIGIN_BIT=0x00000001,
     IL_FILE_BIT=0x00000002,
     IL_PAL_BIT=0x00000004,
@@ -103,7 +114,6 @@ enum : ILenum
     IL_FORMAT_SPECIFIC_BIT=0x00000080,
     IL_ALL_ATTRIB_BITS=0x000FFFFF,
 
-    // Palette types
     IL_PAL_NONE=0x0400,
     IL_PAL_RGB24=0x0401,
     IL_PAL_RGB32=0x0402,
@@ -112,7 +122,6 @@ enum : ILenum
     IL_PAL_BGR32=0x0405,
     IL_PAL_BGRA32=0x0406,
 
-    // Image types
     IL_TYPE_UNKNOWN=0x0000,
     IL_BMP=0x0420,
     IL_CUT=0x0421,
@@ -153,7 +162,6 @@ enum : ILenum
     IL_WDP=0x0443,
     IL_JASC_PAL=0x0475,
 
-    // Error Types
     IL_NO_ERROR=0x0000,
     IL_INVALID_ENUM=0x0501,
     IL_OUT_OF_MEMORY=0x0502,
@@ -183,44 +191,35 @@ enum : ILenum
     IL_LIB_JP2_ERROR=0x05E6,
     IL_UNKNOWN_ERROR=0x05FF,
 
-    // Origin Definitions
     IL_ORIGIN_SET=0x0600,
     IL_ORIGIN_LOWER_LEFT=0x0601,
     IL_ORIGIN_UPPER_LEFT=0x0602,
     IL_ORIGIN_MODE=0x0603,
 
-    // Format and Type Mode Definitions
     IL_FORMAT_SET=0x0610,
     IL_FORMAT_MODE=0x0611,
     IL_TYPE_SET=0x0612,
     IL_TYPE_MODE=0x0613,
 
-    // File definitions
     IL_FILE_OVERWRITE=0x0620,
     IL_FILE_MODE=0x0621,
 
-    // Palette definitions
     IL_CONV_PAL=0x0630,
 
-    // Load fail definitions
     IL_DEFAULT_ON_FAIL=0x0632,
 
-    // Key colour definitions
     IL_USE_KEY_COLOUR=0x0635,
     IL_USE_KEY_COLOR=0x0635,
 
-    // Interlace definitions
     IL_SAVE_INTERLACED=0x0639,
     IL_INTERLACE_MODE=0x063A,
 
-    // Quantization definitions
     IL_QUANTIZATION_MODE=0x0640,
     IL_WU_QUANT=0x0641,
     IL_NEU_QUANT=0x0642,
     IL_NEU_QUANT_SAMPLE=0x0643,
     IL_MAX_QUANT_INDEXS=0x0644,
 
-    // Hints
     IL_FASTEST=0x0660,
     IL_LESS_MEM=0x0661,
     IL_DONT_CARE=0x0662,
@@ -229,19 +228,16 @@ enum : ILenum
     IL_NO_COMPRESSION=0x0667,
     IL_COMPRESSION_HINT=0x0668,
 
-    // Subimage types
     IL_SUB_NEXT=0x0680,
     IL_SUB_MIPMAP=0x0681,
     IL_SUB_LAYER=0x0682,
 
-    // Compression definitions
     IL_COMPRESS_MODE=0x0700,
     IL_COMPRESS_NONE=0x0701,
     IL_COMPRESS_RLE=0x0702,
     IL_COMPRESS_LZO=0x0703,
     IL_COMPRESS_ZLIB=0x0704,
 
-    // File format-specific values
     IL_TGA_CREATE_STAMP=0x0710,
     IL_JPG_QUALITY=0x0711,
     IL_PNG_INTERLACE=0x0712,
@@ -263,7 +259,6 @@ enum : ILenum
     IL_PCD_PICNUM=0x0723,
     IL_PNG_ALPHA_INDEX=0x0724,
 
-    // DXTC definitions
     IL_DXTC_FORMAT=0x0705,
     IL_DXT1=0x0706,
     IL_DXT2=0x0707,
@@ -277,7 +272,6 @@ enum : ILenum
     IL_RXGB=0x070F,
     IL_ATI1N=0x0710,
 
-    // Cube map definitions
     IL_CUBEMAP_POSITIVEX=0x00000400,
     IL_CUBEMAP_NEGATIVEX=0x00000800,
     IL_CUBEMAP_POSITIVEY=0x00001000,
@@ -285,7 +279,6 @@ enum : ILenum
     IL_CUBEMAP_POSITIVEZ=0x00004000,
     IL_CUBEMAP_NEGATIVEZ=0x00008000,
 
-    // Values
     IL_VERSION_NUM=0x0DE2,
     IL_IMAGE_WIDTH=0x0DE4,
     IL_IMAGE_HEIGHT=0x0DE5,
@@ -331,28 +324,24 @@ alias void* ILHANDLE;
 
 extern(System)
 {
-    // Callback functions for file reading
     alias ILvoid function(ILHANDLE) fCloseRProc;
     alias ILboolean function(ILHANDLE) fEofProc;
     alias ILint function(ILHANDLE) fGetcProc;
-    alias ILHANDLE function(in ILstring) fOpenRProc;
+    alias ILHANDLE function(ILconst_string) fOpenRProc;
     alias ILint function(void*, ILuint, ILuint, ILHANDLE) fReadProc;
     alias ILint function(ILHANDLE, ILint, ILint) fSeekRProc;
     alias ILint function(ILHANDLE) fTellRProc;
 
-    // Callback functions for file writing
     alias ILvoid function(ILHANDLE) fCloseWProc;
-    alias ILHANDLE function(in ILstring) fOpenWProc;
+    alias ILHANDLE function(ILconst_string) fOpenWProc;
     alias ILint function(ILubyte, ILHANDLE) fPutcProc;
     alias ILint function(ILHANDLE, ILint, ILint) fSeekWProc;
     alias ILint function(ILHANDLE) fTellWProc;
     alias ILint function(in void*, ILuint, ILuint, ILHANDLE) fWriteProc;
 
-    // Callback functions for allocation and deallocation
     alias ILvoid* function(ILuint) mAlloc;
     alias ILvoid function(in ILvoid*) mFree;
 
-    // Registered format procedures
-    alias ILenum function(in ILstring) IL_LOADPROC;
-    alias ILenum function(in ILstring) IL_SAVEPROC;
+    alias ILenum function(ILconst_string) IL_LOADPROC;
+    alias ILenum function(ILconst_string) IL_SAVEPROC;
 }
