@@ -1,11 +1,10 @@
-
 DMAKE=make
 RM=del /f /q
 LIB_DIR=lib
 
-all : DerelictAL DerelictGL DerelictIL_ALL DerelictSDL DerelictSFML DerelictUtil
+all : DerelictAL DerelictGL DerelictIL_ALL DerelictSDL_ALL DerelictSFML DerelictUtil
 
-# One lib for each package (default)
+# Targets for all libs in each package
 DerelictAL :
 	cd DerelictAL
 	$(DMAKE) -fwin32.mak
@@ -21,7 +20,7 @@ DerelictIL_ALL :
 	$(DMAKE) -fwin32.mak
 	cd ..	
 
-DerelictSDL :
+DerelictSDL_ALL :
 	cd DerelictSDL
 	$(DMAKE) -fwin32.mak
 	cd ..
@@ -36,7 +35,7 @@ DerelictUtil :
 	$(DMAKE) -fwin32.mak
 	cd ..
 	
-# Individual DerelictIL libs
+# Individual DerelictIL targets
 DerelictIL :
 	cd DerelictIL
 	$(DMAKE) -fwin32.mak DerelictIL
@@ -51,6 +50,32 @@ DerelictILUT :
 	cd DerelictIL
 	$(DMAKE) -fwin32.mak DerelictILUT
 	cd ..	
+	
+# Individual DerelictSDL targets
+DerelictSDL :
+	cd DerelictSDL
+	$(DMAKE) -fwin32.mak DerelictSDL
+	cd ..
+	
+DerelictSDLImage :
+	cd DerelictSDL
+	$(DMAKE) -fwin32.mak DerelictSDLImage
+	cd ..
+
+DerelictSDLMixer :
+	cd DerelictSDL
+	$(DMAKE) -fwin32.mak DerelictSDLMixer
+	cd ..
+
+DerelictSDLNet :
+	cd DerelictSDL
+	$(DMAKE) -fwin32.mak DerelictSDLNet
+	cd ..
+	
+DerelictSDLttf :
+	cd DerelictSDL
+	$(DMAKE) -fwin32.mak DerelictSDLttf
+	cd ..
 	
 clean :
 	cd $(LIB_DIR)

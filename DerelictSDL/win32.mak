@@ -1,26 +1,51 @@
-PACKAGE_NAME = DerelictSDL
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
-DFLAGS=-release -O -inline -I..\DerelictUtil
+DFLAGS=-release -O -inline -lib -I..\DerelictUtil
 DC=dmd
 LIB_DEST=..\lib
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
+all : DerelictSDL DerelictSDLImage DerelictSDLMixer DerelictSDLNet DerelictSDLttf
 
-ALL_SRC= \
-	derelict\sdl\image.d \
-	derelict\sdl\mixer.d \
-	derelict\sdl\net.d \
-    derelict\sdl\sdl.d \
+SDL_SRC= \
+	derelict\sdl\sdl.d \
     derelict\sdl\sdlfuncs.d \
-    derelict\sdl\sdltypes.d \
-    derelict\sdl\ttf.d
+    derelict\sdl\sdltypes.d
+    
+IMG_SRC= derelict\sdl\image.d
 
-$(LIB_TARGET) :
-	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
+MIX_SRC= derelict\sdl\mixer.d
+
+NET_SRC= derelict\sdl\net.d 
+
+TTF_SRC= derelict\sdl\ttf.d
+
+DerelictSDL.lib :
+	$(DC) $(DFLAGS) $(SDL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+
+DerelictSDLImage.lib :
+	$(DC) $(DFLAGS) $(IMG_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+
+DerelictSDLMixer.lib :
+	$(DC) $(DFLAGS) $(MIX_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+
+DerelictSDLNet.lib :
+	$(DC) $(DFLAGS) $(NET_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+
+DerelictSDLttf.lib :
+	$(DC) $(DFLAGS) $(TTF_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+
+DerelictSDL : DerelictSDL.lib
+DerelictSDLImage : DerelictSDLImage.lib
+DerelictSDLMixer : DerelictSDLMixer.lib
+DerelictSDLNet : DerelictSDLNet.lib
+DerelictSDLttf : DerelictSDLttf.lib
