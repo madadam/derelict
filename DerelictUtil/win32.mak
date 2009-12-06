@@ -1,15 +1,10 @@
-PACKAGE_NAME = DerelictUtil
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
-DFLAGS=-release -O -inline -I..\DerelictUtil
+DFLAGS=-release -O -inline -lib -I..\DerelictUtil
 DC=dmd
 LIB_DEST=..\lib
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
+all : DerelictUtil
 
 
 ALL_SRC= \
@@ -19,8 +14,9 @@ ALL_SRC= \
     derelict\util\sharedlib.d \
     derelict\util\wintypes.d
 
-$(LIB_TARGET) :
+DerelictUtil.lib :
 	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
+DerelictUtil : DerelictUtil.lib

@@ -1,17 +1,10 @@
-PACKAGE_NAME = DerelictSFML
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
-DFLAGS=-release -O -inline -I..\DerelictUtil
+DFLAGS=-release -O -inline -lib -I..\DerelictUtil
 DC=dmd
 LIB_DEST=..\lib
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
-
-CONFIG_SRC = derelict\sfml\config.d
+all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 
 SYS_SRC= \
 	derelict\sfml\stypes.d \
@@ -38,35 +31,38 @@ NET_SRC= \
 	derelict\sfml\nfuncs.d \
 	derelict\sfml\network.d
 
-ALL_SRC= $(CONFIG_SRC) $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC) $(NET_SRC)\
-	derelict\sfml\sfml.d
-
 $(LIB_TARGET) :
 	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLWindow.lib :
-	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(WIN_SRC) -of$@
+	$(DC) $(DFLAGS) $(WIN_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLSystem.lib :
-	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(SYS_SRC) -of$@
+	$(DC) $(DFLAGS) $(SYS_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLGraphics.lib :
-	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(GFX_SRC) -of$@
+	$(DC) $(DFLAGS) $(GFX_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLAudio.lib :
-	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(AUDIO_SRC) -of$@
+	$(DC) $(DFLAGS) $(AUDIO_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLNetwork.lib:
-	$(DC) $(DFLAGS) -lib $(CONFIG_SRC) $(NET_SRC) -of$@
+	$(DC) $(DFLAGS) $(NET_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+	
+DerelictSFMLWindow : DerelictSFMLWindow.lib
+DerelictSFMLSystem : DerelictSFMLSystem.lib
+DerelictSFMLGraphics : DerelictSFMLGraphics.lib
+DerelictSFMLAudio : DerelictSFMLAudio.lib
+DerelictSFMLNetwork : DerelictSFMLNetwork.lib

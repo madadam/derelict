@@ -1,22 +1,20 @@
-PACKAGE_NAME = DerelictAL
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
-DFLAGS=-release -O -inline -I..\DerelictUtil
+DFLAGS=-release -O -inline -lib -I..\DerelictUtil
 DC=dmd
 LIB_DEST=..\lib
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
+all : DerelictAL
 
-ALL_SRC= \
+AL_SRC= \
     derelict\openal\al.d \
     derelict\openal\alfuncs.d \
     derelict\openal\altypes.d
 
-$(LIB_TARGET) :
-	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
+DerelictAL.lib :
+	$(DC) $(DFLAGS) $(AL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+
+DerelictAL : DerelictAL.lib
+	

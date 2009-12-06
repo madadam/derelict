@@ -1,17 +1,12 @@
-PACKAGE_NAME = DerelictGL
-
-LIB_TARGET=$(PACKAGE_NAME).lib
-
 CP=copy /y
 RM=del /f /q
-DFLAGS=-release -O -inline -I..\DerelictUtil
+DFLAGS=-release -O -inline -lib -I..\DerelictUtil
 DC=dmd
 LIB_DEST=..\lib
 
-all : $(PACKAGE_NAME)
-$(PACKAGE_NAME) : $(LIB_TARGET)
+all : DerelictGL DerelictGLU
 
-ALL_SRC= \
+GL_SRC= \
     derelict\opengl\extfuncs.d \
     derelict\opengl\extloader.d \
     derelict\opengl\exttypes.d \
@@ -19,12 +14,23 @@ ALL_SRC= \
     derelict\opengl\glext.d \
     derelict\opengl\glfuncs.d \
     derelict\opengl\gltypes.d \
+    derelict\opengl\wgl.d
+    
+GLU_SRC= \
     derelict\opengl\glu.d \
     derelict\opengl\glufuncs.d \
-    derelict\opengl\glutypes.d \
-    derelict\opengl\wgl.d
+    derelict\opengl\glutypes.d
+    
 
-$(LIB_TARGET) :
-	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
+DerelictGL.lib :
+	$(DC) $(DFLAGS) $(GL_SRC) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+
+DerelictGLU.lib :
+	$(DC) $(DFLAGS) $(GLU_SRC) -of$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+
+DerelictGL : DerelictGL.lib
+DerelictGLU : DerelictGLU.lib
