@@ -33,6 +33,7 @@ version(D_Version2)
     mixin("alias const(wchar)* CWCPTR;");
     mixin("alias const(dchar)* CDCPTR;");
     mixin("alias const(ubyte)* CUBPTR;");
+    mixin("alias const(void)* CVPTR;");
 }
 else
 {
@@ -40,6 +41,7 @@ else
     alias wchar* CWCPTR;
     alias dchar* CDCPTR;
     alias ubyte* CUBPTR;
+    alias void* CVPTR;
 }
 
 version(Tango)

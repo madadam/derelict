@@ -2,14 +2,19 @@ DMAKE=make
 RM=del /f /q
 LIB_DIR=lib
 
-all : DerelictAL_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
 	cd DerelictAL
 	$(DMAKE) -fwin32.mak all
 	cd ..
-	
+
+DerelictFT_ALL :
+	cd DerelictFT
+	$(DMAKE) -fwin32.mak all
+	cd ..
+		
 DerelictGL_ALL :
 	cd DerelictGL
 	$(DMAKE) -fwin32.mak all
@@ -37,6 +42,9 @@ DerelictUtil_ALL :
 	
 # There's only one DerelictAL target
 DerelictAL : DerelictAL_ALL
+
+# There's only one DerelictFT target
+DerelictFT : DerelictFT_ALL
 	
 # Individual DerelictGL targets
 DerelictGL :
