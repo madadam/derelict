@@ -34,9 +34,13 @@ private
     import derelict.devil.iluttypes;
 }
 
-
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     ILboolean function(ILenum) ilutDisable;
     ILboolean function(ILenum) ilutEnable;
     ILboolean function(ILenum) ilutGetBoolean;
@@ -84,8 +88,7 @@ extern(System)
 
     version(Linux)
     {
-        private import derelict.util.xtypes;
-
+        // private import derelict.util.xtypes;
         // TODO
     }
 }

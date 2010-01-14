@@ -37,6 +37,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // Color.h
     sfColor function(sfUint8, sfUint8, sfUint8, sfUint8) sfColor_FromRGBA;
     sfColor function(sfColor, sfColor) sfColor_Add;

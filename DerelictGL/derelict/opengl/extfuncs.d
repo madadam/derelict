@@ -41,6 +41,11 @@ private
 
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // GL_ARB_multitexture
     void function(GLenum) glActiveTextureARB;
     void function(GLenum) glClientActiveTextureARB;

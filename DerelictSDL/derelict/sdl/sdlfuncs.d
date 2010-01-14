@@ -44,6 +44,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // SDL.h
     int function(Uint32) SDL_Init;
     int function(Uint32) SDL_InitSubSystem;

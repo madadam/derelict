@@ -29,13 +29,18 @@ module derelict.opengl.glufuncs;
 
 private
 {
-	import derelict.opengl.gltypes;
+    import derelict.opengl.gltypes;
     import derelict.opengl.glutypes;
     import derelict.util.compat;
 }
 
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     void function(GLUnurbs*) gluBeginCurve;
     void function(GLUtesselator*) gluBeginPolygon;
     void function(GLUnurbs*) gluBeginSurface;

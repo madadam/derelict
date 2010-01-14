@@ -35,6 +35,11 @@ private
 
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     ILboolean function (ILuint) ilActiveImage;
     ILboolean function(ILuint) ilActiveLayer;
     ILboolean function(ILuint) ilActiveMipmap;

@@ -58,8 +58,15 @@ enum
     IMG_INIT_TIF    = 0x00000004,
 }
 
+
+
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     int function(int) IMG_Init;
     int function() IMG_Quit;
     CSDLVERPTR function() IMG_Linked_Version;

@@ -36,6 +36,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // Context.h
     sfContext* function() sfContext_Create;
     void function(sfContext*) sfContext_Destroy;

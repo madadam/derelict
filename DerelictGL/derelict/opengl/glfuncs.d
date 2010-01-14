@@ -35,6 +35,11 @@ private
 
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     void function(GLfloat c) glClearIndex;
     void function(GLclampf,GLclampf,GLclampf,GLclampf) glClearColor;
     void function(GLbitfield) glClear;

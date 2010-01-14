@@ -145,6 +145,11 @@ Uint32 SDLNet_Read32(void* areap)
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     CSDLVERPTR function() SDLNet_Linked_Version;
     int function() SDLNet_Init;
     void function() SDLNet_Quit;

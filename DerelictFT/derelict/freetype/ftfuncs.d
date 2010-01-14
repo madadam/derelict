@@ -35,6 +35,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // freetype.h
     FT_Error function( FT_Library *alibrary ) FT_Init_FreeType;
     FT_Error function( FT_Library library ) FT_Done_FreeType;

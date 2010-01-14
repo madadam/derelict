@@ -36,6 +36,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // Listener.h
     void function(float) sfListener_SetGlobalVolume;
     float function() sfListener_GetGlobalVolume;

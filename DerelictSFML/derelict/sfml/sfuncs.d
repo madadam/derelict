@@ -34,6 +34,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // Clock.h
     sfClock* function() sfClock_Create;
     void function(sfClock*) sfClock_Destroy;

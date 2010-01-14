@@ -36,6 +36,11 @@ private
 
 extern(System)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     ILboolean function() iluAlienify;
     ILboolean function(ILuint) iluBlurAvg;
     ILboolean function(ILuint) iluBlurGaussian;

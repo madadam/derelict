@@ -35,6 +35,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     void function(ALenum) alEnable;
     void function(ALenum) alDisable;
     ALboolean function(ALenum) alIsEnabled;

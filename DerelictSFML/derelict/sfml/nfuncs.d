@@ -36,6 +36,11 @@ private
 
 extern(C)
 {
+    version(D_Version2)
+    {
+        mixin("__gshared:");
+    }
+
     // Ftp.h
     void function(sfFtpListingResponse*) sfFtpListingResponse_Destroy;
     sfBool function(sfFtpListingResponse*) sfFtpListingResponse_IsOk;
