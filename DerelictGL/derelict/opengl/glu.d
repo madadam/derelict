@@ -37,7 +37,6 @@ private
 {
     import derelict.util.loader;
     import derelict.util.exception;
-    import derelict.opengl.gl;
 }
 
 class DerelictGLULoader : SharedLibLoader
@@ -56,11 +55,6 @@ private:
 protected:
     override void loadSymbols()
     {
-        if(!DerelictGL.isLoaded())
-        {
-            throw new SharedLibLoadException("DerelictGL must be loaded before attempting to load DerelictGLU!");
-        }
-
         bindFunc(cast(void**)&gluBeginCurve, "gluBeginCurve");
         bindFunc(cast(void**)&gluBeginPolygon, "gluBeginPolygon");
         bindFunc(cast(void**)&gluBeginSurface, "gluBeginSurface");

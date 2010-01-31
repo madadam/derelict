@@ -184,9 +184,13 @@ enum : GLenum
     GLU_TESS_WINDING_ABS_GEQ_TWO    = 100134,
 }
 
-enum : GLdouble
+version(D_Version2)
 {
-    GLU_TESS_MAX_COORD           = 1.0e150
+    mixin("enum : double { GLU_TESS_MAX_COORD = 1.0e150 }");
+}
+else
+{
+	const double GLU_TESS_MAX_COORD = 1.0e150;
 }
 
 struct GLUnurbs {}

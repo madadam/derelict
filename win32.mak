@@ -126,7 +126,7 @@ DerelictSFMLNetwork :
 	cd ..
 	
 # There's only one DerelictUtil target
-DerelictUtil : DerelictUtilAll
+DerelictUtil : DerelictUtil_All
 	
 clean :
 	cd $(LIB_DIR)

@@ -82,7 +82,7 @@ DerelictSFMLNetwork :
 	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLNetwork
 	
 # There's only one DerelictUtil target
-DerelictUtil : DerelictUtilAll
+DerelictUtil : DerelictUtil_All
 	
 clean :
 	cd $(LIB_DIR) && $(RM) *.a

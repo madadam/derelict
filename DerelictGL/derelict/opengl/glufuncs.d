@@ -29,7 +29,6 @@ module derelict.opengl.glufuncs;
 
 private
 {
-
     import derelict.util.compat;
     import derelict.opengl.gltypes;
     import derelict.opengl.glutypes;
