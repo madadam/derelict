@@ -29,10 +29,10 @@ module derelict.sdl.net;
 
 private
 {
-    import derelict.sdl.sdl;
     import derelict.util.loader;
     import derelict.util.exception;
     import derelict.util.compat;
+    import derelict.sdl.sdl;
 }
 
 enum : Uint8
@@ -145,11 +145,8 @@ Uint32 SDLNet_Read32(void* areap)
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     CSDLVERPTR function() SDLNet_Linked_Version;
     int function() SDLNet_Init;
     void function() SDLNet_Quit;
@@ -180,6 +177,7 @@ extern(C)
     int function(SDLNet_SocketSet,SDLNet_GenericSocket) SDLNet_DelSocket;
     int function(SDLNet_SocketSet,Uint32) SDLNet_CheckSockets;
     void function(SDLNet_SocketSet) SDLNet_FreeSocketSet;
+    ");
 }
 
 class DerelictSDLNetLoader : SharedLibLoader

@@ -29,16 +29,14 @@ module derelict.sfml.sfuncs;
 
 private
 {
+    import derelict.util.compat;
     import derelict.sfml.stypes;
 }
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // Clock.h
     sfClock* function() sfClock_Create;
     void function(sfClock*) sfClock_Destroy;
@@ -66,4 +64,5 @@ extern(C)
     void function(sfThread*) sfThread_Launch;
     void function(sfThread*) sfThread_Wait;
     void function(sfThread*) sfThread_Terminate;
+    ");
 }

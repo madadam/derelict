@@ -29,9 +29,10 @@ module derelict.sdl.image;
 
 private
 {
-    import derelict.sdl.sdl;
     import derelict.util.loader;
     import derelict.util.exception;
+    import derelict.util.compat;
+    import derelict.sdl.sdl;
 }
 
 alias SDL_SetError IMG_SetError;
@@ -62,11 +63,8 @@ enum
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     int function(int) IMG_Init;
     int function() IMG_Quit;
     CSDLVERPTR function() IMG_Linked_Version;
@@ -102,6 +100,7 @@ extern(C)
     SDL_Surface* function(SDL_RWops*) IMG_LoadICO_RW;
     SDL_Surface* function(SDL_RWops*) IMG_LoadCUR_RW;
     SDL_Surface* function(char**) IMG_ReadXPMFromArray;
+    ");
 }
 
 class DerelictSDLImageLoader : SharedLibLoader

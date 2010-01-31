@@ -29,18 +29,16 @@ module derelict.opengl.glufuncs;
 
 private
 {
+
+    import derelict.util.compat;
     import derelict.opengl.gltypes;
     import derelict.opengl.glutypes;
-    import derelict.util.compat;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     void function(GLUnurbs*) gluBeginCurve;
     void function(GLUtesselator*) gluBeginPolygon;
     void function(GLUnurbs*) gluBeginSurface;
@@ -94,4 +92,5 @@ extern(System)
     void function(GLUtesselator*,GLdouble*,GLvoid*) gluTessVertex;
     GLint function(GLdouble,GLdouble,GLdouble,in GLdouble*,in GLdouble*,in GLint*,GLdouble*,GLdouble*,GLdouble*) gluUnProject;
     // GLint function(GLdouble,GLdouble,GLdouble,GLdouble,in GLdouble*,in GLdouble*,in GLint*,GLdouble,GLdouble,GLdouble*,GLdouble*,GLdouble*,GLdouble*) gluUnProject4;
+    ");
 }

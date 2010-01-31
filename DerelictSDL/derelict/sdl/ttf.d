@@ -29,9 +29,11 @@ module derelict.sdl.ttf;
 
 private
 {
-    import derelict.sdl.sdl;
     import derelict.util.loader;
     import derelict.util.exception;
+    import derelict.util.compat;    
+    import derelict.sdl.sdl;
+
 }
 
 enum : Uint8
@@ -72,11 +74,8 @@ void TTF_VERSION(SDL_version* X) { SDL_TTF_VERSION(X); }
 
 extern (C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     CSDLVERPTR function() TTF_Linked_Version;
     void function(int) TTF_ByteSwappedUNICODE;
     int function() TTF_Init;
@@ -113,6 +112,7 @@ extern (C)
     void function (TTF_Font*) TTF_CloseFont;
     void function () TTF_Quit;
     int function () TTF_WasInit;
+    ");
 
     alias TTF_RenderText_Shaded TTF_RenderText;
     alias TTF_RenderUTF8_Shaded TTF_RenderUTF8;

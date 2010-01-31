@@ -34,13 +34,19 @@ private
     import derelict.sfml.atypes;
 }
 
+version(D_Version2)
+{
+    mixin("alias const(sfInt16*) SFI16PTR;");
+}
+else
+{
+    alias sfInt16* SFI16PTR;
+}
+
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // Listener.h
     void function(float) sfListener_SetGlobalVolume;
     float function() sfListener_GetGlobalVolume;
@@ -108,11 +114,7 @@ extern(C)
     sfSoundBuffer* function(in sfInt16, size_t, uint, uint) sfSoundBuffer_CreateFromSamples;
     void function(sfSoundBuffer*) sfSoundBuffer_Destroy;
     sfBool function(sfSoundBuffer*, CCPTR) sfSoundBuffer_SaveToFile;
-
-    version(D_Version2) mixin("alias const(sfInt16*) SFI16PTR;");
-    else alias sfInt16* SFI16PTR;
     SFI16PTR function(sfSoundBuffer*) sfSoundBuffer_GetSamples;
-
     size_t function(sfSoundBuffer*) sfSoundBuffer_GetSamplesCount;
     uint function(sfSoundBuffer*) sfSoundBuffer_GetSampleRate;
     uint function(sfSoundBuffer*) sfSoundBuffer_GetChannelsCount;
@@ -158,4 +160,5 @@ extern(C)
     float function(sfSoundStream*) sfSoundStream_GetAttenuation;
     sfBool function(sfSoundStream*) sfSoundStream_GetLoop;
     float function(sfSoundStream*) sfSoundStream_GetPlayingOffset;
+    ");
 }

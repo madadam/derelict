@@ -30,17 +30,15 @@ module derelict.devil.ilufuncs;
 
 private
 {
+    import derelict.util.compat;
     import derelict.devil.iltypes;
     import derelict.devil.ilutypes;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     ILboolean function() iluAlienify;
     ILboolean function(ILuint) iluBlurAvg;
     ILboolean function(ILuint) iluBlurGaussian;
@@ -87,6 +85,7 @@ extern(System)
     ILboolean function(ILfloat, ILuint) iluSharpen;
     ILboolean function() iluSwapColours;
     ILboolean function(ILfloat) iluWave;
+    ");
 
     alias iluColoursUsed    iluColorsUsed;
     alias iluSwapColours    iluSwapColors;

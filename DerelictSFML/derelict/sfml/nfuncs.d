@@ -36,11 +36,8 @@ private
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // Ftp.h
     void function(sfFtpListingResponse*) sfFtpListingResponse_Destroy;
     sfBool function(sfFtpListingResponse*) sfFtpListingResponse_IsOk;
@@ -176,4 +173,5 @@ extern(C)
     sfSocketStatus function(sfSocketUDP*, sfPacket*) sfSocketUDP_SendPacket;
     sfSocketStatus function(sfSocketUDP*, sfPacket*) sfSocketUDP_ReceivePacket;
     sfBool function(sfSocketUDP*) sfSocketUDP_IsValid;
+    ");
 }

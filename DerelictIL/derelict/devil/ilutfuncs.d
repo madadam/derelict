@@ -30,17 +30,15 @@ module derelict.devil.ilutfuncs;
 
 private
 {
+    import derelict.util.compat;
     import derelict.devil.iltypes;
     import derelict.devil.iluttypes;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     ILboolean function(ILenum) ilutDisable;
     ILboolean function(ILenum) ilutEnable;
     ILboolean function(ILenum) ilutGetBoolean;
@@ -91,4 +89,5 @@ extern(System)
         // private import derelict.util.xtypes;
         // TODO
     }
+    ");
 }

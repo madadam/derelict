@@ -37,6 +37,8 @@ version(Windows)
 {
     extern(Windows)
     {
+        mixin(gsharedString() ~
+        "
         // WGL functions
          BOOL function(void*,void*) wglCopyContext;
          void* function(void*) wglCreateContext;
@@ -56,6 +58,7 @@ version(Windows)
          BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesA;
          BOOL function(void*,DWORD,DWORD,DWORD) wglUseFontBitmapsW;
          BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesW;
+         ");
 
         alias wglUseFontBitmapsA    wglUseFontBitmaps;
         alias wglUseFontOutlinesA   wglUseFontOutlines;

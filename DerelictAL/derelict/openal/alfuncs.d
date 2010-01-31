@@ -29,17 +29,14 @@ module derelict.openal.alfuncs;
 
 private
 {
-    import derelict.openal.altypes;
     import derelict.util.compat;
+    import derelict.openal.altypes;
 }
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     void function(ALenum) alEnable;
     void function(ALenum) alDisable;
     ALboolean function(ALenum) alIsEnabled;
@@ -148,4 +145,5 @@ extern(C)
     void function(ALCdevice*) alcCaptureStart;
     void function(ALCdevice*) alcCaptureStop;
     void function(ALCdevice*, ALCvoid*, ALCsizei) alcCaptureSamples;
+    ");
 }

@@ -35,13 +35,21 @@ private
     import derelict.sfml.gtypes;
 }
 
+version(D_Version2)
+{
+    mixin("alias const(sfUint8*) SFU8PTR;");
+    mixin("alias const(sfView*) SFVPTR;");
+}
+else
+{
+    alias sfUint8* SFU8PTR;
+    alias sfView* SFVPTR;
+}
+
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // Color.h
     sfColor function(sfUint8, sfUint8, sfUint8, sfUint8) sfColor_FromRGBA;
     sfColor function(sfColor, sfColor) sfColor_Add;
@@ -68,11 +76,7 @@ extern(C)
     sfBool function(sfImage*, sfRenderWindow*, sfIntRect) sfImage_CopyScreen;
     void function(sfImage*, uint, uint, sfColor) sfImage_SetPixel;
     sfColor function(sfImage*, uint, uint) sfImage_GetPixel;
-
-    version(D_Version2) mixin("alias const(sfUint8*) SFU8PTR;");
-    else alias sfUint8* SFU8PTR;
     SFU8PTR function(sfImage*) sfImage_GetPixelsPtr;
-
     void function(sfImage*) sfImage_Bind;
     void function(sfImage*, sfBool) sfImage_SetSmooth;
     uint function(sfImage*) sfImage_GetWidth;
@@ -129,11 +133,7 @@ extern(C)
     sfImage* function(sfRenderWindow*) sfRenderWindow_Capture;
     void function(sfRenderWindow*, sfColor) sfRenderWindow_Clear;
     void function(sfRenderWindow*, sfView*) sfRenderWindow_SetView;
-
-    version(D_Version2) mixin("alias const(sfView*) SFVPTR;");
-    else alias sfView* SFVPTR;
     SFVPTR function(sfRenderWindow*) sfRenderWindow_GetView;
-
     sfView* function(sfRenderWindow*) sfRenderWindow_GetDefaultView;
     void function(sfRenderWindow*, uint, uint, float*, float*, float*, sfView*) sfRenderWindow_ConvertCoords;
     void function(sfRenderWindow*, sfBool) sfRenderWindow_PreserveOpenGLStates;
@@ -273,4 +273,5 @@ extern(C)
     sfFloatRect function(sfView*) sfView_GetRect;
     void function(sfView*, float, float) sfView_Move;
     void function(sfView*, float) sfView_Zoom;
+    ");
 }

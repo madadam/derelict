@@ -35,12 +35,8 @@ private
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
-    // freetype.h
+    mixin(gsharedString() ~
+    "
     FT_Error function( FT_Library *alibrary ) FT_Init_FreeType;
     FT_Error function( FT_Library library ) FT_Done_FreeType;
     FT_Error function( FT_Library library, CCPTR filepathname, FT_Long face_index, FT_Face *aface ) FT_New_Face;
@@ -328,4 +324,5 @@ extern(C)
     FT_Int function( FT_Validator valid ) FT_validator_run;
     void function( FT_Validator valid, FT_Error error ) FT_validator_error;
     +/
+    ");
 }

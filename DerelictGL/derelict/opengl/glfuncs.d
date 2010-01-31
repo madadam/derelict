@@ -29,17 +29,14 @@ module derelict.opengl.glfuncs;
 
 private
 {
-    import derelict.opengl.gltypes;
     import derelict.util.compat;
+    import derelict.opengl.gltypes;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     void function(GLfloat c) glClearIndex;
     void function(GLclampf,GLclampf,GLclampf,GLclampf) glClearColor;
     void function(GLbitfield) glClear;
@@ -618,4 +615,5 @@ extern(System)
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix4x2fv;
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix3x4fv;
     void function(GLint, GLsizei, GLboolean, in GLfloat*) glUniformMatrix4x3fv;
+    ");
 }

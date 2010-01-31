@@ -29,8 +29,8 @@ module derelict.sdl.sdlfuncs;
 
 private
 {
-    import derelict.sdl.sdltypes;
     import derelict.util.compat;
+    import derelict.sdl.sdltypes;
 
     version(Tango)
     {
@@ -42,13 +42,51 @@ private
     }
 }
 
+SDL_AudioSpec* SDL_LoadWAV(in char* file, SDL_AudioSpec* spec, Uint8** buf, Uint32* len)
+{
+    return SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"), 1, spec, buf, len);
+}
+
+int SDL_QuitRequested()
+{
+    SDL_PumpEvents();
+    return SDL_PeepEvents(null, 0, SDL_PEEKEVENT, SDL_QUITMASK);
+}
+
+int SDL_LockMutex(SDL_mutex *mutex)
+{
+    return SDL_mutexP(mutex);
+}
+
+int SDL_UnlockMutex(SDL_mutex *mutex)
+{
+    return SDL_mutexV(mutex);
+}
+
+SDL_Surface* SDL_LoadBMP(in char* file)
+{
+    return SDL_LoadBMP_RW(SDL_RWFromFile(file, "rb"), 1);
+}
+
+int SDL_SaveBMP(SDL_Surface* surface, in char* file)
+{
+    return SDL_SaveBMP_RW(surface, SDL_RWFromFile(file,"wb"), 1);
+}
+
+version(D_Version2)
+{
+    mixin("alias const(SDL_VideoInfo*) SDLVIPTR;");
+}
+else
+{
+    alias SDL_VideoInfo* SDLVIPTR;
+}
+
+
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // SDL.h
     int function(Uint32) SDL_Init;
     int function(Uint32) SDL_InitSubSystem;
@@ -74,11 +112,6 @@ extern(C)
     void function() SDL_LockAudio;
     void function() SDL_UnlockAudio;
     void function() SDL_CloseAudio;
-
-    SDL_AudioSpec* SDL_LoadWAV(in char* file, SDL_AudioSpec* spec, Uint8** buf, Uint32* len)
-    {
-        return SDL_LoadWAV_RW(SDL_RWFromFile(file, "rb"), 1, spec, buf, len);
-    }
 
     // SDL_cdrom.h
     int function() SDL_CDNumDrives;
@@ -117,13 +150,6 @@ extern(C)
     void function(SDL_EventFilter) SDL_SetEventFilter;
     SDL_EventFilter function() SDL_GetEventFilter;
     Uint8 function(Uint8,int) SDL_EventState;
-
-
-    int SDL_QuitRequested()
-    {
-        SDL_PumpEvents();
-        return SDL_PeepEvents(null, 0, SDL_PEEKEVENT, SDL_QUITMASK);
-    }
 
     // SDL_joystick.h
     int function() SDL_NumJoysticks;
@@ -186,16 +212,6 @@ extern(C)
     int function(SDL_cond*,SDL_mutex*) SDL_CondWait;
     int function(SDL_cond*,SDL_mutex*,Uint32) SDL_CondWaitTimeout;
 
-    int SDL_LockMutex(SDL_mutex *mutex)
-    {
-        return SDL_mutexP(mutex);
-    }
-
-    int SDL_UnlockMutex(SDL_mutex *mutex)
-    {
-        return SDL_mutexV(mutex);
-    }
-
     // SDL_rwops.h
     SDL_RWops* function(in char*,in char*) SDL_RWFromFile;
     SDL_RWops* function(FILE*,int) SDL_RWFromFP;
@@ -241,12 +257,7 @@ extern(C)
     void function() SDL_VideoQuit;
     char* function(char*,int) SDL_VideoDriverName;
     SDL_Surface* function() SDL_GetVideoSurface;
-
-    version(D_Version2) mixin("alias const(SDL_VideoInfo*) SDLVIPTR;");
-    else alias SDL_VideoInfo* SDLVIPTR;
     SDLVIPTR function() SDL_GetVideoInfo;
-
-
     int function(int,int,int,Uint32) SDL_VideoModeOK;
     SDL_Rect** function(SDL_PixelFormat*,Uint32) SDL_ListModes;
     SDL_Surface* function(int,int,int,Uint32) SDL_SetVideoMode;
@@ -298,17 +309,8 @@ extern(C)
     int function() SDL_WM_IconifyWindow;
     int function(SDL_Surface*) SDL_WM_ToggleFullScreen;
     SDL_GrabMode function(SDL_GrabMode) SDL_WM_GrabInput;
+    ");
 
     alias SDL_CreateRGBSurface SDL_AllocSurface;
     alias SDL_UpperBlit SDL_BlitSurface;
-
-    SDL_Surface* SDL_LoadBMP(in char* file)
-    {
-        return SDL_LoadBMP_RW(SDL_RWFromFile(file, "rb"), 1);
-    }
-
-    int SDL_SaveBMP(SDL_Surface* surface, in char* file)
-    {
-        return SDL_SaveBMP_RW(surface, SDL_RWFromFile(file,"wb"), 1);
-    }
 }

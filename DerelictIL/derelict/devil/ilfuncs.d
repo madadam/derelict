@@ -30,16 +30,14 @@ module derelict.devil.ilfuncs;
 
 private
 {
+    import derelict.util.compat;
     import derelict.devil.iltypes;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString ~
+    "
     ILboolean function (ILuint) ilActiveImage;
     ILboolean function(ILuint) ilActiveLayer;
     ILboolean function(ILuint) ilActiveMipmap;
@@ -129,6 +127,7 @@ extern(System)
     ILboolean function(ILHANDLE, ILuint, ILuint, ILuint, ILubyte) ilLoadDataF;
     ILboolean function(ILvoid*, ILuint, ILuint, ILuint, ILuint, ILubyte) ilLoadDataL;
     ILboolean function(ILconst_string) ilSaveData;
+    ");
 
     alias ilClearColour     ilClearColor;
     alias ilKeyColour       ilKeyColor;

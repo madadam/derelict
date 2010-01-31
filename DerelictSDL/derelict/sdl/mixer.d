@@ -29,10 +29,10 @@ module derelict.sdl.mixer;
 
 private
 {
-    import derelict.sdl.sdl;
     import derelict.util.loader;
     import derelict.util.exception;
     import derelict.util.compat;
+    import derelict.sdl.sdl;
 }
 
 enum : Uint8
@@ -128,11 +128,8 @@ int Mix_FadeInChannel(int channel, Mix_Chunk* chunk, int loops, int ms)
 
 extern (C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     CSDLVERPTR function() Mix_Linked_Version;
     int function (int, Uint16, int, int) Mix_OpenAudio;
     int function(int) Mix_AllocateChannels;
@@ -201,6 +198,7 @@ extern (C)
     int function() Mix_GetSynchroValue;
     Mix_Chunk* function(int) Mix_GetChunk;
     void function() Mix_CloseAudio;
+    ");
 }
 
 class DerelictSDLMixerLoader : SharedLibLoader

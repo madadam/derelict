@@ -974,8 +974,14 @@ struct SDL_version
     Uint8 patch;
 }
 
-version(D_Version2) mixin("alias const(SDL_version*) CSDLVERPTR;" );
-else alias SDL_version* CSDLVERPTR;
+version(D_Version2) 
+{
+	mixin("alias const(SDL_version*) CSDLVERPTR;" );
+}
+else
+{
+	alias SDL_version* CSDLVERPTR;
+}
 
 
 void SDL_VERSION(SDL_version *X)

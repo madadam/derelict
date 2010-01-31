@@ -29,23 +29,19 @@ module derelict.opengl.extfuncs;
 
 private
 {
-    import derelict.opengl.gltypes;
-    import derelict.opengl.exttypes;
-
     version(Windows)
     {
         import derelict.util.wintypes;
-        import derelict.util.compat;
     }
+    import derelict.util.compat;
+    import derelict.opengl.gltypes;
+    import derelict.opengl.exttypes;
 }
 
 extern(System)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // GL_ARB_multitexture
     void function(GLenum) glActiveTextureARB;
     void function(GLenum) glClientActiveTextureARB;
@@ -584,5 +580,5 @@ extern(System)
         // WGL_ARB_create_context
         HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
     }
-
+    ");
 }

@@ -29,18 +29,15 @@ module derelict.sfml.wfuncs;
 
 private
 {
+    import derelict.util.compat;
     import derelict.sfml.config;
     import derelict.sfml.wtypes;
-    import derelict.util.compat;
 }
 
 extern(C)
 {
-    version(D_Version2)
-    {
-        mixin("__gshared:");
-    }
-
+    mixin(gsharedString() ~
+    "
     // Context.h
     sfContext* function() sfContext_Create;
     void function(sfContext*) sfContext_Destroy;
@@ -84,5 +81,6 @@ extern(C)
     void function(sfWindow*, uint) sfWindow_SetFramerateLimit;
     float function(sfWindow*) sfWindow_GetFrameTime;
     void function(sfWindow*, float) sfWindow_SetJoystickThreshold;
+    ");
 }
 
