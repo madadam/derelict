@@ -28,8 +28,11 @@ DEALINGS IN THE SOFTWARE.
 module derelict.openal.altypes;
 
 // al
-const bool AL_VERSION_1_0 = true;
-const bool AL_VERSION_1_1 = true;
+enum : bool
+{
+    AL_VERSION_1_0 = true,
+    AL_VERSION_1_1 = true,
+}
 
 alias byte ALboolean;
 alias char ALchar;
@@ -138,7 +141,10 @@ enum : ALenum
 }
 
 // alc
-const bool ALC_VERSION_0_1 = true;
+enum : bool
+{
+    ALC_VERSION_0_1 = true
+}
 
 alias void ALCdevice;
 alias void ALCcontext;

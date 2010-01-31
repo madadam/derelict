@@ -29,7 +29,7 @@ module derelict.opengl.glutypes;
 
 private
 {
-	import derelict.opengl.gltypes;
+    import derelict.opengl.gltypes;
 }
 
 enum : GLenum
@@ -184,15 +184,18 @@ enum : GLenum
     GLU_TESS_WINDING_ABS_GEQ_TWO    = 100134,
 }
 
-const GLdouble GLU_TESS_MAX_COORD           = 1.0e150;
+enum : GLdouble
+{
+    GLU_TESS_MAX_COORD           = 1.0e150
+}
 
 struct GLUnurbs {}
 struct GLUquadric {}
 struct GLUtesselator {}
 
-typedef GLUnurbs GLUnurbsObj;
-typedef GLUquadric GLUquadricObj;
-typedef GLUtesselator GLUtesselatorObj;
-typedef GLUtesselator GLUtriangulatorObj;
+alias GLUnurbs GLUnurbsObj;
+alias GLUquadric GLUquadricObj;
+alias GLUtesselator GLUtesselatorObj;
+alias GLUtesselator GLUtriangulatorObj;
 
 extern(System) alias void function() _GLUfuncptr;

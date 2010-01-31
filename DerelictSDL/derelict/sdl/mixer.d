@@ -77,7 +77,7 @@ enum Mix_MusicType
 };
 
 struct _Mix_Music {}
-typedef _Mix_Music Mix_Music;
+alias _Mix_Music Mix_Music;
 
 enum
 {
@@ -94,12 +94,12 @@ version (LittleEndian) {
     enum { MIX_DEFAULT_FORMAT = AUDIO_S16MSB }
 }
 
-const char[] MIX_EFFECTSMAXSPEED    = "MIX_EFFECTSMAXSPEED";
+string MIX_EFFECTSMAXSPEED = "MIX_EFFECTSMAXSPEED";
 
 extern(C)
 {
-    typedef void function(int chan, void* stream, int len, void* udata) Mix_EffectFunc_t;
-    typedef void function(int chan, void* udata) Mix_EffectDone_t;
+    alias void function(int chan, void* stream, int len, void* udata) Mix_EffectFunc_t;
+    alias void function(int chan, void* udata) Mix_EffectDone_t;
 }
 
 void SDL_MIXER_VERSION(SDL_version* X)

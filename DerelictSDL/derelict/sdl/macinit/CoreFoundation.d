@@ -43,19 +43,19 @@ alias /*const*/ void* CFTypeRef;
 
 
 // CFBundle types
-private typedef void* __CFBundle;
+private alias void* __CFBundle;
 alias __CFBundle *CFBundleRef;
 
 
 
 // CFDictionary types;
-private typedef void* __CFDictionary;
+private alias void* __CFDictionary;
 alias __CFDictionary* CFDictionaryRef;
 
 
 
 // CFURL types;
-private typedef void* __CFURL;
+private alias void* __CFURL;
 alias __CFURL* CFURLRef;
 
 
@@ -64,7 +64,7 @@ alias __CFURL* CFURLRef;
 extern (C)
 {
     //  CFBase bindings from the CoreFoundation framework
-    typedef void function(CFTypeRef cf) pfCFRelease;
+    alias void function(CFTypeRef cf) pfCFRelease;
     pfCFRelease CFRelease;
 
 

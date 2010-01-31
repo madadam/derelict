@@ -48,7 +48,9 @@ struct IPaddress
     Uint16 port;
 }
 
-typedef void* TCPsocket;
+// this is a hack to get around the removal of typedefs in D2.
+struct TCPsocketStruct {}
+alias TCPsocketStruct* TCPsocket;
 
 enum : uint
 {
@@ -59,7 +61,9 @@ enum : uint
     SDLNET_MAX_UDPADDRESSES = 4,
 }
 
-typedef void* UDPsocket;
+// hack again
+struct UDPsocketStruct {}
+alias UDPsocketStruct* UDPsocket;
 
 struct UDPpacket
 {
@@ -71,7 +75,7 @@ struct UDPpacket
     IPaddress address;
 }
 
-typedef void* SDLNet_SocketSet;
+alias void* SDLNet_SocketSet;
 
 struct _SDLNet_GenericSocket
 {

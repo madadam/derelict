@@ -160,9 +160,19 @@ enum : uint
 }
 
 version(LittleEndian)
-    const uint SDL_BYTEORDER = SDL_LIL_ENDIAN;
+{
+    enum : uint
+    {
+        SDL_BYTEORDER = SDL_LIL_ENDIAN,
+    }
+}
 else
-    const uint SDL_BYTEORDER = SDL_BIG_ENDIAN;
+{
+    enum : uint
+    {
+        SDL_BYTEORDER = SDL_BIG_ENDIAN,
+    }
+}
 
 // SDL_cdrom.h
 enum : Sint32 { SDL_MAX_TRACKS = 99 }
@@ -508,7 +518,7 @@ enum
     SDL_GETEVENT
 }
 
-extern(C) typedef int function(in SDL_Event *event) SDL_EventFilter;
+extern(C) alias int function(in SDL_Event *event) SDL_EventFilter;
 
 enum
 {
@@ -974,13 +984,13 @@ struct SDL_version
     Uint8 patch;
 }
 
-version(D_Version2) 
+version(D_Version2)
 {
-	mixin("alias const(SDL_version*) CSDLVERPTR;" );
+    mixin("alias const(SDL_version*) CSDLVERPTR;" );
 }
 else
 {
-	alias SDL_version* CSDLVERPTR;
+    alias SDL_version* CSDLVERPTR;
 }
 
 
@@ -996,8 +1006,11 @@ uint SDL_VERSIONNUM(Uint8 major, Uint8 minor, Uint8 patch)
     return (major * 1000 + minor * 100 + patch);
 }
 
-const uint SDL_COMPILEDVERSION =  SDL_MAJOR_VERSION * 1000 +
-                                  SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL;
+enum : uint
+{
+    SDL_COMPILEDVERSION =  SDL_MAJOR_VERSION * 1000 +
+                                  SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL,
+}
 
 bool SDL_VERSION_ATLEAST(Uint8 major, Uint8 minor, Uint8 patch)
 {
@@ -1048,8 +1061,8 @@ enum : Uint32
 
 extern(C)
 {
-    typedef Uint32 function(Uint32) SDL_TimerCallback;
-    typedef Uint32 function(Uint32,void*) SDL_NewTimerCallback;
+    alias Uint32 function(Uint32) SDL_TimerCallback;
+    alias Uint32 function(Uint32,void*) SDL_NewTimerCallback;
 }
 
 alias void* SDL_TimerID;

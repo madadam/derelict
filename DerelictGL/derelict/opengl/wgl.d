@@ -40,25 +40,25 @@ version(Windows)
         mixin(gsharedString() ~
         "
         // WGL functions
-         BOOL function(void*,void*) wglCopyContext;
-         void* function(void*) wglCreateContext;
-         void* function(void*,int) wglCreateLayerContext;
-         BOOL function(void*) wglDeleteContext;
-         BOOL function(void*,int,int,UINT,LAYERPLANEDESCRIPTOR*) wglDescribeLayerPlane;
-         void* function() wglGetCurrentContext;
-         void* function() wglGetCurrentDC;
-         int function(void*,int,int,int,COLORREF*) wglGetLayerPaletteEntries;
-         FARPROC function(LPCSTR) wglGetProcAddress;
-         BOOL function(void*,void*) wglMakeCurrent;
-         BOOL function(void*,int,BOOL) wglRealizeLayerPalette;
-         int function(void*,int,int,int,COLORREF*) wglSetLayerPaletteEntries;
-         BOOL function(void*,void*) wglShareLists;
-         BOOL function(void*,UINT) wglSwapLayerBuffers;
-         BOOL function(void*,DWORD,DWORD,DWORD) wglUseFontBitmapsA;
-         BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesA;
-         BOOL function(void*,DWORD,DWORD,DWORD) wglUseFontBitmapsW;
-         BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesW;
-         ");
+        BOOL function(void*,void*) wglCopyContext;
+        void* function(void*) wglCreateContext;
+        void* function(void*,int) wglCreateLayerContext;
+        BOOL function(void*) wglDeleteContext;
+        BOOL function(void*,int,int,UINT,LAYERPLANEDESCRIPTOR*) wglDescribeLayerPlane;
+        void* function() wglGetCurrentContext;
+        void* function() wglGetCurrentDC;
+        int function(void*,int,int,int,COLORREF*) wglGetLayerPaletteEntries;
+        FARPROC function(LPCSTR) wglGetProcAddress;
+        BOOL function(void*,void*) wglMakeCurrent;
+        BOOL function(void*,int,BOOL) wglRealizeLayerPalette;
+        int function(void*,int,int,int,COLORREF*) wglSetLayerPaletteEntries;
+        BOOL function(void*,void*) wglShareLists;
+        BOOL function(void*,UINT) wglSwapLayerBuffers;
+        BOOL function(void*,DWORD,DWORD,DWORD) wglUseFontBitmapsA;
+        BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesA;
+        BOOL function(void*,DWORD,DWORD,DWORD) wglUseFontBitmapsW;
+        BOOL function(void*,DWORD,DWORD,DWORD,FLOAT,FLOAT,int,GLYPHMETRICSFLOAT*) wglUseFontOutlinesW;
+        ");
 
         alias wglUseFontBitmapsA    wglUseFontBitmaps;
         alias wglUseFontOutlinesA   wglUseFontOutlines;

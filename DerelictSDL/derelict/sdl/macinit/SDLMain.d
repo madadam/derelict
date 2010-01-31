@@ -15,16 +15,16 @@ private
 {
     version (Tango)
     {
-    	import tango.stdc.posix.unistd;
-    	import tango.stdc.stdlib;
-    	import tango.stdc.string;
+        import tango.stdc.posix.unistd;
+        import tango.stdc.stdlib;
+        import tango.stdc.string;
     }
 
     else
     {
-    	import std.c.linux.linux;
-    	import std.c.stdlib;
-    	import std.c.string;
+        import std.c.linux.linux;
+        import std.c.stdlib;
+        import std.c.string;
     }
 
     import derelict.sdl.sdltypes;
@@ -52,7 +52,10 @@ private
 
 private:
 
-private const int MAXPATHLEN = 1024; // from sys/param.h
+enum
+{
+    MAXPATHLEN = 1024; // from sys/param.h
+}
 
 /* Use this flag to determine whether we use CPS (docking) or not */
 version = SDL_USE_CPS;
@@ -67,13 +70,13 @@ version (SDL_USE_CPS)
 
     extern (C)
     {
-        typedef OSErr function (CPSProcessSerNum *psn) pfCPSGetCurrentProcess;
+        alias OSErr function (CPSProcessSerNum *psn) pfCPSGetCurrentProcess;
         pfCPSGetCurrentProcess CPSGetCurrentProcess;
 
-        typedef OSErr function (CPSProcessSerNum *psn, UInt32 _arg2, UInt32 _arg3, UInt32 _arg4, UInt32 _arg5) pfCPSEnableForegroundOperation;
+        alias OSErr function (CPSProcessSerNum *psn, UInt32 _arg2, UInt32 _arg3, UInt32 _arg4, UInt32 _arg5) pfCPSEnableForegroundOperation;
         pfCPSEnableForegroundOperation CPSEnableForegroundOperation;
 
-        typedef OSErr function (CPSProcessSerNum *psn) pfCPSSetFrontProcess;
+        alias OSErr function (CPSProcessSerNum *psn) pfCPSSetFrontProcess;
         pfCPSSetFrontProcess CPSSetFrontProcess;
     }
 
@@ -97,7 +100,7 @@ private
 }
 
 static this ()
-{   
+{
     registerSubclasses;
     CustomApplicationMain;
 }
@@ -112,134 +115,134 @@ static ~this()
 }
 
 private void registerSubclasses ()
-{		
-	objc_method terminateMethod;
-	terminateMethod.method_imp = cast(IMP) &terminate;
-	terminateMethod.method_name = sel_terminate.ptr;
-	terminateMethod.method_types = sel_registerName!("v@:").ptr;
-		
-	objc_method_list* terminateMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
-	terminateMethodList.method_count = 1;
-	terminateMethodList.method_list[0] = terminateMethod;
-	
-	
-	
-	objc_method setupWorkingDirectoryMethod;
-	setupWorkingDirectoryMethod.method_imp = cast(IMP) &setupWorkingDirectory;
-	setupWorkingDirectoryMethod.method_name = sel_setupWorkingDirectory.ptr;
-	setupWorkingDirectoryMethod.method_types = sel_registerName!("v@:B").ptr;
-	
-	objc_method_list* setupWorkingDirectoryMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
-	setupWorkingDirectoryMethodList.method_count = 1;
-	setupWorkingDirectoryMethodList.method_list[0] = setupWorkingDirectoryMethod;
-	
-	
-	
-	objc_method applicationMethod;
-	applicationMethod.method_imp = cast(IMP) &application;
-	applicationMethod.method_name = sel_application.ptr;
-	applicationMethod.method_types = sel_registerName!("B@:@@").ptr;
-	
-	objc_method_list* applicationMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
-	applicationMethodList.method_count = 1;
-	applicationMethodList.method_list[0] = applicationMethod;
-	
-	
-	
-	objc_method applicationDidFinishLaunchingMethod;
-	applicationDidFinishLaunchingMethod.method_imp = cast(IMP) &applicationDidFinishLaunching;
-	applicationDidFinishLaunchingMethod.method_name = sel_applicationDidFinishLaunching.ptr;
-	applicationDidFinishLaunchingMethod.method_types = sel_registerName!("v@:@").ptr;
-	
-	objc_method_list* applicationDidFinishLaunchingMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
-	applicationDidFinishLaunchingMethodList.method_count = 1;
-	applicationDidFinishLaunchingMethodList.method_list[0] = applicationDidFinishLaunchingMethod;
-	
-	
-	
-	auto sdlApplicationMethodList = [terminateMethodList];
-	auto sdlMainMethodList = [setupWorkingDirectoryMethodList, applicationMethodList, applicationDidFinishLaunchingMethodList];
-	
-	registerClass!("SDLApplication")(cast(Class) class_NSApplication, sdlApplicationMethodList);
-	registerClass!("SDLMain")(cast(Class) class_NSObject, sdlMainMethodList);
-	
-	class_SDLApplication = objc_getClass!("SDLApplication");
+{
+    objc_method terminateMethod;
+    terminateMethod.method_imp = cast(IMP) &terminate;
+    terminateMethod.method_name = sel_terminate.ptr;
+    terminateMethod.method_types = sel_registerName!("v@:").ptr;
+
+    objc_method_list* terminateMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+    terminateMethodList.method_count = 1;
+    terminateMethodList.method_list[0] = terminateMethod;
+
+
+
+    objc_method setupWorkingDirectoryMethod;
+    setupWorkingDirectoryMethod.method_imp = cast(IMP) &setupWorkingDirectory;
+    setupWorkingDirectoryMethod.method_name = sel_setupWorkingDirectory.ptr;
+    setupWorkingDirectoryMethod.method_types = sel_registerName!("v@:B").ptr;
+
+    objc_method_list* setupWorkingDirectoryMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+    setupWorkingDirectoryMethodList.method_count = 1;
+    setupWorkingDirectoryMethodList.method_list[0] = setupWorkingDirectoryMethod;
+
+
+
+    objc_method applicationMethod;
+    applicationMethod.method_imp = cast(IMP) &application;
+    applicationMethod.method_name = sel_application.ptr;
+    applicationMethod.method_types = sel_registerName!("B@:@@").ptr;
+
+    objc_method_list* applicationMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+    applicationMethodList.method_count = 1;
+    applicationMethodList.method_list[0] = applicationMethod;
+
+
+
+    objc_method applicationDidFinishLaunchingMethod;
+    applicationDidFinishLaunchingMethod.method_imp = cast(IMP) &applicationDidFinishLaunching;
+    applicationDidFinishLaunchingMethod.method_name = sel_applicationDidFinishLaunching.ptr;
+    applicationDidFinishLaunchingMethod.method_types = sel_registerName!("v@:@").ptr;
+
+    objc_method_list* applicationDidFinishLaunchingMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
+    applicationDidFinishLaunchingMethodList.method_count = 1;
+    applicationDidFinishLaunchingMethodList.method_list[0] = applicationDidFinishLaunchingMethod;
+
+
+
+    auto sdlApplicationMethodList = [terminateMethodList];
+    auto sdlMainMethodList = [setupWorkingDirectoryMethodList, applicationMethodList, applicationDidFinishLaunchingMethodList];
+
+    registerClass!("SDLApplication")(cast(Class) class_NSApplication, sdlApplicationMethodList);
+    registerClass!("SDLMain")(cast(Class) class_NSObject, sdlMainMethodList);
+
+    class_SDLApplication = objc_getClass!("SDLApplication");
 }
 
 private void registerClass (string className) (Class superClass, objc_method_list*[] methodList)
 {
-	Class newClass;
-	
-	// Leopard and above
-	if (!objc_addClass)
-    {    
-    	newClass = objc_allocateClassPair!(className)(cast(Class) superClass, 0);
-    	
-    	foreach (method ; methodList)
-    		class_addMethods(newClass, method);
-    	
-    	objc_registerClassPair(newClass);
+    Class newClass;
+
+    // Leopard and above
+    if (!objc_addClass)
+    {
+        newClass = objc_allocateClassPair!(className)(cast(Class) superClass, 0);
+
+        foreach (method ; methodList)
+            class_addMethods(newClass, method);
+
+        objc_registerClassPair(newClass);
     }
-    
+
     // Tiger and below
     else
     {
-    	enum
-    	{
-    		CLS_CLASS = 0x1,
-    		CLS_META = 0x2
-    	}
-    	
-    	Class metaClass;
-    	Class rootClass = superClass;
+        enum
+        {
+            CLS_CLASS = 0x1,
+            CLS_META = 0x2
+        }
 
-    	// Find the root class
-    	while (rootClass.super_class !is null)
-    		rootClass = rootClass.super_class;    	
+        Class metaClass;
+        Class rootClass = superClass;
 
-    	// Allocate space for the class and its metaclass
-    	newClass = cast(Class) calloc(2, objc_class.sizeof);
-    	metaClass = &newClass[1];
+        // Find the root class
+        while (rootClass.super_class !is null)
+            rootClass = rootClass.super_class;
 
-    	// Setup class
-    	newClass.isa = metaClass;
-    	newClass.info = CLS_CLASS;
-    	metaClass.info = CLS_META;
+        // Allocate space for the class and its metaclass
+        newClass = cast(Class) calloc(2, objc_class.sizeof);
+        metaClass = &newClass[1];
 
-    	/*
-    	 * Create a copy of the class name.
-    	 * For efficiency, we have the metaclass and the class itself
-    	 * to share this copy of the name, but this is not a requirement
-    	 * imposed by the runtime.
-    	 */
-    	newClass.name = ((className ~ '\0').dup).ptr;
+        // Setup class
+        newClass.isa = metaClass;
+        newClass.info = CLS_CLASS;
+        metaClass.info = CLS_META;
+
+        /*
+         * Create a copy of the class name.
+         * For efficiency, we have the metaclass and the class itself
+         * to share this copy of the name, but this is not a requirement
+         * imposed by the runtime.
+         */
+        newClass.name = ((className ~ '\0').dup).ptr;
         metaClass.name = newClass.name;
 
-    	// Allocate method lists.
+        // Allocate method lists.
         newClass.methodLists = cast(objc_method_list**) calloc(1, (objc_method_list*).sizeof);
         *(newClass.methodLists) = cast(objc_method_list*) -1;
         metaClass.methodLists = cast(objc_method_list**) calloc(1, (objc_method_list*).sizeof);
         *(metaClass.methodLists) = cast(objc_method_list*) -1;
 
         foreach (method ; methodList)
-    		class_addMethods(newClass, method);
+            class_addMethods(newClass, method);
 
-    	/*
-    	 * Connect the class definition to the class hierarchy:
-    	 * Connect the class to the superclass.
-    	 * Connect the metaclass to the metaclass of the superclass.
-    	 * Connect the metaclass of the metaclass to the metaclass of  the root class.
-    	 */    	
-    	newClass.super_class = superClass;
-    	metaClass.super_class = superClass.isa;
-    	metaClass.isa = rootClass.isa;
+        /*
+         * Connect the class definition to the class hierarchy:
+         * Connect the class to the superclass.
+         * Connect the metaclass to the metaclass of the superclass.
+         * Connect the metaclass of the metaclass to the metaclass of  the root class.
+         */
+        newClass.super_class = superClass;
+        metaClass.super_class = superClass.isa;
+        metaClass.isa = rootClass.isa;
 
-    	// Set the sizes of the class and the metaclass.
-    	newClass.instance_size = superClass.instance_size;
-    	metaClass.instance_size = metaClass.super_class.instance_size;
+        // Set the sizes of the class and the metaclass.
+        newClass.instance_size = superClass.instance_size;
+        metaClass.instance_size = metaClass.super_class.instance_size;
 
-    	// Finally, register the class with the runtime.
-    	objc_addClass(newClass);
+        // Finally, register the class with the runtime.
+        objc_addClass(newClass);
     }
 }
 
@@ -280,7 +283,7 @@ class SDLApplication : NSApplication
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     static void poseAsClass (Class aClass)
@@ -333,7 +336,7 @@ class SDLMain : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     SDLMain init ()
@@ -480,7 +483,7 @@ private void setupWindowMenu ()
 private void CustomApplicationMain ()
 {
     pool = NSAutoreleasePool.alloc.init;
-    
+
     /* Ensure the application object is initialised */
     SDLApplication.sharedApplication;
 
