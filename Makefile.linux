@@ -1,0 +1,88 @@
+DMAKE=make
+RM=rm -rf
+LIB_DIR=lib
+
+all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+
+# Targets for all libs in each package
+DerelictAL_ALL :
+	$(DMAKE) -C DerelictAL -f Makefile.linux all
+
+DerelictFT_ALL :
+	$(DMAKE) -C DerelictFT -f Makefile.linux all
+		
+DerelictGL_ALL :
+	$(DMAKE) -C DerelictGL -f Makefile.linux all
+	
+DerelictIL_ALL :
+	$(DMAKE) -C DerelictIL -f Makefile.linux all
+
+DerelictSDL_ALL :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux all
+
+DerelictSFML_ALL :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux all
+	
+DerelictUtil_ALL :
+	$(DMAKE) -C DerelictUtil -f Makefile.linux all
+	
+# There's only one DerelictAL target
+DerelictAL : DerelictAL_ALL
+
+# There's only one DerelictFT target
+DerelictFT : DerelictFT_ALL
+	
+# Individual DerelictGL targets
+DerelictGL :
+	$(DMAKE) -C DerelictGL -f Makefile.linux DerelictGL
+	
+DerelictGLU :
+	$(DMAKE) -C DerelictGL -f Makefile.linux DerelictGLU
+	
+# Individual DerelictIL targets
+DerelictIL :
+	$(DMAKE) -C DerelictIL -f Makefile.linux DerelictIL
+	
+DerelictILU :
+	$(DMAKE) -C DerelictIL -f Makefile.linux DerelictILU
+	
+DerelictILUT :
+	$(DMAKE) -C DerelictIL -f Makefile.linux DerelictILUT
+	
+# Individual DerelictSDL targets
+DerelictSDL :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux DerelictSDL
+	
+DerelictSDLImage :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux DerelictSDLImage
+
+DerelictSDLMixer :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux DerelictSDLMixer
+
+DerelictSDLNet :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux DerelictSDLNet
+	
+DerelictSDLttf :
+	$(DMAKE) -C DerelictSDL -f Makefile.linux DerelictSDLttf
+	
+# Individual DerelictSFML targets
+DerelictSFMLWindow :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLWindow
+	
+DerelictSFMLSystem :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLSystem
+	
+DerelictSFMLGraphics :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLGraphics
+	
+DerelictSFMLAudio :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLAudio
+	
+DerelictSFMLNetwork :
+	$(DMAKE) -C DerelictSFML -f Makefile.linux DerelictSFMLNetwork
+	
+# There's only one DerelictUtil target
+DerelictUtil : DerelictUtilAll
+	
+clean :
+	cd $(LIB_DIR) && $(RM) *.a
