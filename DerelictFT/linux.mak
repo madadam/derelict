@@ -1,8 +1,4 @@
-CP=cp -f
-RM=rm -rf
-DFLAGS=-release -O -inline -lib -I../DerelictUtil
-DC=dmd
-LIB_DEST=../lib
+include ../inc/linux_inc.mak
 
 all : DerelictFT
 
