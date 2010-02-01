@@ -1,8 +1,4 @@
-CP=copy /y
-RM=del /f /q
-DFLAGS=-release -O -inline -lib -I..\DerelictUtil
-DC=dmd
-LIB_DEST=..\lib
+include ..\inc\win32_inc.mak
 
 all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 
