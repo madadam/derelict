@@ -186,7 +186,7 @@ enum : GLenum
 
 version(D_Version2)
 {
-    mixin("enum : double { GLU_TESS_MAX_COORD = 1.0e150 }");
+    mixin("enum double GLU_TESS_MAX_COORD = 1.0e150;");
 }
 else
 {
