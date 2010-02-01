@@ -28,32 +28,32 @@ NET_SRC= \
 	derelict\sfml\network.d
 
 $(LIB_TARGET) :
-	$(DC) $(DFLAGS) -lib $(ALL_SRC) -of$@
+	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLWindow.lib :
-	$(DC) $(DFLAGS) $(WIN_SRC) -of$@
+	$(DC) $(DFLAGS) $(WIN_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLSystem.lib :
-	$(DC) $(DFLAGS) $(SYS_SRC) -of$@
+	$(DC) $(DFLAGS) $(SYS_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLGraphics.lib :
-	$(DC) $(DFLAGS) $(GFX_SRC) -of$@
+	$(DC) $(DFLAGS) $(GFX_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLAudio.lib :
-	$(DC) $(DFLAGS) $(AUDIO_SRC) -of$@
+	$(DC) $(DFLAGS) $(AUDIO_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 DerelictSFMLNetwork.lib:
-	$(DC) $(DFLAGS) $(NET_SRC) -of$@
+	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SFML) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

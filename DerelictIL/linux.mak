@@ -18,17 +18,17 @@ ILUT_SRC= \
     derelict/devil/iluttypes.d
     
 libDerelictIL.a :
-	$(DC) $(DFLAGS) $(IL_SRC) -of$@
+	$(DC) $(DFLAGS) $(IL_SRC) $(HD_IL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 libDerelictILU.a :
-	$(DC) $(DFLAGS) $(ILU_SRC) -of$@
+	$(DC) $(DFLAGS) $(ILU_SRC) $(HD_IL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 libDerelictILUT.a :
-	$(DC) $(DFLAGS) $(ILUT_SRC) -of$@
+	$(DC) $(DFLAGS) $(ILUT_SRC) $(HD_IL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

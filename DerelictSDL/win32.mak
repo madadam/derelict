@@ -16,27 +16,27 @@ NET_SRC= derelict\sdl\net.d
 TTF_SRC= derelict\sdl\ttf.d
 
 DerelictSDL.lib :
-	$(DC) $(DFLAGS) $(SDL_SRC) -of$@
+	$(DC) $(DFLAGS) $(SDL_SRC) $(HD_SDL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 DerelictSDLImage.lib :
-	$(DC) $(DFLAGS) $(IMG_SRC) -of$@
+	$(DC) $(DFLAGS) $(IMG_SRC) $(HD_SDL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 DerelictSDLMixer.lib :
-	$(DC) $(DFLAGS) $(MIX_SRC) -of$@
+	$(DC) $(DFLAGS) $(MIX_SRC) $(HD_SDL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 DerelictSDLNet.lib :
-	$(DC) $(DFLAGS) $(NET_SRC) -of$@
+	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SDL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 DerelictSDLttf.lib :
-	$(DC) $(DFLAGS) $(TTF_SRC) -of$@
+	$(DC) $(DFLAGS) $(TTF_SRC) $(HD_SDL) -of$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
