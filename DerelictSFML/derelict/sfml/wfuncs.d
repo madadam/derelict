@@ -36,7 +36,7 @@ private
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // Context.h
     sfContext* function() sfContext_Create;

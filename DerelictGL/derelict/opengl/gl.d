@@ -47,6 +47,18 @@ private
         version = MacOSX;
     version(OSX)
         version = MacOSX;
+
+	version (MacOSX)
+		import derelict.opengl.cgl;
+		
+	version (linux)
+		import derelict.opengl.glx;
+		
+	version (FreeBSD)
+		version = freebsd;
+		
+	version (freebsd)
+		import derelict.opengl.glx;
 }
 
 enum GLVersion
@@ -854,11 +866,17 @@ protected:
 
     void bindExtendedFunc(void** ptr, string funcName, bool doThrow)
     {
-        void* func = wglGetProcAddress(toCString(funcName));
-        if(func is null && doThrow)
-            Derelict_HandleMissingSymbol(lib.name, funcName);
-        else
-            *ptr = func;
+        version (Windows)
+		{
+			void* func = wglGetProcAddress(toCString(funcName));
+	        if(func is null && doThrow)
+	            Derelict_HandleMissingSymbol(lib.name, funcName);
+	        else
+	            *ptr = func;
+		}
+		
+		else
+			assert(false, `"bindExtendedFunc" is not implemented for this operating system.`);
     }
 }
 

@@ -37,7 +37,7 @@ version(Windows)
 {
     extern(Windows)
     {
-        mixin(gsharedString() ~
+        mixin(gsharedString!() ~
         "
         // WGL functions
         BOOL function(void*,void*) wglCopyContext;

@@ -30,21 +30,20 @@ module derelict.sdl.macinit.NSZone;
 version (darwin):
 
 import derelict.sdl.macinit.NSGeometry;
+import derelict.util.compat;
 import derelict.util.loader;
 
 package:
 
 extern (C)
 {
-    void* function(NSUInteger bytes) NSAllocateMemoryPages;
-    void function (void* ptr, NSUInteger bytes) NSDeallocateMemoryPages;
+    mixin(gsharedString!() ~ "
+	void* function(NSUInteger bytes) NSAllocateMemoryPages;
+    void function (void* ptr, NSUInteger bytes) NSDeallocateMemoryPages;");
 }
 
-static this ()
+void load (void delegate(void**, string) bindFunc)
 {
-    // The Foundation framework
-    SharedLib coreFoundation = Derelict_LoadSharedLib("Foundation.framework/Foundation");
-
-    bindFunc(NSAllocateMemoryPages)("NSAllocateMemoryPages", coreFoundation);
-    bindFunc(NSDeallocateMemoryPages)("NSDeallocateMemoryPages", coreFoundation);
+	bindFunc(cast(void**)&NSAllocateMemoryPages, "NSAllocateMemoryPages");
+	bindFunc(cast(void**)&NSDeallocateMemoryPages, "NSDeallocateMemoryPages");
 }

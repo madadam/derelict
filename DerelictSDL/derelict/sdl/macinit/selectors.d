@@ -31,6 +31,7 @@ version (darwin):
 
 import derelict.sdl.macinit.runtime;
 import derelict.sdl.macinit.string;
+import derelict.util.compat;
 
 package:
 version = SDL_USE_NIB_FILE;

@@ -69,7 +69,16 @@ else
     }
 }
 
-string gsharedString()
+template gsharedString ()
+{
+	version (D_Version2)
+		const gsharedString = "__gshared: ";
+		
+	else
+		const gsharedString = "";
+}
+
+/*string gsharedString()
 {
 	version(D_Version2)
 	{
@@ -79,7 +88,7 @@ string gsharedString()
 	{
 		return "";
 	}
-}
+}*/
 
 CCPTR toCString(string str)
 {

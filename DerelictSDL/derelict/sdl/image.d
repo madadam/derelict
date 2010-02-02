@@ -63,7 +63,7 @@ enum
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     int function(int) IMG_Init;
     int function() IMG_Quit;

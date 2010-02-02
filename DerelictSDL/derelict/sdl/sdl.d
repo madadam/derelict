@@ -41,6 +41,9 @@ private
         version = MacOSX;
     version(OSX)
         version = MacOSX;
+
+	version (MacOSX)
+		import derelict.sdl.macinit.SDLMain;
 }
 
 class DerelictSDLLoader : SharedLibLoader
@@ -264,8 +267,6 @@ protected:
 
         // syswm.d
         version(Windows) bindFunc(cast(void**)&SDL_GetWMInfo, "SDL_GetWMInfo");
-
-        version(MacOSX) macInit();
     }
 }
 

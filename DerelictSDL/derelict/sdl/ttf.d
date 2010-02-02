@@ -74,7 +74,7 @@ void TTF_VERSION(SDL_version* X) { SDL_TTF_VERSION(X); }
 
 extern (C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     CSDLVERPTR function() TTF_Linked_Version;
     void function(int) TTF_ByteSwappedUNICODE;

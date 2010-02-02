@@ -30,6 +30,7 @@ module derelict.sdl.macinit.runtime;
 version (darwin):
 
 import derelict.sdl.macinit.string;
+import derelict.util.compat;
 
 version (Tango)
     import tango.stdc.stringz : fromStringz, toStringz;
@@ -141,6 +142,7 @@ struct objc_protocol_list
 // Objective-C runtime bindings from the Cocoa framework
 extern (C)
 {
+	mixin(gsharedString!() ~ "
 	Class function (Class superclass, /*const*/char* name, size_t extraBytes) c_objc_allocateClassPair;
 	Class function (Class superclass) objc_registerClassPair;
 	id function (/*const*/char* name) c_objc_getClass;
@@ -150,28 +152,19 @@ extern (C)
 	bool function () NSApplicationLoad;
 	
 	public void function (Class myClass) objc_addClass;
-	void function (Class arg0, objc_method_list* arg1) class_addMethods;
+	void function (Class arg0, objc_method_list* arg1) class_addMethods;");
 }
 
-static this ()
+void load (void delegate(void**, string) bindFunc)
 {
-    SharedLib cocoa = Derelict_LoadSharedLib("Cocoa.framework/Cocoa");
+	bindFunc(cast(void**)&objc_addClass, "objc_addClass");
 
-    /*try
-    {
-        bindFunc(c_objc_allocateClassPair)("objc_allocateClassPair", cocoa);
-        bindFunc(objc_registerClassPair)("objc_registerClassPair", cocoa);
-    }
-    
-    catch (SharedLibProcLoadException e)*/
-    	bindFunc(objc_addClass)("objc_addClass", cocoa);
-    
-    bindFunc(class_addMethods)("class_addMethods", cocoa);    
-    bindFunc(c_objc_getClass)("objc_getClass", cocoa);
-    bindFunc(c_objc_msgSend)("objc_msgSend", cocoa);
-    bindFunc(c_sel_registerName)("sel_registerName", cocoa);
+	bindFunc(cast(void**)&class_addMethods, "class_addMethods");    
+	bindFunc(cast(void**)&c_objc_getClass, "objc_getClass");
+	bindFunc(cast(void**)&c_objc_msgSend, "objc_msgSend");
+	bindFunc(cast(void**)&c_sel_registerName, "sel_registerName");
 
-    bindFunc(NSApplicationLoad)("NSApplicationLoad", cocoa);
+	bindFunc(cast(void**)&NSApplicationLoad, "NSApplicationLoad");
 }
 
 Class objc_allocateClassPair (string name) (Class superclass, size_t extraBytes)

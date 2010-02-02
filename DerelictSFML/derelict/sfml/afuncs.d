@@ -45,7 +45,7 @@ else
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // Listener.h
     void function(float) sfListener_SetGlobalVolume;

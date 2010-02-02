@@ -25,51 +25,64 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.sdl.macinit.NSEnumerator;
+module derelict.util.xtypes;
 
-version (darwin):
-
-import derelict.sdl.macinit.ID;
-import derelict.sdl.macinit.NSObject;
-import derelict.sdl.macinit.runtime;
-import derelict.sdl.macinit.selectors;
-import derelict.sdl.macinit.string;
-import derelict.util.compat;
-
-package:
-
-class NSEnumerator : NSObject
+version (freebsd)
 {
-    this ()
+	version = GLX;
+}
+
+else version (FreeBSD)
+{
+	version = GLX;
+}
+
+else version (linux)
+{
+	version = GLX;
+}
+
+version(GLX)
+{
+    typedef int  Bool;
+    typedef uint VisualID;
+    typedef byte*   XPointer;
+
+    typedef void Display;
+    typedef uint XID;
+    typedef XID Pixmap;
+    typedef XID Font;
+    typedef XID Window;
+
+    struct XExtData
     {
-        id_ = null;
+        int number;
+        XExtData* next;
+        extern(C) int function(XExtData*) free_private;
+        XPointer private_data;
     }
 
-    this (id id_)
+    struct Visual
     {
-        this.id_ = id_;
+        XExtData* ext_data;
+        VisualID  visualid;
+        int       _class;
+        uint      red_mask, green_mask, blue_mask;
+        int       bits_per_rgb;
+        int       map_entries;
     }
 
-    static NSEnumerator alloc ()
+    struct XVisualInfo
     {
-        id result = objc_msgSend(cast(id)class_, sel_alloc);
-        return result ? new NSEnumerator(result) : null;
-    }
-
-    static Class class_ ()
-    {
-    	return cast(Class) objc_getClass!(this.stringof);
-    }
-
-    NSEnumerator init ()
-    {
-        id result = objc_msgSend(this.id_, sel_init);
-        return result ? this : null;
-    }
-
-    ID nextObject ()
-    {
-        id result = objc_msgSend(this.id_, sel_nextObject);
-        return result ? new ID(result) : null;
+        Visual   *visual;
+        VisualID visualid;
+        int      screen;
+        int      depth;
+        int      _class;
+        uint     red_mask;
+        uint     green_mask;
+        uint     blue_mask;
+        int      colormap_size;
+        int      bits_per_rgb;
     }
 }

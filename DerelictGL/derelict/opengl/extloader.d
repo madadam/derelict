@@ -219,44 +219,54 @@ private
         loaded["GL_EXT_paletted_texture"] = load_GL_EXT_paletted_texture();
         loaded["GL_EXT_clip_volume_hint"] = load_GL_EXT_clip_volume_hint();
     }
+    
+	void extLoadPlatform()
+	{
+		version (Windows)
+		{
+			// wgl extensions (mostly) all rely on WGL_ARB_extensions string, so load it first
+			loaded["WGL_ARB_extensions_string"] = load_WGL_ARB_extensions_string();
 
-    version(Windows)
-    {
-        void extLoadPlatform()
-        {
-            // wgl extensions (mostly) all rely on WGL_ARB_extensions string, so load it first
-            loaded["WGL_ARB_extensions_string"] = load_WGL_ARB_extensions_string();
+			// load the wgl extensions string
+			if(wglGetExtensionsStringARB !is null)
+			{
+			    HDC dc = wglGetCurrentDC();
+			    if(dc !is null)
+			        winExtStr = toDString(wglGetExtensionsStringARB(dc));
+			    else
+			        throw new DerelictException("Cannot load WGL extensions: No valid Device Context!");
+			}
 
-            // load the wgl extensions string
-            if(wglGetExtensionsStringARB !is null)
-            {
-                HDC dc = wglGetCurrentDC();
-                if(dc !is null)
-                    winExtStr = toDString(wglGetExtensionsStringARB(dc));
-                else
-                    throw new DerelictException("Cannot load WGL extensions: No valid Device Context!");
-            }
-
-            // now load the other WGL extensions
-            loaded["WGL_ARB_buffer_region"] = load_WGL_ARB_buffer_region();
-            loaded["WGL_ARB_multisample"] = load_WGL_ARB_multisample();
-            loaded["WGL_ARB_pixel_format"] = load_WGL_ARB_pixel_format();
-            loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();
-            loaded["WGL_ARB_pbuffer"] = load_WGL_ARB_pbuffer();
-            loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
-            loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
-            loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
-        }
-    }
+			// now load the other WGL extensions
+			loaded["WGL_ARB_buffer_region"] = load_WGL_ARB_buffer_region();
+			loaded["WGL_ARB_multisample"] = load_WGL_ARB_multisample();
+			loaded["WGL_ARB_pixel_format"] = load_WGL_ARB_pixel_format();
+			loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();
+			loaded["WGL_ARB_pbuffer"] = load_WGL_ARB_pbuffer();
+			loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
+			loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
+			loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
+		}
+		
+		else
+			assert(false, `"extLoadPlatform"  is not implemented for this operating system.`);
+	}
+	
     bool bindExtFunc(void** ptr, string funcName)
     {
-        *ptr = getAddress(toCString(funcName));
-        debug
-        {
-            if(*ptr is null)
-                throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
-        }
-        return (*ptr !is null);
+        version (Windows)
+		{
+			*ptr = getAddress(toCString(funcName));
+	        debug
+	        {
+	            if(*ptr is null)
+	                throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
+	        }
+	        return (*ptr !is null);	
+		}
+		
+		else
+			assert(false, `"bindExtFunc"  is not implemented for this operating system.`);
     }
 
     bool load_GL_ARB_multitexture()

@@ -39,28 +39,6 @@ else
     import std.utf : toUTF32;
 }
 
-package
-{
-
-    version (Tango)
-    {
-        /**
-         * string alias
-         */
-        alias char[] string;
-    
-        /**
-         * wstring alias
-         */
-        alias wchar[] wstring;
-    
-        /**
-         * dstring alias
-         */
-        alias dchar[] dstring;
-    }
-}
-
 public size_t lastIndexOf (T)(T[] str, T ch)
 {
     return lastIndexOf(str, ch, str.length);

@@ -85,7 +85,7 @@ else
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // SDL.h
     int function(Uint32) SDL_Init;

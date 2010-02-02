@@ -35,7 +35,7 @@ private
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     void function(ALenum) alEnable;
     void function(ALenum) alDisable;

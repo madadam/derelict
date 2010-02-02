@@ -35,7 +35,7 @@ private
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     FT_Error function( FT_Library *alibrary ) FT_Init_FreeType;
     FT_Error function( FT_Library library ) FT_Done_FreeType;

@@ -36,7 +36,7 @@ private
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // Ftp.h
     void function(sfFtpListingResponse*) sfFtpListingResponse_Destroy;

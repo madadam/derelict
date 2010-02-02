@@ -46,6 +46,7 @@ import derelict.sdl.macinit.runtime;
 import derelict.sdl.macinit.SDLMain;
 import derelict.sdl.macinit.selectors;
 import derelict.sdl.macinit.string;
+import derelict.util.compat;
 
 package:
 

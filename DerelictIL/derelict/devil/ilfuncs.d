@@ -36,7 +36,7 @@ private
 
 extern(System)
 {
-    mixin(gsharedString ~
+    mixin(gsharedString!() ~
     "
     ILboolean function (ILuint) ilActiveImage;
     ILboolean function(ILuint) ilActiveLayer;

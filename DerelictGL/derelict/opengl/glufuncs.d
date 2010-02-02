@@ -36,7 +36,7 @@ private
 
 extern(System)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     void function(GLUnurbs*) gluBeginCurve;
     void function(GLUtesselator*) gluBeginPolygon;

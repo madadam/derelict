@@ -35,20 +35,16 @@ import derelict.sdl.macinit.NSObject;
 import derelict.sdl.macinit.runtime;
 import derelict.sdl.macinit.selectors;
 import derelict.sdl.macinit.string;
+import derelict.util.compat;
 import derelict.util.loader;
 
 package:
 
 const NSApplication NSApp;
 
-int function(int argc, /*const*/ char *argv[]) NSApplicationMain;
-
 static this ()
 {
-    SharedLib cocoa = Derelict_LoadSharedLib("Cocoa.framework/Cocoa");
-
-    NSApp = NSApplication.sharedApplication;
-    bindFunc(NSApplicationMain)("NSApplicationMain", cocoa);
+	NSApp = NSApplication.sharedApplication;
 }
 
 class NSApplication : NSObject

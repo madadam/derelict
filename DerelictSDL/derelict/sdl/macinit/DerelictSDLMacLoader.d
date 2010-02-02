@@ -25,51 +25,43 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.sdl.macinit.NSEnumerator;
+module derelict.sdl.macinit.DerelictSDLMacLoader;
 
 version (darwin):
 
-import derelict.sdl.macinit.ID;
-import derelict.sdl.macinit.NSObject;
-import derelict.sdl.macinit.runtime;
-import derelict.sdl.macinit.selectors;
-import derelict.sdl.macinit.string;
-import derelict.util.compat;
+import CoreFoundation = derelict.sdl.macinit.CoreFoundation;
+import derelict.util.loader;
+import NSZone = derelict.sdl.macinit.NSZone;
+import runtime = derelict.sdl.macinit.runtime;
+
+private class DerelictSDLMacLoader : SharedLibLoader
+{
+	private this ()
+	{
+		super("", "", "/System/Library/Frameworks/Cocoa.framework/Cocoa, 
+					   /System/Library/Frameworks/Foundation.framework/Foundation, 
+					   /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation,");
+	}
+	
+	protected override void loadSymbols ()
+	{
+		CoreFoundation.load(&bindFunc);
+		NSZone.load(&bindFunc);
+		runtime.load(&bindFunc);
+	}
+}
 
 package:
 
-class NSEnumerator : NSObject
+DerelictSDLMacLoader DerelictSDLMac;
+
+static this ()
 {
-    this ()
-    {
-        id_ = null;
-    }
+	DerelictSDLMac = new DerelictSDLMacLoader();
+	DerelictSDLMac.load();
+}
 
-    this (id id_)
-    {
-        this.id_ = id_;
-    }
-
-    static NSEnumerator alloc ()
-    {
-        id result = objc_msgSend(cast(id)class_, sel_alloc);
-        return result ? new NSEnumerator(result) : null;
-    }
-
-    static Class class_ ()
-    {
-    	return cast(Class) objc_getClass!(this.stringof);
-    }
-
-    NSEnumerator init ()
-    {
-        id result = objc_msgSend(this.id_, sel_init);
-        return result ? this : null;
-    }
-
-    ID nextObject ()
-    {
-        id result = objc_msgSend(this.id_, sel_nextObject);
-        return result ? new ID(result) : null;
-    }
+void unload ()
+{
+	DerelictSDLMac.unload();
 }

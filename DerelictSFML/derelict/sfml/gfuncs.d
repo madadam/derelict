@@ -48,7 +48,7 @@ else
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // Color.h
     sfColor function(sfUint8, sfUint8, sfUint8, sfUint8) sfColor_FromRGBA;

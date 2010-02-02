@@ -29,6 +29,7 @@ module derelict.sdl.macinit.CoreFoundation;
 
 version (darwin):
 
+import derelict.util.compat;
 import derelict.util.loader;
 
 package:
@@ -63,9 +64,9 @@ alias __CFURL* CFURLRef;
 
 extern (C)
 {
+	mixin(gsharedString!() ~ "
     //  CFBase bindings from the CoreFoundation framework
-    alias void function(CFTypeRef cf) pfCFRelease;
-    pfCFRelease CFRelease;
+    void function(CFTypeRef cf) CFRelease;
 
 
 
@@ -78,18 +79,15 @@ extern (C)
 
     //   CFURL bindings from the CoreFoundation framework
     CFURLRef function(CFAllocatorRef allocator, CFURLRef url) CFURLCreateCopyDeletingLastPathComponent;
-    bool function(CFURLRef url, bool resolveAgainstBase, ubyte* buffer, CFIndex maxBufLen) CFURLGetFileSystemRepresentation;
+    bool function(CFURLRef url, bool resolveAgainstBase, ubyte* buffer, CFIndex maxBufLen) CFURLGetFileSystemRepresentation;");
 }
 
-static this ()
+void load (void delegate(void**, string) bindFunc)
 {
-    // The CoreFoundation framework
-    SharedLib coreFoundation = Derelict_LoadSharedLib("CoreFoundation.framework/CoreFoundation");
-
-    bindFunc(CFRelease)("CFRelease", coreFoundation);
-    bindFunc(CFBundleGetInfoDictionary)("CFBundleGetInfoDictionary", coreFoundation);
-    bindFunc(CFBundleGetMainBundle)("CFBundleGetMainBundle", coreFoundation);
-    bindFunc(CFBundleCopyBundleURL)("CFBundleCopyBundleURL", coreFoundation);
-    bindFunc(CFURLCreateCopyDeletingLastPathComponent)("CFURLCreateCopyDeletingLastPathComponent", coreFoundation);
-    bindFunc(CFURLGetFileSystemRepresentation)("CFURLGetFileSystemRepresentation", coreFoundation);
+	bindFunc(cast(void**)&CFRelease, "CFRelease");
+	bindFunc(cast(void**)&CFBundleGetInfoDictionary, "CFBundleGetInfoDictionary");
+	bindFunc(cast(void**)&CFBundleGetMainBundle, "CFBundleGetMainBundle");
+	bindFunc(cast(void**)&CFBundleCopyBundleURL, "CFBundleCopyBundleURL");
+	bindFunc(cast(void**)&CFURLCreateCopyDeletingLastPathComponent, "CFURLCreateCopyDeletingLastPathComponent");
+	bindFunc(cast(void**)&CFURLGetFileSystemRepresentation, "CFURLGetFileSystemRepresentation");
 }

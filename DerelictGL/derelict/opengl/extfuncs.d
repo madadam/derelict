@@ -40,7 +40,7 @@ private
 
 extern(System)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // GL_ARB_multitexture
     void function(GLenum) glActiveTextureARB;

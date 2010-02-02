@@ -35,7 +35,7 @@ private
 
 extern(System)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     void function(GLfloat c) glClearIndex;
     void function(GLclampf,GLclampf,GLclampf,GLclampf) glClearColor;

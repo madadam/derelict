@@ -35,7 +35,7 @@ private
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     // Clock.h
     sfClock* function() sfClock_Create;

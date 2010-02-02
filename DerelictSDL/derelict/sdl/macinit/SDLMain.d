@@ -30,6 +30,7 @@ private
     import derelict.sdl.sdltypes;
     import derelict.sdl.sdlfuncs;
     import derelict.sdl.macinit.CoreFoundation;
+	import derelict.sdl.macinit.DerelictSDLMacLoader;
     import derelict.sdl.macinit.ID;
     import derelict.sdl.macinit.MacTypes;
     import derelict.sdl.macinit.NSApplication;
@@ -47,6 +48,7 @@ private
     import derelict.sdl.macinit.runtime;
     import derelict.sdl.macinit.selectors;
     import derelict.sdl.macinit.string;
+	import derelict.util.compat;
     import derelict.util.loader;
 }
 
@@ -54,14 +56,14 @@ private:
 
 enum
 {
-    MAXPATHLEN = 1024; // from sys/param.h
+    MAXPATHLEN = 1024 // from sys/param.h
 }
 
 /* Use this flag to determine whether we use CPS (docking) or not */
 version = SDL_USE_CPS;
 
 version (SDL_USE_CPS)
-{
+{	
     struct CPSProcessSerNum
     {
         uint lo;
@@ -70,24 +72,18 @@ version (SDL_USE_CPS)
 
     extern (C)
     {
-        alias OSErr function (CPSProcessSerNum *psn) pfCPSGetCurrentProcess;
-        pfCPSGetCurrentProcess CPSGetCurrentProcess;
-
-        alias OSErr function (CPSProcessSerNum *psn, UInt32 _arg2, UInt32 _arg3, UInt32 _arg4, UInt32 _arg5) pfCPSEnableForegroundOperation;
-        pfCPSEnableForegroundOperation CPSEnableForegroundOperation;
-
-        alias OSErr function (CPSProcessSerNum *psn) pfCPSSetFrontProcess;
-        pfCPSSetFrontProcess CPSSetFrontProcess;
+		mixin(gsharedString!() ~ "
+        OSErr function (CPSProcessSerNum *psn) CPSGetCurrentProcess;
+        OSErr function (CPSProcessSerNum *psn, UInt32 _arg2, UInt32 _arg3, UInt32 _arg4, UInt32 _arg5) CPSEnableForegroundOperation;
+        OSErr function (CPSProcessSerNum *psn) CPSSetFrontProcess;");
     }
 
-    static this ()
-    {
-        SharedLib coreServices = Derelict_LoadSharedLib("Cocoa.framework/Cocoa");
-
-        bindFunc(CPSGetCurrentProcess)("CPSGetCurrentProcess", coreServices);
-        bindFunc(CPSEnableForegroundOperation)("CPSEnableForegroundOperation", coreServices);
-        bindFunc(CPSSetFrontProcess)("CPSSetFrontProcess", coreServices);
-    }
+	void load (void delegate(void**, string) bindFunc)
+	{
+		bindFunc(cast(void**)&CPSGetCurrentProcess, "CPSGetCurrentProcess");
+		bindFunc(cast(void**)&CPSEnableForegroundOperation, "CPSEnableForegroundOperation");
+		bindFunc(cast(void**)&CPSSetFrontProcess, "CPSSetFrontProcess");
+	}
 }
 
 else
@@ -101,8 +97,11 @@ private
 
 static this ()
 {
-    registerSubclasses;
-    CustomApplicationMain;
+	version (SDL_USE_CPS)
+		load(&DerelictSDLMac.bindFunc);
+
+	registerSubclasses();
+	CustomApplicationMain();
 }
 
 static ~this()
@@ -112,6 +111,8 @@ static ~this()
 
     if(sdlMain !is null)
         sdlMain.release;
+
+	DerelictSDLMac.unload();
 }
 
 private void registerSubclasses ()

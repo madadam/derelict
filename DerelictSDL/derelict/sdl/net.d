@@ -149,7 +149,7 @@ Uint32 SDLNet_Read32(void* areap)
 
 extern(C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     CSDLVERPTR function() SDLNet_Linked_Version;
     int function() SDLNet_Init;

@@ -128,7 +128,7 @@ int Mix_FadeInChannel(int channel, Mix_Chunk* chunk, int loops, int ms)
 
 extern (C)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     CSDLVERPTR function() Mix_Linked_Version;
     int function (int, Uint16, int, int) Mix_OpenAudio;

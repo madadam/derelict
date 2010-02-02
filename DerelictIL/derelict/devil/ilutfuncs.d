@@ -37,7 +37,7 @@ private
 
 extern(System)
 {
-    mixin(gsharedString() ~
+    mixin(gsharedString!() ~
     "
     ILboolean function(ILenum) ilutDisable;
     ILboolean function(ILenum) ilutEnable;

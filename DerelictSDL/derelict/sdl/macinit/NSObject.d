@@ -33,6 +33,7 @@ import derelict.sdl.macinit.ID;
 import derelict.sdl.macinit.runtime;
 import derelict.sdl.macinit.selectors;
 import derelict.sdl.macinit.string;
+import derelict.util.compat;
 
 package:
 
