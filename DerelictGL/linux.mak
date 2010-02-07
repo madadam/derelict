@@ -10,7 +10,7 @@ GL_SRC= \
     derelict/opengl/glext.d \
     derelict/opengl/glfuncs.d \
     derelict/opengl/gltypes.d \
-    derelict/opengl/wgl.d
+    derelict/opengl/glx.d
     
 GLU_SRC= \
     derelict/opengl/glu.d \

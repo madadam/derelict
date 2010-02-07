@@ -29,17 +29,17 @@ module derelict.util.xtypes;
 
 version (freebsd)
 {
-	version = GLX;
+    version = GLX;
 }
 
 else version (FreeBSD)
 {
-	version = GLX;
+    version = GLX;
 }
 
 else version (linux)
 {
-	version = GLX;
+    version = GLX;
 }
 
 version(GLX)

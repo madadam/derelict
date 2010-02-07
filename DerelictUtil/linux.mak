@@ -8,7 +8,7 @@ ALL_SRC= \
     derelict/util/exception.d \
     derelict/util/loader.d \
     derelict/util/sharedlib.d \
-    derelict/util/wintypes.d
+    derelict/util/xtypes.d
 
 libDerelictUtil.a :
 	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) -of$@
