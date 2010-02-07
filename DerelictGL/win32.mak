@@ -19,12 +19,12 @@ GLU_SRC= \
     
 
 DerelictGL.lib :
-	$(DC) $(DFLAGS) $(GL_SRC) $(HD_GL) -of$@
+	$(DC) $(DFLAGS) $(GL_SRC) $(HD_GL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 DerelictGLU.lib :
-	$(DC) $(DFLAGS) $(GLU_SRC) $(HD_GL) -of$@
+	$(DC) $(DFLAGS) $(GLU_SRC) $(HD_GL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

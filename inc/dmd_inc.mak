@@ -1,6 +1,7 @@
 IMPORT_DEST=../import
 DC=dmd
 DFLAGS=-release -O -inline -lib -I../DerelictUtil 
+OF=-of
 
 HD_AL=-Hd$(IMPORT_DEST)/derelict/openal
 HD_FT=-Hd$(IMPORT_DEST)/derelict/freetype

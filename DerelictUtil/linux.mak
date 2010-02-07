@@ -11,7 +11,7 @@ ALL_SRC= \
     derelict/util/xtypes.d
 
 libDerelictUtil.a :
-	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) -of$@
+	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

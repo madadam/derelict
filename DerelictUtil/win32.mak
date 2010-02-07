@@ -10,7 +10,7 @@ ALL_SRC= \
     derelict\util\wintypes.d
 
 DerelictUtil.lib :
-	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) -of$@
+	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

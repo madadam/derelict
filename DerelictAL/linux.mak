@@ -8,7 +8,7 @@ AL_SRC= \
     derelict/openal/altypes.d
 
 libDerelictAL.a :
-	$(DC) $(DFLAGS) $(AL_SRC) $(HD_AL) -of$@
+	$(DC) $(DFLAGS) $(AL_SRC) $(HD_AL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

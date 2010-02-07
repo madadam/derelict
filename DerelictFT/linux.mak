@@ -8,7 +8,7 @@ FT_SRC= \
     derelict/freetype/fttypes.d
 
 libDerelictFT.a :
-	$(DC) $(DFLAGS) $(FT_SRC) $(HD_FT) -of$@
+	$(DC) $(DFLAGS) $(FT_SRC) $(HD_FT) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
