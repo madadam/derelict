@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSZone;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.NSGeometry;
@@ -38,12 +40,12 @@ package:
 extern (C)
 {
     mixin(gsharedString!() ~ "
-	void* function(NSUInteger bytes) NSAllocateMemoryPages;
+    void* function(NSUInteger bytes) NSAllocateMemoryPages;
     void function (void* ptr, NSUInteger bytes) NSDeallocateMemoryPages;");
 }
 
 void load (void delegate(void**, string) bindFunc)
 {
-	bindFunc(cast(void**)&NSAllocateMemoryPages, "NSAllocateMemoryPages");
-	bindFunc(cast(void**)&NSDeallocateMemoryPages, "NSDeallocateMemoryPages");
+    bindFunc(cast(void**)&NSAllocateMemoryPages, "NSAllocateMemoryPages");
+    bindFunc(cast(void**)&NSDeallocateMemoryPages, "NSDeallocateMemoryPages");
 }

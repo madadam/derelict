@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSObject;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;
@@ -57,7 +59,7 @@ class NSObject : ID
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     static void poseAsClass (Class aClass)

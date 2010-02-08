@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSString;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 version (Tango)
@@ -70,7 +72,7 @@ class NSString : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSString init ()

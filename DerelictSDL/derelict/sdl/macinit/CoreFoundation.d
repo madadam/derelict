@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.CoreFoundation;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.util.compat;
@@ -64,7 +66,7 @@ alias __CFURL* CFURLRef;
 
 extern (C)
 {
-	mixin(gsharedString!() ~ "
+    mixin(gsharedString!() ~ "
     //  CFBase bindings from the CoreFoundation framework
     void function(CFTypeRef cf) CFRelease;
 
@@ -84,10 +86,10 @@ extern (C)
 
 void load (void delegate(void**, string) bindFunc)
 {
-	bindFunc(cast(void**)&CFRelease, "CFRelease");
-	bindFunc(cast(void**)&CFBundleGetInfoDictionary, "CFBundleGetInfoDictionary");
-	bindFunc(cast(void**)&CFBundleGetMainBundle, "CFBundleGetMainBundle");
-	bindFunc(cast(void**)&CFBundleCopyBundleURL, "CFBundleCopyBundleURL");
-	bindFunc(cast(void**)&CFURLCreateCopyDeletingLastPathComponent, "CFURLCreateCopyDeletingLastPathComponent");
-	bindFunc(cast(void**)&CFURLGetFileSystemRepresentation, "CFURLGetFileSystemRepresentation");
+    bindFunc(cast(void**)&CFRelease, "CFRelease");
+    bindFunc(cast(void**)&CFBundleGetInfoDictionary, "CFBundleGetInfoDictionary");
+    bindFunc(cast(void**)&CFBundleGetMainBundle, "CFBundleGetMainBundle");
+    bindFunc(cast(void**)&CFBundleCopyBundleURL, "CFBundleCopyBundleURL");
+    bindFunc(cast(void**)&CFURLCreateCopyDeletingLastPathComponent, "CFURLCreateCopyDeletingLastPathComponent");
+    bindFunc(cast(void**)&CFURLGetFileSystemRepresentation, "CFURLGetFileSystemRepresentation");
 }

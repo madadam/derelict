@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSArray;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;
@@ -59,7 +61,7 @@ class NSArray : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSArray init ()

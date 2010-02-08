@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.DerelictSDLMacLoader;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import CoreFoundation = derelict.sdl.macinit.CoreFoundation;
@@ -36,19 +38,19 @@ import runtime = derelict.sdl.macinit.runtime;
 
 private class DerelictSDLMacLoader : SharedLibLoader
 {
-	private this ()
-	{
-		super("", "", "/System/Library/Frameworks/Cocoa.framework/Cocoa, 
-					   /System/Library/Frameworks/Foundation.framework/Foundation, 
-					   /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation,");
-	}
-	
-	protected override void loadSymbols ()
-	{
-		CoreFoundation.load(&bindFunc);
-		NSZone.load(&bindFunc);
-		runtime.load(&bindFunc);
-	}
+    private this ()
+    {
+        super("", "", "/System/Library/Frameworks/Cocoa.framework/Cocoa,
+                       /System/Library/Frameworks/Foundation.framework/Foundation,
+                       /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation,");
+    }
+
+    protected override void loadSymbols ()
+    {
+        CoreFoundation.load(&bindFunc);
+        NSZone.load(&bindFunc);
+        runtime.load(&bindFunc);
+    }
 }
 
 package:
@@ -57,11 +59,11 @@ DerelictSDLMacLoader DerelictSDLMac;
 
 static this ()
 {
-	DerelictSDLMac = new DerelictSDLMacLoader();
-	DerelictSDLMac.load();
+    DerelictSDLMac = new DerelictSDLMacLoader();
+    DerelictSDLMac.load();
 }
 
 void unload ()
 {
-	DerelictSDLMac.unload();
+    DerelictSDLMac.unload();
 }

@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSAutoreleasePool;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;

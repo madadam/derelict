@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSGeometry;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 package:

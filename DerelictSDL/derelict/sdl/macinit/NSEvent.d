@@ -27,6 +27,10 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSEvent;
 
+version(OSX) version = darwin;
+
+version(darwin):
+
 enum
 {
     NSAlphaShiftKeyMask = 1 << 16,

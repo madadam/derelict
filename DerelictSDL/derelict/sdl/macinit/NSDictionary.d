@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSDictionary;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;
@@ -58,7 +60,7 @@ class NSDictionary : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSDictionary init ()

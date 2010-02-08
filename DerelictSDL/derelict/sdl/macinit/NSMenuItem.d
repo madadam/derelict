@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSMenuItem;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;
@@ -61,7 +63,7 @@ class NSMenuItem : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSMenuItem init ()

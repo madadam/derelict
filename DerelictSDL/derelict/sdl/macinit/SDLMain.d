@@ -8,6 +8,8 @@
  */
 module derelict.sdl.macinit.SDLMain;
 
+version(OSX) version = darwin;
+
 version (darwin)
 {
 
@@ -30,7 +32,7 @@ private
     import derelict.sdl.sdltypes;
     import derelict.sdl.sdlfuncs;
     import derelict.sdl.macinit.CoreFoundation;
-	import derelict.sdl.macinit.DerelictSDLMacLoader;
+    import derelict.sdl.macinit.DerelictSDLMacLoader;
     import derelict.sdl.macinit.ID;
     import derelict.sdl.macinit.MacTypes;
     import derelict.sdl.macinit.NSApplication;
@@ -48,7 +50,7 @@ private
     import derelict.sdl.macinit.runtime;
     import derelict.sdl.macinit.selectors;
     import derelict.sdl.macinit.string;
-	import derelict.util.compat;
+    import derelict.util.compat;
     import derelict.util.loader;
 }
 
@@ -63,7 +65,7 @@ enum
 version = SDL_USE_CPS;
 
 version (SDL_USE_CPS)
-{	
+{
     struct CPSProcessSerNum
     {
         uint lo;
@@ -72,18 +74,18 @@ version (SDL_USE_CPS)
 
     extern (C)
     {
-		mixin(gsharedString!() ~ "
+        mixin(gsharedString!() ~ "
         OSErr function (CPSProcessSerNum *psn) CPSGetCurrentProcess;
         OSErr function (CPSProcessSerNum *psn, UInt32 _arg2, UInt32 _arg3, UInt32 _arg4, UInt32 _arg5) CPSEnableForegroundOperation;
         OSErr function (CPSProcessSerNum *psn) CPSSetFrontProcess;");
     }
 
-	void load (void delegate(void**, string) bindFunc)
-	{
-		bindFunc(cast(void**)&CPSGetCurrentProcess, "CPSGetCurrentProcess");
-		bindFunc(cast(void**)&CPSEnableForegroundOperation, "CPSEnableForegroundOperation");
-		bindFunc(cast(void**)&CPSSetFrontProcess, "CPSSetFrontProcess");
-	}
+    void load (void delegate(void**, string) bindFunc)
+    {
+        bindFunc(cast(void**)&CPSGetCurrentProcess, "CPSGetCurrentProcess");
+        bindFunc(cast(void**)&CPSEnableForegroundOperation, "CPSEnableForegroundOperation");
+        bindFunc(cast(void**)&CPSSetFrontProcess, "CPSSetFrontProcess");
+    }
 }
 
 else
@@ -97,11 +99,11 @@ private
 
 static this ()
 {
-	version (SDL_USE_CPS)
-		load(&DerelictSDLMac.bindFunc);
+    version (SDL_USE_CPS)
+        load(&DerelictSDLMac.bindFunc);
 
-	registerSubclasses();
-	CustomApplicationMain();
+    registerSubclasses();
+    CustomApplicationMain();
 }
 
 static ~this()
@@ -112,7 +114,7 @@ static ~this()
     if(sdlMain !is null)
         sdlMain.release;
 
-	DerelictSDLMac.unload();
+    DerelictSDLMac.unload();
 }
 
 private void registerSubclasses ()

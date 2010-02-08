@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.NSApplication;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.ID;
@@ -44,7 +46,7 @@ const NSApplication NSApp;
 
 static this ()
 {
-	NSApp = NSApplication.sharedApplication;
+    NSApp = NSApplication.sharedApplication;
 }
 
 class NSApplication : NSObject
@@ -67,7 +69,7 @@ class NSApplication : NSObject
 
     static Class class_ ()
     {
-    	return cast(Class) objc_getClass!(this.stringof);
+        return cast(Class) objc_getClass!(this.stringof);
     }
 
     NSApplication init ()

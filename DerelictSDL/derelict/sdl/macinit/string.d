@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.string;
 
+version(OSX) version = darwin;
+
 version (darwin)
 {
 

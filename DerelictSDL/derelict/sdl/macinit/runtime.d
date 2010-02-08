@@ -27,6 +27,8 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.sdl.macinit.runtime;
 
+version(OSX) version = darwin;
+
 version (darwin):
 
 import derelict.sdl.macinit.string;
@@ -142,29 +144,29 @@ struct objc_protocol_list
 // Objective-C runtime bindings from the Cocoa framework
 extern (C)
 {
-	mixin(gsharedString!() ~ "
-	Class function (Class superclass, /*const*/char* name, size_t extraBytes) c_objc_allocateClassPair;
-	Class function (Class superclass) objc_registerClassPair;
-	id function (/*const*/char* name) c_objc_getClass;
-	id function (id theReceiver, SEL theSelector, ...) c_objc_msgSend;
-	SEL function (/*const*/char* str) c_sel_registerName;
+    mixin(gsharedString!() ~ "
+    Class function (Class superclass, /*const*/char* name, size_t extraBytes) c_objc_allocateClassPair;
+    Class function (Class superclass) objc_registerClassPair;
+    id function (/*const*/char* name) c_objc_getClass;
+    id function (id theReceiver, SEL theSelector, ...) c_objc_msgSend;
+    SEL function (/*const*/char* str) c_sel_registerName;
 
-	bool function () NSApplicationLoad;
-	
-	public void function (Class myClass) objc_addClass;
-	void function (Class arg0, objc_method_list* arg1) class_addMethods;");
+    bool function () NSApplicationLoad;
+
+    public void function (Class myClass) objc_addClass;
+    void function (Class arg0, objc_method_list* arg1) class_addMethods;");
 }
 
 void load (void delegate(void**, string) bindFunc)
 {
-	bindFunc(cast(void**)&objc_addClass, "objc_addClass");
+    bindFunc(cast(void**)&objc_addClass, "objc_addClass");
 
-	bindFunc(cast(void**)&class_addMethods, "class_addMethods");    
-	bindFunc(cast(void**)&c_objc_getClass, "objc_getClass");
-	bindFunc(cast(void**)&c_objc_msgSend, "objc_msgSend");
-	bindFunc(cast(void**)&c_sel_registerName, "sel_registerName");
+    bindFunc(cast(void**)&class_addMethods, "class_addMethods");
+    bindFunc(cast(void**)&c_objc_getClass, "objc_getClass");
+    bindFunc(cast(void**)&c_objc_msgSend, "objc_msgSend");
+    bindFunc(cast(void**)&c_sel_registerName, "sel_registerName");
 
-	bindFunc(cast(void**)&NSApplicationLoad, "NSApplicationLoad");
+    bindFunc(cast(void**)&NSApplicationLoad, "NSApplicationLoad");
 }
 
 Class objc_allocateClassPair (string name) (Class superclass, size_t extraBytes)

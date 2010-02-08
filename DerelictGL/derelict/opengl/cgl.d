@@ -35,13 +35,22 @@ module derelict.opengl.cgl;
 //     CGLCurrent.h
 // from /System/Library/Frameworks/OpenGL.framework/Headers from Mac OS X 10.4
 
-version (darwin)
+version(darwin)
+{
+    version = CGL;
+}
+else version(OSX)
+{
+    version = CGL;
+}
+
+version CGL
 {
 
 private
 {
     import derelict.opengl.gltypes;
-	import derelict.util.compat;
+    import derelict.util.compat;
     import derelict.util.loader;
 }
 
@@ -226,7 +235,7 @@ enum CGLError
 extern (C)
 {
 
-	mixin(gsharedString!() ~"
+    mixin(gsharedString!() ~"
     /*
     ** Pixel format functions
     */
@@ -432,4 +441,4 @@ version (Mac_OS_X_10_4_and_later)
     bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
 }
 
-}   // version(darwin)
+}   // version(CGL)
