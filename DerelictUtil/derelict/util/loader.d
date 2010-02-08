@@ -31,7 +31,6 @@ private
 {
 	import derelict.util.sharedlib;
 	import derelict.util.compat;
-	import derelict.util.wintypes;
 }
 
 class SharedLibLoader
