@@ -44,7 +44,7 @@ else version(OSX)
     version = CGL;
 }
 
-version CGL
+version (CGL)
 {
 
 private
