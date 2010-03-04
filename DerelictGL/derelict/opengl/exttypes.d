@@ -1242,6 +1242,22 @@ enum : GLenum
     // GL_EXT_clip_volume_hint
     GL_CLIP_VOLUME_CLIPPING_HINT_EXT    = 0x80F0,
 
+    // GL_SGIX_list_priority
+    GL_LIST_PRIORITY_SGIX               = 0x8182,
+
+    // GL_SGIX_ir_instrument1
+    GL_IR_INSTRUMENT1_SGIX              = 0x817F,
+
+    // GL_SGIX_calligraphic_fragment
+    GL_CALLIGRAPHIC_FRAGMENT_SGIX       = 0x8183,
+
+    // GL_SGIX_texture_lod_bias
+    GL_TEXTURE_LOD_BIAS_S_SGIX          = 0x818E,
+    GL_TEXTURE_LOD_BIAS_T_SGIX          = 0x818F,
+    GL_TEXTURE_LOD_BIAS_R_SGIX          = 0x8190,
+
+    // GL_SGIX_shadow_ambient
+    GL_SHADOW_AMBIENT_SGIX              = 0x80BF,
 }
 
 version(Windows)

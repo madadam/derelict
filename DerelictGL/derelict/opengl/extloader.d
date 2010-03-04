@@ -218,55 +218,61 @@ private
         loaded["GL_PGI_misc_hints"] = load_GL_PGI_misc_hints();
         loaded["GL_EXT_paletted_texture"] = load_GL_EXT_paletted_texture();
         loaded["GL_EXT_clip_volume_hint"] = load_GL_EXT_clip_volume_hint();
+        loaded["GL_SGIX_list_priority"] = load_GL_SGIX_list_priority();
+        loaded["GL_SGIX_ir_instrument1"] = load_GL_SGIX_ir_instrument1();
+        loaded["GL_SGIX_calligraphic_fragment"] = load_GL_SGIX_calligraphic_fragment();
+        loaded["GL_SGIX_texture_lod_bias"] = load_GL_SGIX_texture_lod_bias();
+        loaded["GL_SGIX_shadow_ambient"] = load_GL_SGIX_shadow_ambient();
+        loaded["GL_EXT_index_texture"] = load_GL_EXT_index_texture();
     }
-    
-	void extLoadPlatform()
-	{
-		version (Windows)
-		{
-			// wgl extensions (mostly) all rely on WGL_ARB_extensions string, so load it first
-			loaded["WGL_ARB_extensions_string"] = load_WGL_ARB_extensions_string();
 
-			// load the wgl extensions string
-			if(wglGetExtensionsStringARB !is null)
-			{
-			    HDC dc = wglGetCurrentDC();
-			    if(dc !is null)
-			        winExtStr = toDString(wglGetExtensionsStringARB(dc));
-			    else
-			        throw new DerelictException("Cannot load WGL extensions: No valid Device Context!");
-			}
+    void extLoadPlatform()
+    {
+        version (Windows)
+        {
+            // wgl extensions (mostly) all rely on WGL_ARB_extensions string, so load it first
+            loaded["WGL_ARB_extensions_string"] = load_WGL_ARB_extensions_string();
 
-			// now load the other WGL extensions
-			loaded["WGL_ARB_buffer_region"] = load_WGL_ARB_buffer_region();
-			loaded["WGL_ARB_multisample"] = load_WGL_ARB_multisample();
-			loaded["WGL_ARB_pixel_format"] = load_WGL_ARB_pixel_format();
-			loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();
-			loaded["WGL_ARB_pbuffer"] = load_WGL_ARB_pbuffer();
-			loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
-			loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
-			loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
-		}
-		
-		else
-			assert(false, `"extLoadPlatform"  is not implemented for this operating system.`);
-	}
-	
+            // load the wgl extensions string
+            if(wglGetExtensionsStringARB !is null)
+            {
+                HDC dc = wglGetCurrentDC();
+                if(dc !is null)
+                    winExtStr = toDString(wglGetExtensionsStringARB(dc));
+                else
+                    throw new DerelictException("Cannot load WGL extensions: No valid Device Context!");
+            }
+
+            // now load the other WGL extensions
+            loaded["WGL_ARB_buffer_region"] = load_WGL_ARB_buffer_region();
+            loaded["WGL_ARB_multisample"] = load_WGL_ARB_multisample();
+            loaded["WGL_ARB_pixel_format"] = load_WGL_ARB_pixel_format();
+            loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();
+            loaded["WGL_ARB_pbuffer"] = load_WGL_ARB_pbuffer();
+            loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
+            loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
+            loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
+        }
+
+        else
+            assert(false, `"extLoadPlatform"  is not implemented for this operating system.`);
+    }
+
     bool bindExtFunc(void** ptr, string funcName)
     {
         version (Windows)
-		{
-			*ptr = getAddress(toCString(funcName));
-	        debug
-	        {
-	            if(*ptr is null)
-	                throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
-	        }
-	        return (*ptr !is null);	
-		}
-		
-		else
-			assert(false, `"bindExtFunc"  is not implemented for this operating system.`);
+        {
+            *ptr = getAddress(toCString(funcName));
+            debug
+            {
+                if(*ptr is null)
+                    throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
+            }
+            return (*ptr !is null);
+        }
+
+        else
+            assert(false, `"bindExtFunc"  is not implemented for this operating system.`);
     }
 
     bool load_GL_ARB_multitexture()
@@ -1806,6 +1812,60 @@ private
     bool load_GL_EXT_clip_volume_hint()
     {
         if(!extIsSupported("GL_EXT_clip_volume_hint"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_list_priority()
+    {
+        if(!extIsSupported("GL_SGIX_list_priority"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetListParameterfvSGIX, "glGetListParameterfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetListParameterivSGIX, "glGetListParameterivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glListParameterfSGIX, "glListParameterfSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glListParameterfvSGIX, "glListParameterfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glListParameteriSGIX, "glListParameteriSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glListParameterivSGIX, "glListParameterivSGIX"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_ir_instrument1()
+    {
+        if(!extIsSupported("GL_SGIX_ir_instrument1"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_calligraphic_fragment()
+    {
+        if(!extIsSupported("GL_SGIX_calligraphic_fragment"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_texture_lod_bias()
+    {
+        if(!extIsSupported("GL_SGIX_texture_lod_bias"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_shadow_ambient()
+    {
+        if(!extIsSupported("GL_SGIX_shadow_ambient"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_index_texture()
+    {
+        if(!extIsSupported("GL_EXT_index_texture"))
             return false;
         return true;
     }

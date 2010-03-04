@@ -545,6 +545,14 @@ extern(System)
     void function(GLenum, GLenum, GLint *) glGetColorTableParameterivEXT;
     void function(GLenum, GLenum, GLfloat *) glGetColorTableParameterfvEXT;
 
+    // GL_SGIX_list_priority
+     void function (GLuint, GLenum, GLfloat *) glGetListParameterfvSGIX;
+     void function (GLuint, GLenum, GLint *) glGetListParameterivSGIX;
+     void function (GLuint, GLenum, GLfloat) glListParameterfSGIX;
+     void function (GLuint, GLenum, const GLfloat *) glListParameterfvSGIX;
+     void function (GLuint, GLenum, GLint) glListParameteriSGIX;
+     void function (GLuint, GLenum, const GLint *) glListParameterivSGIX;
+
     version(Windows)
     {
         // WGL_ARB_buffer_region
