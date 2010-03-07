@@ -55,7 +55,7 @@ struct FailedSharedLib
 }
 
 /**
-* This exception is thrown by the when a shared library cannot be loaded
+* This exception is thrown when a shared library cannot be loaded
 * because it is either missing or not on the system path.
 */
 class SharedLibLoadException : DerelictException
@@ -97,9 +97,8 @@ private:
 }
 
 /**
-* This exception is thrown when a function or variable symbol cannot be loaded
-* from a shared library, either because it does not exist in the library or
-* because the library is corrupt.
+* This exception is thrown when a symbol cannot be loaded from a shared library, 
+* either because it does not exist in the library or because the library is corrupt.
 */
 class SymbolLoadException : DerelictException
 {
@@ -111,7 +110,7 @@ public:
 
     this(string sharedLibName, string symbolName)
     {
-        super("Failed to load proc " ~ symbolName ~ " from shared library " ~ sharedLibName);
+        super("Failed to load symbol " ~ symbolName ~ " from shared library " ~ sharedLibName);
         _symbolName = symbolName;
     }
 
@@ -152,8 +151,8 @@ private:
 //******************************************************************************
 
 /**
-* The MissingProcCallback allows the app to handle the case of missing symbols. By default,
-* a SharedLibProcLoadException is thrown. However, if a the app determines that
+* The MissingSymbolCallback allows the app to handle the case of missing symbols. By default,
+* a SharedLibSymbolLoadException is thrown. However, if a the app determines that
 * particular symbol is not needed, the callback can return true. This will cause
 * the shared library to continue loading. Returning false will cause the exception
 * to be thrown.
