@@ -224,6 +224,22 @@ private
         loaded["GL_SGIX_texture_lod_bias"] = load_GL_SGIX_texture_lod_bias();
         loaded["GL_SGIX_shadow_ambient"] = load_GL_SGIX_shadow_ambient();
         loaded["GL_EXT_index_texture"] = load_GL_EXT_index_texture();
+        loaded["GL_EXT_index_material"] = load_GL_EXT_index_material();
+        loaded["GL_EXT_index_func"] = load_GL_EXT_index_func();
+        loaded["GL_EXT_index_array_formats"] = load_GL_EXT_index_array_formats();
+        loaded["GL_EXT_compiled_vertex_array"] = load_GL_EXT_compiled_vertex_array();
+        loaded["GL_EXT_cull_vertex"] = load_GL_EXT_cull_vertex();
+        loaded["GL_SGIX_ycrcb"] = load_GL_SGIX_ycrcb();
+        loaded["GL_SGIX_fragment_lighting"] = load_GL_SGIX_fragment_lighting();
+        loaded["GL_IBM_rasterpos_clip"] = load_GL_IBM_rasterpos_clip();
+        loaded["GL_HP_texture_lighting"] = load_GL_HP_texture_lighting();
+        loaded["GL_EXT_draw_range_elements"] = load_GL_EXT_draw_range_elements();
+        loaded["GL_WIN_phong_shading"] = load_GL_WIN_phong_shading();
+        loaded["GL_WIN_specular_fog"] = load_GL_WIN_specular_fog();
+        loaded["GL_EXT_light_texture"] = load_GL_EXT_light_texture();
+        loaded["GL_SGIX_blend_alpha_minmax"] = load_GL_SGIX_blend_alpha_minmax();
+        loaded["GL_SGIX_impact_pixel_texture"] = load_GL_SGIX_impact_pixel_texture();
+        loaded["GL_EXT_bgra"] = load_GL_EXT_bgra();
     }
 
     void extLoadPlatform()
@@ -1866,6 +1882,174 @@ private
     bool load_GL_EXT_index_texture()
     {
         if(!extIsSupported("GL_EXT_index_texture"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_index_material()
+    {
+        if(!extIsSupported("GL_EXT_index_material"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glIndexMaterialEXT, "glIndexMaterialEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_index_func()
+    {
+        if(!extIsSupported("GL_EXT_index_func"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glIndexFuncEXT, "glIndexFuncEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_index_array_formats()
+    {
+        if(!extIsSupported("GL_EXT_index_array_formats"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_compiled_vertex_array()
+    {
+        if(!extIsSupported("GL_EXT_compiled_vertex_array"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glLockArraysEXT, "glLockArraysEXT"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glUnlockArraysEXT, "glUnlockArraysEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_cull_vertex()
+    {
+        if(!extIsSupported("GL_EXT_cull_vertex"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glCullParameterdvEXT, "glCullParameterdvEXT"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glCullParameterfvEXT, "glCullParameterfvEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_ycrcb()
+    {
+        if(!extIsSupported("GL_SGIX_ycrcb"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_fragment_lighting()
+    {
+        if(!extIsSupported("GL_SGIX_fragment_lighting"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentColorMaterialSGIX, "glFragmentColorMaterialSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightfSGIX, "glFragmentLightfSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightfvSGIX, "glFragmentLightfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightiSGIX, "glFragmentLightiSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightivSGIX, "glFragmentLightivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightModelfSGIX, "glFragmentLightModelfSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightModelfvSGIX, "glFragmentLightModelfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightModeliSGIX, "glFragmentLightModeliSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentLightModelivSGIX, "glFragmentLightModelivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentMaterialfSGIX, "glFragmentMaterialfSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentMaterialfvSGIX, "glFragmentMaterialfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentMaterialiSGIX, "glFragmentMaterialiSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glFragmentMaterialivSGIX, "glFragmentMaterialivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetFragmentLightfvSGIX, "glGetFragmentLightfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetFragmentLightivSGIX, "glGetFragmentLightivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetFragmentMaterialfvSGIX, "glGetFragmentMaterialfvSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glGetFragmentMaterialivSGIX, "glGetFragmentMaterialivSGIX"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glLightEnviSGIX, "glLightEnviSGIX"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_IBM_rasterpos_clip()
+    {
+        if(!extIsSupported("GL_IBM_rasterpos_clip"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_HP_texture_lighting()
+    {
+        if(!extIsSupported("GL_HP_texture_lighting"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_draw_range_elements()
+    {
+        if(!extIsSupported("GL_EXT_draw_range_elements"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glDrawRangeElementsEXT, "glDrawRangeElementsEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_WIN_phong_shading()
+    {
+        if(!extIsSupported("GL_WIN_phong_shading"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_WIN_specular_fog()
+    {
+        if(!extIsSupported("GL_WIN_specular_fog"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_light_texture()
+    {
+        if(!extIsSupported("GL_EXT_light_texture"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glApplyTextureEXT, "glApplyTextureEXT"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glTextureLightEXT, "glTextureLightEXT"))
+            return false;
+        if(!bindExtFunc(cast(void**)&glTextureMaterialEXT, "glTextureMaterialEXT"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_blend_alpha_minmax()
+    {
+        if(!extIsSupported("GL_SGIX_blend_alpha_minmax"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_SGIX_impact_pixel_texture()
+    {
+        if(!extIsSupported("GL_SGIX_impact_pixel_texture"))
+            return false;
+        return true;
+    }
+
+    bool load_GL_EXT_bgra()
+    {
+        if(!extIsSupported("GL_EXT_bgra"))
             return false;
         return true;
     }

@@ -1258,6 +1258,108 @@ enum : GLenum
 
     // GL_SGIX_shadow_ambient
     GL_SHADOW_AMBIENT_SGIX              = 0x80BF,
+
+    // GL_EXT_index_material
+    GL_INDEX_MATERIAL_EXT               = 0x81B8,
+    GL_INDEX_MATERIAL_PARAMETER_EXT     = 0x81B9,
+    GL_INDEX_MATERIAL_FACE_EXT          = 0x81BA,
+
+    // GL_EXT_index_func
+    GL_INDEX_TEST_EXT                   = 0x81B5,
+    GL_INDEX_TEST_FUNC_EXT              = 0x81B6,
+    GL_INDEX_TEST_REF_EXT               = 0x81B7,
+
+    // GL_EXT_index_array_formats
+    GL_IUI_V2F_EXT                      = 0x81AD,
+    GL_IUI_V3F_EXT                      = 0x81AE,
+    GL_IUI_N3F_V2F_EXT                  = 0x81AF,
+    GL_IUI_N3F_V3F_EXT                  = 0x81B0,
+    GL_T2F_IUI_V2F_EXT                  = 0x81B1,
+    GL_T2F_IUI_V3F_EXT                  = 0x81B2,
+    GL_T2F_IUI_N3F_V2F_EXT              = 0x81B3,
+    GL_T2F_IUI_N3F_V3F_EXT              = 0x81B4,
+
+    // GL_EXT_compiled_vertex_array
+    GL_ARRAY_ELEMENT_LOCK_FIRST_EXT     = 0x81A8,
+    GL_ARRAY_ELEMENT_LOCK_COUNT_EXT     = 0x81A9,
+
+    // GL_EXT_cull_vertex
+    GL_CULL_VERTEX_EXT                  = 0x81AA,
+    GL_CULL_VERTEX_EYE_POSITION_EXT     = 0x81AB,
+    GL_CULL_VERTEX_OBJECT_POSITION_EXT  = 0x81AC,
+
+    // GL_SGIX_ycrcb
+    GL_YCRCB_422_SGIX                   = 0x81BB,
+    GL_YCRCB_444_SGIX                   = 0x81BC,
+
+    // GL_SGIX_fragment_lighting
+    GL_FRAGMENT_LIGHTING_SGIX           = 0x8400,
+    GL_FRAGMENT_COLOR_MATERIAL_SGIX     = 0x8401,
+    GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX = 0x8402,
+    GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX = 0x8403,
+    GL_MAX_FRAGMENT_LIGHTS_SGIX         = 0x8404,
+    GL_MAX_ACTIVE_LIGHTS_SGIX           = 0x8405,
+    GL_CURRENT_RASTER_NORMAL_SGIX       = 0x8406,
+    GL_LIGHT_ENV_MODE_SGIX              = 0x8407,
+    GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX = 0x8408,
+    GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX = 0x8409,
+    GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX = 0x840A,
+    GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = 0x840B,
+    GL_FRAGMENT_LIGHT0_SGIX             = 0x840C,
+    GL_FRAGMENT_LIGHT1_SGIX             = 0x840D,
+    GL_FRAGMENT_LIGHT2_SGIX             = 0x840E,
+    GL_FRAGMENT_LIGHT3_SGIX             = 0x840F,
+    GL_FRAGMENT_LIGHT4_SGIX             = 0x8410,
+    GL_FRAGMENT_LIGHT5_SGIX             = 0x8411,
+    GL_FRAGMENT_LIGHT6_SGIX             = 0x8412,
+    GL_FRAGMENT_LIGHT7_SGIX             = 0x8413,
+
+    // GL_IBM_rasterpos_clip
+    GL_RASTER_POSITION_UNCLIPPED_IBM    = 0x19262,
+
+    // GL_HP_texture_lighting
+    GL_TEXTURE_LIGHTING_MODE_HP         = 0x8167,
+    GL_TEXTURE_POST_SPECULAR_HP         = 0x8168,
+    GL_TEXTURE_PRE_SPECULAR_HP          = 0x8169,
+
+    // GL_EXT_draw_range_elements
+    GL_MAX_ELEMENTS_VERTICES_EXT        = 0x80E8,
+    GL_MAX_ELEMENTS_INDICES_EXT         = 0x80E9,
+
+    // GL_WIN_phong_shading
+    GL_PHONG_WIN                        = 0x80EA,
+    GL_PHONG_HINT_WIN                   = 0x80EB,
+
+    // GL_WIN_specular_fog
+    GL_FOG_SPECULAR_TEXTURE_WIN         = 0x80EC,
+
+    // GL_EXT_light_texture
+    GL_FRAGMENT_MATERIAL_EXT            = 0x8349,
+    GL_FRAGMENT_NORMAL_EXT              = 0x834A,
+    GL_FRAGMENT_COLOR_EXT               = 0x834C,
+    GL_ATTENUATION_EXT                  = 0x834D,
+    GL_SHADOW_ATTENUATION_EXT           = 0x834E,
+    GL_TEXTURE_APPLICATION_MODE_EXT     = 0x834F,
+    GL_TEXTURE_LIGHT_EXT                = 0x8350,
+    GL_TEXTURE_MATERIAL_FACE_EXT        = 0x8351,
+    GL_TEXTURE_MATERIAL_PARAMETER_EXT   = 0x8352,
+
+    // GL_SGIX_blend_alpha_minmax
+    GL_ALPHA_MIN_SGIX                   = 0x8320,
+    GL_ALPHA_MAX_SGIX                   = 0x8321,
+
+    // GL_SGIX_impact_pixel_texture
+    GL_PIXEL_TEX_GEN_Q_CEILING_SGIX     = 0x8184,
+    GL_PIXEL_TEX_GEN_Q_ROUND_SGIX       = 0x8185,
+    GL_PIXEL_TEX_GEN_Q_FLOOR_SGIX       = 0x8186,
+    GL_PIXEL_TEX_GEN_ALPHA_REPLACE_SGIX = 0x8187,
+    GL_PIXEL_TEX_GEN_ALPHA_NO_REPLACE_SGIX = 0x8188,
+    GL_PIXEL_TEX_GEN_ALPHA_LS_SGIX      = 0x8189,
+    GL_PIXEL_TEX_GEN_ALPHA_MS_SGIX      = 0x818A,
+
+    // GL_EXT_bgra
+    GL_BGR_EXT                          = 0x80E0,
+    GL_BGRA_EXT                         = 0x80E1,
 }
 
 version(Windows)

@@ -546,12 +546,54 @@ extern(System)
     void function(GLenum, GLenum, GLfloat *) glGetColorTableParameterfvEXT;
 
     // GL_SGIX_list_priority
-     void function (GLuint, GLenum, GLfloat *) glGetListParameterfvSGIX;
-     void function (GLuint, GLenum, GLint *) glGetListParameterivSGIX;
-     void function (GLuint, GLenum, GLfloat) glListParameterfSGIX;
-     void function (GLuint, GLenum, const GLfloat *) glListParameterfvSGIX;
-     void function (GLuint, GLenum, GLint) glListParameteriSGIX;
-     void function (GLuint, GLenum, const GLint *) glListParameterivSGIX;
+     void function(GLuint, GLenum, GLfloat *) glGetListParameterfvSGIX;
+     void function(GLuint, GLenum, GLint *) glGetListParameterivSGIX;
+     void function(GLuint, GLenum, GLfloat) glListParameterfSGIX;
+     void function(GLuint, GLenum, const GLfloat *) glListParameterfvSGIX;
+     void function(GLuint, GLenum, GLint) glListParameteriSGIX;
+     void function(GLuint, GLenum, const GLint *) glListParameterivSGIX;
+
+     //GL_EXT_index_material
+     void function (GLenum, GLenum) glIndexMaterialEXT;
+
+     // GL_EXT_index_func
+     void function(GLenum, GLclampf) glIndexFuncEXT;
+
+     // GL_EXT_compiled_vertex_array
+     void function(GLint, GLsizei) glLockArraysEXT;
+     void function() glUnlockArraysEXT;
+
+     // GL_EXT_cull_vertex
+     void function(GLenum, GLdouble*) glCullParameterdvEXT;
+     void function(GLenum, GLfloat*) glCullParameterfvEXT;
+
+     // GL_SGIX_fragment_lighting
+    void function(GLenum, GLenum) glFragmentColorMaterialSGIX;
+    void function(GLenum, GLenum, GLfloat) glFragmentLightfSGIX;
+    void function(GLenum, GLenum, in GLfloat*) glFragmentLightfvSGIX;
+    void function(GLenum, GLenum, GLint) glFragmentLightiSGIX;
+    void function(GLenum, GLenum, in GLint*) glFragmentLightivSGIX;
+    void function(GLenum, GLfloat) glFragmentLightModelfSGIX;
+    void function(GLenum, in GLfloat*) glFragmentLightModelfvSGIX;
+    void function(GLenum, GLint) glFragmentLightModeliSGIX;
+    void function(GLenum, in GLint*) glFragmentLightModelivSGIX;
+    void function(GLenum, GLenum, GLfloat) glFragmentMaterialfSGIX;
+    void function(GLenum, GLenum, in GLfloat*) glFragmentMaterialfvSGIX;
+    void function(GLenum, GLenum, GLint) glFragmentMaterialiSGIX;
+    void function(GLenum, GLenum, in GLint*) glFragmentMaterialivSGIX;
+    void function(GLenum, GLenum, GLfloat*) glGetFragmentLightfvSGIX;
+    void function(GLenum, GLenum, GLint*) glGetFragmentLightivSGIX;
+    void function(GLenum, GLenum, GLfloat*) glGetFragmentMaterialfvSGIX;
+    void function(GLenum, GLenum, GLint*) glGetFragmentMaterialivSGIX;
+    void function(GLenum, GLint) glLightEnviSGIX;
+
+    // GL_EXT_draw_range_elements
+    void function(GLenum, GLuint, GLuint, GLsizei, GLenum, in GLvoid*) glDrawRangeElementsEXT;
+
+    // GL_EXT_light_texture
+    void function(GLenum) glApplyTextureEXT;
+    void function(GLenum) glTextureLightEXT;
+    void function(GLenum, GLenum) glTextureMaterialEXT;
 
     version(Windows)
     {
