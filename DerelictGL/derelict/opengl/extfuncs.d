@@ -584,14 +584,14 @@ extern(System)
 
         // GL_SGIX_flush_raster
         void function() glFLushRasterSGIX;
+        
         // GL_SGIX_list_priority
         void function(GLuint, GLenum, GLfloat *) glGetListParameterfvSGIX;
         void function(GLuint, GLenum, GLint *) glGetListParameterivSGIX;
         void function(GLuint, GLenum, GLfloat) glListParameterfSGIX;
-        void function(GLuint, GLenum, const GLfloat *) glListParameterfvSGIX;
+        void function(GLuint, GLenum, in GLfloat *) glListParameterfvSGIX;
         void function(GLuint, GLenum, GLint) glListParameteriSGIX;
-        void function(GLuint, GLenum, const GLint *) glListParameterivSGIX;
-
+        void function(GLuint, GLenum, in GLint *) glListParameterivSGIX;
 
          // GL_SGIX_fragment_lighting
         void function(GLenum, GLenum) glFragmentColorMaterialSGIX;

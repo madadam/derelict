@@ -184,7 +184,6 @@ private
             loaded["GL_EXT_polygon_offset"] = load_GL_EXT_polygon_offset();
             loaded["GL_EXT_texture"] = load_GL_EXT_texture();
             loaded["GL_EXT_texture3D"] = load_GL_EXT_texture3D();
-            loaded["GL_EXT_texture_filter4"] = load_GL_SGIS_texture_filter4;
             loaded["GL_EXT_subtexture"] = load_GL_EXT_subtexture();
             loaded["GL_EXT_copy_texture"] = load_GL_EXT_copy_texture();
             loaded["GL_EXT_histogram"] = load_GL_EXT_histogram();
@@ -222,6 +221,7 @@ private
 
         version(DerelictGL_SGIS)
         {
+	        loaded["GL_SGIS_texture_filter4"] = load_GL_SGIS_texture_filter4;            
             loaded["GL_SGIS_pixel_texture"] = load_GL_SGIS_pixel_texture();
             loaded["GL_SGIS_texture4D"] = load_GL_SGIS_texture4D();
             loaded["GL_SGIS_detail_texture"] = load_GL_SGIS_detail_texture();
