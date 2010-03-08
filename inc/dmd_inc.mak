@@ -1,7 +1,13 @@
+VERSIONS= \
+	-version=DerelictGL_ARB \
+	-version=DerelictGL_EXT \
+	-version=DerelictGL_NV \
+	-version=DerelictGL_ATI
+
 IMPORT_DEST=../import
 DC=dmd
-DFLAGS=-release -O -inline -lib -I../DerelictUtil 
-OF=-of
+DFLAGS=$(VERSIONS) -release -O -inline -lib -I../DerelictUtil 
+
 
 HD_AL=-Hd$(IMPORT_DEST)/derelict/openal
 HD_FT=-Hd$(IMPORT_DEST)/derelict/freetype
