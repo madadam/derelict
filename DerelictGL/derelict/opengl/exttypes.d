@@ -45,6 +45,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_PGI;
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
+    version = DerelictGL_INTEL;
 }
 
 version(DerelictGL_ARB)
@@ -1011,6 +1012,39 @@ version(DerelictGL_EXT)
         // GL_EXT_bgra
         GL_BGR_EXT                          = 0x80E0,
         GL_BGRA_EXT                         = 0x80E1,
+
+        // GL_EXT_pixel_transform
+        GL_PIXEL_TRANSFORM_2D_EXT           = 0x8330,
+        GL_PIXEL_MAG_FILTER_EXT             = 0x8331,
+        GL_PIXEL_MIN_FILTER_EXT             = 0x8332,
+        GL_PIXEL_CUBIC_WEIGHT_EXT           = 0x8333,
+        GL_CUBIC_EXT                        = 0x8334,
+        GL_AVERAGE_EXT                      = 0x8335,
+        GL_PIXEL_TRANSFORM_2D_STACK_DEPTH_EXT = 0x8336,
+        GL_MAX_PIXEL_TRANSFORM_2D_STACK_DEPTH_EXT = 0x8337,
+        GL_PIXEL_TRANSFORM_2D_MATRIX_EXT    = 0x8338,
+
+        // GL_EXT_shared_texture_palette
+        GL_SHARED_TEXTURE_PALETTE_EXT       = 0x81FB,
+
+        // GL_EXT_separate_specular_color
+        GL_LIGHT_MODEL_COLOR_CONTROL_EXT    = 0x81F8,
+        GL_SINGLE_COLOR_EXT                 = 0x81F9,
+        GL_SEPARATE_SPECULAR_COLOR_EXT      = 0x81FA,
+
+        // GL_EXT_secondary_color
+        GL_COLOR_SUM_EXT                    = 0x8458,
+        GL_CURRENT_SECONDARY_COLOR_EXT      = 0x8459,
+        GL_SECONDARY_COLOR_ARRAY_SIZE_EXT   = 0x845A,
+        GL_SECONDARY_COLOR_ARRAY_TYPE_EXT   = 0x845B,
+        GL_SECONDARY_COLOR_ARRAY_STRIDE_EXT = 0x845C,
+        GL_SECONDARY_COLOR_ARRAY_POINTER_EXT = 0x845D,
+        GL_SECONDARY_COLOR_ARRAY_EXT        = 0x845E,
+
+        // GL_EXT_texture_perturb_normal
+        GL_PERTURB_EXT                      = 0x85AE,
+        GL_TEXTURE_NORMAL_EXT               = 0x85AF,
+
     }
 }
 
@@ -1313,6 +1347,21 @@ version(DerelictGL_SGIX)
         GL_PIXEL_TEX_GEN_ALPHA_NO_REPLACE_SGIX = 0x8188,
         GL_PIXEL_TEX_GEN_ALPHA_LS_SGIX      = 0x8189,
         GL_PIXEL_TEX_GEN_ALPHA_MS_SGIX      = 0x818A,
+
+        // GL_SGIX_async
+        GL_ASYNC_MARKER_SGIX                = 0x8329,
+
+        // GL_SGIX_async_pixel
+        GL_ASYNC_TEX_IMAGE_SGIX             = 0x835C,
+        GL_ASYNC_DRAW_PIXELS_SGIX           = 0x835D,
+        GL_ASYNC_READ_PIXELS_SGIX           = 0x835E,
+        GL_MAX_ASYNC_TEX_IMAGE_SGIX         = 0x835F,
+        GL_MAX_ASYNC_DRAW_PIXELS_SGIX       = 0x8360,
+        GL_MAX_ASYNC_READ_PIXELS_SGIX       = 0x8361,
+
+        // GL_SGIX_async_histogram
+        GL_ASYNC_HISTOGRAM_SGIX             = 0x832C,
+        GL_MAX_ASYNC_HISTOGRAM_SGIX         = 0x832D,
     }
 }
 
@@ -1347,6 +1396,10 @@ version(DerelictGL_HP)
         GL_TEXTURE_LIGHTING_MODE_HP         = 0x8167,
         GL_TEXTURE_POST_SPECULAR_HP         = 0x8168,
         GL_TEXTURE_PRE_SPECULAR_HP          = 0x8169,
+
+        // GL_HP_occlusion_test
+        GL_OCCLUSION_TEST_HP                = 0x8165,
+        GL_OCCLUSION_TEST_RESULT_HP         = 0x8166,
     }
 }
 
@@ -1424,8 +1477,21 @@ version(DerelictGL_WIN)
     }
 }
 
+version(Derelict_INTEL)
+{
+    enum : GLenum
+    {
+        // GL_INTEL_parallel_arrays
+        GL_PARALLEL_ARRAYS_INTEL                        = 0x83F4,
+        GL_VERTEX_ARRAY_PARALLEL_POINTERS_INTEL         = 0x83F5,
+        GL_NORMAL_ARRAY_PARALLEL_POINTERS_INTEL         = 0x83F6,
+        GL_COLOR_ARRAY_PARALLEL_POINTERS_INTEL          = 0x83F7,
+        GL_TEXTURE_COORD_ARRAY_PARALLEL_POINTERS_INTEL  = 0x83F8,
+    }
+}
+
 version(Windows)
-{    
+{
     alias void* HPBUFFERARB;
 
     enum : GLenum
@@ -1550,6 +1616,6 @@ version(Windows)
         WGL_CONTEXT_MINOR_VERSION_ARB           = 0x2092,
         WGL_CONTEXT_LAYER_PLANE_ARB             = 0x2093,
         WGL_CONTEXT_FLAGS_ARB                   = 0x2094,
-        ERROR_INVALID_VERSION_ARB               = 0x2095,        
+        ERROR_INVALID_VERSION_ARB               = 0x2095,
     }
 }

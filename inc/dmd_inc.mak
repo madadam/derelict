@@ -6,6 +6,7 @@ VERSIONS= \
 
 IMPORT_DEST=../import
 DC=dmd
+OF=-of
 DFLAGS=$(VERSIONS) -release -O -inline -lib -I../DerelictUtil 
 
 

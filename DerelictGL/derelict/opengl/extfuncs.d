@@ -51,6 +51,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_PGI;
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
+    version = DerelictGL_INTEL;
 }
 
 extern(System)
@@ -469,10 +470,10 @@ extern(System)
         void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTableExt;
 
         // GL_EXT_paletted_texture
-        void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in GLvoid *) glColorTableEXT;
-        void function(GLenum, GLenum, GLenum, GLvoid *) glGetColorTableEXT;
-        void function(GLenum, GLenum, GLint *) glGetColorTableParameterivEXT;
-        void function(GLenum, GLenum, GLfloat *) glGetColorTableParameterfvEXT;
+        void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in GLvoid*) glColorTableEXT;
+        void function(GLenum, GLenum, GLenum, GLvoid*) glGetColorTableEXT;
+        void function(GLenum, GLenum, GLint*) glGetColorTableParameterivEXT;
+        void function(GLenum, GLenum, GLfloat*) glGetColorTableParameterfvEXT;
 
         //GL_EXT_index_material
         void function (GLenum, GLenum) glIndexMaterialEXT;
@@ -495,6 +496,38 @@ extern(System)
         void function(GLenum) glApplyTextureEXT;
         void function(GLenum) glTextureLightEXT;
         void function(GLenum, GLenum) glTextureMaterialEXT;
+
+        // GL_EXT_pixel_transform
+        void function(GLenum, GLenum, GLint) glPixelTransformParameteriEXT;
+        void function(GLenum, GLenum, GLfloat) glPixelTransformParameterfEXT;
+        void function(GLenum, GLenum, in GLint*) glPixelTransformParameterivEXT;
+        void function(GLenum, GLenum, in GLfloat*) glPixelTransformParameterfvEXT;
+
+        // GL_EXT_secondary_color
+        void function(GLbyte, GLbyte, GLbyte) glSecondaryColor3bEXT;
+        void function(in GLbyte*) glSecondaryColor3bvEXT;
+        void function(GLdouble, GLdouble, GLdouble) glSecondaryColor3dEXT;
+        void function(in GLdouble*) glSecondaryColor3dvEXT;
+        void function(GLfloat, GLfloat, GLfloat) glSecondaryColor3fEXT;
+        void function(in GLfloat*) glSecondaryColor3fvEXT;
+        void function(GLint, GLint, GLint) glSecondaryColor3iEXT;
+        void function(in GLint*) glSecondaryColor3ivEXT;
+        void function(GLshort, GLshort, GLshort) glSecondaryColor3sEXT;
+        void function(in GLshort*) glSecondaryColor3svEXT;
+        void function(GLubyte, GLubyte, GLubyte) glSecondaryColor3ubEXT;
+        void function(in GLubyte*) glSecondaryColor3ubvEXT;
+        void function(GLuint, GLuint, GLuint) glSecondaryColor3uiEXT;
+        void function(in GLuint*) glSecondaryColor3uivEXT;
+        void function(GLushort, GLushort, GLushort) glSecondaryColor3usEXT;
+        void function(in GLushort*) glSecondaryColor3usvEXT;
+        void function(GLint, GLenum, GLsizei, in GLvoid*) glSecondaryColorPointerEXT;
+
+        // GL_EXT_texture_perturb_normal
+        void function(GLenum) glTextureNormalEXT;
+
+        // GL_EXT_multi_draw_arrays
+        void function(GLenum, GLint*, GLsizei*, GLsizei) glMultiDrawArraysEXT;
+        void function(GLenum, in GLsizei*, GLenum, in GLvoid**, GLsizei) glMultiDrawElementsEXT;
     }
 
     version(DerelictGL_SGI)
@@ -584,14 +617,14 @@ extern(System)
 
         // GL_SGIX_flush_raster
         void function() glFLushRasterSGIX;
-        
+
         // GL_SGIX_list_priority
-        void function(GLuint, GLenum, GLfloat *) glGetListParameterfvSGIX;
-        void function(GLuint, GLenum, GLint *) glGetListParameterivSGIX;
+        void function(GLuint, GLenum, GLfloat*) glGetListParameterfvSGIX;
+        void function(GLuint, GLenum, GLint*) glGetListParameterivSGIX;
         void function(GLuint, GLenum, GLfloat) glListParameterfSGIX;
-        void function(GLuint, GLenum, in GLfloat *) glListParameterfvSGIX;
+        void function(GLuint, GLenum, in GLfloat*) glListParameterfvSGIX;
         void function(GLuint, GLenum, GLint) glListParameteriSGIX;
-        void function(GLuint, GLenum, in GLint *) glListParameterivSGIX;
+        void function(GLuint, GLenum, in GLint*) glListParameterivSGIX;
 
          // GL_SGIX_fragment_lighting
         void function(GLenum, GLenum) glFragmentColorMaterialSGIX;
@@ -612,6 +645,14 @@ extern(System)
         void function(GLenum, GLenum, GLfloat*) glGetFragmentMaterialfvSGIX;
         void function(GLenum, GLenum, GLint*) glGetFragmentMaterialivSGIX;
         void function(GLenum, GLint) glLightEnviSGIX;
+
+        // GL_SGIX_async
+        void function(GLuint) glAsyncMarkerSGIX;
+        GLint function(GLuint*) glFinishAsyncSGIX;
+        GLint function(GLuint*) glPollAsyncSGIX;
+        GLuint function(GLsizei) glGenAsyncMarkersSGIX;
+        void function(GLuint, GLsizei) glDeleteAsyncMarkersSGIX;
+        GLboolean function(GLuint) glIsAsyncMarkerSGIX;
     }
 
     version(DerelictGL_HP)
@@ -619,16 +660,25 @@ extern(System)
         // GL_HP_image_transform
         void function(GLenum, GLenum, GLint) glImageTransformParameteriHP;
         void function(GLenum, GLenum, GLfloat) glImageTransformParameterfHP;
-        void function(GLenum, GLenum, in GLint *) glImageTransformParameterivHP;
-        void function(GLenum, GLenum, in GLfloat *) glImageTransformParameterfvHP;
-        void function(GLenum, GLenum, GLint *) glGetImageTransformParameterivHP;
-        void function(GLenum, GLenum, GLfloat *) glGetImageTransformParameterfvHP;
+        void function(GLenum, GLenum, in GLint*) glImageTransformParameterivHP;
+        void function(GLenum, GLenum, in GLfloat*) glImageTransformParameterfvHP;
+        void function(GLenum, GLenum, GLint*) glGetImageTransformParameterivHP;
+        void function(GLenum, GLenum, GLfloat*) glGetImageTransformParameterfvHP;
     }
 
     version(DerelictGL_PGI)
     {
         // GL_PGI_misc_hints
         void function(GLenum, GLint) glHintPGI;
+    }
+
+    version(DerelictGL_INTEL)
+    {
+        // GL_INTEL_parallel_arrays
+        void function(GLint, GLenum, in GLvoid**) glVertexPointervINTEL;
+        void function(GLenum, in GLvoid**) glNormalPointervINTEL;
+        void function(GLint, GLenum, in GLvoid**) glColorPointervINTEL;
+        void function(GLint, GLenum, in GLvoid**) glTexCoordPointervINTEL;
     }
 
     version(Windows)

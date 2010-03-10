@@ -56,6 +56,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_PGI;
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
+    version = DerelictGL_INTEL;
 }
 
 private
@@ -210,6 +211,13 @@ private
             loaded["GL_EXT_draw_range_elements"] = load_GL_EXT_draw_range_elements();
             loaded["GL_EXT_light_texture"] = load_GL_EXT_light_texture();
             loaded["GL_EXT_bgra"] = load_GL_EXT_bgra();
+            loaded["GL_EXT_pixel_transform"] = load_GL_EXT_pixel_transform();
+            loaded["GL_EXT_pixel_transform_color_table"] = load_GL_EXT_pixel_transform_color_table();
+            loaded["GL_EXT_shared_texture_palette"] = load_GL_EXT_shared_texture_palette();
+            loaded["GL_EXT_separate_specular_color"] = load_GL_EXT_separate_specular_color();
+            loaded["GL_EXT_secondary_color"] = load_GL_EXT_secondary_color();
+            loaded["GL_EXT_texture_perturb_normal"] = load_GL_EXT_texture_perturb_normal();
+            loaded["GL_EXT_multi_draw_arrays"] = load_GL_EXT_multi_draw_arrays();
         }
 
         version(DerelictGL_SGI)
@@ -221,7 +229,7 @@ private
 
         version(DerelictGL_SGIS)
         {
-	        loaded["GL_SGIS_texture_filter4"] = load_GL_SGIS_texture_filter4;            
+            loaded["GL_SGIS_texture_filter4"] = load_GL_SGIS_texture_filter4;
             loaded["GL_SGIS_pixel_texture"] = load_GL_SGIS_pixel_texture();
             loaded["GL_SGIS_texture4D"] = load_GL_SGIS_texture4D();
             loaded["GL_SGIS_detail_texture"] = load_GL_SGIS_detail_texture();
@@ -264,6 +272,9 @@ private
             loaded["GL_SGIX_fragment_lighting"] = load_GL_SGIX_fragment_lighting();
             loaded["GL_SGIX_blend_alpha_minmax"] = load_GL_SGIX_blend_alpha_minmax();
             loaded["GL_SGIX_impact_pixel_texture"] = load_GL_SGIX_impact_pixel_texture();
+            loader["GL_SGIX_async"] = load_GL_SGIX_async();
+            loader["GL_SGIX_async_pixel"] = load_GL_SGIX_async_pixel();
+            loader["GL_SGIX_async_histogram"] = load_GL_SGIX_async_histogram();
         }
 
         version(DerelictGL_HP)
@@ -271,6 +282,7 @@ private
             loaded["GL_HP_image_transform"] = load_GL_HP_image_transform();
             loaded["GL_HP_convolution_border_modes"] = load_GL_HP_convolution_border_modes();
             loaded["GL_HP_texture_lighting"] = load_GL_HP_texture_lighting();
+            loaded["GL_HP_occlusion_test"] = load_GL_HP_occlusion_test();
         }
 
         version(DerelictGL_PGI)
@@ -288,6 +300,11 @@ private
         {
             loaded["GL_WIN_phong_shading"] = load_GL_WIN_phong_shading();
             loaded["GL_WIN_specular_fog"] = load_GL_WIN_specular_fog();
+        }
+
+        version(DerelictGL_INTEL)
+        {
+            loaded["GL_INTEL_parallel_arrays"] = load_GL_INTEL_parallel_arrays();
         }
 
     }
@@ -1604,6 +1621,103 @@ private
                 return false;
             return true;
         }
+
+        bool load_GL_EXT_pixel_transform()
+        {
+            if(!extIsSupported("GL_EXT_pixel_transform"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glPixelTransformParameteriEXT, "glPixelTransformParameteriEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glPixelTransformParameterfEXT, "glPixelTransformParameterfEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glPixelTransformParameterivEXT, "glPixelTransformParameterivEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glPixelTransformParameterfvEXT, "glPixelTransformParameterfvEXT"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_pixel_transform_color_table()
+        {
+            if(!extIsSupported("GL_EXT_pixel_transform_color_table"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_shared_texture_palette()
+        {
+            if(!extIsSupported("GL_EXT_shared_texture_palette"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_separate_specular_color()
+        {
+            if(!extIsSupported("GL_EXT_separate_specular_color"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_secondary_color()
+        {
+            if(!extIsSupported("GL_EXT_secondary_color"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3bEXT, "glSecondaryColor3bEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3bvEXT, "glSecondaryColor3bvEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3dEXT, "glSecondaryColor3dEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3dvEXT, "glSecondaryColor3dvEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3fEXT, "glSecondaryColor3fEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3fvEXT, "glSecondaryColor3fvEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3iEXT, "glSecondaryColor3iEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3ivEXT, "glSecondaryColor3ivEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3sEXT, "glSecondaryColor3sEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3svEXT, "glSecondaryColor3svEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3ubEXT, "glSecondaryColor3ubEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3ubvEXT, "glSecondaryColor3ubvEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3uiEXT, "glSecondaryColor3uiEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3uivEXT, "glSecondaryColor3uivEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3usEXT, "glSecondaryColor3usEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3usvEXT, "glSecondaryColor3usvEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glSecondaryColorPointerEXT, "glSecondaryColorPointerEXT"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_texture_perturb_normal()
+        {
+            if(!extIsSupported("GL_EXT_texture_perturb_normal"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glTextureNormalEXT, "glTextureNormalEXT"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_EXT_multi_draw_arrays()
+        {
+            if(!extIsSupported("GL_EXT_multi_draw_arrays"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glMultiDrawArraysEXT, "glMultiDrawArraysEXT"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glMultiDrawElementsEXT, "glMultiDrawElementsEXT"))
+                return false;
+            return true;
+        }
     }
 
     version(DerelictGL_SGI)
@@ -2048,6 +2162,39 @@ private
                 return false;
             return true;
         }
+
+        bool load_GL_SGIX_async()
+        {
+            if(!extIsSupported("GL_SGIX_async"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glAsyncMarkerSGIX, "glAsyncMarkerSGIX"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glFinishAsyncSGIX, "glFinishAsyncSGIX"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glPollAsyncSGIX, "glPollAsyncSGIX"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glGenAsyncMarkersSGIX, "glGenAsyncMarkersSGIX"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glDeleteAsyncMarkersSGIX, "glDeleteAsyncMarkersSGIX"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glIsAsyncMarkerSGIX, "glIsAsyncMarkerSGIX"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_SGIX_async_pixel()
+        {
+            if(!extIsSupported("GL_SGIX_async_pixel"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_SGIX_async_histogram()
+        {
+            if(!extIsSupported("GL_SGIX_async_histogram"))
+                return false;
+            return true;
+        }
     }
 
     version(DerelictGL_HP)
@@ -2081,6 +2228,13 @@ private
         bool load_GL_HP_texture_lighting()
         {
             if(!extIsSupported("GL_HP_texture_lighting"))
+                return false;
+            return true;
+        }
+
+        bool load_GL_HP_occlusion_test()
+        {
+            if(!extIsSupported("GL_HP_occlusion_test"))
                 return false;
             return true;
         }
@@ -2127,6 +2281,24 @@ private
         bool load_GL_WIN_specular_fog()
         {
             if(!extIsSupported("GL_WIN_specular_fog"))
+                return false;
+            return true;
+        }
+    }
+
+    version(DerelictGL_INTEL)
+    {
+        bool load_GL_INTEL_parallel_arrays()
+        {
+            if(!extIsSupported("GL_INTEL_parallel_arrays"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glVertexPointervINTEL, "glVertexPointervINTEL"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glNormalPointervINTEL, "glNormalPointervINTEL"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glColorPointervINTEL, "glColorPointervINTEL"))
+                return false;
+            if(!bindExtFunc(cast(void**)&glTexCoordPointervINTEL, "glTexCoordPointervINTEL"))
                 return false;
             return true;
         }
