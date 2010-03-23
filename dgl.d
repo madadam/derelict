@@ -1,14 +1,15 @@
 module dgl;
 
 pragma(lib, "lib\\DerelictGL.lib");
+pragma(lib, "lib\\DerelictGLU.lib");
 pragma(lib, "lib\\DerelictSDL.lib");
 pragma(lib, "lib\\DerelictUtil.lib");
 
 import derelict.sdl.sdl;
-import derelict.sdl.image;
-import derelict.sdl.mixer;
-import derelict.sdl.net;
-import derelict.sdl.ttf;
+//import derelict.sdl.image;
+//import derelict.sdl.mixer;
+//import derelict.sdl.net;
+//import derelict.sdl.ttf;
 import derelict.opengl.gl;
 import derelict.opengl.glu;
 import std.string;

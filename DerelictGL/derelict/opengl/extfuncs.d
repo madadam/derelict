@@ -377,16 +377,13 @@ extern(System)
         GLboolean function(GLuint) glIsVertexArray;
 
         // GL_ARB_uniform_buffer_object
-        void function(GLuint, GLsizei, in char**, GLuint*) glGetUniformIndicesARB;
-        void function(GLuint, GLsizei, in GLuint*, GLenum, GLint*) glGetActiveUniformsARB;
-        void function(GLuint, GLuint, GLsizei, GLsizei*, char*) glGetActiveUniformNameARB;
-        GLuint function(GLuint, in char*) glGetUinformBlockIndexARB;
-        void function(GLuint, GLuint, GLenum, int*) glGetActiveUniformBlockivARB;
-        void function(GLuint, GLuint, GLsizei, GLsizei*, char*) glGetActiveUniformBlockNameARB;
-        void function(GLenum, GLuint, GLuint, GLintptr, GLsizeiptr) glBindBufferRange;
-        void function(GLenum, GLuint, GLuint) glBindBufferBase;
-        void function(GLenum, GLuint, GLint*) glGetIntegeri_v;
-        void function(GLuint, GLuint, GLuint) glUniformBlockBindingARB;
+        void function(GLuint, GLsizei, in char**, GLuint*) glGetUniformIndices;
+        void function(GLuint, GLsizei, in GLuint*, GLenum, GLint*) glGetActiveUniformsiv;
+        void function(GLuint, GLuint, GLsizei, GLsizei*, char*) glGetActiveUniformName;
+        GLuint function(GLuint, in char*) glGetUniformBlockIndex;
+        void function(GLuint, GLuint, GLenum, int*) glGetActiveUniformBlockiv;
+        void function(GLuint, GLuint, GLsizei, GLsizei*, char*) glGetActiveUniformBlockName;
+        void function(GLuint, GLuint, GLuint) glUniformBlockBinding;
     }
 
     version(DerelictGL_EXT)
@@ -462,12 +459,12 @@ extern(System)
         void function(GLenum) glBlendEquationEXT;
 
         // GL_EXT_point_parameters
-        void function(GLenum, GLfloat) glPointParameterfExt;
-        void function(GLenum, in GLfloat*) glPointParameterfvExt;
+        void function(GLenum, GLfloat) glPointParameterfEXT;
+        void function(GLenum, in GLfloat*) glPointParameterfvEXT;
 
         // GL_EXT_color_subtable
         void function(GLenum, GLsizei, GLsizei, GLenum, GLenum, in GLvoid*) glColorSubTableEXT;
-        void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTableExt;
+        void function(GLenum, GLsizei, GLint, GLint, GLsizei) glCopyColorSubTableEXT;
 
         // GL_EXT_paletted_texture
         void function(GLenum, GLenum, GLsizei, GLenum, GLenum, in GLvoid*) glColorTableEXT;

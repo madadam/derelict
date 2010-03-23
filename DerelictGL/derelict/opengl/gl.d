@@ -150,9 +150,17 @@ public:
     bool isExtensionLoaded(string extName)
     {
         if(!hasValidContext())
-            throw new DerelictException("An OpenGL context must be created and activated before attempting to check for loaded extensions.");
+            throw new DerelictException("An OpenGL context must be created and activated, and extensions must be loaded, before checking for loaded extensions.");
 
-        return extIsLoaded(extName);
+        return (GLExtensionState.Loaded == extGetState(extName)); 
+    }
+    
+    GLExtensionState getExtensionState(string extName)
+    {
+	    if(!hasValidContext())
+	    	throw new DerelictException("An OpenGL context must be created and activated, and extensions must be loaded, before chacking extension state.");
+	    	
+	    return extGetState(extName);
     }
 
     GLVersion loadExtendedVersions(GLVersion minRequired = GLVersion.GL11)

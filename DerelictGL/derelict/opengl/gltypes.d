@@ -27,6 +27,20 @@ DEALINGS IN THE SOFTWARE.
 */
 module derelict.opengl.gltypes;
 
+/*
+The ExtensionState enum is used internally by the extension loader and externally
+via the DerelictGL interface. It probably belongs more appropriately in gl.d, but
+in order to avoid the extloader module having a dependency on the gl module, it lives
+here instead.
+*/
+enum GLExtensionState
+{
+	Loaded,
+	FailedToLoad,
+	DriverUnsupported,
+	DerelictUnsupported,		
+}
+
 alias uint      GLenum;
 alias ubyte     GLboolean;
 alias uint      GLbitfield;
