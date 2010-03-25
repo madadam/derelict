@@ -46,6 +46,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
     version = DerelictGL_INTEL;
+    version = DerelictGL_REND;
 }
 
 version(DerelictGL_ARB)
@@ -1045,6 +1046,31 @@ version(DerelictGL_EXT)
         GL_PERTURB_EXT                      = 0x85AE,
         GL_TEXTURE_NORMAL_EXT               = 0x85AF,
 
+        // GL_EXT_fog_coord
+        GL_FOG_COORDINATE_SOURCE_EXT        = 0x8450,
+        GL_FOG_COORDINATE_EXT               = 0x8451,
+        GL_FRAGMENT_DEPTH_EXT               = 0x8452,
+        GL_CURRENT_FOG_COORDINATE_EXT       = 0x8453,
+        GL_FOG_COORDINATE_ARRAY_TYPE_EXT    = 0x8454,
+        GL_FOG_COORDINATE_ARRAY_STRIDE_EXT  = 0x8455,
+        GL_FOG_COORDINATE_ARRAY_POINTER_EXT = 0x8456,
+        GL_FOG_COORDINATE_ARRAY_EXT         = 0x8457,
+
+        // GL_EXT_coordinate_frame
+        GL_TANGENT_ARRAY_EXT                = 0x8439,
+        GL_BINORMAL_ARRAY_EXT               = 0x843A,
+        GL_CURRENT_TANGENT_EXT              = 0x843B,
+        GL_CURRENT_BINORMAL_EXT             = 0x843C,
+        GL_TANGENT_ARRAY_TYPE_EXT           = 0x843E,
+        GL_TANGENT_ARRAY_STRIDE_EXT         = 0x843F,
+        GL_BINORMAL_ARRAY_TYPE_EXT          = 0x8440,
+        GL_BINORMAL_ARRAY_STRIDE_EXT        = 0x8441,
+        GL_TANGENT_ARRAY_POINTER_EXT        = 0x8442,
+        GL_BINORMAL_ARRAY_POINTER_EXT       = 0x8443,
+        GL_MAP1_TANGENT_EXT                 = 0x8444,
+        GL_MAP2_TANGENT_EXT                 = 0x8445,
+        GL_MAP1_BINORMAL_EXT                = 0x8446,
+        GL_MAP2_BINORMAL_EXT                = 0x8447,
     }
 }
 
@@ -1477,7 +1503,7 @@ version(DerelictGL_WIN)
     }
 }
 
-version(Derelict_INTEL)
+version(DerelictGL_INTEL)
 {
     enum : GLenum
     {
@@ -1487,6 +1513,16 @@ version(Derelict_INTEL)
         GL_NORMAL_ARRAY_PARALLEL_POINTERS_INTEL         = 0x83F6,
         GL_COLOR_ARRAY_PARALLEL_POINTERS_INTEL          = 0x83F7,
         GL_TEXTURE_COORD_ARRAY_PARALLEL_POINTERS_INTEL  = 0x83F8,
+    }
+}
+
+version(DerelictGL_REND)
+{
+    enum : GLenum
+    {
+        // GL_REND_screen_coordinates
+        GL_SCREEN_COORDINATES_REND          = 0x8490,
+        GL_INVERTED_SCREEN_W_REND           = 0x8491,
     }
 }
 

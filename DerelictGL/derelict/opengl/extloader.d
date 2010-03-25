@@ -57,6 +57,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
     version = DerelictGL_INTEL;
+    version = DerelictGL_REND;
 }
 
 private
@@ -92,7 +93,7 @@ package
         string[] ret;
         foreach(key; keys)
         {
-	        GLExtensionState state = loaded[key];
+            GLExtensionState state = loaded[key];
             if(GLExtensionState.Loaded != state)
             {
                 if(GLExtensionState.DriverUnsupported == state)
@@ -115,11 +116,11 @@ package
         }
         return found;
     }
-    
+
     GLExtensionState extGetState(string extName)
     {
-	    GLExtensionState* state = (extName in loaded);
-	    return (state !is null) ? *state : GLExtensionState.DerelictUnsupported;
+        GLExtensionState* state = (extName in loaded);
+        return (state !is null) ? *state : GLExtensionState.DerelictUnsupported;
     }
 }
 
@@ -219,6 +220,8 @@ private
             loaded["GL_EXT_secondary_color"] = load_GL_EXT_secondary_color();
             loaded["GL_EXT_texture_perturb_normal"] = load_GL_EXT_texture_perturb_normal();
             loaded["GL_EXT_multi_draw_arrays"] = load_GL_EXT_multi_draw_arrays();
+            loaded["GL_EXT_fog_coord"] = load_GL_EXT_fog_coord();
+            loaded["GL_EXT_coordinate_frame"] = load_GL_EXT_coordinate_frame();
         }
 
         version(DerelictGL_SGI)
@@ -308,6 +311,10 @@ private
             loaded["GL_INTEL_parallel_arrays"] = load_GL_INTEL_parallel_arrays();
         }
 
+        version(DerelictGL_REND)
+        {
+            loaded["GL_REND_screen_coordinates"] = load_GL_REND_screen_coordinates();
+        }
     }
 
     void extLoadPlatform()
@@ -1713,6 +1720,74 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_EXT_fog_coord()
+        {
+            if(!extIsSupported("GL_EXT_fog_coord"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glFogCoordfEXT, "glFogCoordfEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordfvEXT, "glFogCoordfvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoorddEXT, "glFogCoorddEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoorddvEXT, "glFogCoorddvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordPointerEXT, "glFogCoordPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_coordinate_frame()
+        {
+            if(!extIsSupported("GL_EXT_coordinate_frame"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTangent3bEXT, "glTangent3bEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3bvEXT, "glTangent3bvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3dEXT, "glTangent3dEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3dvEXT, "glTangent3dvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3fEXT, "glTangent3fEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3fvEXT, "glTangent3fvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3iEXT, "glTangent3iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3ivEXT, "glTangent3ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3sEXT, "glTangent3sEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangent3svEXT, "glTangent3svEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3bEXT, "glBinormal3bEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3bvEXT, "glBinormal3bvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3dEXT, "glBinormal3dEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3dvEXT, "glBinormal3dvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3fEXT, "glBinormal3fEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3fvEXT, "glBinormal3fvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3iEXT, "glBinormal3iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3ivEXT, "glBinormal3ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3sEXT, "glBinormal3sEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormal3svEXT, "glBinormal3svEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTangentPointerEXT, "glTangentPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBinormalPointerEXT, "glBinormalPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_SGI)
@@ -2295,6 +2370,16 @@ private
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glTexCoordPointervINTEL, "glTexCoordPointervINTEL"))
                 return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_REND)
+    {
+        GLExtensionState load_GL_REND_screen_coordinates()
+        {
+            if(!extIsSupported("GL_REND_screen_coordinates"))
+                return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
     }

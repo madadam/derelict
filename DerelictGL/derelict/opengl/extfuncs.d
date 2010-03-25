@@ -52,6 +52,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
     version = DerelictGL_INTEL;
+    versoin = DerelictGL_REND;
 }
 
 extern(System)
@@ -525,6 +526,37 @@ extern(System)
         // GL_EXT_multi_draw_arrays
         void function(GLenum, GLint*, GLsizei*, GLsizei) glMultiDrawArraysEXT;
         void function(GLenum, in GLsizei*, GLenum, in GLvoid**, GLsizei) glMultiDrawElementsEXT;
+
+        // GL_EXT_fog_coord
+        void function(GLfloat) glFogCoordfEXT;
+        void function(in GLfloat*) glFogCoordfvEXT;
+        void function(GLdouble) glFogCoorddEXT;
+        void function(in GLdouble*) glFogCoorddvEXT;
+        void function(GLenum, GLsizei, in GLvoid*) glFogCoordPointerEXT;
+
+        // GL_EXT_coordinate_frame
+        void function(GLbyte, GLbyte, GLbyte) glTangent3bEXT;
+        void function(in GLbyte*) glTangent3bvEXT;
+        void function(GLdouble, GLdouble, GLdouble) glTangent3dEXT;
+        void function(in GLdouble*) glTangent3dvEXT;
+        void function(GLfloat, GLfloat, GLfloat) glTangent3fEXT;
+        void function(in GLfloat*) glTangent3fvEXT;
+        void function(GLint, GLint, GLint) glTangent3iEXT;
+        void function(in GLint*) glTangent3ivEXT;
+        void function(GLshort, GLshort, GLshort) glTangent3sEXT;
+        void function(in GLshort*) glTangent3svEXT;
+        void function(GLbyte, GLbyte, GLbyte) glBinormal3bEXT;
+        void function(in GLbyte*) glBinormal3bvEXT;
+        void function(GLdouble, GLdouble, GLdouble) glBinormal3dEXT;
+        void function(in GLdouble*) glBinormal3dvEXT;
+        void function(GLfloat, GLfloat, GLfloat) glBinormal3fEXT;
+        void function(in GLfloat*) glBinormal3fvEXT;
+        void function(GLint, GLint, GLint) glBinormal3iEXT;
+        void function(in GLint*) glBinormal3ivEXT;
+        void function(GLshort, GLshort, GLshort) glBinormal3sEXT;
+        void function(in GLshort*) glBinormal3svEXT;
+        void function(GLenum, GLsizei, in GLvoid*) glTangentPointerEXT;
+        void function(GLenum, GLsizei, in GLvoid*) glBinormalPointerEXT;
     }
 
     version(DerelictGL_SGI)
