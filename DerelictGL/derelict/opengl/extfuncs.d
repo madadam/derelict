@@ -57,6 +57,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_SUNX;
     version = DerelictGL_SUN;
     version = DerelictGL_INGR;
+    version = DerelictGL_MESA;
 }
 
 extern(System)
@@ -564,10 +565,33 @@ extern(System)
 
         // GL_EXT_blend_func_separate
         void function(GLenum, GLenum, GLenum, GLenum) glBlendFuncSeparateEXT;
+
+        // GL_EXT_vertex_weighting
+        void function(GLfloat) glVertexWeightfEXT;
+        void function(in GLfloat*) glVertexWeightfvEXT;
+        void function(GLsizei, GLenum, GLsizei, in GLvoid*) glVertexWeightPointerEXT;
     }
 
     version(DerelictGL_NV)
     {
+        // GL_NV_vertex_array_range
+        void function() glFlushVertexArrayRangeNV;
+        void function(GLsizei, in GLvoid*) glVertexArrayRangeNV;
+
+        // GL_NV_register_combiners
+        void function(GLenum, in GLfloat*) glCombinerParameterfvNV;
+        void function(GLenum, GLfloat) glCombinerParameterfNV;
+        void function(GLenum, in GLint*) glCombinerParameterivNV;
+        void function(GLenum, GLint) glCombinerParameteriNV;
+        void function(GLenum, GLenum, GLenum, GLenum, GLenum, GLenum) glCombinerInputNV;
+        void function(GLenum, GLenum, GLenum, GLenum, GLenum, GLenum, GLenum, GLboolean, GLboolean, GLboolean) glCombinerOutputNV;
+        void function(GLenum, GLenum, GLenum, GLenum) glFinalCombinerInputNV;
+        void function(GLenum, GLenum, GLenum, GLenum, GLfloat*) glGetCombinerInputParameterfvNV;
+        void function(GLenum, GLenum, GLenum, GLenum, GLint*) glGetCombinerInputParameterivNV;
+        void function(GLenum, GLenum, GLenum, GLfloat*) glGetCombinerOutputParameterfvNV;
+        void function(GLenum, GLenum, GLenum, GLint*) glGetCombinerOutputParameterivNV;
+        void function(GLenum, GLenum, GLfloat*) glGetFinalCombinerInputParameterfvNV;
+        void function(GLenum, GLenum, GLint*) glGetFinalCombinerInputParameterivNV;
     }
 
     version(DerelictGL_ATI)
@@ -805,6 +829,38 @@ extern(System)
 
     version(DerelictGL_INGR)
     {
+    }
+
+    version(DerelictGL_MESA)
+    {
+        // GL_MESA_resize_buffers
+        void function() glResizeBuffersMESA;
+
+        // GL_MESA_window_pos
+        void function(GLdouble, GLdouble) glWindowPos2dMESA;
+        void function(in GLdouble*) glWindowPos2dvMESA;
+        void function(GLfloat, GLfloat) glWindowPos2fMESA;
+        void function(in GLfloat*) glWindowPos2fvMESA;
+        void function(GLint, GLint) glWindowPos2iMESA;
+        void function(in GLint*) glWindowPos2ivMESA;
+        void function(GLshort, GLshort) glWindowPos2sMESA;
+        void function(in GLshort*) glWindowPos2svMESA;
+        void function(GLdouble, GLdouble, GLdouble) glWindowPos3dMESA;
+        void function(in GLdouble*) glWindowPos3dvMESA;
+        void function(GLfloat, GLfloat, GLfloat) glWindowPos3fMESA;
+        void function(in GLfloat*) glWindowPos3fvMESA;
+        void function(GLint, GLint, GLint) glWindowPos3iMESA;
+        void function(in GLint*) glWindowPos3ivMESA;
+        void function(GLshort, GLshort, GLshort) glWindowPos3sMESA;
+        void function(in GLshort*) glWindowPos3svMESA;
+        void function(GLdouble, GLdouble, GLdouble, GLdouble) glWindowPos4dMESA;
+        void function(in GLdouble*) glWindowPos4dvMESA;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat) glWindowPos4fMESA;
+        void function(in GLfloat*) glWindowPos4fvMESA;
+        void function(GLint, GLint, GLint, GLint) glWindowPos4iMESA;
+        void function(in GLint*) glWindowPos4ivMESA;
+        void function(GLshort, GLshort, GLshort, GLshort) glWindowPos4sMESA;
+        void function(in GLshort*) glWindowPos4svMESA;
     }
 
     version(Windows)

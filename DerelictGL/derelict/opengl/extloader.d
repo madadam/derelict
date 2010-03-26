@@ -62,6 +62,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_SUNX;
     version = DerelictGL_SUN;
     version = DerelictGL_INGR;
+    version = DerelictGL_MESA;
 }
 
 private
@@ -234,11 +235,19 @@ private
             loaded["GL_EXT_texture_env_add"] = load_GL_EXT_texture_env_add();
             loaded["GL_EXT_texture_lod_bias"] = load_GL_EXT_texture_lod_bias();
             loaded["GL_EXT_texture_filter_anisotropic"] = load_GL_EXT_texture_filter_anisotropic();
+            loaded["GL_EXT_vertex_weighting"] = load_GL_EXT_vertex_weighting();
+            loaded["GL_EXT_texture_compression_s3tc"] = load_GL_EXT_texture_compression_s3tc();
         }
 
         version(DerelictGL_NV)
         {
             loaded["GL_NV_texgen_reflection"] = load_GL_NV_texgen_reflection();
+            loaded["GL_NV_light_max_exponent"] = load_GL_NV_light_max_exponent();
+            loaded["GL_NV_vertex_array_range"] = load_GL_NV_vertex_array_range();
+            loaded["GL_NV_register_combiners"] = load_GL_NV_register_combiners();
+            loaded["GL_NV_fog_distance"] = load_GL_NV_fog_distance();
+            loaded["GL_NV_texgen_emboss"] = load_GL_NV_texgen_emboss();
+            loaded["GL_NV_blend_square"] = load_GL_NV_blend_square();
         }
 
         version(DerelictGL_ATI)
@@ -361,6 +370,12 @@ private
         {
             loaded["GL_INGR_color_clamp"] = load_GL_INGR_color_clamp();
             loaded["GL_INGR_interlace_read"] = load_GL_INGR_interlace_read();
+        }
+
+        version(DerelictGL_MESA)
+        {
+            loaded["GL_MESA_resize_buffers"] = load_GL_MESA_resize_buffers();
+            loaded["GL_MESA_window_pos"] = load_GL_MESA_window_pos();
         }
     }
 
@@ -1893,6 +1908,26 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_EXT_vertex_weighting()
+        {
+            if(!extIsSupported("GL_EXT_vertex_weighting"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertexWeightfEXT, "glVertexWeightfEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexWeightfvEXT, "glVertexWeightfvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexWeightPointerEXT, "glVertexWeightPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_compression_s3tc()
+        {
+            if(!extIsSupported("GL_EXT_texture_compression_s3tc"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_NV)
@@ -1900,6 +1935,85 @@ private
         GLExtensionState load_GL_NV_texgen_reflection()
         {
             if(!extIsSupported("GL_NV_texgen_reflection"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_light_max_exponent()
+        {
+            if(!extIsSupported("GL_NV_light_max_exponent"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_array_range()
+        {
+            if(!extIsSupported("GL_NV_vertex_array_range"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glFlushVertexArrayRangeNV, "glFlushVertexArrayRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexArrayRangeNV, "glVertexArrayRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_register_combiners()
+        {
+            if(!extIsSupported("GL_NV_register_combiners"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glCombinerParameterfvNV, "glCombinerParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCombinerParameterfNV, "glCombinerParameterfNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCombinerParameterivNV, "glCombinerParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCombinerParameteriNV, "glCombinerParameteriNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCombinerInputNV, "glCombinerInputNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCombinerOutputNV, "glCombinerOutputNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFinalCombinerInputNV, "glFinalCombinerInputNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetCombinerInputParameterfvNV, "glGetCombinerInputParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetCombinerInputParameterivNV, "glGetCombinerInputParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetCombinerOutputParameterfvNV, "glGetCombinerOutputParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetCombinerOutputParameterivNV, "glGetCombinerOutputParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetFinalCombinerInputParameterfvNV, "glGetFinalCombinerInputParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetFinalCombinerInputParameterivNV, "glGetFinalCombinerInputParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_fog_distance()
+        {
+            if(!extIsSupported("GL_NV_fog_distance"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texgen_emboss()
+        {
+            if(!extIsSupported("GL_NV_texgen_emboss"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_blend_square()
+        {
+            if(!extIsSupported("GL_NV_blend_square"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_env_combine4()
+        {
+            if(!extIsSupported("GL_NV_texture_env_combine4"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
@@ -2693,6 +2807,71 @@ private
         {
             if(!extIsSupported("GL_INGR_interlace_read"))
                 return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_MESA)
+    {
+        GLExtensionState load_GL_MESA_resize_buffers()
+        {
+            if(!extIsSupported("GL_MESA_resize_buffers"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_MESA_window_pos()
+        {
+            if(!extIsSupported("GL_MESA_window_pos"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glWindowPos2dMESA, "glWindowPos2dMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2dvMESA, "glWindowPos2dvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2fMESA, "glWindowPos2fMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2fvMESA, "glWindowPos2fvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2iMESA, "glWindowPos2iMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2ivMESA, "glWindowPos2ivMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2sMESA, "glWindowPos2sMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos2svMESA, "glWindowPos2svMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3dMESA, "glWindowPos3dMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3dvMESA, "glWindowPos3dvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3fMESA, "glWindowPos3fMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3fvMESA, "glWindowPos3fvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3iMESA, "glWindowPos3iMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3ivMESA, "glWindowPos3ivMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3sMESA, "glWindowPos3sMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos3svMESA, "glWindowPos3svMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4dMESA, "glWindowPos4dMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4dvMESA, "glWindowPos4dvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4fMESA, "glWindowPos4fMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4fvMESA, "glWindowPos4fvMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4iMESA, "glWindowPos4iMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4ivMESA, "glWindowPos4ivMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4sMESA, "glWindowPos4sMESA"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWindowPos4svMESA, "glWindowPos4svMESA"))
+                return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
     }

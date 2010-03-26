@@ -51,6 +51,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_SUNX;
     version = DerelictGL_SUN;
     version = DerelictGL_INGR;
+    version = DerelictGL_MESA;
 }
 
 version(DerelictGL_ARB)
@@ -1137,6 +1138,27 @@ version(DerelictGL_EXT)
         // GL_EXT_texture_filter_anisotropic
         GL_TEXTURE_MAX_ANISOTROPY_EXT       = 0x84FE,
         GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT   = 0x84FF,
+
+        // GL_EXT_vertex_weighting
+        GL_MODELVIEW0_STACK_DEPTH_EXT       = GL_MODELVIEW_STACK_DEPTH,
+        GL_MODELVIEW1_STACK_DEPTH_EXT       = 0x8502,
+        GL_MODELVIEW0_MATRIX_EXT            = GL_MODELVIEW_MATRIX,
+        GL_MODELVIEW1_MATRIX_EXT            = 0x8506,
+        GL_VERTEX_WEIGHTING_EXT             = 0x8509,
+        GL_MODELVIEW0_EXT                   = GL_MODELVIEW,
+        GL_MODELVIEW1_EXT                   = 0x850A,
+        GL_CURRENT_VERTEX_WEIGHT_EXT        = 0x850B,
+        GL_VERTEX_WEIGHT_ARRAY_EXT          = 0x850C,
+        GL_VERTEX_WEIGHT_ARRAY_SIZE_EXT     = 0x850D,
+        GL_VERTEX_WEIGHT_ARRAY_TYPE_EXT     = 0x850E,
+        GL_VERTEX_WEIGHT_ARRAY_STRIDE_EXT   = 0x850F,
+        GL_VERTEX_WEIGHT_ARRAY_POINTER_EXT  = 0x8510,
+
+        // GL_EXT_texture_compression_s3tc
+        GL_COMPRESSED_RGB_S3TC_DXT1_EXT     = 0x83F0,
+        GL_COMPRESSED_RGBA_S3TC_DXT1_EXT    = 0x83F1,
+        GL_COMPRESSED_RGBA_S3TC_DXT3_EXT    = 0x83F2,
+        GL_COMPRESSED_RGBA_S3TC_DXT5_EXT    = 0x83F3,
     }
 }
 
@@ -1147,6 +1169,87 @@ version(DerelictGL_NV)
         // GL_NV_texgen_reflection
         GL_NORMAL_MAP_NV                    = 0x8511,
         GL_REFLECTION_MAP_NV                = 0x8512,
+
+        // GL_NV_light_max_exponent
+        GL_MAX_SHININESS_NV                 = 0x8504,
+        GL_MAX_SPOT_EXPONENT_NV             = 0x8505,
+
+        // GL_NV_vertex_array_range
+        GL_VERTEX_ARRAY_RANGE_NV            = 0x851D,
+        GL_VERTEX_ARRAY_RANGE_LENGTH_NV     = 0x851E,
+        GL_VERTEX_ARRAY_RANGE_VALID_NV      = 0x851F,
+        GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV = 0x8520,
+        GL_VERTEX_ARRAY_RANGE_POINTER_NV    = 0x8521,
+
+        // GL_NV_register_combiners
+        GL_REGISTER_COMBINERS_NV            = 0x8522,
+        GL_VARIABLE_A_NV                    = 0x8523,
+        GL_VARIABLE_B_NV                    = 0x8524,
+        GL_VARIABLE_C_NV                    = 0x8525,
+        GL_VARIABLE_D_NV                    = 0x8526,
+        GL_VARIABLE_E_NV                    = 0x8527,
+        GL_VARIABLE_F_NV                    = 0x8528,
+        GL_VARIABLE_G_NV                    = 0x8529,
+        GL_CONSTANT_COLOR0_NV               = 0x852A,
+        GL_CONSTANT_COLOR1_NV               = 0x852B,
+        GL_PRIMARY_COLOR_NV                 = 0x852C,
+        GL_SECONDARY_COLOR_NV               = 0x852D,
+        GL_SPARE0_NV                        = 0x852E,
+        GL_SPARE1_NV                        = 0x852F,
+        GL_DISCARD_NV                       = 0x8530,
+        GL_E_TIMES_F_NV                     = 0x8531,
+        GL_SPARE0_PLUS_SECONDARY_COLOR_NV   = 0x8532,
+        GL_UNSIGNED_IDENTITY_NV             = 0x8536,
+        GL_UNSIGNED_INVERT_NV               = 0x8537,
+        GL_EXPAND_NORMAL_NV                 = 0x8538,
+        GL_EXPAND_NEGATE_NV                 = 0x8539,
+        GL_HALF_BIAS_NORMAL_NV              = 0x853A,
+        GL_HALF_BIAS_NEGATE_NV              = 0x853B,
+        GL_SIGNED_IDENTITY_NV               = 0x853C,
+        GL_SIGNED_NEGATE_NV                 = 0x853D,
+        GL_SCALE_BY_TWO_NV                  = 0x853E,
+        GL_SCALE_BY_FOUR_NV                 = 0x853F,
+        GL_SCALE_BY_ONE_HALF_NV             = 0x8540,
+        GL_BIAS_BY_NEGATIVE_ONE_HALF_NV     = 0x8541,
+        GL_COMBINER_INPUT_NV                = 0x8542,
+        GL_COMBINER_MAPPING_NV              = 0x8543,
+        GL_COMBINER_COMPONENT_USAGE_NV      = 0x8544,
+        GL_COMBINER_AB_DOT_PRODUCT_NV       = 0x8545,
+        GL_COMBINER_CD_DOT_PRODUCT_NV       = 0x8546,
+        GL_COMBINER_MUX_SUM_NV              = 0x8547,
+        GL_COMBINER_SCALE_NV                = 0x8548,
+        GL_COMBINER_BIAS_NV                 = 0x8549,
+        GL_COMBINER_AB_OUTPUT_NV            = 0x854A,
+        GL_COMBINER_CD_OUTPUT_NV            = 0x854B,
+        GL_COMBINER_SUM_OUTPUT_NV           = 0x854C,
+        GL_MAX_GENERAL_COMBINERS_NV         = 0x854D,
+        GL_NUM_GENERAL_COMBINERS_NV         = 0x854E,
+        GL_COLOR_SUM_CLAMP_NV               = 0x854F,
+        GL_COMBINER0_NV                     = 0x8550,
+        GL_COMBINER1_NV                     = 0x8551,
+        GL_COMBINER2_NV                     = 0x8552,
+        GL_COMBINER3_NV                     = 0x8553,
+        GL_COMBINER4_NV                     = 0x8554,
+        GL_COMBINER5_NV                     = 0x8555,
+        GL_COMBINER6_NV                     = 0x8556,
+        GL_COMBINER7_NV                     = 0x8557,
+
+        // GL_NV_fog_distance
+        GL_FOG_DISTANCE_MODE_NV             = 0x855A,
+        GL_EYE_RADIAL_NV                    = 0x855B,
+        GL_EYE_PLANE_ABSOLUTE_NV            = 0x855C,
+
+        // GL_NV_texgen_emboss
+        GL_EMBOSS_LIGHT_NV                  = 0x855D,
+        GL_EMBOSS_CONSTANT_NV               = 0x855E,
+        GL_EMBOSS_MAP_NV                    = 0x855F,
+
+        // GL_NV_texture_env_combine4
+        GL_COMBINE4_NV                      = 0x8503,
+        GL_SOURCE3_RGB_NV                   = 0x8583,
+        GL_SOURCE3_ALPHA_NV                 = 0x858B,
+        GL_OPERAND3_RGB_NV                  = 0x8593,
+        GL_OPERAND3_ALPHA_NV                = 0x859B,
     }
 }
 
@@ -1681,6 +1784,10 @@ version(DerelictGL_INGR)
         // GL_INGR_interlace_read
         GL_INTERLACE_READ_INGR            = 0x8568,
     }
+}
+
+version(DerelictGL_MESA)
+{
 }
 
 version(Windows)
