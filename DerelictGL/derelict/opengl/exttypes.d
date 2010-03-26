@@ -38,8 +38,8 @@ version(DerelictGL_ALL)
     version = DerelictGL_EXT;
     version = DerelictGL_NV;
     version = DerelictGL_ATI;
-    version = DerelictGL_SGIS;
     version = DerelictGL_SGI;
+    version = DerelictGL_SGIS;
     version = DerelictGL_SGIX;
     version = DerelictGL_HP;
     version = DerelictGL_PGI;
@@ -47,6 +47,10 @@ version(DerelictGL_ALL)
     version = DerelictGL_WIN;
     version = DerelictGL_INTEL;
     version = DerelictGL_REND;
+    version = DerelictGL_APPLE;
+    version = DerelictGL_SUNX;
+    version = DerelictGL_SUN;
+    version = DerelictGL_INGR;
 }
 
 version(DerelictGL_ARB)
@@ -1071,7 +1075,83 @@ version(DerelictGL_EXT)
         GL_MAP2_TANGENT_EXT                 = 0x8445,
         GL_MAP1_BINORMAL_EXT                = 0x8446,
         GL_MAP2_BINORMAL_EXT                = 0x8447,
+
+        // GL_EXT_texture_env_combine
+        GL_COMBINE_EXT                      = 0x8570,
+        GL_COMBINE_RGB_EXT                  = 0x8571,
+        GL_COMBINE_ALPHA_EXT                = 0x8572,
+        GL_RGB_SCALE_EXT                    = 0x8573,
+        GL_ADD_SIGNED_EXT                   = 0x8574,
+        GL_INTERPOLATE_EXT                  = 0x8575,
+        GL_CONSTANT_EXT                     = 0x8576,
+        GL_PRIMARY_COLOR_EXT                = 0x8577,
+        GL_PREVIOUS_EXT                     = 0x8578,
+        GL_SOURCE0_RGB_EXT                  = 0x8580,
+        GL_SOURCE1_RGB_EXT                  = 0x8581,
+        GL_SOURCE2_RGB_EXT                  = 0x8582,
+        GL_SOURCE0_ALPHA_EXT                = 0x8588,
+        GL_SOURCE1_ALPHA_EXT                = 0x8589,
+        GL_SOURCE2_ALPHA_EXT                = 0x858A,
+        GL_OPERAND0_RGB_EXT                 = 0x8590,
+        GL_OPERAND1_RGB_EXT                 = 0x8591,
+        GL_OPERAND2_RGB_EXT                 = 0x8592,
+        GL_OPERAND0_ALPHA_EXT               = 0x8598,
+        GL_OPERAND1_ALPHA_EXT               = 0x8599,
+        GL_OPERAND2_ALPHA_EXT               = 0x859A,
+
+        // GL_EXT_blend_func_separate
+        GL_BLEND_DST_RGB_EXT                = 0x80C8,
+        GL_BLEND_SRC_RGB_EXT                = 0x80C9,
+        GL_BLEND_DST_ALPHA_EXT              = 0x80CA,
+        GL_BLEND_SRC_ALPHA_EXT              = 0x80CB,
+
+        // GL_EXT_stencil_wrap
+        GL_INCR_WRAP_EXT                    = 0x8507,
+        GL_DECR_WRAP_EXT                    = 0x8508,
+
+        // GL_EXT_422_pixels
+        GL_422_EXT                          = 0x80CC,
+        GL_422_REV_EXT                      = 0x80CD,
+        GL_422_AVERAGE_EXT                  = 0x80CE,
+        GL_422_REV_AVERAGE_EXT              = 0x80CF,
+
+        // GL_EXT_texture_cube_map
+        GL_NORMAL_MAP_EXT                   = 0x8511,
+        GL_REFLECTION_MAP_EXT               = 0x8512,
+        GL_TEXTURE_CUBE_MAP_EXT             = 0x8513,
+        GL_TEXTURE_BINDING_CUBE_MAP_EXT     = 0x8514,
+        GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT  = 0x8515,
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_X_EXT  = 0x8516,
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Y_EXT  = 0x8517,
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y_EXT  = 0x8518,
+        GL_TEXTURE_CUBE_MAP_POSITIVE_Z_EXT  = 0x8519,
+        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z_EXT  = 0x851A,
+        GL_PROXY_TEXTURE_CUBE_MAP_EXT       = 0x851B,
+        GL_MAX_CUBE_MAP_TEXTURE_SIZE_EXT    = 0x851C,
+
+        // GL_EXT_texture_lod_bias
+        GL_MAX_TEXTURE_LOD_BIAS_EXT         = 0x84FD,
+        GL_TEXTURE_FILTER_CONTROL_EXT       = 0x8500,
+        GL_TEXTURE_LOD_BIAS_EXT             = 0x8501,
+
+        // GL_EXT_texture_filter_anisotropic
+        GL_TEXTURE_MAX_ANISOTROPY_EXT       = 0x84FE,
+        GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT   = 0x84FF,
     }
+}
+
+version(DerelictGL_NV)
+{
+    enum : GLenum
+    {
+        // GL_NV_texgen_reflection
+        GL_NORMAL_MAP_NV                    = 0x8511,
+        GL_REFLECTION_MAP_NV                = 0x8512,
+    }
+}
+
+version(DerelictGL_ATI)
+{
 }
 
 version(DerelictGL_SGI)
@@ -1388,6 +1468,10 @@ version(DerelictGL_SGIX)
         // GL_SGIX_async_histogram
         GL_ASYNC_HISTOGRAM_SGIX             = 0x832C,
         GL_MAX_ASYNC_HISTOGRAM_SGIX         = 0x832D,
+
+        // GL_SGIX_fog_scale
+        GL_FOG_SCALE_SGIX                   = 0x81FC,
+        GL_FOG_SCALE_VALUE_SGIX             = 0x81FD,
     }
 }
 
@@ -1523,6 +1607,79 @@ version(DerelictGL_REND)
         // GL_REND_screen_coordinates
         GL_SCREEN_COORDINATES_REND          = 0x8490,
         GL_INVERTED_SCREEN_W_REND           = 0x8491,
+    }
+}
+
+version(DerelictGL_APPLE)
+{
+    enum : GLenum
+    {
+        // GL_APPLE_specular_vector
+        GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE    = 0x85B0,
+
+        // GL_APPLE_transform_hint
+        GL_TRANSFORM_HINT_APPLE                 = 0x85B1,
+    }
+}
+
+version(DerelictGL_SUNX)
+{
+    enum : GLenum
+    {
+        // GL_SUNX_constant_data
+        GL_UNPACK_CONSTANT_DATA_SUNX      = 0x81D5,
+        GL_TEXTURE_CONSTANT_DATA_SUNX     = 0x81D6,
+    }
+}
+
+version(DerelictGL_SUN)
+{
+    enum : GLenum
+    {
+        // GL_SUN_global_alpha
+        GL_GLOBAL_ALPHA_SUN                 = 0x81D9,
+        GL_GLOBAL_ALPHA_FACTOR_SUN          = 0x81DA,
+
+        // GL_SUN_triangle_list
+        GL_RESTART_SUN                      = 0x0001,
+        GL_REPLACE_MIDDLE_SUN               = 0x0002,
+        GL_REPLACE_OLDEST_SUN               = 0x0003,
+        GL_TRIANGLE_LIST_SUN                = 0x81D7,
+        GL_REPLACEMENT_CODE_SUN             = 0x81D8,
+        GL_REPLACEMENT_CODE_ARRAY_SUN       = 0x85C0,
+        GL_REPLACEMENT_CODE_ARRAY_TYPE_SUN = 0x85C1,
+        GL_REPLACEMENT_CODE_ARRAY_STRIDE_SUN = 0x85C2,
+        GL_REPLACEMENT_CODE_ARRAY_POINTER_SUN = 0x85C3,
+        GL_R1UI_V3F_SUN                     = 0x85C4,
+        GL_R1UI_C4UB_V3F_SUN                = 0x85C5,
+        GL_R1UI_C3F_V3F_SUN                 = 0x85C6,
+        GL_R1UI_N3F_V3F_SUN                 = 0x85C7,
+        GL_R1UI_C4F_N3F_V3F_SUN             = 0x85C8,
+        GL_R1UI_T2F_V3F_SUN                 = 0x85C9,
+        GL_R1UI_T2F_N3F_V3F_SUN             = 0x85CA,
+        GL_R1UI_T2F_C4F_N3F_V3F_SUN         = 0x85CB,
+
+        // GL_SUN_convolution_border_modes
+        GL_WRAP_BORDER_SUN                  = 0x81D4,
+    }
+}
+
+version(DerelictGL_INGR)
+{
+    enum : GLenum
+    {
+        // GL_INGR_color_clamp
+        GL_RED_MIN_CLAMP_INGR             = 0x8560,
+        GL_GREEN_MIN_CLAMP_INGR           = 0x8561,
+        GL_BLUE_MIN_CLAMP_INGR            = 0x8562,
+        GL_ALPHA_MIN_CLAMP_INGR           = 0x8563,
+        GL_RED_MAX_CLAMP_INGR             = 0x8564,
+        GL_GREEN_MAX_CLAMP_INGR           = 0x8565,
+        GL_BLUE_MAX_CLAMP_INGR            = 0x8566,
+        GL_ALPHA_MAX_CLAMP_INGR           = 0x8567,
+
+        // GL_INGR_interlace_read
+        GL_INTERLACE_READ_INGR            = 0x8568,
     }
 }
 

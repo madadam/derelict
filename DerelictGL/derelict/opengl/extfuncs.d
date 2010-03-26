@@ -4,7 +4,7 @@ Boost Software License - Version 1.0 - August 17th, 2003
 
 Permission is hereby granted, free of charge, to any person or organization
 obtaining a copy of the software and accompanying documentation covered by
-this license (the "Software") to use, reproduce, display, distribute,
+this license(the "Software") to use, reproduce, display, distribute,
 execute, and transmit the Software, and to prepare derivative works of the
 Software, and to permit third-parties to whom the Software is furnished to
 do so, all subject to the following:
@@ -44,15 +44,19 @@ version(DerelictGL_ALL)
     version = DerelictGL_EXT;
     version = DerelictGL_NV;
     version = DerelictGL_ATI;
-    version = DerelictGL_SGIS;
     version = DerelictGL_SGI;
+    version = DerelictGL_SGIS;
     version = DerelictGL_SGIX;
     version = DerelictGL_HP;
     version = DerelictGL_PGI;
     version = DerelictGL_IBM;
     version = DerelictGL_WIN;
     version = DerelictGL_INTEL;
-    versoin = DerelictGL_REND;
+    version = DerelictGL_REND;
+    version = DerelictGL_APPLE;
+    version = DerelictGL_SUNX;
+    version = DerelictGL_SUN;
+    version = DerelictGL_INGR;
 }
 
 extern(System)
@@ -474,7 +478,7 @@ extern(System)
         void function(GLenum, GLenum, GLfloat*) glGetColorTableParameterfvEXT;
 
         //GL_EXT_index_material
-        void function (GLenum, GLenum) glIndexMaterialEXT;
+        void function(GLenum, GLenum) glIndexMaterialEXT;
 
         // GL_EXT_index_func
         void function(GLenum, GLclampf) glIndexFuncEXT;
@@ -557,6 +561,17 @@ extern(System)
         void function(in GLshort*) glBinormal3svEXT;
         void function(GLenum, GLsizei, in GLvoid*) glTangentPointerEXT;
         void function(GLenum, GLsizei, in GLvoid*) glBinormalPointerEXT;
+
+        // GL_EXT_blend_func_separate
+        void function(GLenum, GLenum, GLenum, GLenum) glBlendFuncSeparateEXT;
+    }
+
+    version(DerelictGL_NV)
+    {
+    }
+
+    version(DerelictGL_ATI)
+    {
     }
 
     version(DerelictGL_SGI)
@@ -708,6 +723,88 @@ extern(System)
         void function(GLenum, in GLvoid**) glNormalPointervINTEL;
         void function(GLint, GLenum, in GLvoid**) glColorPointervINTEL;
         void function(GLint, GLenum, in GLvoid**) glTexCoordPointervINTEL;
+    }
+
+    version(DerelictGL_REND)
+    {
+    }
+
+    version(DerelictGL_APPLE)
+    {
+    }
+
+    version(DerelictGL_SUNX)
+    {
+        // GL_SUNX_inant_data
+        void function() glFinishTextureSUNX;
+    }
+
+    version(DerelictGL_SUN)
+    {
+        // GL_SUN_global_alpha
+        void function(GLbyte) glGlobalAlphaFactorbSUN;
+        void function(GLshort) glGlobalAlphaFactorsSUN;
+        void function(GLint) glGlobalAlphaFactoriSUN;
+        void function(GLfloat) glGlobalAlphaFactorfSUN;
+        void function(GLdouble) glGlobalAlphaFactordSUN;
+        void function(GLubyte) glGlobalAlphaFactorubSUN;
+        void function(GLushort) glGlobalAlphaFactorusSUN;
+        void function(GLuint) glGlobalAlphaFactoruiSUN;
+
+        // GL_SUN_triangle_list
+        void function(GLuint) glReplacementCodeuiSUN;
+        void function(GLushort) glReplacementCodeusSUN;
+        void function(GLubyte) glReplacementCodeubSUN;
+        void function(in GLuint*) glReplacementCodeuivSUN;
+        void function(in GLushort*) glReplacementCodeusvSUN;
+        void function(in GLubyte*) glReplacementCodeubvSUN;
+        void function(GLenum, GLsizei, in GLvoid**) glReplacementCodePointerSUN;
+
+        // GL_SUN_vertex
+        void function(GLubyte, GLubyte, GLubyte, GLubyte, GLfloat, GLfloat) glColor4ubVertex2fSUN;
+        void function(in GLubyte*, in GLfloat*) glColor4ubVertex2fvSUN;
+        void function(GLubyte, GLubyte, GLubyte, GLubyte, GLfloat, GLfloat, GLfloat) glColor4ubVertex3fSUN;
+        void function(in GLubyte*, in GLfloat*) glColor4ubVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glColor3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*) glColor3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glNormal3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*) glNormal3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glColor4fNormal3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*, in GLfloat*) glColor4fNormal3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord2fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*) glTexCoord2fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord4fVertex4fSUN;
+        void function(in GLfloat*, in GLfloat*) glTexCoord4fVertex4fvSUN;
+        void function(GLfloat, GLfloat, GLubyte, GLubyte, GLubyte, GLubyte, GLfloat, GLfloat, GLfloat) glTexCoord2fColor4ubVertex3fSUN;
+        void function(in GLfloat*, in GLubyte*, in GLfloat*) glTexCoord2fColor4ubVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord2fColor3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*, in GLfloat*) glTexCoord2fColor3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord2fNormal3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*, in GLfloat*) glTexCoord2fNormal3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord2fColor4fNormal3fVertex3fSUN;
+        void function(in GLfloat*, in GLfloat*, in GLfloat*, in GLfloat*) glTexCoord2fColor4fNormal3fVertex3fvSUN;
+        void function(GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glTexCoord4fColor4fNormal3fVertex4fSUN;
+        void function(in GLfloat*, in GLfloat*, in GLfloat*, in GLfloat*) glTexCoord4fColor4fNormal3fVertex4fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat) glReplacementCodeuiVertex3fSUN;
+        void function(in GLuint*, in GLfloat*) glReplacementCodeuiVertex3fvSUN;
+        void function(GLuint, GLubyte, GLubyte, GLubyte, GLubyte, GLfloat, GLfloat, GLfloat) glReplacementCodeuiColor4ubVertex3fSUN;
+        void function(in GLuint*, in GLubyte*, in GLfloat*) glReplacementCodeuiColor4ubVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiColor3fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*) glReplacementCodeuiColor3fVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiNormal3fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*) glReplacementCodeuiNormal3fVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiColor4fNormal3fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*, in GLfloat*) glReplacementCodeuiColor4fNormal3fVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiTexCoord2fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*) glReplacementCodeuiTexCoord2fVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiTexCoord2fNormal3fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*, in GLfloat*) glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN;
+        void function(GLuint, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat, GLfloat) glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN;
+        void function(in GLuint*, in GLfloat*, in GLfloat*, in GLfloat*, in GLfloat*) glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN;
+    }
+
+    version(DerelictGL_INGR)
+    {
     }
 
     version(Windows)
