@@ -1,9 +1,8 @@
 include ../inc/linux_inc.mak
 
-all : DerelictSFML
+all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 
 SYS_SRC= \
-	derelict/sfml/sfml.d \
 	derelict/sfml/stypes.d \
 	derelict/sfml/sfuncs.d \
 	derelict/sfml/system.d
@@ -28,11 +27,38 @@ NET_SRC= \
 	derelict/sfml/nfuncs.d \
 	derelict/sfml/network.d
 
-ALL_SRC= $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC) $(NET_SRC)
-
-DerelictSFML.a :
+$(LIB_TARGET) :
 	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_SFML) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
-		
-DerelictSFML : libDerelictSFML.a
+	
+libDerelictSFMLWindow.a :
+	$(DC) $(DFLAGS) $(WIN_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+libDerelictSFMLSystem.a :
+	$(DC) $(DFLAGS) $(SYS_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+libDerelictSFMLGraphics.a :
+	$(DC) $(DFLAGS) $(GFX_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+libDerelictSFMLAudio.a :
+	$(DC) $(DFLAGS) $(AUDIO_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+libDerelictSFMLNetwork.a :
+	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLWindow : libDerelictSFMLWindow.a
+DerelictSFMLSystem : libDerelictSFMLSystem.a
+DerelictSFMLGraphics : libDerelictSFMLGraphics.a
+DerelictSFMLAudio : libDerelictSFMLAudio.a
+DerelictSFMLNetwork : libDerelictSFMLNetwork.a

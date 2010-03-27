@@ -65,9 +65,21 @@ DerelictSDLNet :
 DerelictSDLttf :
 	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDLttf
 	
-# There's only one DerelictSFML target
-DerelictSFML :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFML
+# Individual DerelictSFML targets
+DerelictSFMLWindow :
+	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLWindow
+	
+DerelictSFMLSystem :
+	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLSystem
+	
+DerelictSFMLGraphics :
+	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLGraphics
+	
+DerelictSFMLAudio :
+	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLAudio
+	
+DerelictSFMLNetwork :
+	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLNetwork
 	
 # There's only one DerelictUtil target
 DerelictUtil : DerelictUtil_All

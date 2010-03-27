@@ -1,9 +1,8 @@
 include ..\inc\win32_inc.mak
 
-all : DerelictSFML
+all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 
 SYS_SRC= \
-	derelict\sfml\sfml.d \
 	derelict\sfml\stypes.d \
 	derelict\sfml\sfuncs.d \
 	derelict\sfml\system.d
@@ -27,12 +26,39 @@ NET_SRC= \
 	derelict\sfml\ntypes.d \
 	derelict\sfml\nfuncs.d \
 	derelict\sfml\network.d
-	
-ALL_SRC= $(SYS_SRC) $(WIN_SRC) $(GFX_SRC) $(AUDIO_SRC) $(NET_SRC)
 
-DerelictSFML.lib :
+$(LIB_TARGET) :
 	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_SFML) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
-DerelictSFML : DerelictSFML.lib
+DerelictSFMLWindow.lib :
+	$(DC) $(DFLAGS) $(WIN_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLSystem.lib :
+	$(DC) $(DFLAGS) $(SYS_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLGraphics.lib :
+	$(DC) $(DFLAGS) $(GFX_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLAudio.lib :
+	$(DC) $(DFLAGS) $(AUDIO_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLNetwork.lib:
+	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SFML) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
+	
+DerelictSFMLWindow : DerelictSFMLWindow.lib
+DerelictSFMLSystem : DerelictSFMLSystem.lib
+DerelictSFMLGraphics : DerelictSFMLGraphics.lib
+DerelictSFMLAudio : DerelictSFMLAudio.lib
+DerelictSFMLNetwork : DerelictSFMLNetwork.lib

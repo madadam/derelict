@@ -99,10 +99,30 @@ DerelictSDLttf :
 	$(DMAKE) -fwin32.mak DerelictSDLttf
 	cd ..
 	
-# There's only one DerelictSFML target
-DerelictSFML :
+# Individual DerelictSFML targets
+DerelictSFMLWindow :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFML
+	$(DMAKE) -fwin32.mak DerelictSFMLWindow
+	cd ..
+	
+DerelictSFMLSystem :
+	cd DerelictSFML
+	$(DMAKE) -fwin32.mak DerelictSFMLSystem
+	cd ..
+	
+DerelictSFMLGraphics :
+	cd DerelictSFML
+	$(DMAKE) -fwin32.mak DerelictSFMLGraphics
+	cd ..
+	
+DerelictSFMLAudio :
+	cd DerelictSFML
+	$(DMAKE) -fwin32.mak DerelictSFMLAudio
+	cd ..
+	
+DerelictSFMLNetwork :
+	cd DerelictSFML
+	$(DMAKE) -fwin32.mak DerelictSFMLNetwork
 	cd ..
 	
 # There's only one DerelictUtil target
