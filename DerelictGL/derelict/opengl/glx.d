@@ -140,7 +140,7 @@ extern (C)
      void function(Display*,GLXDrawable,uint*) glXGetSelectedEvent;
 
     /* GLX 1.4+ */
-     void* function(GLchar*) glXGetProcAddress;
+     void* function(CCPTR) glXGetProcAddress;
      ");
 }
 
@@ -237,7 +237,7 @@ package
 	    bindFunc(cast(void**)&glXGetProcAddress, "glXGetProcAddressARB");
     }
     
-    void loadGLSymbol(string symName)
+    void* loadGLSymbol(string symName)
     {
 	    return glXGetProcAddress(toCString(symName));
     }

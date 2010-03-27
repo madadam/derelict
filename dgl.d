@@ -9,10 +9,10 @@ version(Windows)
 }
 else
 {
-	pragma(lib, "lib/DerelictGL.a");
-	pragma(lib, "lib/DerelictGLU.a");
-	pragma(lib, "lib/DerelictSDL.a");
-	pragma(lib, "lib/DerelictUtil.a");
+	pragma(lib, "lib/libDerelictGL.a");
+	pragma(lib, "lib/libDerelictGLU.a");
+	pragma(lib, "lib/libDerelictSDL.a");
+	pragma(lib, "lib/libDerelictUtil.a");
 }
 
 import derelict.sdl.sdl;
