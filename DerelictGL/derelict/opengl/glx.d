@@ -192,7 +192,7 @@ Bool                    function(Display*,GLXDrawable,int*)
 
 package 
 {
-	void loadPlatformGL(void delegate(void**, string) bindFunc)
+	void loadPlatformGL(void delegate(void**, string, bool doThrow = true) bindFunc)
 	{
 	    bindFunc(cast(void**)&glXChooseVisual, "glXChooseVisual");
 	    bindFunc(cast(void**)&glXCopyContext, "glXCopyContext");

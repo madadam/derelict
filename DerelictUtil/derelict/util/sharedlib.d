@@ -222,11 +222,11 @@ public:
         }
     }
 
-    void* loadSymbol(string symbolName, bool doThrow)
+    void* loadSymbol(string symbolName, bool doThrow = true)
     {
         void* sym = GetSymbol(_hlib, symbolName);
         if(doThrow && (sym is null))
-            Derelict_HandleMissingSymbol(name, symbolName, doThrow);
+            Derelict_HandleMissingSymbol(name, symbolName);
 
         return sym;
     }

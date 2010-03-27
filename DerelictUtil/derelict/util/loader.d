@@ -107,7 +107,7 @@ protected:
 	
 	void bindFunc(void** ptr, string funcName, bool doThrow = true)
 	{
-		void* func = lib.loadSymbol(funcName);
+		void* func = lib.loadSymbol(funcName, doThrow);
 		*ptr = func;
 	}
 	

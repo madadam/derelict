@@ -67,7 +67,7 @@ version(Windows)
 
     package
     {
-        void loadPlatformGL(void delegate(void**, string) bindFunc)
+        void loadPlatformGL(void delegate(void**, string, bool doThrow = true) bindFunc)
         {
             bindFunc(cast(void**)&wglCopyContext, "wglCopyContext");
             bindFunc(cast(void**)&wglCreateContext, "wglCreateContext");
@@ -91,7 +91,7 @@ version(Windows)
 
         void* loadGLSymbol(string symName)
         {
-            wglGetProcAddress(toCString(funcName));
+            return cast(void*)wglGetProcAddress(toCString(symName));
         }
     }
 }
