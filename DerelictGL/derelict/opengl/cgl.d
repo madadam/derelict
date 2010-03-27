@@ -334,111 +334,113 @@ extern (C)
     CGLContextObj function() CGLGetCurrentContext;");
 }
 
-package void loadPlatformGL(void delegate(void**, string) bindFunc)
+package
 {
-    bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
-    bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
-/*
-** Pixel format functions
-*/
-    bindFunc(cast(void**)&CGLChoosePixelFormat, "CGLChoosePixelFormat");
-    bindFunc(cast(void**)&CGLDestroyPixelFormat, "CGLDestroyPixelFormat");
-    bindFunc(cast(void**)&CGLDescribePixelFormat, "CGLDescribePixelFormat");
-
-/*
-** Renderer information functions
-*/
-    bindFunc(cast(void**)&CGLQueryRendererInfo, "CGLQueryRendererInfo");
-    bindFunc(cast(void**)&CGLDestroyRendererInfo, "CGLDestroyRendererInfo");
-    bindFunc(cast(void**)&CGLDescribeRenderer, "CGLDescribeRenderer");
-
-/*
-** Context functions
-*/
-    bindFunc(cast(void**)&CGLCreateContext, "CGLCreateContext");
-    bindFunc(cast(void**)&CGLDestroyContext, "CGLDestroyContext");
-    bindFunc(cast(void**)&CGLCopyContext, "CGLCopyContext");
-
-/*
-** PBuffer functions
-*/
-// FIXME
-// These functions use the AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER macro. See
-// <AvailabilityMacros.h>.
-version (Mac_OS_X_10_3_and_later)
-{
-    bindFunc(cast(void**)&CGLCreatePBuffer, "CGLCreatePBuffer");
-
-    bindFunc(cast(void**)&CGLDestroyPBuffer, "CGLDestroyPBuffer");
-
-    bindFunc(cast(void**)&CGLDescribePBuffer, "CGLDescribePBuffer");
-
-    bindFunc(cast(void**)&CGLTexImagePBuffer, "CGLTexImagePBuffer");
-}
-
-/*
-** Drawable Functions
-*/
-    bindFunc(cast(void**)&CGLSetOffScreen, "CGLSetOffScreen");
-    bindFunc(cast(void**)&CGLGetOffScreen, "CGLGetOffScreen");
-    bindFunc(cast(void**)&CGLSetFullScreen, "CGLSetFullScreen");
-
-version (Mac_OS_X_10_3_and_later)
-{
-    bindFunc(cast(void**)&CGLSetPBuffer, "CGLSetPBuffer");
-
-    bindFunc(cast(void**)&CGLGetPBuffer, "CGLGetPBuffer");
-}
-
-    bindFunc(cast(void**)&CGLClearDrawable, "CGLClearDrawable");
-    bindFunc(cast(void**)&CGLFlushDrawable, "CGLFlushDrawable");
-
-/*
-** Per context enables and parameters
-*/
-    bindFunc(cast(void**)&CGLEnable, "CGLEnable");
-    bindFunc(cast(void**)&CGLDisable, "CGLDisable");
-    bindFunc(cast(void**)&CGLIsEnabled, "CGLIsEnabled");
-    bindFunc(cast(void**)&CGLSetParameter, "CGLSetParameter");
-    bindFunc(cast(void**)&CGLGetParameter, "CGLGetParameter");
-
-/*
-** Virtual screen functions
-*/
-    bindFunc(cast(void**)&CGLSetVirtualScreen, "CGLSetVirtualScreen");
-    bindFunc(cast(void**)&CGLGetVirtualScreen, "CGLGetVirtualScreen");
-
-/*
-** Global library options
-*/
-    bindFunc(cast(void**)&CGLSetOption, "CGLSetOption");
-    bindFunc(cast(void**)&CGLGetOption, "CGLGetOption");
-
-/*
-** Locking functions
-*/
-version (Mac_OS_X_10_4_and_later)
-{
-    bindFunc(cast(void**)&CGLLockContext, "CGLLockContext");
-
-    bindFunc(cast(void**)&CGLUnlockContext, "CGLUnlockContext");
-}
-
-/*
-** Version numbers
-*/
-    bindFunc(cast(void**)&CGLGetVersion, "CGLGetVersion");
-
-/*
-** Convert an error code to a string
-*/
-    bindFunc(cast(void**)&CGLErrorString, "CGLErrorString");
-
-/*
-** Current context functions
-*/
-    bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
-    bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
-}
+	void loadPlatformGL(void delegate(void**, string) bindFunc)
+	{
+	    bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
+	    bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
+		/*
+		** Pixel format functions
+		*/
+	    bindFunc(cast(void**)&CGLChoosePixelFormat, "CGLChoosePixelFormat");
+	    bindFunc(cast(void**)&CGLDestroyPixelFormat, "CGLDestroyPixelFormat");
+	    bindFunc(cast(void**)&CGLDescribePixelFormat, "CGLDescribePixelFormat");
+	
+		/*
+		** Renderer information functions
+		*/
+	    bindFunc(cast(void**)&CGLQueryRendererInfo, "CGLQueryRendererInfo");
+	    bindFunc(cast(void**)&CGLDestroyRendererInfo, "CGLDestroyRendererInfo");
+	    bindFunc(cast(void**)&CGLDescribeRenderer, "CGLDescribeRenderer");
+	
+		/*
+		** Context functions
+		*/
+	    bindFunc(cast(void**)&CGLCreateContext, "CGLCreateContext");
+	    bindFunc(cast(void**)&CGLDestroyContext, "CGLDestroyContext");
+	    bindFunc(cast(void**)&CGLCopyContext, "CGLCopyContext");
+	
+		/*
+		** PBuffer functions
+		*/
+		// FIXME
+		// These functions use the AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER macro. See
+		// <AvailabilityMacros.h>.
+		version (Mac_OS_X_10_3_and_later)
+		{
+		    bindFunc(cast(void**)&CGLCreatePBuffer, "CGLCreatePBuffer");
+		
+		    bindFunc(cast(void**)&CGLDestroyPBuffer, "CGLDestroyPBuffer");
+		
+		    bindFunc(cast(void**)&CGLDescribePBuffer, "CGLDescribePBuffer");
+		
+		    bindFunc(cast(void**)&CGLTexImagePBuffer, "CGLTexImagePBuffer");
+		}
+	
+		/*
+		** Drawable Functions
+		*/
+	    bindFunc(cast(void**)&CGLSetOffScreen, "CGLSetOffScreen");
+	    bindFunc(cast(void**)&CGLGetOffScreen, "CGLGetOffScreen");
+	    bindFunc(cast(void**)&CGLSetFullScreen, "CGLSetFullScreen");
+	
+		version (Mac_OS_X_10_3_and_later)
+		{
+		    bindFunc(cast(void**)&CGLSetPBuffer, "CGLSetPBuffer");
+		
+		    bindFunc(cast(void**)&CGLGetPBuffer, "CGLGetPBuffer");
+		}
+	
+	    bindFunc(cast(void**)&CGLClearDrawable, "CGLClearDrawable");
+	    bindFunc(cast(void**)&CGLFlushDrawable, "CGLFlushDrawable");
+	
+		/*
+		** Per context enables and parameters
+		*/
+	    bindFunc(cast(void**)&CGLEnable, "CGLEnable");
+	    bindFunc(cast(void**)&CGLDisable, "CGLDisable");
+	    bindFunc(cast(void**)&CGLIsEnabled, "CGLIsEnabled");
+	    bindFunc(cast(void**)&CGLSetParameter, "CGLSetParameter");
+	    bindFunc(cast(void**)&CGLGetParameter, "CGLGetParameter");
+	
+		/*
+		** Virtual screen functions
+		*/
+	    bindFunc(cast(void**)&CGLSetVirtualScreen, "CGLSetVirtualScreen");
+	    bindFunc(cast(void**)&CGLGetVirtualScreen, "CGLGetVirtualScreen");
+	
+		/*
+		** Global library options
+		*/
+	    bindFunc(cast(void**)&CGLSetOption, "CGLSetOption");
+	    bindFunc(cast(void**)&CGLGetOption, "CGLGetOption");
+	
+		/*
+		** Locking functions
+		*/
+		version (Mac_OS_X_10_4_and_later)
+		{
+		    bindFunc(cast(void**)&CGLLockContext, "CGLLockContext");
+		
+		    bindFunc(cast(void**)&CGLUnlockContext, "CGLUnlockContext");
+		}
+	
+		/*
+		** Version numbers
+		*/
+	    bindFunc(cast(void**)&CGLGetVersion, "CGLGetVersion");
+	
+		/*
+		** Convert an error code to a string
+		*/
+	    bindFunc(cast(void**)&CGLErrorString, "CGLErrorString");
+	
+		/*
+		** Current context functions
+		*/
+	    bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
+	    bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
+	}
 
 }   // version(CGL)

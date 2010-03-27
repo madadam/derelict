@@ -88,5 +88,10 @@ version(Windows)
             bindFunc(cast(void**)&wglUseFontBitmapsW, "wglUseFontBitmapsW");
             bindFunc(cast(void**)&wglUseFontOutlinesW, "wglUseFontOutlinesW");
         }
+
+        void* loadGLSymbol(string symName)
+        {
+            wglGetProcAddress(toCString(funcName));
+        }
     }
 }

@@ -48,17 +48,17 @@ private
     version(OSX)
         version = MacOSX;
 
-	version (MacOSX)
-		import derelict.opengl.cgl;
-		
-	version (linux)
-		import derelict.opengl.glx;
-		
-	version (FreeBSD)
-		version = freebsd;
-		
-	version (freebsd)
-		import derelict.opengl.glx;
+    version (MacOSX)
+        import derelict.opengl.cgl;
+
+    version (linux)
+        import derelict.opengl.glx;
+
+    version (FreeBSD)
+        version = freebsd;
+
+    version (freebsd)
+        import derelict.opengl.glx;
 }
 
 enum GLVersion
@@ -152,15 +152,15 @@ public:
         if(!hasValidContext())
             throw new DerelictException("An OpenGL context must be created and activated, and extensions must be loaded, before checking for loaded extensions.");
 
-        return (GLExtensionState.Loaded == extGetState(extName)); 
+        return (GLExtensionState.Loaded == extGetState(extName));
     }
-    
+
     GLExtensionState getExtensionState(string extName)
     {
-	    if(!hasValidContext())
-	    	throw new DerelictException("An OpenGL context must be created and activated, and extensions must be loaded, before chacking extension state.");
-	    	
-	    return extGetState(extName);
+        if(!hasValidContext())
+            throw new DerelictException("An OpenGL context must be created and activated, and extensions must be loaded, before chacking extension state.");
+
+        return extGetState(extName);
     }
 
     GLVersion loadExtendedVersions(GLVersion minRequired = GLVersion.GL11)
@@ -874,17 +874,18 @@ protected:
 
     void bindExtendedFunc(void** ptr, string funcName, bool doThrow)
     {
-        version (Windows)
-		{
-			void* func = wglGetProcAddress(toCString(funcName));
-	        if(func is null && doThrow)
-	            Derelict_HandleMissingSymbol(lib.name, funcName);
-	        else
-	            *ptr = func;
-		}
-		
-		else
-			assert(false, `"bindExtendedFunc" is not implemented for this operating system.`);
+        version(MacOSX)
+        {
+            bindFunc(ptr, funcName, doThrow);
+        }
+        else
+        {
+            void* func = loadGLSymbol(funcName);
+            if(func is null && doThrow)
+                Derelict_HandleMissingSymbol(lib.name, funcName);
+            else
+                *ptr = func;
+        }
     }
 }
 
