@@ -4,10 +4,12 @@ VERSIONS= \
 	-version=DerelictGL_NV \
 	-version=DerelictGL_ATI
 
-IMPORT_DEST=../import
 DC=dmd
 OF=-of
 DFLAGS=$(VERSIONS) -release -O -inline -lib -I../DerelictUtil 
+
+# Change this if you want the .di files output to a different location.
+IMPORT_DEST=../import
 
 
 HD_AL=-Hd$(IMPORT_DEST)/derelict/openal

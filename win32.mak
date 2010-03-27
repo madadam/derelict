@@ -1,6 +1,4 @@
-DMAKE=make
-RM=del /f /q
-LIB_DIR=lib
+include inc\win32_inc.mak
 
 all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
@@ -129,6 +127,7 @@ DerelictSFMLNetwork :
 DerelictUtil : DerelictUtil_All
 	
 clean :
-	cd $(LIB_DIR)
-	$(RM) *.lib
+	cd DerelictUtil
+	$(RM) $(LIB_DEST)\*.lib
 	cd ..
+	

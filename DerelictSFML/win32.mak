@@ -1,4 +1,5 @@
 include ..\inc\win32_inc.mak
+include ..\inc\compiler_inc.mak
 
 all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 

@@ -1,5 +1,7 @@
+DMAKE=make
 CP=copy /y
 RM=del /f /q
-LIB_DEST=..\lib
+RMR=del /s /f /q
 
-include ..\inc\dmd_inc.mak
+# Change this if you want the libraries output to a different location.
+LIB_DEST=..\lib

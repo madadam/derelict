@@ -1,5 +1,7 @@
+DMAKE=make
 CP=cp -f
-RM=rm -rf
-LIB_DEST=../lib
+RM=rm -f
+RMR=rm -rf
 
-include ../inc/dmd_inc.mak
+# Change this if you want the libraries output to a different location.
+LIB_DEST=../lib

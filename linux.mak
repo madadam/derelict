@@ -1,6 +1,4 @@
-DMAKE=make
-RM=rm -rf
-LIB_DIR=lib
+include inc/linux_inc.mak
 
 all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
@@ -85,4 +83,5 @@ DerelictSFMLNetwork :
 DerelictUtil : DerelictUtil_All
 	
 clean :
-	cd $(LIB_DIR) && $(RM) *.a
+	cd $(LIB_DEST) && $(RM) *.a
+	cd $(IMPORT_DEST) && $(RMR) *.di
