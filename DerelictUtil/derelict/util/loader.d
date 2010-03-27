@@ -68,7 +68,7 @@ public:
 		assert(libNameString !is null);
 		
 		string[] libNames = libNameString.splitStr(",");
-		foreach(inout string l; libNames)
+		foreach(ref string l; libNames)
 		{
 			l = l.stripWhiteSpace();
 		}

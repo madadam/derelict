@@ -83,5 +83,4 @@ DerelictSFMLNetwork :
 DerelictUtil : DerelictUtil_All
 	
 clean :
-	cd $(LIB_DEST) && $(RM) *.a
-	cd $(IMPORT_DEST) && $(RMR) *.di
+	cd DerelictUtil && cd $(LIB_DEST) && $(RM) *.a
