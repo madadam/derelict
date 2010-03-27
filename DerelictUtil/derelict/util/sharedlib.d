@@ -123,7 +123,7 @@ version(Nix)
         if(err is null)
             return "Uknown Error";
 
-        return toDString(err).dup;
+        return toDString(err);
     }
 
 }
