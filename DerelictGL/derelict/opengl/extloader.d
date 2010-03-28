@@ -39,7 +39,6 @@ private
     {
         import derelict.opengl.wgl;
         import derelict.util.wintypes;
-        alias wglGetProcAddress getAddress;
     }
 }
 
@@ -64,6 +63,8 @@ version(DerelictGL_ALL)
     version = DerelictGL_INGR;
     version = DerelictGL_MESA;
     version = DerelictGL_3DFX;
+    version = DerelictGL_OML;
+    version = DerelictGL_S3;
 }
 
 private
@@ -242,6 +243,9 @@ private
             loaded["GL_EXT_texture_compression_s3tc"] = load_GL_EXT_texture_compression_s3tc();
             loaded["GL_EXT_multisample"] = load_GL_EXT_multisample();
             loaded["GL_EXT_texture_env_dot3"] = load_GL_EXT_texture_env_dot3();
+            loaded["GL_EXT_vertex_shader"] = load_GL_EXT_vertex_shader();
+            loaded["GL_EXT_shadow_funcs"] = load_GL_EXT_shadow_funcs();
+            loaded["GL_EXT_stencil_two_side"] = load_GL_EXT_stencil_two_side();
         }
 
         version(DerelictGL_NV)
@@ -258,16 +262,45 @@ private
             loaded["GL_NV_evaluators"] = load_GL_NV_evaluators();
             loaded["GL_NV_packed_depth_stencil"] = load_GL_NV_packed_depth_stencil();
             loaded["GL_NV_register_combiners2"] = load_GL_NV_register_combiners2();
-            loaded["load_GL_NV_texture_compression_vtc"] = load_GL_NV_texture_compression_vtc();
+            loaded["GL_NV_texture_compression_vtc"] = load_GL_NV_texture_compression_vtc();
             loaded["GL_NV_texture_rectangle"] = load_GL_NV_texture_rectangle();
             loaded["GL_NV_texture_shader"] = load_GL_NV_texture_shader();
             loaded["GL_NV_texture_shader2"] = load_GL_NV_texture_shader2();
             loaded["GL_NV_vertex_array_range2"] = load_GL_NV_vertex_array_range2();
+            loaded["GL_NV_vertex_program"] = load_GL_NV_vertex_program();
+            loaded["GL_NV_copy_depth_to_color"] = load_GL_NV_copy_depth_to_color();
+            loaded["GL_NV_multisample_filter_hint"] = load_GL_NV_multisample_filter_hint();
+            loaded["GL_NV_depth_clamp"] = load_GL_NV_depth_clamp();
+            loaded["GL_NV_occlusion_query"] = load_GL_NV_occlusion_query();
+            loaded["GL_NV_point_sprite"] = load_GL_NV_point_sprite();
+            loaded["GL_NV_texture_shader3"] = load_GL_NV_texture_shader3();
+            loaded["GL_NV_vertex_program1_1"] = load_GL_NV_vertex_program1_1();
+            loaded["GL_NV_float_buffer"] = load_GL_NV_float_buffer();
+            loaded["GL_NV_fragment_program"] = load_GL_NV_fragment_program();
+            loaded["GL_NV_half_float"] = load_GL_NV_half_float();
+            loaded["GL_NV_pixel_data_range"] = load_GL_NV_pixel_data_range();
+            loaded["GL_NV_primitive_restart"] = load_GL_NV_primitive_restart();
+            loaded["GL_NV_texture_expand_normal"] = load_GL_NV_texture_expand_normal();
+            loaded["GL_NV_vertex_program2"] = load_GL_NV_vertex_program2();
         }
 
         version(DerelictGL_ATI)
         {
             loaded["GL_ATI_texture_mirror_once"] = load_GL_ATI_texture_mirror_once();
+            loaded["GL_ATI_envmap_bumpmap"] = load_GL_ATI_envmap_bumpmap();
+            loaded["GL_ATI_fragment_shader"] = load_GL_ATI_fragment_shader();
+            loaded["GL_ATI_pn_triangles"] = load_GL_ATI_pn_triangles();
+            loaded["GL_ATI_vertex_array_object"] = load_GL_ATI_vertex_array_object();
+            loaded["GL_ATI_vertex_streams"] = load_GL_ATI_vertex_streams();
+            loaded["GL_ATI_element_array"] = load_GL_ATI_element_array();
+            loaded["GL_ATI_text_fragment_shader"] = load_GL_ATI_text_fragment_shader();
+            loaded["GL_ATI_draw_buffers"] = load_GL_ATI_draw_buffers();
+            loaded["GL_ATI_pixel_format_float"] = load_GL_ATI_pixel_format_float();
+            loaded["GL_ATI_texture_env_combine3"] = load_GL_ATI_texture_env_combine3();
+            loaded["GL_ATI_texture_float"] = load_GL_ATI_texture_float();
+            loaded["GL_ATI_map_object_buffer"] = load_GL_ATI_map_object_buffer();
+            loaded["GL_ATI_separate_stencil"] = load_GL_ATI_separate_stencil();
+            loaded["GL_ATI_vertex_attrib_array_object"] = load_GL_ATI_vertex_attrib_array_object();
         }
 
         version(DerelictGL_SGI)
@@ -324,9 +357,9 @@ private
             loaded["GL_SGIX_fragment_lighting"] = load_GL_SGIX_fragment_lighting();
             loaded["GL_SGIX_blend_alpha_minmax"] = load_GL_SGIX_blend_alpha_minmax();
             loaded["GL_SGIX_impact_pixel_texture"] = load_GL_SGIX_impact_pixel_texture();
-            loader["GL_SGIX_async"] = load_GL_SGIX_async();
-            loader["GL_SGIX_async_pixel"] = load_GL_SGIX_async_pixel();
-            loader["GL_SGIX_async_histogram"] = load_GL_SGIX_async_histogram();
+            loaded["GL_SGIX_async"] = load_GL_SGIX_async();
+            loaded["GL_SGIX_async_pixel"] = load_GL_SGIX_async_pixel();
+            loaded["GL_SGIX_async_histogram"] = load_GL_SGIX_async_histogram();
             loaded["GL_SGIX_fog_scale"] = load_GL_SGIX_fog_scale();
             loaded["GL_SGIX_subsample"] = load_GL_SGIX_subsample();
             loaded["GL_SGIX_ycrcb_subsample"] = load_GL_SGIX_ycrcb_subsample();
@@ -335,6 +368,9 @@ private
             loaded["GL_SGIX_vertex_preclip"] = load_GL_SGIX_vertex_preclip();
             loaded["GL_SGIX_convolution_accuracy"] = load_GL_SGIX_convolution_accuracy();
             loaded["GL_SGIX_resample"] = load_GL_SGIX_resample();
+            loaded["GL_SGIX_texture_coordinate_clamp"] = load_GL_SGIX_texture_coordinate_clamp();
+            loaded["GL_SGIX_scalebias_hint"] = load_GL_SGIX_scalebias_hint();
+
         }
 
         version(DerelictGL_HP)
@@ -380,6 +416,12 @@ private
         {
             loaded["GL_APPLE_specular_vector"] = load_GL_APPLE_specular_vector();
             loaded["GL_APPLE_transform_hint"] = load_GL_APPLE_transform_hint();
+            loaded["GL_APPLE_client_storage"] = load_GL_APPLE_client_storage();
+            loaded["GL_APPLE_element_array"] = load_GL_APPLE_element_array();
+            loaded["GL_APPLE_fence"] = load_GL_APPLE_fence();
+            loaded["GL_APPLE_vertex_array_object"] = load_GL_APPLE_vertex_array_object();
+            loaded["GL_APPLE_vertex_array_range"] = load_GL_APPLE_vertex_array_range();
+            loaded["GL_APPLE_ycbcr_422"] = load_GL_APPLE_ycbcr_422();
         }
 
         version(DerelictGL_SUNX)
@@ -393,6 +435,8 @@ private
             loaded["GL_SUN_triangle_list"] = load_GL_SUN_triangle_list();
             loaded["GL_SUN_vertex"] = load_GL_SUN_vertex();
             loaded["GL_SUN_convolution_border_modes"] = load_GL_SUN_convolution_border_modes();
+            loaded["GL_SUN_mesh_array"] = load_GL_SUN_mesh_array();
+            loaded["GL_SUN_slice_accum"] = load_GL_SUN_slice_accum();
         }
 
         version(DerelictGL_INGR)
@@ -412,6 +456,18 @@ private
             loaded["GL_3DFX_texture_compression_FXT1"] = load_GL_3DFX_texture_compression_FXT1();
             loaded["GL_3DFX_multisample"] = load_GL_3DFX_multisample();
             loaded["GL_3DFX_tbuffer"] = load_GL_3DFX_tbuffer();
+        }
+
+        version(DerelictGL_OML)
+        {
+            loaded["GL_OML_interlace"] = load_GL_OML_interlace();
+            loaded["GL_OML_subsample"] = load_GL_OML_subsample();
+            loaded["GL_OML_resample"] = load_GL_OML_resample();
+        }
+
+        version(DerelictGL_S3)
+        {
+            loaded["GL_S3_s3tc"] = load_GL_S3_s3tc();
         }
     }
 
@@ -442,26 +498,17 @@ private
             loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
             loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
         }
-
-        else
-            assert(false, `"extLoadPlatform"  is not implemented for this operating system.`);
     }
 
     bool bindExtFunc(void** ptr, string funcName)
     {
-        version (Windows)
+        *ptr = loadGLSymbol(funcName);
+        debug
         {
-            *ptr = getAddress(toCString(funcName));
-            debug
-            {
-                if(*ptr is null)
-                    throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
-            }
-            return (*ptr !is null);
+            if(*ptr is null)
+                throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
         }
-
-        else
-            assert(false, `"bindExtFunc"  is not implemented for this operating system.`);
+        return (*ptr !is null);
     }
 
     version(DerelictGL_ARB)
@@ -1982,6 +2029,113 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_EXT_vertex_shader()
+        {
+            if(!extIsSupported("GL_EXT_vertex_shader"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBeginVertexShaderEXT, "glBeginVertexShaderEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEndVertexShaderEXT, "glEndVertexShaderEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindVertexShaderEXT, "glBindVertexShaderEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenVertexShadersEXT, "glGenVertexShadersEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteVertexShaderEXT, "glDeleteVertexShaderEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glShaderOp1EXT, "glShaderOp1EXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glShaderOp2EXT, "glShaderOp2EXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glShaderOp3EXT, "glShaderOp3EXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSwizzleEXT, "glSwizzleEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glWriteMaskEXT, "glWriteMaskEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glInsertComponentEXT, "glInsertComponentEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glExtractComponentEXT, "glExtractComponentEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenSymbolsEXT, "glGenSymbolsEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSetInvariantEXT, "glSetInvariantEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSetLocalConstantEXT, "glSetLocalConstantEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantbvEXT, "glVariantbvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantsvEXT, "glVariantsvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantivEXT, "glVariantivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantfvEXT, "glVariantfvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantdvEXT, "glVariantdvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantubvEXT, "glVariantubvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantusvEXT, "glVariantusvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantuivEXT, "glVariantuivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantPointerEXT, "glVariantPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEnableVariantClientStateEXT, "glEnableVariantClientStateEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDisableVariantClientStateEXT, "glDisableVariantClientStateEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindLightParameterEXT, "glBindLightParameterEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindMaterialParameterEXT, "glBindMaterialParameterEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindTexGenParameterEXT, "glBindTexGenParameterEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindTextureUnitParameterEXT, "glBindTextureUnitParameterEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindParameterEXT, "glBindParameterEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsVariantEnabledEXT, "glIsVariantEnabledEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantBooleanvEXT, "glGetVariantBooleanvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantIntegervEXT, "glGetVariantIntegervEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantFloatvEXT, "glGetVariantFloatvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantPointervEXT, "glGetVariantPointervEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetInvariantBooleanvEXT, "glGetInvariantBooleanvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetInvariantIntegervEXT, "glGetInvariantIntegervEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetInvariantFloatvEXT, "glGetInvariantFloatvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetLocalConstantBooleanvEXT, "glGetLocalConstantBooleanvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetLocalConstantIntegervEXT, "glGetLocalConstantIntegervEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetLocalConstantFloatvEXT, "glGetLocalConstantFloatvEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_shadow_funcs()
+        {
+            if(!extIsSupported("GL_EXT_shadow_funcs"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_stencil_two_side()
+        {
+            if(!extIsSupported("GL_EXT_stencil_two_side"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glActiveStencilFaceEXT, "glActiveStencilFaceEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_NV)
@@ -2168,6 +2322,369 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_NV_vertex_program()
+        {
+            if(!extIsSupported("GL_NV_vertex_program"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glAreProgramsResidentNV, "glAreProgramsResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindProgramNV, "glBindProgramNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteProgramsNV, "glDeleteProgramsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glExecuteProgramNV, "glExecuteProgramNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenProgramsNV, "glGenProgramsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramParameterdvNV, "glGetProgramParameterdvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramParameterfvNV, "glGetProgramParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramivNV, "glGetProgramivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramStringNV, "glGetProgramStringNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTrackMatrixivNV, "glGetTrackMatrixivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribdvNV, "glGetVertexAttribdvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribfvNV, "glGetVertexAttribfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribivNV, "glGetVertexAttribivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribPointervNV, "glGetVertexAttribPointervNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsProgramNV, "glIsProgramNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glLoadProgramNV, "glLoadProgramNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameter4dNV, "glProgramParameter4dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameter4dvNV, "glProgramParameter4dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameter4fNV, "glProgramParameter4fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameter4fvNV, "glProgramParameter4fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameters4dvNV, "glProgramParameters4dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramParameters4fvNV, "glProgramParameters4fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glRequestResidentProgramsNV, "glRequestResidentProgramsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTrackMatrixNV, "glTrackMatrixNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribPointerNV, "glVertexAttribPointerNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1dNV, "glVertexAttrib1dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1dvNV, "glVertexAttrib1dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1fNV, "glVertexAttrib1fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1fvNV, "glVertexAttrib1fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1sNV, "glVertexAttrib1sNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1svNV, "glVertexAttrib1svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2dNV, "glVertexAttrib2dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2dvNV, "glVertexAttrib2dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2fNV, "glVertexAttrib2fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2fvNV, "glVertexAttrib2fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2sNV, "glVertexAttrib2sNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2svNV, "glVertexAttrib2svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3dNV, "glVertexAttrib3dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3dvNV, "glVertexAttrib3dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3fNV, "glVertexAttrib3fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3fvNV, "glVertexAttrib3fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3sNV, "glVertexAttrib3sNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3svNV, "glVertexAttrib3svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4dNV, "glVertexAttrib4dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4dvNV, "glVertexAttrib4dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4fNV, "glVertexAttrib4fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4fvNV, "glVertexAttrib4fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4sNV, "glVertexAttrib4sNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4svNV, "glVertexAttrib4svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4ubNV, "glVertexAttrib4ubNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4ubvNV, "glVertexAttrib4ubvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs1dvNV, "glVertexAttribs1dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs1fvNV, "glVertexAttribs1fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs1svNV, "glVertexAttribs1svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs2dvNV, "glVertexAttribs2dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs2fvNV, "glVertexAttribs2fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs2svNV, "glVertexAttribs2svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs3dvNV, "glVertexAttribs3dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs3fvNV, "glVertexAttribs3fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs3svNV, "glVertexAttribs3svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs4dvNV, "glVertexAttribs4dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs4fvNV, "glVertexAttribs4fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs4svNV, "glVertexAttribs4svNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs4ubvNV, "glVertexAttribs4ubvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_copy_depth_to_color()
+        {
+            if(!extIsSupported("GL_NV_copy_depth_to_color"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_multisample_filter_hint()
+        {
+            if(!extIsSupported("GL_NV_multisample_filter_hint"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_depth_clamp()
+        {
+            if(!extIsSupported("GL_NV_depth_clamp"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_occlusion_query()
+        {
+            if(!extIsSupported("GL_NV_occlusion_query"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGenOcclusionQueriesNV, "glGenOcclusionQueriesNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteOcclusionQueriesNV, "glDeleteOcclusionQueriesNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsOcclusionQueryNV, "glIsOcclusionQueryNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBeginOcclusionQueryNV, "glBeginOcclusionQueryNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEndOcclusionQueryNV, "glEndOcclusionQueryNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetOcclusionQueryivNV, "glGetOcclusionQueryivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetOcclusionQueryuivNV, "glGetOcclusionQueryuivNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_point_sprite()
+        {
+            if(!extIsSupported("GL_NV_point_sprite"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glPointParameteriNV, "glPointParameteriNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glPointParameterivNV, "glPointParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_shader3()
+        {
+            if(!extIsSupported("GL_NV_texture_shader3"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_program1_1()
+        {
+            if(!extIsSupported("GL_NV_vertex_program1_1"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_float_buffer()
+        {
+            if(!extIsSupported("GL_NV_float_buffer"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_fragment_program()
+        {
+            if(!extIsSupported("GL_NV_fragment_program"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glProgramNamedParameter4fNV, "glProgramNamedParameter4fNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramNamedParameter4dNV, "glProgramNamedParameter4dNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramNamedParameter4fvNV, "glProgramNamedParameter4fvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramNamedParameter4dvNV, "glProgramNamedParameter4dvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramNamedParameterfvNV, "glGetProgramNamedParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetProgramNamedParameterdvNV, "glGetProgramNamedParameterdvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_half_float()
+        {
+            if(!extIsSupported("GL_NV_half_float"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertex2hNV, "glVertex2hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertex2hvNV, "glVertex2hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertex3hNV, "glVertex3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertex3hvNV, "glVertex3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertex4hNV, "glVertex4hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertex4hvNV, "glVertex4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormal3hNV, "glNormal3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormal3hvNV, "glNormal3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColor3hNV, "glColor3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColor3hvNV, "glColor3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColor4hNV, "glColor4hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColor4hvNV, "glColor4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord1hNV, "glTexCoord1hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord1hvNV, "glTexCoord1hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord2hNV, "glTexCoord2hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord2hvNV, "glTexCoord2hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord3hNV, "glTexCoord3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord3hvNV, "glTexCoord3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord4hNV, "glTexCoord4hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoord4hvNV, "glTexCoord4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord1hNV, "glMultiTexCoord1hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord1hvNV, "glMultiTexCoord1hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord2hNV, "glMultiTexCoord2hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord2hvNV, "glMultiTexCoord2hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord3hNV, "glMultiTexCoord3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord3hvNV, "glMultiTexCoord3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord4hNV, "glMultiTexCoord4hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiTexCoord4hvNV, "glMultiTexCoord4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordhNV, "glFogCoordhNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordhvNV, "glFogCoordhvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3hNV, "glSecondaryColor3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSecondaryColor3hvNV, "glSecondaryColor3hvNV"))
+                return GLExtensionState.FailedToLoad;
+//            if(!bindExtFunc(cast(void**)&glVertexWeighthNV, "glVertexWeighthNV"))
+//                return GLExtensionState.FailedToLoad;
+//            if(!bindExtFunc(cast(void**)&glVertexWeighthvNV, "glVertexWeighthvNV"))
+//                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1hNV, "glVertexAttrib1hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib1hvNV, "glVertexAttrib1hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2hNV, "glVertexAttrib2hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib2hvNV, "glVertexAttrib2hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3hNV, "glVertexAttrib3hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib3hvNV, "glVertexAttrib3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4hNV, "glVertexAttrib4hNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttrib4hvNV, "glVertexAttrib4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs1hvNV, "glVertexAttribs1hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs2hvNV, "glVertexAttribs2hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs3hvNV, "glVertexAttribs3hvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribs4hvNV, "glVertexAttribs4hvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_pixel_data_range()
+        {
+            if(!extIsSupported("GL_NV_pixel_data_range"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glPixelDataRangeNV, "glPixelDataRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFlushPixelDataRangeNV, "glFlushPixelDataRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_primitive_restart()
+        {
+            if(!extIsSupported("GL_NV_primitive_restart"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glPrimitiveRestartNV, "glPrimitiveRestartNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glPrimitiveRestartIndexNV, "glPrimitiveRestartIndexNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_expand_normal()
+        {
+            if(!extIsSupported("GL_NV_texture_expand_normal"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_program2()
+        {
+            if(!extIsSupported("GL_NV_vertex_program2"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_ATI)
@@ -2176,6 +2693,280 @@ private
         {
             if(!extIsSupported("GL_ATI_texture_mirror_once"))
                 return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_envmap_bumpmap()
+        {
+            if(!extIsSupported("GL_ATI_envmap_bumpmap"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTexBumpParameterivATI, "glTexBumpParameterivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexBumpParameterfvATI, "glTexBumpParameterfvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTexBumpParameterivATI, "glGetTexBumpParameterivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTexBumpParameterfvATI, "glGetTexBumpParameterfvATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_fragment_shader()
+        {
+            if(!extIsSupported("GL_ATI_fragment_shader"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGenFragmentShadersATI, "glGenFragmentShadersATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindFragmentShaderATI, "glBindFragmentShaderATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteFragmentShaderATI, "glDeleteFragmentShaderATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBeginFragmentShaderATI, "glBeginFragmentShaderATI"))
+                return GLExtensionState.FailedToLoad;
+                if(!bindExtFunc(cast(void**)&glEndFragmentShaderATI, "glEndFragmentShaderATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glPassTexCoordATI, "glPassTexCoordATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSampleMapATI, "glSampleMapATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColorFragmentOp1ATI, "glColorFragmentOp1ATI"))
+                return GLExtensionState.FailedToLoad;
+                if(!bindExtFunc(cast(void**)&glColorFragmentOp2ATI, "glColorFragmentOp2ATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColorFragmentOp3ATI, "glColorFragmentOp3ATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glAlphaFragmentOp1ATI, "glAlphaFragmentOp1ATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glAlphaFragmentOp2ATI, "glAlphaFragmentOp2ATI"))
+                return GLExtensionState.FailedToLoad;
+                if(!bindExtFunc(cast(void**)&glAlphaFragmentOp3ATI, "glAlphaFragmentOp3ATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSetFragmentShaderConstantATI, "glSetFragmentShaderConstantATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_pn_triangles()
+        {
+            if(!extIsSupported("GL_ATI_pn_triangles"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glPNTrianglesiATI, "glPNTrianglesiATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glPNTrianglesfATI, "glPNTrianglesfATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_vertex_array_object()
+        {
+            if(!extIsSupported("GL_ATI_vertex_array_object"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glNewObjectBufferATI, "glNewObjectBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsObjectBufferATI, "glIsObjectBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUpdateObjectBufferATI, "glUpdateObjectBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetObjectBufferfvATI, "glGetObjectBufferfvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetObjectBufferivATI, "glGetObjectBufferivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFreeObjectBufferATI, "glFreeObjectBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glArrayObjectATI, "glArrayObjectATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetArrayObjectfvATI, "glGetArrayObjectfvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetArrayObjectivATI, "glGetArrayObjectivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVariantArrayObjectATI, "glVariantArrayObjectATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantArrayObjectfvATI, "glGetVariantArrayObjectfvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVariantArrayObjectivATI, "glGetVariantArrayObjectivATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_vertex_streams()
+        {
+            if(!extIsSupported("GL_ATI_vertex_streams"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertexStream1sATI, "glVertexStream1sATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1svATI, "glVertexStream1svATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1iATI, "glVertexStream1iATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1ivATI, "glVertexStream1ivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1fATI, "glVertexStream1fATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1fvATI, "glVertexStream1fvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1dATI, "glVertexStream1dATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream1dvATI, "glVertexStream1dvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2sATI, "glVertexStream2sATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2svATI, "glVertexStream2svATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2iATI, "glVertexStream2iATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2ivATI, "glVertexStream2ivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2fATI, "glVertexStream2fATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2fvATI, "glVertexStream2fvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2dATI, "glVertexStream2dATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream2dvATI, "glVertexStream2dvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3sATI, "glVertexStream3sATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3svATI, "glVertexStream3svATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3iATI, "glVertexStream3iATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3ivATI, "glVertexStream3ivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3fATI, "glVertexStream3fATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3fvATI, "glVertexStream3fvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3dATI, "glVertexStream3dATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream3dvATI, "glVertexStream3dvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4sATI, "glVertexStream4sATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4svATI, "glVertexStream4svATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4iATI, "glVertexStream4iATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4ivATI, "glVertexStream4ivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4fATI, "glVertexStream4fATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4fvATI, "glVertexStream4fvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4dATI, "glVertexStream4dATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexStream4dvATI, "glVertexStream4dvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3bATI, "glNormalStream3bATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3bvATI, "glNormalStream3bvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3sATI, "glNormalStream3sATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3svATI, "glNormalStream3svATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3iATI, "glNormalStream3iATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3ivATI, "glNormalStream3ivATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3fATI, "glNormalStream3fATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3fvATI, "glNormalStream3fvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3dATI, "glNormalStream3dATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalStream3dvATI, "glNormalStream3dvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glClientActiveVertexStreamATI, "glClientActiveVertexStreamATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexBlendEnviATI, "glVertexBlendEnviATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexBlendEnvfATI, "glVertexBlendEnvfATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_element_array()
+        {
+            if(!extIsSupported("GL_ATI_element_array"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glElementPointerATI, "glElementPointerATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawElementArrayATI, "glDrawElementArrayATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawRangeElementArrayATI, "glDrawRangeElementArrayATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_text_fragment_shader()
+        {
+            if(!extIsSupported("GL_ATI_text_fragment_shader"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_draw_buffers()
+        {
+            if(!extIsSupported("GL_ATI_draw_buffers"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glDrawBuffersATI, "glDrawBuffersATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_pixel_format_float()
+        {
+            if(!extIsSupported("GL_ATI_pixel_format_float"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_texture_env_combine3()
+        {
+            if(!extIsSupported("GL_ATI_texture_env_combine3"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_texture_float()
+        {
+            if(!extIsSupported("GL_ATI_texture_float"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_map_object_buffer()
+        {
+            if(!extIsSupported("GL_ATI_map_object_buffer"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glMapBufferATI, "glMapBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUnmapBufferATI, "glUnmapBufferATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_separate_stencil()
+        {
+            if(!extIsSupported("GL_ATI_separate_stencil"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glStencilOpSeparateATI, "glStencilOpSeparateATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glStencilFuncSeparateATI, "glStencilFuncSeparateATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_vertex_attrib_array_object()
+        {
+            if(!extIsSupported("GL_ATI_vertex_attrib_array_object"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertexAttribArrayObjectATI, "glVertexAttribArrayObjectATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribArrayObjectfvATI, "glGetVertexAttribArrayObjectfvATI"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribArrayObjectivATI, "glGetVertexAttribArrayObjectivATI"))
+                return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
     }
@@ -2727,6 +3518,20 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_SGIX_texture_coordinate_clamp()
+        {
+            if(!extIsSupported("GL_SGIX_texture_coordinate_clamp"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_scalebias_hint()
+        {
+            if(!extIsSupported("GL_SGIX_scalebias_hint"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_HP)
@@ -2909,6 +3714,88 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_APPLE_client_storage()
+        {
+            if(!extIsSupported("GL_APPLE_client_storage"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_element_array()
+        {
+            if(!extIsSupported("GL_APPLE_element_array"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glElementPointerAPPLE, "glElementPointerAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawElementArrayAPPLE, "glDrawElementArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawRangeElementArrayAPPLE, "glDrawRangeElementArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiDrawElementArrayAPPLE, "glMultiDrawElementArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiDrawRangeElementArrayAPPLE, "glMultiDrawRangeElementArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_fence()
+        {
+            if(!extIsSupported("GL_APPLE_fence"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGenFencesAPPLE, "glGenFencesAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteFencesAPPLE, "glDeleteFencesAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSetFenceAPPLE, "glSetFenceAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsFenceAPPLE, "glIsFenceAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTestFenceAPPLE, "glTestFenceAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFinishFenceAPPLE, "glFinishFenceAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTestObjectAPPLE, "glTestObjectAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFinishObjectAPPLE, "glFinishObjectAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_vertex_array_object()
+        {
+            if(!extIsSupported("GL_APPLE_vertex_array_object"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBindVertexArrayAPPLE, "glBindVertexArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteVertexArraysAPPLE, "glDeleteVertexArraysAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenVertexArraysAPPLE, "glGenVertexArraysAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsVertexArrayAPPLE, "glIsVertexArrayAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_vertex_array_range()
+        {
+            if(!extIsSupported("GL_APPLE_vertex_array_range"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertexArrayRangeAPPLE, "glVertexArrayRangeAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFlushVertexArrayRangeAPPLE, "glFlushVertexArrayRangeAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexArrayParameteriAPPLE, "glVertexArrayParameteriAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_ycbcr_422()
+        {
+            if(!extIsSupported("GL_APPLE_ycbcr_422"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_SUNX)
@@ -3062,6 +3949,22 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_SUN_mesh_array()
+        {
+            if(!extIsSupported("GL_SUN_mesh_array"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glDrawMeshArraysSUN, "glDrawMeshArraysSUN"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SUN_slice_accum()
+        {
+            if(!extIsSupported("GL_SUN_slice_accum"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_INGR)
@@ -3168,6 +4071,40 @@ private
                 return GLExtensionState.DriverUnsupported;
             if(!bindExtFunc(cast(void**)&glTbufferMask3DFX, "glTbufferMask3DFX"))
                 return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_OML)
+    {
+        GLExtensionState load_GL_OML_interlace()
+        {
+            if(!extIsSupported("GL_OML_interlace"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_OML_subsample()
+        {
+            if(!extIsSupported("GL_OML_subsample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_OML_resample()
+        {
+            if(!extIsSupported("GL_OML_resample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_S3)
+    {
+        GLExtensionState load_GL_S3_s3tc()
+        {
+            if(!extIsSupported("GL_S3_s3tc"))
+                return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
     }
