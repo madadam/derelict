@@ -58,6 +58,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_SUN;
     version = DerelictGL_INGR;
     version = DerelictGL_MESA;
+    version = DerelictGL_3DFX;
 }
 
 extern(System)
@@ -570,6 +571,10 @@ extern(System)
         void function(GLfloat) glVertexWeightfEXT;
         void function(in GLfloat*) glVertexWeightfvEXT;
         void function(GLsizei, GLenum, GLsizei, in GLvoid*) glVertexWeightPointerEXT;
+
+        // GL_EXT_multisample
+        void function(GLclampf, GLboolean) glSampleMaskEXT;
+        void function(GLenum) glSamplePatternEXT;
     }
 
     version(DerelictGL_NV)
@@ -592,6 +597,29 @@ extern(System)
         void function(GLenum, GLenum, GLenum, GLint*) glGetCombinerOutputParameterivNV;
         void function(GLenum, GLenum, GLfloat*) glGetFinalCombinerInputParameterfvNV;
         void function(GLenum, GLenum, GLint*) glGetFinalCombinerInputParameterivNV;
+
+        // GL_NV_fence
+        void function(GLsizei, in GLuint*) glDeleteFencesNV;
+        void function(GLsizei, GLuint*) glGenFencesNV;
+        GLboolean function(GLuint) glIsFenceNV;
+        GLboolean function(GLuint) glTestFenceNV;
+        void function(GLuint, GLenum, GLint*) glGetFenceivNV;
+        void function(GLuint) glFinishFenceNV;
+        void function(GLuint, GLenum) glSetFenceNV;
+
+        // GL_NV_evaluators
+        void function(GLenum, GLuint, GLenum, GLsizei, GLsizei, GLint, GLint, GLboolean, in GLvoid*) glMapControlPointsNV;
+        void function(GLenum, GLenum, in GLint*) glMapParameterivNV;
+        void function(GLenum, GLenum, in GLfloat*) glMapParameterfvNV;
+        void function(GLenum, GLuint, GLenum, GLsizei, GLsizei, GLboolean, GLvoid*) glGetMapControlPointsNV;
+        void function(GLenum, GLenum, GLint*) glGetMapParameterivNV;
+        void function(GLenum, GLenum, GLfloat*) glGetMapParameterfvNV;
+        void function(GLenum, GLuint, GLenum, GLint*) glGetMapAttribParameterivNV;
+        void function(GLenum, GLuint, GLenum, GLfloat*) glGetMapAttribParameterfvNV;
+
+        // GL_NV_register_combiners2
+        void function(GLenum, GLenum, in GLfloat*) glCombinerStageParameterfvNV;
+        void function(GLenum, GLenum, GLfloat*) glGetCombinerStageParameterfvNV;
     }
 
     version(DerelictGL_ATI)
@@ -647,6 +675,9 @@ extern(System)
         // GL_SGIS_fog_function
         void function(GLsizei, in GLfloat*) glFogFuncSGIS;
         void function(GLfloat*) glGetFogFuncSGIS;
+
+        // GL_SGIS_texture_color_mask
+        void function(GLboolean, GLboolean, GLboolean, GLboolean) glTextureColorMaskSGIS;
     }
 
     version(DerelictGL_SGIX)
@@ -738,6 +769,27 @@ extern(System)
     {
         // GL_PGI_misc_hints
         void function(GLenum, GLint) glHintPGI;
+    }
+
+    version(DerelictGL_IBM)
+    {
+        // GL_IBM_multimode_draw_arrays
+        void function(in GLenum*, in GLint*, in GLsizei*, GLsizei, GLint) glMultiModeDrawArraysIBM;
+        void function(in GLenum*, in GLsizei*, GLenum, in GLvoid**, GLsizei, GLint) glMultiModeDrawElementsIBM;
+
+        // GL_IBM_vertex_array_lists
+        void function(GLint, GLenum, GLint, in GLvoid**, GLint) glColorPointerListIBM;
+        void function(GLint, GLenum, GLint, in GLvoid**, GLint) glSecondaryColorPointerListIBM;
+        void function(GLint, in GLboolean**, GLint) glEdgeFlagPointerListIBM;
+        void function(GLenum, GLint, in GLvoid**, GLint) glFogCoordPointerListIBM;
+        void function(GLenum, GLint, in GLvoid**, GLint) glIndexPointerListIBM;
+        void function(GLenum, GLint, in GLvoid**, GLint) glNormalPointerListIBM;
+        void function(GLint, GLenum, GLint, in GLvoid**, GLint) glTexCoordPointerListIBM;
+        void function(GLint, GLenum, GLint, in GLvoid**, GLint) glVertexPointerListIBM;
+    }
+
+    version(DerelictGL_WIN)
+    {
     }
 
     version(DerelictGL_INTEL)
@@ -861,6 +913,12 @@ extern(System)
         void function(in GLint*) glWindowPos4ivMESA;
         void function(GLshort, GLshort, GLshort, GLshort) glWindowPos4sMESA;
         void function(in GLshort*) glWindowPos4svMESA;
+    }
+
+    version(DerelictGL_3DFX)
+    {
+        // GL_3DFX_tbuffer
+        void function(GLuint) glTbufferMask3DFX;
     }
 
     version(Windows)

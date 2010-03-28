@@ -63,6 +63,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_SUN;
     version = DerelictGL_INGR;
     version = DerelictGL_MESA;
+    version = DerelictGL_3DFX;
 }
 
 private
@@ -237,6 +238,8 @@ private
             loaded["GL_EXT_texture_filter_anisotropic"] = load_GL_EXT_texture_filter_anisotropic();
             loaded["GL_EXT_vertex_weighting"] = load_GL_EXT_vertex_weighting();
             loaded["GL_EXT_texture_compression_s3tc"] = load_GL_EXT_texture_compression_s3tc();
+            loaded["GL_EXT_multisample"] = load_GL_EXT_multisample();
+            loaded["GL_EXT_texture_env_dot3"] = load_GL_EXT_texture_env_dot3();
         }
 
         version(DerelictGL_NV)
@@ -248,10 +251,21 @@ private
             loaded["GL_NV_fog_distance"] = load_GL_NV_fog_distance();
             loaded["GL_NV_texgen_emboss"] = load_GL_NV_texgen_emboss();
             loaded["GL_NV_blend_square"] = load_GL_NV_blend_square();
+            loaded["GL_NV_texture_env_combine4"] = load_GL_NV_texture_env_combine4();
+            loaded["GL_NV_fence"] = load_GL_NV_fence();
+            loaded["GL_NV_evaluators"] = load_GL_NV_evaluators();
+            loaded["GL_NV_packed_depth_stencil"] = load_GL_NV_packed_depth_stencil();
+            loaded["GL_NV_register_combiners2"] = load_GL_NV_register_combiners2();
+            loaded["load_GL_NV_texture_compression_vtc"] = load_GL_NV_texture_compression_vtc();
+            loaded["GL_NV_texture_rectangle"] = load_GL_NV_texture_rectangle();
+            loaded["GL_NV_texture_shader"] = load_GL_NV_texture_shader();
+            loaded["GL_NV_texture_shader2"] = load_GL_NV_texture_shader2();
+            loaded["GL_NV_vertex_array_range2"] = load_GL_NV_vertex_array_range2();
         }
 
         version(DerelictGL_ATI)
         {
+            loaded["GL_ATI_texture_mirror_once"] = load_GL_ATI_texture_mirror_once();
         }
 
         version(DerelictGL_SGI)
@@ -276,6 +290,8 @@ private
             loaded["GL_SGIS_texture_select"] = load_GL_SGIS_texture_select();
             loaded["GL_SGIS_point_parameters"] = load_GL_SGIS_point_parameters();
             loaded["GL_SGIS_fog_function"] = load_GL_SGIS_fog_function();
+            loaded["GL_SGIS_point_line_texgen"] = load_GL_SGIS_point_line_texgen();
+            loaded["GL_SGIS_texture_color_mask"] = load_GL_SGIS_texture_color_mask();
         }
 
         version(DerelictGL_SGIX)
@@ -310,6 +326,13 @@ private
             loader["GL_SGIX_async_pixel"] = load_GL_SGIX_async_pixel();
             loader["GL_SGIX_async_histogram"] = load_GL_SGIX_async_histogram();
             loaded["GL_SGIX_fog_scale"] = load_GL_SGIX_fog_scale();
+            loaded["GL_SGIX_subsample"] = load_GL_SGIX_subsample();
+            loaded["GL_SGIX_ycrcb_subsample"] = load_GL_SGIX_ycrcb_subsample();
+            loaded["GL_SGIX_ycrcba"] = load_GL_SGIX_ycrcba();
+            loaded["GL_SGIX_depth_pass_instrument"] = load_GL_SGIX_depth_pass_instrument();
+            loaded["GL_SGIX_vertex_preclip"] = load_GL_SGIX_vertex_preclip();
+            loaded["GL_SGIX_convolution_accuracy"] = load_GL_SGIX_convolution_accuracy();
+            loaded["GL_SGIX_resample"] = load_GL_SGIX_resample();
         }
 
         version(DerelictGL_HP)
@@ -329,6 +352,10 @@ private
         version(DerelictGL_IBM)
         {
             loaded["GL_IBM_rasterpos_clip"] = load_GL_IBM_rasterpos_clip();
+            loaded["GL_IBM_cull_vertex"] = load_GL_IBM_cull_vertex();
+            loaded["GL_IBM_multimode_draw_arrays"] = load_GL_IBM_multimode_draw_arrays();
+            loaded["GL_IBM_vertex_array_lists"] = load_GL_IBM_vertex_array_lists();
+            loaded["GL_IBM_texture_mirrored_repeat"] = load_GL_IBM_texture_mirrored_repeat();
         }
 
         version(DerelictGL_WIN)
@@ -376,6 +403,13 @@ private
         {
             loaded["GL_MESA_resize_buffers"] = load_GL_MESA_resize_buffers();
             loaded["GL_MESA_window_pos"] = load_GL_MESA_window_pos();
+        }
+
+        version(DerelictGL_3DFX)
+        {
+            loaded["GL_3DFX_texture_compression_FXT1"] = load_GL_3DFX_texture_compression_FXT1();
+            loaded["GL_3DFX_multisample"] = load_GL_3DFX_multisample();
+            loaded["GL_3DFX_tbuffer"] = load_GL_3DFX_tbuffer();
         }
     }
 
@@ -1928,6 +1962,24 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_EXT_multisample()
+        {
+            if(!extIsSupported("GL_EXT_multisample"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glSampleMaskEXT, "glSampleMaskEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSamplePatternEXT, "glSamplePatternEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_env_dot3()
+        {
+            if(!extIsSupported("GL_EXT_texture_env_dot3"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_NV)
@@ -2017,10 +2069,113 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_NV_fence()
+        {
+            if(!extIsSupported("GL_NV_fence"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glDeleteFencesNV, "glDeleteFencesNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenFencesNV, "glGenFencesNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsFenceNV, "glIsFenceNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTestFenceNV, "glTestFenceNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetFenceivNV, "glGetFenceivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFinishFenceNV, "glFinishFenceNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSetFenceNV, "glSetFenceNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_evaluators()
+        {
+            if(!extIsSupported("GL_NV_evaluators"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glMapControlPointsNV, "glMapControlPointsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapParameterivNV, "glMapParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapParameterfvNV, "glMapParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetMapControlPointsNV, "glGetMapControlPointsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetMapParameterivNV, "glGetMapParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetMapParameterfvNV, "glGetMapParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetMapAttribParameterivNV, "glGetMapAttribParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetMapAttribParameterfvNV, "glGetMapAttribParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_packed_depth_stencil()
+        {
+            if(!extIsSupported("GL_NV_packed_depth_stencil"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_register_combiners2()
+        {
+            if(!extIsSupported("GL_NV_register_combiners2"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glCombinerStageParameterfvNV, "glCombinerStageParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetCombinerStageParameterfvNV, "glGetCombinerStageParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_compression_vtc()
+        {
+            if(!extIsSupported("GL_NV_texture_compression_vtc"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_rectangle()
+        {
+            if(!extIsSupported("GL_NV_texture_shader"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_shader()
+        {
+            if(!extIsSupported("GL_NV_texture_shader"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_shader2()
+        {
+            if(!extIsSupported("GL_NV_texture_shader2"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_array_range2()
+        {
+            if(!extIsSupported("GL_NV_vertex_array_range2"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_ATI)
     {
+        GLExtensionState load_GL_ATI_texture_mirror_once()
+        {
+            if(!extIsSupported("GL_ATI_texture_mirror_once"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_SGI)
@@ -2190,6 +2345,22 @@ private
             if(!bindExtFunc(cast(void**)&glFogFuncSGIS, "glFogFuncSGIS"))
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glGetFogFuncSGIS, "glGetFogFuncSGIS"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIS_point_line_texgen()
+        {
+            if(!extIsSupported("GL_SGIS_point_line_texgen"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIS_texture_color_mask()
+        {
+            if(!extIsSupported("GL_SGIS_texture_color_mask"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTextureColorMaskSGIS, "glTextureColorMaskSGIS"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
@@ -2505,6 +2676,55 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_SGIX_subsample()
+        {
+            if(!extIsSupported("GL_SGIX_subsample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_ycrcb_subsample()
+        {
+            if(!extIsSupported("GL_SGIX_ycrcb_subsample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_ycrcba()
+        {
+            if(!extIsSupported("GL_SGIX_ycrcba"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_depth_pass_instrument()
+        {
+            if(!extIsSupported("GL_SGIX_depth_pass_instrument"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_vertex_preclip()
+        {
+            if(!extIsSupported("GL_SGIX_vertex_preclip"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_convolution_accuracy()
+        {
+            if(!extIsSupported("GL_SGIX_convolution_accuracy"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_SGIX_resample()
+        {
+            if(!extIsSupported("GL_SGIX_resample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_HP)
@@ -2574,6 +2794,54 @@ private
         GLExtensionState load_GL_IBM_rasterpos_clip()
         {
             if(!extIsSupported("GL_IBM_rasterpos_clip"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_IBM_cull_vertex()
+        {
+            if(!extIsSupported("GL_IBM_cull_vertex"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_IBM_multimode_draw_arrays()
+        {
+            if(!extIsSupported("GL_IBM_multimode_draw_arrays"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glMultiModeDrawArraysIBM, "glMultiModeDrawArraysIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMultiModeDrawElementsIBM, "glMultiModeDrawElementsIBM"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_IBM_vertex_array_lists()
+        {
+            if(!extIsSupported("GL_IBM_vertex_array_lists"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glColorPointerListIBM, "glColorPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSecondaryColorPointerListIBM, "glSecondaryColorPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEdgeFlagPointerListIBM, "glEdgeFlagPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordPointerListIBM, "glFogCoordPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIndexPointerListIBM, "glIndexPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalPointerListIBM, "glNormalPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoordPointerListIBM, "glTexCoordPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexPointerListIBM, "glVertexPointerListIBM"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_IBM_texture_mirrored_repeat()
+        {
+            if(!extIsSupported("GL_IBM_texture_mirrored_repeat"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
@@ -2871,6 +3139,32 @@ private
             if(!bindExtFunc(cast(void**)&glWindowPos4sMESA, "glWindowPos4sMESA"))
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glWindowPos4svMESA, "glWindowPos4svMESA"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_3DFX)
+    {
+        GLExtensionState load_GL_3DFX_texture_compression_FXT1()
+        {
+            if(!extIsSupported("GL_3DFX_texture_compression_FXT1"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_3DFX_multisample()
+        {
+            if(!extIsSupported("GL_3DFX_multisample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_3DFX_tbuffer()
+        {
+            if(!extIsSupported("GL_3DFX_tbuffer"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTbufferMask3DFX, "glTbufferMask3DFX"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
