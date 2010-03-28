@@ -90,6 +90,7 @@ package
             if(GLExtensionState.Loaded == loaded[key])
                 ret ~= key;
         }
+        ret.sort;
         return ret;
     }
 
@@ -108,6 +109,7 @@ package
                     ret ~= key ~ " (Failed to Load)";
             }
         }
+        ret.sort;
         return ret;
     }
 
@@ -181,7 +183,7 @@ private
             loaded["GL_ARB_instanced_arrays"] = load_GL_ARB_instanced_arrays();
             loaded["GL_ARB_texture_buffer_object"] = load_GL_ARB_texture_buffer_object();
             loaded["GL_ARB_texture_compression_rgtc"] = load_GL_ARB_texture_compression_rgtc();
-            loaded["GL_ARB_teture_rg"] = load_GL_ARB_teture_rg();
+            loaded["GL_ARB_texture_rg"] = load_GL_ARB_texture_rg();
             loaded["GL_ARB_vertex_array_object"] = load_GL_ARB_vertex_array_object();
             loaded["GL_ARB_uniform_buffer_object"] = load_GL_ARB_uniform_buffer_object();
         }
@@ -1319,9 +1321,9 @@ private
             return GLExtensionState.Loaded;
         }
 
-        GLExtensionState load_GL_ARB_teture_rg()
+        GLExtensionState load_GL_ARB_texture_rg()
         {
-            if(!extIsSupported("GL_ARB_teture_rg"))
+            if(!extIsSupported("GL_ARB_texture_rg"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
