@@ -92,6 +92,11 @@ DerelictVorbisEnc :
 	$(DMAKE) DerelictVorbisEnc PLATFORM=win32
 	cd ..
 	
+DerelictVorbisFile :
+	cd DerelictOgg
+	$(DMAKE) DerelictVorbisFile PLATFORM=win32
+	cd ..
+	
 # Individual DerelictSDL targets
 DerelictSDL :
 	cd DerelictSDL
@@ -147,9 +152,17 @@ DerelictSFMLNetwork :
 # There's only one DerelictUtil target
 DerelictUtil : DerelictUtil_All
 	
-clean :
+cleanall : cleanlib cleandi
+
+clean : cleanlib
+
+cleanlib :
 	cd DerelictUtil
 	$(RM) $(LIB_DEST)\*.lib
+	cd ..
+	
+cleandi:
+	cd DerelictUtil
 	$(RMR) $(IMPORT_DEST)\*.di
 	cd ..
 	

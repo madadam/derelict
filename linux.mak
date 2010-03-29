@@ -60,6 +60,9 @@ DerelictVorbis :
 DerelictVorbisEnc :
 	$(DMAKE) -C DerelictOgg DerelictVorbisEnc PLATFORM=linux
 	
+DerelictVorbisFile :
+	$(DMAKE) -C DerelictOgg DerelictVorbisFile PLATFORM=linux	
+	
 # Individual DerelictSDL targets
 DerelictSDL :
 	$(DMAKE) -C DerelictSDL DerelictSDL PLATFORM=linux
@@ -95,8 +98,13 @@ DerelictSFMLNetwork :
 # There's only one DerelictUtil target
 DerelictUtil : DerelictUtil_All
 	
-clean :
-	cd DerelictUtil && cd $(LIB_DEST) && $(RM) *.a
-	cd $(IMPORT_DEST) && $(RMR) *.di
-	cd ..
+cleanall : cleanlib cleandi
+
+clean : cleanlib
+
+cleanlib:
+	cd DerelictUtil && cd $(LIB_DEST) && $(RM) *.a && cd..
+	
+cleandi:
+	cd $(IMPORT_DEST) && $(RMR) *.di && cd..
 	
