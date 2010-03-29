@@ -1,4 +1,4 @@
-include ../inc/linux_inc.mak
+include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
 all : DerelictSDL DerelictSDLImage DerelictSDLMixer DerelictSDLNet DerelictSDLttf
@@ -16,33 +16,33 @@ NET_SRC= derelict/sdl/net.d
 
 TTF_SRC= derelict/sdl/ttf.d
 
-libDerelictSDL.a :
+$(LIB_PRE)DerelictSDL.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(SDL_SRC) $(HD_SDL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictSDLImage.a :
+$(LIB_PRE)DerelictSDLImage.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(IMG_SRC) $(HD_SDL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictSDLMixer.a :
+$(LIB_PRE)DerelictSDLMixer.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(MIX_SRC) $(HD_SDL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictSDLNet.a :
+$(LIB_PRE)DerelictSDLNet.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SDL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictSDLttf.a :
+$(LIB_PRE)DerelictSDLttf.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(TTF_SRC) $(HD_SDL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-DerelictSDL : libDerelictSDL.a
-DerelictSDLImage : libDerelictSDLImage.a
-DerelictSDLMixer : libDerelictSDLMixer.a
-DerelictSDLNet : libDerelictSDLNet.a
-DerelictSDLttf : libDerelictSDLttf.a
+DerelictSDL : $(LIB_PRE)DerelictSDL.$(LIB_EXT)
+DerelictSDLImage : $(LIB_PRE)DerelictSDLImage.$(LIB_EXT)
+DerelictSDLMixer : $(LIB_PRE)DerelictSDLMixer.$(LIB_EXT)
+DerelictSDLNet : $(LIB_PRE)DerelictSDLNet.$(LIB_EXT)
+DerelictSDLttf : $(LIB_PRE)DerelictSDLttf.$(LIB_EXT)

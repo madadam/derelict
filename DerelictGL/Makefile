@@ -1,4 +1,4 @@
-include ../inc/linux_inc.mak
+include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
 all : DerelictGL DerelictGLU
@@ -19,15 +19,15 @@ GLU_SRC= \
     derelict/opengl/glutypes.d
     
 
-libDerelictGL.a :
+$(LIB_PRE)DerelictGL.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(GL_SRC) $(HD_GL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictGLU.a :
+$(LIB_PRE)DerelictGLU.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(GLU_SRC) $(HD_GL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-DerelictGL : libDerelictGL.a
-DerelictGLU : libDerelictGLU.a
+DerelictGL : $(LIB_PRE)DerelictGL.$(LIB_EXT)
+DerelictGLU : $(LIB_PRE)DerelictGLU.$(LIB_EXT)

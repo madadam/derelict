@@ -1,4 +1,4 @@
-include ../inc/linux_inc.mak
+include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
 all : DerelictIL DerelictILU DerelictILUT
@@ -18,21 +18,21 @@ ILUT_SRC= \
     derelict/devil/ilutfuncs.d \
     derelict/devil/iluttypes.d
     
-libDerelictIL.a :
+$(LIB_PRE)DerelictIL.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(IL_SRC) $(HD_IL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictILU.a :
+$(LIB_PRE)DerelictILU.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(ILU_SRC) $(HD_IL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-libDerelictILUT.a :
+$(LIB_PRE)DerelictILUT.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(ILUT_SRC) $(HD_IL) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-DerelictIL : libDerelictIL.a
-DerelictILU : libDerelictILU.a
-DerelictILUT : libDerelictILUT.a
+DerelictIL : $(LIB_PRE)DerelictIL.$(LIB_EXT)
+DerelictILU : $(LIB_PRE)DerelictILU.$(LIB_EXT)
+DerelictILUT : $(LIB_PRE)DerelictILUT.$(LIB_EXT)

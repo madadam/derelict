@@ -1,4 +1,4 @@
-include ../inc/linux_inc.mak
+include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
 all : DerelictFT
@@ -8,10 +8,9 @@ FT_SRC= \
     derelict/freetype/ftfuncs.d \
     derelict/freetype/fttypes.d
 
-libDerelictFT.a :
+$(LIB_PRE)DerelictFT.$(LIB_EXT) :
 	$(DC) $(DFLAGS) $(FT_SRC) $(HD_FT) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
-DerelictFT : libDerelictFT.a
-	
+DerelictFT : $(LIB_PRE)DerelictFT.$(LIB_EXT)	

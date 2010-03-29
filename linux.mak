@@ -1,31 +1,31 @@
 include inc/linux_inc.mak
 
-all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all PLATFORM=linux : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
-	$(DMAKE) -C DerelictAL -f linux.mak all
+	$(DMAKE) -C DerelictAL all PLATFORM=linux
 
 DerelictFT_ALL :
-	$(DMAKE) -C DerelictFT -f linux.mak all
+	$(DMAKE) -C DerelictFT all PLATFORM=linux
 		
 DerelictGL_ALL :
-	$(DMAKE) -C DerelictGL -f linux.mak all
+	$(DMAKE) -C DerelictGL all PLATFORM=linux
 	
 DerelictIL_ALL :
-	$(DMAKE) -C DerelictIL -f linux.mak all
+	$(DMAKE) -C DerelictIL all PLATFORM=linux
 	
 DerelictOgg_ALL :
-	$(DMAKE) -C DerelictOgg -f linux.mak all
+	$(DMAKE) -C DerelictOgg all PLATFORM=linux
 
 DerelictSDL_ALL :
-	$(DMAKE) -C DerelictSDL -f linux.mak all
+	$(DMAKE) -C DerelictSDL all PLATFORM=linux
 
 DerelictSFML_ALL :
-	$(DMAKE) -C DerelictSFML -f linux.mak all
+	$(DMAKE) -C DerelictSFML all PLATFORM=linux
 	
 DerelictUtil_ALL :
-	$(DMAKE) -C DerelictUtil -f linux.mak all
+	$(DMAKE) -C DerelictUtil all PLATFORM=linux
 	
 # There's only one DerelictAL target
 DerelictAL : DerelictAL_ALL
@@ -35,65 +35,68 @@ DerelictFT : DerelictFT_ALL
 	
 # Individual DerelictGL targets
 DerelictGL :
-	$(DMAKE) -C DerelictGL -f linux.mak DerelictGL
+	$(DMAKE) -C DerelictGL DerelictGL PLATFORM=linux
 	
 DerelictGLU :
-	$(DMAKE) -C DerelictGL -f linux.mak DerelictGLU
+	$(DMAKE) -C DerelictGL DerelictGLU PLATFORM=linux
 	
 # Individual DerelictIL targets
 DerelictIL :
-	$(DMAKE) -C DerelictIL -f linux.mak DerelictIL
+	$(DMAKE) -C DerelictIL DerelictIL PLATFORM=linux
 	
 DerelictILU :
-	$(DMAKE) -C DerelictIL -f linux.mak DerelictILU
+	$(DMAKE) -C DerelictIL DerelictILU PLATFORM=linux
 	
 DerelictILUT :
-	$(DMAKE) -C DerelictIL -f linux.mak DerelictILUT
+	$(DMAKE) -C DerelictIL DerelictILUT PLATFORM=linux
 	
 # Individual DerelictOgg targets
 DerelictOgg :
-	$(DMAKE) -C DerelictOgg -f linux.mak DerelictOgg
+	$(DMAKE) -C DerelictOgg DerelictOgg PLATFORM=linux
 	
 DerelictVorbis :
-	$(DMAKE) -C DerelictOgg -f linux.mak DerelictVorbis
+	$(DMAKE) -C DerelictOgg DerelictVorbis PLATFORM=linux
 	
 DerelictVorbisEnc :
-	$(DMAKE) -C DerelictOgg -f linux.mak DerelictVorbisEnc
+	$(DMAKE) -C DerelictOgg DerelictVorbisEnc PLATFORM=linux
 	
 # Individual DerelictSDL targets
 DerelictSDL :
-	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDL
+	$(DMAKE) -C DerelictSDL DerelictSDL PLATFORM=linux
 	
 DerelictSDLImage :
-	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDLImage
+	$(DMAKE) -C DerelictSDL DerelictSDLImage PLATFORM=linux
 
 DerelictSDLMixer :
-	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDLMixer
+	$(DMAKE) -C DerelictSDL DerelictSDLMixer PLATFORM=linux
 
 DerelictSDLNet :
-	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDLNet
+	$(DMAKE) -C DerelictSDL DerelictSDLNet PLATFORM=linux
 	
 DerelictSDLttf :
-	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDLttf
+	$(DMAKE) -C DerelictSDL DerelictSDLttf PLATFORM=linux
 	
 # Individual DerelictSFML targets
 DerelictSFMLWindow :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLWindow
+	$(DMAKE) -C DerelictSFML DerelictSFMLWindow PLATFORM=linux
 	
 DerelictSFMLSystem :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLSystem
+	$(DMAKE) -C DerelictSFML DerelictSFMLSystem PLATFORM=linux
 	
 DerelictSFMLGraphics :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLGraphics
+	$(DMAKE) -C DerelictSFML DerelictSFMLGraphics PLATFORM=linux
 	
 DerelictSFMLAudio :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLAudio
+	$(DMAKE) -C DerelictSFML DerelictSFMLAudio PLATFORM=linux
 	
 DerelictSFMLNetwork :
-	$(DMAKE) -C DerelictSFML -f linux.mak DerelictSFMLNetwork
+	$(DMAKE) -C DerelictSFML DerelictSFMLNetwork PLATFORM=linux
 	
 # There's only one DerelictUtil target
 DerelictUtil : DerelictUtil_All
 	
 clean :
 	cd DerelictUtil && cd $(LIB_DEST) && $(RM) *.a
+	cd $(IMPORT_DEST) && $(RMR) *.di
+	cd ..
+	

@@ -5,42 +5,42 @@ all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_AL
 # Targets for all libs in each package
 DerelictAL_ALL :
 	cd DerelictAL
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 
 DerelictFT_ALL :
 	cd DerelictFT
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 		
 DerelictGL_ALL :
 	cd DerelictGL
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 	
 DerelictIL_ALL :
 	cd DerelictIL
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..	
 	
 DerelictOgg_ALL:
 	cd DerelictOgg
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 
 DerelictSDL_ALL :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 
 DerelictSFML_ALL :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 	
 DerelictUtil_ALL :
 	cd DerelictUtil
-	$(DMAKE) -fwin32.mak all
+	$(DMAKE) all PLATFORM=win32
 	cd ..
 	
 # There's only one DerelictAL target
@@ -52,96 +52,96 @@ DerelictFT : DerelictFT_ALL
 # Individual DerelictGL targets
 DerelictGL :
 	cd DerelictGL
-	$(DMAKE) -fwin32.mak DerelictGL
+	$(DMAKE) DerelictGL PLATFORM=win32
 	cd ..
 	
 DerelictGLU :
 	cd DerelictGL
-	$(DMAKE) -fwin32.mak DerelictGLU
+	$(DMAKE) DerelictGLU PLATFORM=win32
 	cd ..	
 	
 # Individual DerelictIL targets
 DerelictIL :
 	cd DerelictIL
-	$(DMAKE) -fwin32.mak DerelictIL
+	$(DMAKE) DerelictIL PLATFORM=win32
 	cd ..
 	
 DerelictILU :
 	cd DerelictIL
-	$(DMAKE) -fwin32.mak DerelictILU
+	$(DMAKE) DerelictILU PLATFORM=win32
 	cd ..
 	
 DerelictILUT :
 	cd DerelictIL
-	$(DMAKE) -fwin32.mak DerelictILUT
+	$(DMAKE) DerelictILUT PLATFORM=win32
 	cd ..	
 	
 # Individual DerelictOgg targets
 DerelictOgg :
 	cd DerelictOgg
-	$(DMAKE) -fwin32.mak DerelictOgg
+	$(DMAKE) DerelictOgg PLATFORM=win32
 	cd ..
 	
 DerelictVorbis :
 	cd DerelictOgg
-	$(DMAKE) -fwin32.mak DerelictVorbis
+	$(DMAKE) DerelictVorbis PLATFORM=win32
 	cd ..
 	
 DerelictVorbisEnc :
 	cd DerelictOgg
-	$(DMAKE) -fwin32.mak DerelictVorbisEnc
+	$(DMAKE) DerelictVorbisEnc PLATFORM=win32
 	cd ..
 	
 # Individual DerelictSDL targets
 DerelictSDL :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak DerelictSDL
+	$(DMAKE) DerelictSDL PLATFORM=win32
 	cd ..
 	
 DerelictSDLImage :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak DerelictSDLImage
+	$(DMAKE) DerelictSDLImage PLATFORM=win32
 	cd ..
 
 DerelictSDLMixer :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak DerelictSDLMixer
+	$(DMAKE) DerelictSDLMixer PLATFORM=win32
 	cd ..
 
 DerelictSDLNet :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak DerelictSDLNet
+	$(DMAKE) DerelictSDLNet PLATFORM=win32
 	cd ..
 	
 DerelictSDLttf :
 	cd DerelictSDL
-	$(DMAKE) -fwin32.mak DerelictSDLttf
+	$(DMAKE) DerelictSDLttf PLATFORM=win32
 	cd ..
 	
 # Individual DerelictSFML targets
 DerelictSFMLWindow :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFMLWindow
+	$(DMAKE) DerelictSFMLWindow PLATFORM=win32
 	cd ..
 	
 DerelictSFMLSystem :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFMLSystem
+	$(DMAKE) DerelictSFMLSystem PLATFORM=win32
 	cd ..
 	
 DerelictSFMLGraphics :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFMLGraphics
+	$(DMAKE) DerelictSFMLGraphics PLATFORM=win32
 	cd ..
 	
 DerelictSFMLAudio :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFMLAudio
+	$(DMAKE) DerelictSFMLAudio PLATFORM=win32
 	cd ..
 	
 DerelictSFMLNetwork :
 	cd DerelictSFML
-	$(DMAKE) -fwin32.mak DerelictSFMLNetwork
+	$(DMAKE) DerelictSFMLNetwork PLATFORM=win32
 	cd ..
 	
 # There's only one DerelictUtil target
@@ -150,5 +150,6 @@ DerelictUtil : DerelictUtil_All
 clean :
 	cd DerelictUtil
 	$(RM) $(LIB_DEST)\*.lib
+	$(RMR) $(IMPORT_DEST)\*.di
 	cd ..
 	
