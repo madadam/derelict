@@ -25,12 +25,12 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.ogg.vorbiscodec;
+module derelict.ogg.vorbis;
 
 public
 {
-    import derelict.ogg.vctypes;
-    import derelict.ogg.vcfuncs;
+    import derelict.ogg.vtypes;
+    import derelict.ogg.vfuncs;
 }
 
 private
@@ -38,7 +38,7 @@ private
     import derelict.util.loader;
 }
 
-class DerelictVorbisCodecLoader : SharedLibLoader
+class DerelictVorbisLoader : SharedLibLoader
 {
 public:
     this()
@@ -51,7 +51,7 @@ public:
     }
 
 protected:
-    override loadSymbols()
+    override void loadSymbols()
     {
         bindFunc(cast(void**)&vorbis_info_init, "vorbis_info_init");
         bindFunc(cast(void**)&vorbis_info_clear, "vorbis_info_clear");
@@ -95,14 +95,14 @@ protected:
     }
 }
 
-DerelictVorbisCodecLoader DerelictVorbisCodec;
+DerelictVorbisLoader DerelictVorbis;
 
 static this()
 {
-    DerelictVorbisCodec = new DerelictVorbisCodecLoader();
+    DerelictVorbis = new DerelictVorbisLoader();
 }
 
 static ~this()
 {
-    DerelictVorbisCodec.unload();
+    DerelictVorbis.unload();
 }

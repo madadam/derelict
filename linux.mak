@@ -54,6 +54,9 @@ DerelictILUT :
 DerelictOgg :
 	$(DMAKE) -C DerelictOgg -f linux.mak DerelictOgg
 	
+DerelictVorbis :
+	$(DMAKE) -C DerelictOgg -f linux.mak DerelictVorbis
+	
 # Individual DerelictSDL targets
 DerelictSDL :
 	$(DMAKE) -C DerelictSDL -f linux.mak DerelictSDL

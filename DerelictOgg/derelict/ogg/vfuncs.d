@@ -25,13 +25,13 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.ogg.vcfuncs;
+module derelict.ogg.vfuncs;
 
 private
 {
     import derelict.util.compat;
-    import derelict.util.oggtypes;
-    import derelict.util.vctypes;
+    import derelict.ogg.oggtypes;
+    import derelict.ogg.vtypes;
 }
 
 extern(C)

@@ -82,9 +82,9 @@ DerelictOgg :
 	$(DMAKE) -fwin32.mak DerelictOgg
 	cd ..
 	
-DerelictVorbisCodec :
+DerelictVorbis :
 	cd DerelictOgg
-	$(DMAKE) -fwin32.mak DerelictVorbisCodec
+	$(DMAKE) -fwin32.mak DerelictVorbis
 	cd ..
 	
 # Individual DerelictSDL targets
