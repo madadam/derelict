@@ -1,6 +1,8 @@
 include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
+PACKAGE_PATH=derelict/opengl
+
 all : DerelictGL DerelictGLU
 
 GL_SRC= \
@@ -20,12 +22,12 @@ GLU_SRC= \
     
 
 $(LIB_PRE)DerelictGL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GL_SRC) $(HD_GL) $(OF)$@
+	$(DC) $(DFLAGS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictGLU.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GLU_SRC) $(HD_GL) $(OF)$@
+	$(DC) $(DFLAGS) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

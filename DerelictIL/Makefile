@@ -1,6 +1,8 @@
 include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
+PACKAGE_PATH=derelict/il
+
 all : DerelictIL DerelictILU DerelictILUT
 
 IL_SRC= \
@@ -19,17 +21,17 @@ ILUT_SRC= \
     derelict/devil/iluttypes.d
     
 $(LIB_PRE)DerelictIL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(IL_SRC) $(HD_IL) $(OF)$@
+	$(DC) $(DFLAGS) $(IL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictILU.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ILU_SRC) $(HD_IL) $(OF)$@
+	$(DC) $(DFLAGS) $(ILU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictILUT.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ILUT_SRC) $(HD_IL) $(OF)$@
+	$(DC) $(DFLAGS) $(ILUT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

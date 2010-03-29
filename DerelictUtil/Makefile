@@ -1,6 +1,8 @@
 include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
+PACKAGE_PATH=derelict/util
+
 all : DerelictUtil
 
 
@@ -12,7 +14,7 @@ ALL_SRC= \
     derelict/util/xtypes.d
 
 $(LIB_PRE)DerelictUtil.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ALL_SRC) $(HD_UTIL) $(OF)$@
+	$(DC) $(DFLAGS) $(ALL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

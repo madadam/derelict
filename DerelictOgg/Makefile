@@ -1,6 +1,8 @@
 include ..\inc\$(PLATFORM)_inc.mak
 include ..\inc\compiler_inc.mak
 
+PACKAGE_PATH=derelict/ogg
+
 all : DerelictOgg DerelictVorbis DerelictVorbisEnc
 
 OGG_SRC= \
@@ -19,17 +21,17 @@ VE_SRC= \
 	derelict/ogg/vorbisenctypes.d 
     
 $(LIB_PRE)DerelictOgg.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(OGG_SRC) $(HD_OGG) $(OF)$@
+	$(DC) $(DFLAGS) $(OGG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictVorbis.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(V_SRC) $(HD_OGG) $(OF)$@
+	$(DC) $(DFLAGS) $(V_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictVorbisEnc.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(VE_SRC) $(HD_OGG) $(OF)$@
+	$(DC) $(DFLAGS) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

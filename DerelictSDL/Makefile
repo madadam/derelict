@@ -1,6 +1,8 @@
 include ../inc/$(PLATFORM)_inc.mak
 include ../inc/compiler_inc.mak
 
+PACKAGE_PATH=derelict/sdl
+
 all : DerelictSDL DerelictSDLImage DerelictSDLMixer DerelictSDLNet DerelictSDLttf
 
 SDL_SRC= \
@@ -17,27 +19,27 @@ NET_SRC= derelict/sdl/net.d
 TTF_SRC= derelict/sdl/ttf.d
 
 $(LIB_PRE)DerelictSDL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(SDL_SRC) $(HD_SDL) $(OF)$@
+	$(DC) $(DFLAGS) $(SDL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLImage.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(IMG_SRC) $(HD_SDL) $(OF)$@
+	$(DC) $(DFLAGS) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLMixer.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(MIX_SRC) $(HD_SDL) $(OF)$@
+	$(DC) $(DFLAGS) $(MIX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLNet.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(NET_SRC) $(HD_SDL) $(OF)$@
+	$(DC) $(DFLAGS) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLttf.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(TTF_SRC) $(HD_SDL) $(OF)$@
+	$(DC) $(DFLAGS) $(TTF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
