@@ -26,6 +26,7 @@ DerelictIL_ALL :
 DerelictOgg_ALL:
 	cd DerelictOgg
 	$(DMAKE) -fwin32.mak all
+	cd ..
 
 DerelictSDL_ALL :
 	cd DerelictSDL
