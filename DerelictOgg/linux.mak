@@ -1,7 +1,7 @@
 include ..\inc\linux_inc.mak
 include ..\inc\compiler_inc.mak
 
-all : DerelictOgg DerelictVorbis
+all : DerelictOgg DerelictVorbis DerelictVorbisEnc
 
 OGG_SRC= \
 	derelict/ogg/ogg.d \
@@ -11,7 +11,12 @@ OGG_SRC= \
 V_SRC= \
 	derelict/ogg/vorbis.d \
 	derelict/ogg/vorbisfuncs.d \
-	derelict/ogg/vorbistypes.d   
+	derelict/ogg/vorbistypes.d  
+	
+VE_SRC= \
+	derelict/ogg/vorbisenc.d \
+	derelict/ogg/vorbisencfuncs.d \
+	derelict/ogg/vorbisenctypes.d 
     
 DerelictOgg.a :
 	$(DC) $(DFLAGS) $(OGG_SRC) $(HD_OGG) $(OF)$@
@@ -22,6 +27,12 @@ DerelictVorbis.a :
 	$(DC) $(DFLAGS) $(V_SRC) $(HD_OGG) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
+	
+DerelictVorbisEnc.a :
+	$(DC) $(DFLAGS) $(VE_SRC) $(HD_OGG) $(OF)$@
+	$(CP) $@ $(LIB_DEST)
+	$(RM) $@
 
 DerelictOgg : DerelictOgg.a
 DerelictVorbis : DerelictVorbis.a
+DerelictVorbisEnc : DerelictVorbisEnc
