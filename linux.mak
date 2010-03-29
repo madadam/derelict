@@ -1,6 +1,6 @@
 include inc/linux_inc.mak
 
-all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
@@ -14,6 +14,9 @@ DerelictGL_ALL :
 	
 DerelictIL_ALL :
 	$(DMAKE) -C DerelictIL -f linux.mak all
+	
+DerelictOgg_ALL :
+	$(DMAKE) -C DerelictOgg -f linux.mak all
 
 DerelictSDL_ALL :
 	$(DMAKE) -C DerelictSDL -f linux.mak all
@@ -46,6 +49,10 @@ DerelictILU :
 	
 DerelictILUT :
 	$(DMAKE) -C DerelictIL -f linux.mak DerelictILUT
+	
+# Individual DerelictOgg targets
+DerelictOgg :
+	$(DMAKE) -C DerelictOgg -f linux.mak DerelictOgg
 	
 # Individual DerelictSDL targets
 DerelictSDL :

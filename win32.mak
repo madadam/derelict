@@ -1,6 +1,6 @@
 include inc\win32_inc.mak
 
-all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
@@ -22,6 +22,10 @@ DerelictIL_ALL :
 	cd DerelictIL
 	$(DMAKE) -fwin32.mak all
 	cd ..	
+	
+DerelictOgg_ALL:
+	cd DerelictOgg
+	$(DMAKE) -fwin32.mak all
 
 DerelictSDL_ALL :
 	cd DerelictSDL
@@ -70,6 +74,12 @@ DerelictILUT :
 	cd DerelictIL
 	$(DMAKE) -fwin32.mak DerelictILUT
 	cd ..	
+	
+# Individual DerelictOgg targets
+DerelictOgg :
+	cd DerelictOgg
+	$(DMAKE) -fwin32.mak DerelictOgg
+	cd ..
 	
 # Individual DerelictSDL targets
 DerelictSDL :
