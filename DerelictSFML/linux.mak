@@ -4,6 +4,7 @@ include ../inc/compiler_inc.mak
 all : DerelictSFMLWindow DerelictSFMLSystem DerelictSFMLGraphics DerelictSFMLAudio DerelictSFMLNetwork
 
 SYS_SRC= \
+	derelict/sfml/config.d \
 	derelict/sfml/stypes.d \
 	derelict/sfml/sfuncs.d \
 	derelict/sfml/system.d
