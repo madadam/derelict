@@ -29,8 +29,8 @@ module derelict.ogg.vorbis;
 
 public
 {
-    import derelict.ogg.vtypes;
-    import derelict.ogg.vfuncs;
+    import derelict.ogg.vorbistypes;
+    import derelict.ogg.vorbisfuncs;
 }
 
 private

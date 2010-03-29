@@ -10,8 +10,8 @@ OGG_SRC= \
     
 V_SRC= \
 	derelict/ogg/vorbis.d \
-	derelict/ogg/vfuncs.d \
-	derelict/ogg/vtypes.d   
+	derelict/ogg/vorbisfuncs.d \
+	derelict/ogg/vorbistypes.d   
     
 DerelictOgg.a :
 	$(DC) $(DFLAGS) $(OGG_SRC) $(HD_OGG) $(OF)$@
