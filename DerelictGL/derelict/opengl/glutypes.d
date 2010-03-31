@@ -190,7 +190,7 @@ version(D_Version2)
 }
 else
 {
-	const double GLU_TESS_MAX_COORD = 1.0e150;
+    const double GLU_TESS_MAX_COORD = 1.0e150;
 }
 
 struct GLUnurbs {}

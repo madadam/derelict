@@ -35,10 +35,10 @@ here instead.
 */
 enum GLExtensionState
 {
-	Loaded,
-	FailedToLoad,
-	DriverUnsupported,
-	DerelictUnsupported,		
+    Loaded,
+    FailedToLoad,
+    DriverUnsupported,
+    DerelictUnsupported,
 }
 
 alias uint      GLenum;

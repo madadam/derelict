@@ -29,7 +29,7 @@ module derelict.sfml.wtypes;
 
 private
 {
-	import derelict.sfml.config;
+    import derelict.sfml.config;
 }
 
 // Types.h
@@ -41,7 +41,7 @@ struct sfWindow {}
 alias int sfKeyCode;
 enum
 {
-	sfKeyA = 'a',
+    sfKeyA = 'a',
     sfKeyB = 'b',
     sfKeyC = 'c',
     sfKeyD = 'd',
@@ -76,7 +76,7 @@ enum
     sfKeyNum6 = '6',
     sfKeyNum7 = '7',
     sfKeyNum8 = '8',
-    sfKeyNum9 = '9', 
+    sfKeyNum9 = '9',
     sfKeyEscape = 256,
     sfKeyLControl,
     sfKeyLShift,
@@ -90,14 +90,14 @@ enum
     sfKeyLBracket,
     sfKeyRBracket,
     sfKeySemiColon,
-    sfKeyComma, 
+    sfKeyComma,
     sfKeyPeriod,
     sfKeyQuote,
     sfKeySlash,
     sfKeyBackSlash,
     sfKeyTilde,
     sfKeyEqual,
-    sfKeyDash,         
+    sfKeyDash,
     sfKeySpace,
     sfKeyReturn,
     sfKeyBack,
@@ -108,14 +108,14 @@ enum
     sfKeyHome,
     sfKeyInsert,
     sfKeyDelete,
-    sfKeyAdd,          
-    sfKeySubtract,    
-    sfKeyMultiply,   
-    sfKeyDivide,     
-    sfKeyLeft,        
-    sfKeyRight,        
-    sfKeyUp,           
-    sfKeyDown,        
+    sfKeyAdd,
+    sfKeySubtract,
+    sfKeyMultiply,
+    sfKeyDivide,
+    sfKeyLeft,
+    sfKeyRight,
+    sfKeyUp,
+    sfKeyDown,
     sfKeyNumpad0,
     sfKeyNumpad1,
     sfKeyNumpad2,
@@ -149,7 +149,7 @@ enum
 alias int sfMouseButton;
 enum
 {
-	sfButtonLeft,
+    sfButtonLeft,
     sfButtonRight,
     sfButtonMiddle,
     sfButtonX1,
@@ -159,7 +159,7 @@ enum
 alias int sfJoyAxis;
 enum
 {
-	sfJoyAxisX,
+    sfJoyAxisX,
     sfJoyAxisY,
     sfJoyAxisZ,
     sfJoyAxisR,
@@ -171,7 +171,7 @@ enum
 alias int sfEventType;
 enum
 {
-	sfEvtClosed,
+    sfEvtClosed,
     sfEvtResized,
     sfEvtLostFocus,
     sfEvtGainedFocus,
@@ -191,7 +191,7 @@ enum
 
 struct sfKeyEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     sfKeyCode Code;
     sfBool Alt;
     sfBool Control;
@@ -200,20 +200,20 @@ struct sfKeyEvent
 
 struct sfTextEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     sfUint32 Unicode;
 }
 
 struct sfMouseMoveEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     int X;
     int Y;
 }
 
 struct sfMouseButtonEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     sfMouseButton Button;
     int X;
     int Y;
@@ -221,13 +221,13 @@ struct sfMouseButtonEvent
 
 struct sfMouseWheelEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     int Delta;
 }
 
 struct sfJoyMoveEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     uint JoystickId;
     sfJoyAxis Axis;
     float Position;
@@ -235,21 +235,21 @@ struct sfJoyMoveEvent
 
 struct sfJoyButtonEvent
 {
-	sfEventType  Type;
+    sfEventType  Type;
     uint JoystickId;
     uint Button;
 }
 
 struct sfSizeEvent
 {
-	sfEventType  Type;
+    sfEventType  Type;
     uint Width;
     uint Height;
 }
 
 union sfEvent
 {
-	sfEventType Type;
+    sfEventType Type;
     sfKeyEvent Key;
     sfTextEvent Text;
     sfMouseMoveEvent MouseMove;
@@ -263,46 +263,46 @@ union sfEvent
 // VideoMode.h
 struct sfVideoMode
 {
-	uint Width;
-	uint Height;
-	uint BitsPerPixel;
+    uint Width;
+    uint Height;
+    uint BitsPerPixel;
 }
 
 // Window.h
 enum
 {
-	sfNone 		 = 0,
-	sfTitleBar 	 = 1 << 0,
-	sfResize 	 = 1 << 1,
-	sfClose		 = 1 << 2,
-	sfFullscreen = 1 << 3,
+    sfNone       = 0,
+    sfTitleBar   = 1 << 0,
+    sfResize     = 1 << 1,
+    sfClose      = 1 << 2,
+    sfFullscreen = 1 << 3,
 }
 
 struct sfWindowSettings
 {
-	uint DepthBits;
-	uint StencilBits;
-	uint AntialiasingLevel;
+    uint DepthBits;
+    uint StencilBits;
+    uint AntialiasingLevel;
 }
 
 // WindowHandle.h
 version(Windows)
 {
-	alias void* sfWindowHandle;
+    alias void* sfWindowHandle;
 }
 else version(linux)
 {
-	alias uint sfWindowHandle;
+    alias uint sfWindowHandle;
 }
 else version(posix)
 {
-	alias uint sfWindowHandle;
+    alias uint sfWindowHandle;
 }
 else version(OSX)
 {
-	alias void* sfWindowHandle;
+    alias void* sfWindowHandle;
 }
 else version(darwin)
 {
-	alias void* sfWindowHandle;
+    alias void* sfWindowHandle;
 }

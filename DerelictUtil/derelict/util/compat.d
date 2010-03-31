@@ -29,7 +29,7 @@ module derelict.util.compat;
 
 version(D_Version2)
 {
-	mixin("alias const(char)* CCPTR;");
+    mixin("alias const(char)* CCPTR;");
     mixin("alias const(wchar)* CWCPTR;");
     mixin("alias const(dchar)* CDCPTR;");
     mixin("alias const(ubyte)* CUBPTR;");
@@ -71,23 +71,23 @@ else
 
 template gsharedString ()
 {
-	version (D_Version2)
-		const gsharedString = "__gshared: ";
-		
-	else
-		const gsharedString = "";
+    version (D_Version2)
+        const gsharedString = "__gshared: ";
+
+    else
+        const gsharedString = "";
 }
 
 /*string gsharedString()
 {
-	version(D_Version2)
-	{
-		return "__gshared: ";
-	}
-	else
-	{
-		return "";
-	}
+    version(D_Version2)
+    {
+        return "__gshared: ";
+    }
+    else
+    {
+        return "";
+    }
 }*/
 
 CCPTR toCString(string str)

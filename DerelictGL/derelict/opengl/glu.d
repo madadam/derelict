@@ -113,10 +113,10 @@ DerelictGLULoader DerelictGLU;
 
 static this()
 {
-	DerelictGLU = new DerelictGLULoader();
+    DerelictGLU = new DerelictGLULoader();
 }
 
 static ~this()
 {
-	DerelictGLU.unload();
+    DerelictGLU.unload();
 }

@@ -31,7 +31,7 @@ private
 {
     import derelict.util.loader;
     import derelict.util.exception;
-    import derelict.util.compat;    
+    import derelict.util.compat;
     import derelict.sdl.sdl;
 
 }

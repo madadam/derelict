@@ -790,7 +790,7 @@ extern(System)
         void function(in GLhalfNV*) glFogCoordhvNV;
         void function(GLhalfNV, GLhalfNV, GLhalfNV) glSecondaryColor3hNV;
         void function(in GLhalfNV*) glSecondaryColor3hvNV;
-        
+
         // These two funcs seem not to be present in the NVIDIA drivers
 //        void function(GLhalfNV) glVertexWeighthNV;
 //        void function(in GLhalfNV*) glVertexWeighthvNV;

@@ -97,7 +97,7 @@ private:
 }
 
 /**
-* This exception is thrown when a symbol cannot be loaded from a shared library, 
+* This exception is thrown when a symbol cannot be loaded from a shared library,
 * either because it does not exist in the library or because the library is corrupt.
 */
 class SymbolLoadException : DerelictException

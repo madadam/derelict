@@ -42,8 +42,8 @@ private
     version(OSX)
         version = MacOSX;
 
-	version (MacOSX)
-		import derelict.sdl.macinit.SDLMain;
+    version (MacOSX)
+        import derelict.sdl.macinit.SDLMain;
 }
 
 class DerelictSDLLoader : SharedLibLoader

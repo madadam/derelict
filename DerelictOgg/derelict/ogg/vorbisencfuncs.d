@@ -30,7 +30,7 @@ module derelict.ogg.vorbisencfuncs;
 private
 {
     import derelict.util.compat;
-    import derelict.ogg.vorbistypes;	    
+    import derelict.ogg.vorbistypes;
 }
 
 extern(C)

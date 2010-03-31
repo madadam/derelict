@@ -26,94 +26,94 @@ DEALINGS IN THE SOFTWARE.
 
 */
 module derelict.util.loader;
- 
+
 private
 {
-	import derelict.util.sharedlib;
-	import derelict.util.compat;
+    import derelict.util.sharedlib;
+    import derelict.util.compat;
 }
 
 class SharedLibLoader
 {
 public:
-	this(string winLibs, string nixLibs, string macLibs)
-	{
-		version(Windows)
-		{
-			_libNames = winLibs;
-		}
-		else version(OSX)
-		{
-			_libNames = macLibs;
-		}
-		else version(darwin)
-		{
-			_libNames = macLibs;
-		}
-		else
-		{
-			_libNames = nixLibs;
-		}
-		
-		_lib = new SharedLib();
-	}
-	
-	void load()
-	{
-		load(_libNames);
-	}
-	
-	void load(string libNameString)
-	{
-		assert(libNameString !is null);
-		
-		string[] libNames = libNameString.splitStr(",");
-		foreach(ref string l; libNames)
-		{
-			l = l.stripWhiteSpace();
-		}
-		
-		load(libNames);
-	}
-	
-	void load(string[] libNames)
-	{
-		_lib.load(libNames);
-		loadSymbols();
-	}
-	
-	void unload()
-	{
-		_lib.unload();
-	}
-	
-	bool isLoaded()
-	{
-		return _lib.isLoaded;
-	}
-	
+    this(string winLibs, string nixLibs, string macLibs)
+    {
+        version(Windows)
+        {
+            _libNames = winLibs;
+        }
+        else version(OSX)
+        {
+            _libNames = macLibs;
+        }
+        else version(darwin)
+        {
+            _libNames = macLibs;
+        }
+        else
+        {
+            _libNames = nixLibs;
+        }
+
+        _lib = new SharedLib();
+    }
+
+    void load()
+    {
+        load(_libNames);
+    }
+
+    void load(string libNameString)
+    {
+        assert(libNameString !is null);
+
+        string[] libNames = libNameString.splitStr(",");
+        foreach(ref string l; libNames)
+        {
+            l = l.stripWhiteSpace();
+        }
+
+        load(libNames);
+    }
+
+    void load(string[] libNames)
+    {
+        _lib.load(libNames);
+        loadSymbols();
+    }
+
+    void unload()
+    {
+        _lib.unload();
+    }
+
+    bool isLoaded()
+    {
+        return _lib.isLoaded;
+    }
+
 protected:
-	abstract void loadSymbols();
-	
-	void* loadSymbol(string name)
-	{
-		return _lib.loadSymbol(name);
-	}
-	
-	SharedLib lib()
-	{
-		return _lib;
-	}
-	
-	void bindFunc(void** ptr, string funcName, bool doThrow = true)
-	{
-		void* func = lib.loadSymbol(funcName, doThrow);
-		*ptr = func;
-	}
-	
+    abstract void loadSymbols();
+
+    void* loadSymbol(string name)
+    {
+        return _lib.loadSymbol(name);
+    }
+
+    SharedLib lib()
+    {
+        return _lib;
+    }
+
+    void bindFunc(void** ptr, string funcName, bool doThrow = true)
+    {
+        void* func = lib.loadSymbol(funcName, doThrow);
+        *ptr = func;
+    }
+
 private:
-	string _libNames;
-	SharedLib _lib;
+    string _libNames;
+    SharedLib _lib;
 }
 
 /*
@@ -137,5 +137,5 @@ template bindFunc(T) {
         Binder!(T) res;
         res.fptr = cast(void**)&a;
         return res;
-    } 
+    }
 }
