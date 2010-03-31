@@ -61,6 +61,9 @@ version(DerelictGL_ALL)
     version = DerelictGL_3DFX;
     version = DerelictGL_OML;
     version = DerelictGL_S3;
+    version = DerelictGL_OES;
+    version = DerelictGL_GREMEDY;
+    version = DerelictGL_MESAX;
 }
 
 extern(System)
@@ -623,7 +626,52 @@ extern(System)
         void function(GLuint, GLenum, GLfloat*) glGetLocalConstantFloatvEXT;
 
         // GL_EXT_stencil_two_side
-        void function(GLenum) glActiveStencilFaceEXT;
+        void function(GLenum) glActiveStencilFaceEXT;       
+        
+	    // GL_EXT_depth_bounds_test
+	    void function(GLclampd, GLclampd) glDepthBoundsEXT;
+	    
+	    // GL_EXT_blend_equation_separate
+	    void function(GLenum, GLenum) glBlendEquationSeparateEXT;
+	    
+	    // GL_EXT_framebuffer_object
+		GLboolean function(GLuint) glIsRenderbufferEXT;
+		void function(GLenum, GLuint) glBindRenderbufferEXT;
+		void function(GLsizei, in GLuint*) glDeleteRenderbuffersEXT;
+		void function(GLsizei, GLuint*) glGenRenderbuffersEXT;
+		void function(GLenum, GLenum, GLsizei, GLsizei) glRenderbufferStorageEXT;
+		void function(GLenum, GLenum, GLint*) glGetRenderbufferParameterivEXT;
+		GLboolean function(GLuint) glIsFramebufferEXT;
+		void function(GLenum, GLuint) glBindFramebufferEXT;
+		void function(GLsizei, in GLuint*) glDeleteFramebuffersEXT;
+		void function(GLsizei, GLuint*) glGenFramebuffersEXT;
+		GLenum function(GLenum) glCheckFramebufferStatusEXT;
+		void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture1DEXT;
+		void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture2DEXT;
+		void function(GLenum, GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTexture3DEXT;
+		void function(GLenum, GLenum, GLenum, GLuint) glFramebufferRenderbufferEXT;
+		void function(GLenum, GLenum, GLenum, GLint*) glGetFramebufferAttachmentParameterivEXT;
+		void function(GLenum) glGenerateMipmapEXT;	 
+		
+		// GL_EXT_stencil_clear_tag
+		void function(GLsizei, GLuint) glStencilClearTagEXT;   
+		
+		// GL_EXT_framebuffer_blit
+		void function(GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) glBlitFramebufferEXT;
+		
+		// GL_EXT_framebuffer_multisample
+		void function(GLenum, GLsizei, GLenum, GLsizei, GLsizei) glRenderbufferStorageMultisampleEXT;
+		
+		// GL_EXT_timer_query
+		void function(GLuint, GLenum, GLint64EXT*) glGetQueryObjecti64vEXT;
+		void function(GLuint, GLenum, GLuint64EXT*) glGetQueryObjectui64vEXT;
+		
+		// GL_EXT_gpu_program_parameters
+		void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramEnvParameters4fvEXT;
+		void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramLocalParameters4fvEXT;
+		
+		// GL_EXT_geometry_shader4
+		void function(GLuint, GLenum, GLint) glProgramParameteriEXT;
     }
 
     version(DerelictGL_NV)
@@ -816,18 +864,29 @@ extern(System)
         void function() glPrimitiveRestartNV;
         void function(GLuint) glPrimitiveRestartIndexNV;
 
-        // GL_ATI_map_object_buffer
-        GLvoid* function(GLuint) glMapBufferATI;
-        void function(GLuint) glUnmapBufferATI;
-
-        // GL_ATI_separate_stencil
-        void function(GLenum, GLenum, GLenum, GLenum) glStencilOpSeparateATI;
-        void function(GLenum, GLenum, GLint, GLuint) glStencilFuncSeparateATI;
-
-        // GL_ATI_vertex_attrib_array_object
-        void function(GLuint, GLint, GLenum, GLboolean, GLsizei, GLuint, GLuint) glVertexAttribArrayObjectATI;
-        void function(GLuint, GLenum, GLfloat*) glGetVertexAttribArrayObjectfvATI;
-        void function(GLuint, GLenum, GLint*) glGetVertexAttribArrayObjectivATI;
+        // GL_NV_gpu_program4
+		void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramLocalParameterI4iNV;
+		void function(GLenum, GLuint, in GLint*) glProgramLocalParameterI4ivNV;
+		void function(GLenum, GLuint, GLsizei, in GLint*) glProgramLocalParametersI4ivNV;
+		void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramLocalParameterI4uiNV;
+		void function(GLenum, GLuint, in GLuint*) glProgramLocalParameterI4uivNV;
+		void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramLocalParametersI4uivNV;
+		void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramEnvParameterI4iNV;
+		void function(GLenum, GLuint, in GLint*) glProgramEnvParameterI4ivNV;
+		void function(GLenum, GLuint, GLsizei, in GLint*) glProgramEnvParametersI4ivNV;
+		void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramEnvParameterI4uiNV;
+		void function(GLenum, GLuint, in GLuint*) glProgramEnvParameterI4uivNV;
+		void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramEnvParametersI4uivNV;
+		void function(GLenum, GLuint, GLint*) glGetProgramLocalParameterIivNV;
+		void function(GLenum, GLuint, GLuint*) glGetProgramLocalParameterIuivNV;
+		void function(GLenum, GLuint, GLint*) glGetProgramEnvParameterIivNV;
+		void function(GLenum, GLuint, GLuint*) glGetProgramEnvParameterIuivNV;  
+		
+		// GL_NV_geometry_program4
+		void function(GLenum, GLint) glProgramVertexLimitNV;
+		void function(GLenum, GLenum, GLuint, GLint) glFramebufferTextureEXT;
+		void function(GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTextureLayerEXT;
+		void function(GLenum, GLenum, GLuint, GLint, GLenum) glFramebufferTextureFaceEXT;
     }
 
     version(DerelictGL_ATI)
@@ -926,6 +985,19 @@ extern(System)
 
         // GL_ATI_draw_buffers
         void function(GLsizei, in GLenum*) glDrawBuffersATI;
+        
+        // GL_ATI_map_object_buffer
+        GLvoid* function(GLuint) glMapBufferATI;
+        void function(GLuint) glUnmapBufferATI;
+
+        // GL_ATI_separate_stencil
+        void function(GLenum, GLenum, GLenum, GLenum) glStencilOpSeparateATI;
+        void function(GLenum, GLenum, GLint, GLuint) glStencilFuncSeparateATI;
+
+        // GL_ATI_vertex_attrib_array_object
+        void function(GLuint, GLint, GLenum, GLboolean, GLsizei, GLuint, GLuint) glVertexAttribArrayObjectATI;
+        void function(GLuint, GLenum, GLfloat*) glGetVertexAttribArrayObjectfvATI;
+        void function(GLuint, GLenum, GLint*) glGetVertexAttribArrayObjectivATI;
     }
 
     version(DerelictGL_SGI)
@@ -1136,6 +1208,10 @@ extern(System)
         void function(GLsizei, GLvoid*) glVertexArrayRangeAPPLE;
         void function(GLsizei, GLvoid*) glFlushVertexArrayRangeAPPLE;
         void function(GLenum, GLint) glVertexArrayParameteriAPPLE;
+        
+        // GL_APPLE_flush_buffer_range
+        void function(GLenum, GLenum, GLint) glBufferParameteriAPPLE;
+        void function(GLenum, GLintptr, GLsizeiptr) glFlushMappedBufferRangeAPPLE;
     }
 
     version(DerelictGL_SUNX)
@@ -1259,6 +1335,20 @@ extern(System)
 
     version(DerelictGL_S3)
     {
+    }
+    
+    version(DerelictGL_OES)
+    {
+    }
+    
+    version(DerelictGL_GREMEDY)
+    {
+	    // GL_GREMEDY_string_marker
+	    void function(GLsizei, in GLvoid*) glStringMarkerGREMEDY;
+    }
+    
+    version(DerelictGL_MESAX)
+    {	    
     }
 
     version(Windows)

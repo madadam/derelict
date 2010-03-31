@@ -5,6 +5,10 @@ PACKAGE_PATH=derelict/opengl
 
 all : DerelictGL DerelictGLU
 
+# GL_VERSIONS=-version=DerelictGL_ALL
+
+GL_VERSIONS=-version=DerelictGL_ARB -version=DerelictGL_EXT -version=DerelictGL_NV -version=DerelictGL_ATI
+
 GL_SRC= \
     derelict/opengl/extfuncs.d \
     derelict/opengl/extloader.d \
@@ -18,11 +22,10 @@ GL_SRC= \
 GLU_SRC= \
     derelict/opengl/glu.d \
     derelict/opengl/glufuncs.d \
-    derelict/opengl/glutypes.d
-    
+    derelict/opengl/glutypes.d     
 
 $(LIB_PRE)DerelictGL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
