@@ -9,6 +9,7 @@ version(Windows)
 }
 else
 {
+        pragma(lib, "dl");
 	pragma(lib, "lib/libDerelictGL.a");
 	pragma(lib, "lib/libDerelictGLU.a");
 	pragma(lib, "lib/libDerelictSDL.a");

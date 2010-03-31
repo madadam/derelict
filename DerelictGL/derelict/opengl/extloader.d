@@ -40,6 +40,11 @@ private
         import derelict.opengl.wgl;
         import derelict.util.wintypes;
     }
+ 
+    version(linux)
+    {
+        import derelict.opengl.glx;
+    }
 }
 
 version(DerelictGL_ALL)

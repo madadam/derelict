@@ -2,7 +2,7 @@
 LIB_DEST=../lib
 
 # Change this if you want the .di files output to a different location.
-IMPORT_DEST=..\import
+IMPORT_DEST=../import
 
 # You might need to change this in special circumstances, but be aware that it might not work properly.
 DMAKE=make

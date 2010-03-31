@@ -1,6 +1,6 @@
 include inc/linux_inc.mak
 
-all PLATFORM=linux : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
@@ -103,8 +103,8 @@ cleanall : cleanlib cleandi
 clean : cleanlib
 
 cleanlib:
-	cd DerelictUtil && cd $(LIB_DEST) && $(RM) *.a && cd..
+	cd DerelictUtil && $(RM) $(LIB_DEST)/*.a
 	
 cleandi:
-	cd $(IMPORT_DEST) && $(RMR) *.di && cd..
+	cd DerelictUtil  && $(RMR) $(IMPORT_DEST)/derelict
 	

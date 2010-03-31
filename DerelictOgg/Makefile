@@ -1,5 +1,5 @@
-include ..\inc\$(PLATFORM)_inc.mak
-include ..\inc\compiler_inc.mak
+include ../inc/$(PLATFORM)_inc.mak
+include ../inc/compiler_inc.mak
 
 PACKAGE_PATH=derelict/ogg
 
