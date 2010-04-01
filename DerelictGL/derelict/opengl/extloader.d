@@ -253,20 +253,32 @@ private
             loaded["GL_EXT_texture_env_dot3"] = load_GL_EXT_texture_env_dot3();
             loaded["GL_EXT_vertex_shader"] = load_GL_EXT_vertex_shader();
             loaded["GL_EXT_shadow_funcs"] = load_GL_EXT_shadow_funcs();
-            loaded["GL_EXT_stencil_two_side"] = load_GL_EXT_stencil_two_side();            
-	        loaded["GL_EXT_depth_bounds_test"] = load_GL_EXT_depth_bounds_test();
-	        loaded["GL_EXT_texture_mirror_clamp"] = load_GL_EXT_texture_mirror_clamp();
-	        loaded["GL_EXT_blend_equation_separate"] = load_GL_EXT_blend_equation_separate();
-	        loaded["GL_EXT_pixel_buffer_object"] = load_GL_EXT_pixel_buffer_object();
-	        loaded["GL_EXT_framebuffer_object"] = load_GL_EXT_framebuffer_object();
-	        loaded["GL_EXT_packed_depth_stencil"] = load_GL_EXT_packed_depth_stencil();
-	        loaded["GL_EXT_stencil_clear_tag"] = load_GL_EXT_stencil_clear_tag();
-	        loaded["GL_EXT_texture_sRGB"] = load_GL_EXT_texture_sRGB();
-	        loaded["GL_EXT_framebuffer_blit"] = load_GL_EXT_framebuffer_blit();
-	        loaded["GL_EXT_framebuffer_multisample"] = load_GL_EXT_framebuffer_multisample();
-	        loaded["GL_EXT_timer_query"] = load_GL_EXT_timer_query();
-	        loaded["GL_EXT_gpu_program_parameters"] = load_GL_EXT_gpu_program_parameters();
+            loaded["GL_EXT_stencil_two_side"] = load_GL_EXT_stencil_two_side();
+            loaded["GL_EXT_depth_bounds_test"] = load_GL_EXT_depth_bounds_test();
+            loaded["GL_EXT_texture_mirror_clamp"] = load_GL_EXT_texture_mirror_clamp();
+            loaded["GL_EXT_blend_equation_separate"] = load_GL_EXT_blend_equation_separate();
+            loaded["GL_EXT_pixel_buffer_object"] = load_GL_EXT_pixel_buffer_object();
+            loaded["GL_EXT_framebuffer_object"] = load_GL_EXT_framebuffer_object();
+            loaded["GL_EXT_packed_depth_stencil"] = load_GL_EXT_packed_depth_stencil();
+            loaded["GL_EXT_stencil_clear_tag"] = load_GL_EXT_stencil_clear_tag();
+            loaded["GL_EXT_texture_sRGB"] = load_GL_EXT_texture_sRGB();
+            loaded["GL_EXT_framebuffer_blit"] = load_GL_EXT_framebuffer_blit();
+            loaded["GL_EXT_framebuffer_multisample"] = load_GL_EXT_framebuffer_multisample();
+            loaded["GL_EXT_timer_query"] = load_GL_EXT_timer_query();
+            loaded["GL_EXT_gpu_program_parameters"] = load_GL_EXT_gpu_program_parameters();
             loaded["GL_EXT_geometry_shader4"] = load_GL_EXT_geometry_shader4();
+            loaded["GL_EXT_gpu_shader4"] = load_GL_EXT_gpu_shader4();
+            loaded["GL_EXT_draw_instanced"] = load_GL_EXT_draw_instanced();
+            loaded["GL_EXT_packed_float"] = load_GL_EXT_packed_float();
+            loaded["GL_EXT_texture_array"] = load_GL_EXT_texture_array();
+            loaded["GL_EXT_texture_buffer_object"] = load_GL_EXT_texture_buffer_object();
+            loaded["GL_EXT_texture_compression_latc"] = load_GL_EXT_texture_compression_latc();
+            loaded["GL_EXT_texture_compression_rgtc"] = load_GL_EXT_texture_compression_rgtc();
+            loaded["GL_EXT_texture_shared_exponent"] = load_GL_EXT_texture_shared_exponent();
+            loaded["GL_EXT_framebuffer_sRGB"] = load_GL_EXT_framebuffer_sRGB();
+            loaded["GL_EXT_draw_buffers2"] = load_GL_EXT_draw_buffers2();
+            loaded["GL_EXT_bindable_uniform"] = load_GL_EXT_bindable_uniform();
+            loaded["GL_EXT_texture_integer"] = load_GL_EXT_texture_integer();
         }
 
         version(DerelictGL_NV)
@@ -309,6 +321,12 @@ private
             loaded["GL_NV_vertex_program3"] = load_GL_NV_vertex_program3();
             loaded["GL_NV_gpu_program4"] = load_GL_NV_gpu_program4();
             loaded["GL_NV_geometry_program4"] = load_GL_NV_geometry_program4();
+            loaded["GL_NV_vertex_program4"] = load_GL_NV_vertex_program4();
+            loaded["GL_NV_depth_buffer_float"] = load_GL_NV_depth_buffer_float();
+            loaded["GL_NV_fragment_program4"] = load_GL_NV_fragment_program4();
+            loaded["GL_NV_framebuffer_multisample_coverage"] = load_GL_NV_framebuffer_multisample_coverage();
+            loaded["GL_NV_geometry_shader4"] = load_GL_NV_geometry_shader4();
+            loaded["GL_NV_transform_feedback"] = load_GL_NV_transform_feedback();
         }
 
         version(DerelictGL_ATI)
@@ -499,20 +517,21 @@ private
         {
             loaded["GL_S3_s3tc"] = load_GL_S3_s3tc();
         }
-        
+
         version(DerelictGL_OES)
         {
-	        loaded["GL_OES_read_format"] = load_GL_OES_read_format();
+            loaded["GL_OES_read_format"] = load_GL_OES_read_format();
         }
-        
+
         version(DerelictGL_GREMEDY)
         {
-	        loaded["GL_GREMEDY_string_marker"] = load_GL_GREMEDY_string_marker();
+            loaded["GL_GREMEDY_string_marker"] = load_GL_GREMEDY_string_marker();
+            loaded["GL_GREMEDY_frame_terminator"] = load_GL_GREMEDY_frame_terminator();
         }
-        
+
         version(DerelictGL_MESAX)
         {
-	        loaded["GL_MESAX_texture_stack"] = load_GL_MESAX_texture_stack();
+            loaded["GL_MESAX_texture_stack"] = load_GL_MESAX_texture_stack();
         }
     }
 
@@ -2181,7 +2200,7 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_depth_bounds_test()
         {
             if(!extIsSupported("GL_EXT_depth_bounds_test"))
@@ -2190,14 +2209,14 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_texture_mirror_clamp()
         {
             if(!extIsSupported("GL_EXT_texture_mirror_clamp"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_blend_equation_separate()
         {
             if(!extIsSupported("GL_EXT_blend_equation_separate"))
@@ -2206,14 +2225,14 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_pixel_buffer_object()
         {
             if(!extIsSupported("GL_EXT_pixel_buffer_object"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_framebuffer_object()
         {
             if(!extIsSupported("GL_EXT_framebuffer_object"))
@@ -2254,14 +2273,14 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_packed_depth_stencil()
         {
             if(!extIsSupported("GL_EXT_packed_depth_stencil"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_stencil_clear_tag()
         {
             if(!extIsSupported("GL_EXT_stencil_clear_tag"))
@@ -2270,14 +2289,14 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_texture_sRGB()
         {
             if(!extIsSupported("GL_EXT_texture_sRGB"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_framebuffer_blit()
         {
             if(!extIsSupported("GL_EXT_framebuffer_blit"))
@@ -2286,7 +2305,7 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_framebuffer_multisample()
         {
             if(!extIsSupported("GL_EXT_framebuffer_multisample"))
@@ -2295,7 +2314,7 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_timer_query()
         {
             if(!extIsSupported("GL_EXT_timer_query"))
@@ -2306,7 +2325,7 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_gpu_program_parameters()
         {
             if(!extIsSupported("GL_EXT_gpu_program_parameters"))
@@ -2317,12 +2336,154 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_EXT_geometry_shader4()
         {
             if(!extIsSupported("GL_EXT_geometry_shader4"))
                 return GLExtensionState.DriverUnsupported;
             if(!bindExtFunc(cast(void**)&glProgramParameteriEXT, "glProgramParameteriEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_gpu_shader4()
+        {
+            if(!extIsSupported("GL_EXT_gpu_shader4"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGetUniformuivEXT, "glGetUniformuivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindFragDataLocationEXT, "glBindFragDataLocationEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetFragDataLocationEXT, "glGetFragDataLocationEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform1uiEXT, "glUniform1uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform2uiEXT, "glUniform2uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform3uiEXT, "glUniform3uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform4uiEXT, "glUniform4uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform1uivEXT, "glUniform1uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform2uivEXT, "glUniform2uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform3uivEXT, "glUniform3uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniform4uivEXT, "glUniform4uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_draw_instanced()
+        {
+            if(!extIsSupported("GL_EXT_draw_instanced"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glDrawArraysInstancedEXT, "glDrawArraysInstancedEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawElementsInstancedEXT, "glDrawElementsInstancedEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_packed_float()
+        {
+            if(!extIsSupported("GL_EXT_packed_float"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_array()
+        {
+            if(!extIsSupported("GL_EXT_texture_array"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_buffer_object()
+        {
+            if(!extIsSupported("GL_EXT_texture_buffer_object"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTexBufferEXT, "glTexBufferEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_compression_latc()
+        {
+            if(!extIsSupported("GL_EXT_texture_compression_latc"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_compression_rgtc()
+        {
+            if(!extIsSupported("GL_EXT_texture_compression_rgtc"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_shared_exponent()
+        {
+            if(!extIsSupported("GL_EXT_texture_shared_exponent"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_framebuffer_sRGB()
+        {
+            if(!extIsSupported("GL_EXT_framebuffer_sRGB"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_draw_buffers2()
+        {
+            if(!extIsSupported("GL_EXT_draw_buffers2"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glColorMaskIndexedEXT, "glColorMaskIndexedEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetBooleanIndexedvEXT, "glGetBooleanIndexedvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetIntegerIndexedvEXT, "glGetIntegerIndexedvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEnableIndexedEXT, "glEnableIndexedEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDisableIndexedEXT, "glDisableIndexedEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsEnabledIndexedEXT, "glIsEnabledIndexedEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_bindable_uniform()
+        {
+            if(!extIsSupported("GL_EXT_texture_buffer_object"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glUniformBufferEXT, "glUniformBufferEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetUniformBufferSizeEXT, "glGetUniformBufferSizeEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetUniformOffsetEXT, "glGetUniformOffsetEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_integer()
+        {
+            if(!extIsSupported("GL_EXT_texture_integer"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTexParameterIivEXT, "glTexParameterIivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexParameterIuivEXT, "glTexParameterIuivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTexParameterIivEXT, "glGetTexParameterIivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTexParameterIuivEXT, "glGetTexParameterIuivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glClearColorIiEXT, "glClearColorIiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glClearColorIuiEXT, "glClearColorIuiEXT"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
@@ -2882,28 +3043,28 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_NV_fragment_program2()
         {
             if(!extIsSupported("GL_NV_fragment_program2"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_NV_vertex_program2_option()
         {
             if(!extIsSupported("GL_NV_vertex_program2_option"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_NV_vertex_program3()
         {
             if(!extIsSupported("GL_NV_vertex_program3"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_NV_gpu_program4()
         {
             if(!extIsSupported("GL_NV_gpu_program4"))
@@ -2954,6 +3115,124 @@ private
             if(!bindExtFunc(cast(void**)&glFramebufferTextureLayerEXT, "glFramebufferTextureLayerEXT"))
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glFramebufferTextureFaceEXT, "glFramebufferTextureFaceEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_program4()
+        {
+            if(!extIsSupported("GL_NV_vertex_program4"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI1iEXT, "glVertexAttribI1iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI2iEXT, "glVertexAttribI2iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI3iEXT, "glVertexAttribI3iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4iEXT, "glVertexAttribI4iEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI1uiEXT, "glVertexAttribI1uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI2uiEXT, "glVertexAttribI2uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI3uiEXT, "glVertexAttribI3uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4uiEXT, "glVertexAttribI4uiEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI1ivEXT, "glVertexAttribI1ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI2ivEXT, "glVertexAttribI2ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI3ivEXT, "glVertexAttribI3ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4ivEXT, "glVertexAttribI4ivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI1uivEXT, "glVertexAttribI1uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI2uivEXT, "glVertexAttribI2uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI3uivEXT, "glVertexAttribI3uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4uivEXT, "glVertexAttribI4uivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4bvEXT, "glVertexAttribI4bvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4svEXT, "glVertexAttribI4svEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4ubvEXT, "glVertexAttribI4ubvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribI4usvEXT, "glVertexAttribI4usvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribIPointerEXT, "glVertexAttribIPointerEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribIivEXT, "glGetVertexAttribIivEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVertexAttribIuivEXT, "glGetVertexAttribIuivEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_depth_buffer_float()
+        {
+            if(!extIsSupported("GL_NV_depth_buffer_float"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glDepthRangedNV, "glDepthRangedNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glClearDepthdNV, "glClearDepthdNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDepthBoundsdNV, "glDepthBoundsdNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_fragment_program4()
+        {
+            if(!extIsSupported("GL_NV_fragment_program4"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_framebuffer_multisample_coverage()
+        {
+            if(!extIsSupported("GL_NV_framebuffer_multisample_coverage"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glRenderbufferStorageMultisampleCoverageNV, "glRenderbufferStorageMultisampleCoverageNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_geometry_shader4()
+        {
+            if(!extIsSupported("GL_NV_geometry_shader4"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_transform_feedback()
+        {
+            if(!extIsSupported("GL_NV_transform_feedback"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBeginTransformFeedbackNV, "glBeginTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEndTransformFeedbackNV, "glEndTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTransformFeedbackAttribsNV, "glTransformFeedbackAttribsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindBufferRangeNV, "glBindBufferRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindBufferOffsetNV, "glBindBufferOffsetNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindBufferBaseNV, "glBindBufferBaseNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTransformFeedbackVaryingsNV, "glTransformFeedbackVaryingsNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glActiveVaryingNV, "glActiveVaryingNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVaryingLocationNV, "glGetVaryingLocationNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetActiveVaryingNV, "glGetActiveVaryingNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTransformFeedbackVaryingNV, "glGetTransformFeedbackVaryingNV"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
@@ -4067,7 +4346,7 @@ private
             if(!extIsSupported("GL_APPLE_ycbcr_422"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
-        }     
+        }
 
         GLExtensionState load_GL_APPLE_flush_buffer_range()
         {
@@ -4332,14 +4611,14 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_MESA_pack_invert()
         {
             if(!extIsSupported("GL_MESA_pack_invert"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_GL_MESA_ycbcr_texture()
         {
             if(!extIsSupported("GL_MESA_ycbcr_texture"))
@@ -4407,20 +4686,20 @@ private
             return GLExtensionState.Loaded;
         }
     }
-    
+
     version(DerelictGL_OES)
     {
-	    GLExtensionState load_GL_OES_read_format()
+        GLExtensionState load_GL_OES_read_format()
         {
             if(!extIsSupported("GL_OES_read_format"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
     }
-    
+
     version(DerelictGL_GREMEDY)
     {
-	    GLExtensionState load_GL_GREMEDY_string_marker()
+        GLExtensionState load_GL_GREMEDY_string_marker()
         {
             if(!extIsSupported("GL_GREMEDY_string_marker"))
                 return GLExtensionState.DriverUnsupported;
@@ -4428,11 +4707,20 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_GREMEDY_frame_terminator()
+        {
+            if(!extIsSupported("GL_GREMEDY_frame_terminator"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glFrameTerminatorGREMEDY, "glFrameTerminatorGREMEDY"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
     }
-    
+
     version(DerelictGL_MESAX)
     {
-	    GLExtensionState load_GL_MESAX_texture_stack()
+        GLExtensionState load_GL_MESAX_texture_stack()
         {
             if(!extIsSupported("GL_MESAX_texture_stack"))
                 return GLExtensionState.DriverUnsupported;

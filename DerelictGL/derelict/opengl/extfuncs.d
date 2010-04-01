@@ -626,52 +626,93 @@ extern(System)
         void function(GLuint, GLenum, GLfloat*) glGetLocalConstantFloatvEXT;
 
         // GL_EXT_stencil_two_side
-        void function(GLenum) glActiveStencilFaceEXT;       
-        
-	    // GL_EXT_depth_bounds_test
-	    void function(GLclampd, GLclampd) glDepthBoundsEXT;
-	    
-	    // GL_EXT_blend_equation_separate
-	    void function(GLenum, GLenum) glBlendEquationSeparateEXT;
-	    
-	    // GL_EXT_framebuffer_object
-		GLboolean function(GLuint) glIsRenderbufferEXT;
-		void function(GLenum, GLuint) glBindRenderbufferEXT;
-		void function(GLsizei, in GLuint*) glDeleteRenderbuffersEXT;
-		void function(GLsizei, GLuint*) glGenRenderbuffersEXT;
-		void function(GLenum, GLenum, GLsizei, GLsizei) glRenderbufferStorageEXT;
-		void function(GLenum, GLenum, GLint*) glGetRenderbufferParameterivEXT;
-		GLboolean function(GLuint) glIsFramebufferEXT;
-		void function(GLenum, GLuint) glBindFramebufferEXT;
-		void function(GLsizei, in GLuint*) glDeleteFramebuffersEXT;
-		void function(GLsizei, GLuint*) glGenFramebuffersEXT;
-		GLenum function(GLenum) glCheckFramebufferStatusEXT;
-		void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture1DEXT;
-		void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture2DEXT;
-		void function(GLenum, GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTexture3DEXT;
-		void function(GLenum, GLenum, GLenum, GLuint) glFramebufferRenderbufferEXT;
-		void function(GLenum, GLenum, GLenum, GLint*) glGetFramebufferAttachmentParameterivEXT;
-		void function(GLenum) glGenerateMipmapEXT;	 
-		
-		// GL_EXT_stencil_clear_tag
-		void function(GLsizei, GLuint) glStencilClearTagEXT;   
-		
-		// GL_EXT_framebuffer_blit
-		void function(GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) glBlitFramebufferEXT;
-		
-		// GL_EXT_framebuffer_multisample
-		void function(GLenum, GLsizei, GLenum, GLsizei, GLsizei) glRenderbufferStorageMultisampleEXT;
-		
-		// GL_EXT_timer_query
-		void function(GLuint, GLenum, GLint64EXT*) glGetQueryObjecti64vEXT;
-		void function(GLuint, GLenum, GLuint64EXT*) glGetQueryObjectui64vEXT;
-		
-		// GL_EXT_gpu_program_parameters
-		void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramEnvParameters4fvEXT;
-		void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramLocalParameters4fvEXT;
-		
-		// GL_EXT_geometry_shader4
-		void function(GLuint, GLenum, GLint) glProgramParameteriEXT;
+        void function(GLenum) glActiveStencilFaceEXT;
+
+        // GL_EXT_depth_bounds_test
+        void function(GLclampd, GLclampd) glDepthBoundsEXT;
+
+        // GL_EXT_blend_equation_separate
+        void function(GLenum, GLenum) glBlendEquationSeparateEXT;
+
+        // GL_EXT_framebuffer_object
+        GLboolean function(GLuint) glIsRenderbufferEXT;
+        void function(GLenum, GLuint) glBindRenderbufferEXT;
+        void function(GLsizei, in GLuint*) glDeleteRenderbuffersEXT;
+        void function(GLsizei, GLuint*) glGenRenderbuffersEXT;
+        void function(GLenum, GLenum, GLsizei, GLsizei) glRenderbufferStorageEXT;
+        void function(GLenum, GLenum, GLint*) glGetRenderbufferParameterivEXT;
+        GLboolean function(GLuint) glIsFramebufferEXT;
+        void function(GLenum, GLuint) glBindFramebufferEXT;
+        void function(GLsizei, in GLuint*) glDeleteFramebuffersEXT;
+        void function(GLsizei, GLuint*) glGenFramebuffersEXT;
+        GLenum function(GLenum) glCheckFramebufferStatusEXT;
+        void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture1DEXT;
+        void function(GLenum, GLenum, GLenum, GLuint, GLint) glFramebufferTexture2DEXT;
+        void function(GLenum, GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTexture3DEXT;
+        void function(GLenum, GLenum, GLenum, GLuint) glFramebufferRenderbufferEXT;
+        void function(GLenum, GLenum, GLenum, GLint*) glGetFramebufferAttachmentParameterivEXT;
+        void function(GLenum) glGenerateMipmapEXT;
+
+        // GL_EXT_stencil_clear_tag
+        void function(GLsizei, GLuint) glStencilClearTagEXT;
+
+        // GL_EXT_framebuffer_blit
+        void function(GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) glBlitFramebufferEXT;
+
+        // GL_EXT_framebuffer_multisample
+        void function(GLenum, GLsizei, GLenum, GLsizei, GLsizei) glRenderbufferStorageMultisampleEXT;
+
+        // GL_EXT_timer_query
+        void function(GLuint, GLenum, GLint64EXT*) glGetQueryObjecti64vEXT;
+        void function(GLuint, GLenum, GLuint64EXT*) glGetQueryObjectui64vEXT;
+
+        // GL_EXT_gpu_program_parameters
+        void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramEnvParameters4fvEXT;
+        void function(GLenum, GLuint, GLsizei, in GLfloat*) glProgramLocalParameters4fvEXT;
+
+        // GL_EXT_geometry_shader4
+        void function(GLuint, GLenum, GLint) glProgramParameteriEXT;
+
+        // GL_EXT_gpu_shader4
+        void function(GLuint, GLint, GLuint*) glGetUniformuivEXT;
+        void function(GLuint, GLuint, in GLchar*) glBindFragDataLocationEXT;
+        GLint function(GLuint, in GLchar*) glGetFragDataLocationEXT;
+        void function(GLint, GLuint) glUniform1uiEXT;
+        void function(GLint, GLuint, GLuint) glUniform2uiEXT;
+        void function(GLint, GLuint, GLuint, GLuint) glUniform3uiEXT;
+        void function(GLint, GLuint, GLuint, GLuint, GLuint) glUniform4uiEXT;
+        void function(GLint, GLsizei, in GLuint*) glUniform1uivEXT;
+        void function(GLint, GLsizei, in GLuint*) glUniform2uivEXT;
+        void function(GLint, GLsizei, in GLuint*) glUniform3uivEXT;
+        void function(GLint, GLsizei, in GLuint*) glUniform4uivEXT;
+
+        // GL_EXT_draw_instanced
+        void function(GLenum, GLint, GLsizei, GLsizei) glDrawArraysInstancedEXT;
+        void function(GLenum, GLsizei, GLenum, in GLvoid*, GLsizei) glDrawElementsInstancedEXT;
+
+        // GL_EXT_texture_buffer_object
+        void function(GLenum, GLenum, GLuint) glTexBufferEXT;
+
+        // GL_EXT_draw_buffers2
+        void function(GLuint, GLboolean, GLboolean, GLboolean, GLboolean) glColorMaskIndexedEXT;
+        void function(GLenum, GLuint, GLboolean*) glGetBooleanIndexedvEXT;
+        void function(GLenum, GLuint, GLint*) glGetIntegerIndexedvEXT;
+        void function(GLenum, GLuint) glEnableIndexedEXT;
+        void function(GLenum, GLuint) glDisableIndexedEXT;
+        GLboolean function(GLenum, GLuint) glIsEnabledIndexedEXT;
+
+        // GL_EXT_bindable_uniform
+        void function(GLuint, GLint, GLuint) glUniformBufferEXT;
+        void function(GLuint, GLint) glGetUniformBufferSizeEXT;
+        void function(GLuint, GLint) glGetUniformOffsetEXT;
+
+        // GL_EXT_texture_integer
+        void function(GLenum, GLenum, in GLint*) glTexParameterIivEXT;
+        void function(GLenum, GLenum, in GLuint*) glTexParameterIuivEXT;
+        void function(GLenum, GLenum, GLint*) glGetTexParameterIivEXT;
+        void function(GLenum, GLenum, GLuint*) glGetTexParameterIuivEXT;
+        void function(GLint, GLint, GLint, GLint) glClearColorIiEXT;
+        void function(GLuint, GLuint, GLuint, GLuint) glClearColorIuiEXT;
     }
 
     version(DerelictGL_NV)
@@ -865,28 +906,74 @@ extern(System)
         void function(GLuint) glPrimitiveRestartIndexNV;
 
         // GL_NV_gpu_program4
-		void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramLocalParameterI4iNV;
-		void function(GLenum, GLuint, in GLint*) glProgramLocalParameterI4ivNV;
-		void function(GLenum, GLuint, GLsizei, in GLint*) glProgramLocalParametersI4ivNV;
-		void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramLocalParameterI4uiNV;
-		void function(GLenum, GLuint, in GLuint*) glProgramLocalParameterI4uivNV;
-		void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramLocalParametersI4uivNV;
-		void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramEnvParameterI4iNV;
-		void function(GLenum, GLuint, in GLint*) glProgramEnvParameterI4ivNV;
-		void function(GLenum, GLuint, GLsizei, in GLint*) glProgramEnvParametersI4ivNV;
-		void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramEnvParameterI4uiNV;
-		void function(GLenum, GLuint, in GLuint*) glProgramEnvParameterI4uivNV;
-		void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramEnvParametersI4uivNV;
-		void function(GLenum, GLuint, GLint*) glGetProgramLocalParameterIivNV;
-		void function(GLenum, GLuint, GLuint*) glGetProgramLocalParameterIuivNV;
-		void function(GLenum, GLuint, GLint*) glGetProgramEnvParameterIivNV;
-		void function(GLenum, GLuint, GLuint*) glGetProgramEnvParameterIuivNV;  
-		
-		// GL_NV_geometry_program4
-		void function(GLenum, GLint) glProgramVertexLimitNV;
-		void function(GLenum, GLenum, GLuint, GLint) glFramebufferTextureEXT;
-		void function(GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTextureLayerEXT;
-		void function(GLenum, GLenum, GLuint, GLint, GLenum) glFramebufferTextureFaceEXT;
+        void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramLocalParameterI4iNV;
+        void function(GLenum, GLuint, in GLint*) glProgramLocalParameterI4ivNV;
+        void function(GLenum, GLuint, GLsizei, in GLint*) glProgramLocalParametersI4ivNV;
+        void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramLocalParameterI4uiNV;
+        void function(GLenum, GLuint, in GLuint*) glProgramLocalParameterI4uivNV;
+        void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramLocalParametersI4uivNV;
+        void function(GLenum, GLuint, GLint, GLint, GLint, GLint) glProgramEnvParameterI4iNV;
+        void function(GLenum, GLuint, in GLint*) glProgramEnvParameterI4ivNV;
+        void function(GLenum, GLuint, GLsizei, in GLint*) glProgramEnvParametersI4ivNV;
+        void function(GLenum, GLuint, GLuint, GLuint, GLuint, GLuint) glProgramEnvParameterI4uiNV;
+        void function(GLenum, GLuint, in GLuint*) glProgramEnvParameterI4uivNV;
+        void function(GLenum, GLuint, GLsizei, in GLuint*) glProgramEnvParametersI4uivNV;
+        void function(GLenum, GLuint, GLint*) glGetProgramLocalParameterIivNV;
+        void function(GLenum, GLuint, GLuint*) glGetProgramLocalParameterIuivNV;
+        void function(GLenum, GLuint, GLint*) glGetProgramEnvParameterIivNV;
+        void function(GLenum, GLuint, GLuint*) glGetProgramEnvParameterIuivNV;
+
+        // GL_NV_geometry_program4
+        void function(GLenum, GLint) glProgramVertexLimitNV;
+        void function(GLenum, GLenum, GLuint, GLint) glFramebufferTextureEXT;
+        void function(GLenum, GLenum, GLuint, GLint, GLint) glFramebufferTextureLayerEXT;
+        void function(GLenum, GLenum, GLuint, GLint, GLenum) glFramebufferTextureFaceEXT;
+
+        // GL_NV_vertex_program4
+        void function(GLuint, GLint) glVertexAttribI1iEXT;
+        void function(GLuint, GLint, GLint) glVertexAttribI2iEXT;
+        void function(GLuint, GLint, GLint, GLint) glVertexAttribI3iEXT;
+        void function(GLuint, GLint, GLint, GLint, GLint) glVertexAttribI4iEXT;
+        void function(GLuint, GLuint) glVertexAttribI1uiEXT;
+        void function(GLuint, GLuint, GLuint) glVertexAttribI2uiEXT;
+        void function(GLuint, GLuint, GLuint, GLuint) glVertexAttribI3uiEXT;
+        void function(GLuint, GLuint, GLuint, GLuint, GLuint) glVertexAttribI4uiEXT;
+        void function(GLuint, in GLint*) glVertexAttribI1ivEXT;
+        void function(GLuint, in GLint*) glVertexAttribI2ivEXT;
+        void function(GLuint, in GLint*) glVertexAttribI3ivEXT;
+        void function(GLuint, in GLint*) glVertexAttribI4ivEXT;
+        void function(GLuint, in GLuint*) glVertexAttribI1uivEXT;
+        void function(GLuint, in GLuint*) glVertexAttribI2uivEXT;
+        void function(GLuint, in GLuint*) glVertexAttribI3uivEXT;
+        void function(GLuint, in GLuint*) glVertexAttribI4uivEXT;
+        void function(GLuint, in GLbyte*) glVertexAttribI4bvEXT;
+        void function(GLuint, in GLshort*) glVertexAttribI4svEXT;
+        void function(GLuint, in GLubyte*) glVertexAttribI4ubvEXT;
+        void function(GLuint, in GLushort*) glVertexAttribI4usvEXT;
+        void function(GLuint, GLint, GLenum, GLsizei, in GLvoid*) glVertexAttribIPointerEXT;
+        void function(GLuint, GLenum, GLint*) glGetVertexAttribIivEXT;
+        void function(GLuint, GLenum, GLuint*) glGetVertexAttribIuivEXT;
+
+        // GL_NV_depth_buffer_float
+        void function(GLdouble, GLdouble) glDepthRangedNV;
+        void function(GLdouble) glClearDepthdNV;
+        void function(GLdouble, GLdouble) glDepthBoundsdNV;
+
+        // GL_NV_framebuffer_multisample_coverage
+        void function(GLenum, GLsizei, GLsizei, GLenum, GLsizei, GLsizei) glRenderbufferStorageMultisampleCoverageNV;
+
+        // GL_NV_transform_feedback
+        void function(GLenum) glBeginTransformFeedbackNV;
+        void function() glEndTransformFeedbackNV;
+        void function(GLuint, in GLint*, GLenum) glTransformFeedbackAttribsNV;
+        void function(GLenum, GLuint, GLuint, GLintptr, GLsizeiptr) glBindBufferRangeNV;
+        void function(GLenum, GLuint, GLuint, GLintptr) glBindBufferOffsetNV;
+        void function(GLenum, GLuint, GLuint) glBindBufferBaseNV;
+        void function(GLuint, GLsizei, in GLchar**, GLenum) glTransformFeedbackVaryingsNV;
+        void function(GLuint, in GLchar*) glActiveVaryingNV;
+        GLint function(GLuint, in GLchar*) glGetVaryingLocationNV;
+        void function(GLuint, GLuint, GLsizei, GLsizei*, GLsizei*, GLenum*, GLchar*) glGetActiveVaryingNV;
+        void function(GLuint, GLuint, GLint*) glGetTransformFeedbackVaryingNV;
     }
 
     version(DerelictGL_ATI)
@@ -985,7 +1072,7 @@ extern(System)
 
         // GL_ATI_draw_buffers
         void function(GLsizei, in GLenum*) glDrawBuffersATI;
-        
+
         // GL_ATI_map_object_buffer
         GLvoid* function(GLuint) glMapBufferATI;
         void function(GLuint) glUnmapBufferATI;
@@ -1208,7 +1295,7 @@ extern(System)
         void function(GLsizei, GLvoid*) glVertexArrayRangeAPPLE;
         void function(GLsizei, GLvoid*) glFlushVertexArrayRangeAPPLE;
         void function(GLenum, GLint) glVertexArrayParameteriAPPLE;
-        
+
         // GL_APPLE_flush_buffer_range
         void function(GLenum, GLenum, GLint) glBufferParameteriAPPLE;
         void function(GLenum, GLintptr, GLsizeiptr) glFlushMappedBufferRangeAPPLE;
@@ -1336,19 +1423,22 @@ extern(System)
     version(DerelictGL_S3)
     {
     }
-    
+
     version(DerelictGL_OES)
     {
     }
-    
+
     version(DerelictGL_GREMEDY)
     {
-	    // GL_GREMEDY_string_marker
-	    void function(GLsizei, in GLvoid*) glStringMarkerGREMEDY;
+        // GL_GREMEDY_string_marker
+        void function(GLsizei, in GLvoid*) glStringMarkerGREMEDY;
+
+        // GL_GREMEDY_frame_terminator
+        void function() glFrameTerminatorGREMEDY;
     }
-    
+
     version(DerelictGL_MESAX)
-    {	    
+    {
     }
 
     version(Windows)

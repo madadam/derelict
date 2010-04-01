@@ -784,10 +784,10 @@ version(DerelictGL_ARB)
 
 version(DerelictGL_EXT)
 {
-	// from GL_EXT_timer_query
-	alias long GLint64EXT;
-	alias ulong GLuint64EXT;
-	
+    // from GL_EXT_timer_query
+    alias long GLint64EXT;
+    alias ulong GLuint64EXT;
+
     enum : GLenum
     {
         // GL_EXT_abgr
@@ -1311,129 +1311,256 @@ version(DerelictGL_EXT)
         // GL_EXT_stencil_two_side
         GL_STENCIL_TEST_TWO_SIDE_EXT        = 0x8910,
         GL_ACTIVE_STENCIL_FACE_EXT          = 0x8911,
-		
-		// GL_EXT_depth_bounds_test
-		GL_DEPTH_BOUNDS_TEST_EXT          	= 0x8890,
-		GL_DEPTH_BOUNDS_EXT               	= 0x8891,
-		
-		// GL_EXT_texture_mirror_clamp
-		GL_MIRROR_CLAMP_EXT               	= 0x8742,
-		GL_MIRROR_CLAMP_TO_EDGE_EXT       	= 0x8743,
-		GL_MIRROR_CLAMP_TO_BORDER_EXT     	= 0x8912,	
-		
-		// GL_EXT_blend_equation_separate
-		GL_BLEND_EQUATION_RGB_EXT         	= 0x8009,
-		GL_BLEND_EQUATION_ALPHA_EXT       	= 0x883D,		
-		
-		// GL_EXT_pixel_buffer_object
-		GL_PIXEL_PACK_BUFFER_EXT          	= 0x88EB,
-		GL_PIXEL_UNPACK_BUFFER_EXT        	= 0x88EC,
-		GL_PIXEL_PACK_BUFFER_BINDING_EXT  	= 0x88ED,
-		GL_PIXEL_UNPACK_BUFFER_BINDING_EXT 	= 0x88EF,	
-		
-		// GL_EXT_framebuffer_object
-		GL_INVALID_FRAMEBUFFER_OPERATION_EXT = 0x0506,
-		GL_MAX_RENDERBUFFER_SIZE_EXT      	= 0x84E8,
-		GL_FRAMEBUFFER_BINDING_EXT        	= 0x8CA6,
-		GL_RENDERBUFFER_BINDING_EXT       	= 0x8CA7,
-		GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE_EXT = 0x8CD0,
-		GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME_EXT = 0x8CD1,
-		GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL_EXT = 0x8CD2,
-		GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE_EXT = 0x8CD3,
-		GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_3D_ZOFFSET_EXT = 0x8CD4,
-		GL_FRAMEBUFFER_COMPLETE_EXT       	= 0x8CD5,
-		GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT = 0x8CD6,
-		GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT_EXT = 0x8CD7,
-		GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT = 0x8CD9,
-		GL_FRAMEBUFFER_INCOMPLETE_FORMATS_EXT = 0x8CDA,
-		GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER_EXT = 0x8CDB,
-		GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT = 0x8CDC,
-		GL_FRAMEBUFFER_UNSUPPORTED_EXT    	= 0x8CDD,
-		GL_MAX_COLOR_ATTACHMENTS_EXT      	= 0x8CDF,
-		GL_COLOR_ATTACHMENT0_EXT          	= 0x8CE0,
-		GL_COLOR_ATTACHMENT1_EXT          	= 0x8CE1,
-		GL_COLOR_ATTACHMENT2_EXT          	= 0x8CE2,
-		GL_COLOR_ATTACHMENT3_EXT          	= 0x8CE3,
-		GL_COLOR_ATTACHMENT4_EXT          	= 0x8CE4,
-		GL_COLOR_ATTACHMENT5_EXT          	= 0x8CE5,
-		GL_COLOR_ATTACHMENT6_EXT          	= 0x8CE6,
-		GL_COLOR_ATTACHMENT7_EXT          	= 0x8CE7,
-		GL_COLOR_ATTACHMENT8_EXT          	= 0x8CE8,
-		GL_COLOR_ATTACHMENT9_EXT          	= 0x8CE9,
-		GL_COLOR_ATTACHMENT10_EXT         	= 0x8CEA,
-		GL_COLOR_ATTACHMENT11_EXT         	= 0x8CEB,
-		GL_COLOR_ATTACHMENT12_EXT         	= 0x8CEC,
-		GL_COLOR_ATTACHMENT13_EXT         	= 0x8CED,
-		GL_COLOR_ATTACHMENT14_EXT         	= 0x8CEE,
-		GL_COLOR_ATTACHMENT15_EXT         	= 0x8CEF,
-		GL_DEPTH_ATTACHMENT_EXT           	= 0x8D00,
-		GL_STENCIL_ATTACHMENT_EXT         	= 0x8D20,
-		GL_FRAMEBUFFER_EXT                	= 0x8D40,
-		GL_RENDERBUFFER_EXT               	= 0x8D41,
-		GL_RENDERBUFFER_WIDTH_EXT         	= 0x8D42,
-		GL_RENDERBUFFER_HEIGHT_EXT        	= 0x8D43,
-		GL_RENDERBUFFER_INTERNAL_FORMAT_EXT = 0x8D44,
-		GL_STENCIL_INDEX1_EXT             	= 0x8D46,
-		GL_STENCIL_INDEX4_EXT             	= 0x8D47,
-		GL_STENCIL_INDEX8_EXT             	= 0x8D48,
-		GL_STENCIL_INDEX16_EXT            	= 0x8D49,
-		GL_RENDERBUFFER_RED_SIZE_EXT      	= 0x8D50,
-		GL_RENDERBUFFER_GREEN_SIZE_EXT    	= 0x8D51,
-		GL_RENDERBUFFER_BLUE_SIZE_EXT     	= 0x8D52,
-		GL_RENDERBUFFER_ALPHA_SIZE_EXT    	= 0x8D53,
-		GL_RENDERBUFFER_DEPTH_SIZE_EXT    	= 0x8D54,
-		GL_RENDERBUFFER_STENCIL_SIZE_EXT  	= 0x8D55,	
-		
-		// GL_EXT_packed_depth_stencil			
-		GL_DEPTH_STENCIL_EXT              	= 0x84F9,
-		GL_UNSIGNED_INT_24_8_EXT          	= 0x84FA,
-		GL_DEPTH24_STENCIL8_EXT           	= 0x88F0,
-		GL_TEXTURE_STENCIL_SIZE_EXT       	= 0x88F1,	
-		
-		// GL_EXT_stencil_clear_tag
-		GL_STENCIL_TAG_BITS_EXT           	= 0x88F2,
-		GL_STENCIL_CLEAR_TAG_VALUE_EXT    	= 0x88F3,
-		
-		// GL_EXT_texture_sRGB
-		GL_SRGB_EXT                       	= 0x8C40,
-		GL_SRGB8_EXT                      	= 0x8C41,
-		GL_SRGB_ALPHA_EXT                 	= 0x8C42,
-		GL_SRGB8_ALPHA8_EXT               	= 0x8C43,
-		GL_SLUMINANCE_ALPHA_EXT           	= 0x8C44,
-		GL_SLUMINANCE8_ALPHA8_EXT         	= 0x8C45,
-		GL_SLUMINANCE_EXT                 	= 0x8C46,
-		GL_SLUMINANCE8_EXT                	= 0x8C47,
-		GL_COMPRESSED_SRGB_EXT            	= 0x8C48,
-		GL_COMPRESSED_SRGB_ALPHA_EXT      	= 0x8C49,
-		GL_COMPRESSED_SLUMINANCE_EXT      	= 0x8C4A,
-		GL_COMPRESSED_SLUMINANCE_ALPHA_EXT 	= 0x8C4B,
-		GL_COMPRESSED_SRGB_S3TC_DXT1_EXT  	= 0x8C4C,
-		GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT = 0x8C4D,
-		GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT = 0x8C4E,
-		GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT = 0x8C4F,
-		
-		// GL_EXT_framebuffer_blit
-		GL_READ_FRAMEBUFFER_EXT           	= 0x8CA8,
-		GL_DRAW_FRAMEBUFFER_EXT           	= 0x8CA9,
-		GL_DRAW_FRAMEBUFFER_BINDING_EXT   	= GL_FRAMEBUFFER_BINDING_EXT,
-		GL_READ_FRAMEBUFFER_BINDING_EXT   	= 0x8CAA,
-		
-		// GL_EXT_framebuffer_multisample
-		GL_RENDERBUFFER_SAMPLES_EXT       	= 0x8CAB,
-		GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE_EXT = 0x8D56,
-		GL_MAX_SAMPLES_EXT                	= 0x8D57,
-		
-		// GL_EXT_timer_query
-		GL_TIME_ELAPSED_EXT               	= 0x88BF,
-		
-		// GL_EXT_geometry_shader4
-		GL_GEOMETRY_SHADER_EXT            	= 0x8DD9,
-		GL_MAX_GEOMETRY_VARYING_COMPONENTS_EXT = 0x8DDD,
-		GL_MAX_VERTEX_VARYING_COMPONENTS_EXT = 0x8DDE,
-		GL_MAX_VARYING_COMPONENTS_EXT     	= 0x8B4B,
-		GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_EXT = 0x8DDF,
-		GL_MAX_GEOMETRY_OUTPUT_VERTICES_EXT = 0x8DE0,
-		GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_EXT = 0x8DE1,								
+
+        // GL_EXT_depth_bounds_test
+        GL_DEPTH_BOUNDS_TEST_EXT            = 0x8890,
+        GL_DEPTH_BOUNDS_EXT                 = 0x8891,
+
+        // GL_EXT_texture_mirror_clamp
+        GL_MIRROR_CLAMP_EXT                 = 0x8742,
+        GL_MIRROR_CLAMP_TO_EDGE_EXT         = 0x8743,
+        GL_MIRROR_CLAMP_TO_BORDER_EXT       = 0x8912,
+
+        // GL_EXT_blend_equation_separate
+        GL_BLEND_EQUATION_RGB_EXT           = 0x8009,
+        GL_BLEND_EQUATION_ALPHA_EXT         = 0x883D,
+
+        // GL_EXT_pixel_buffer_object
+        GL_PIXEL_PACK_BUFFER_EXT            = 0x88EB,
+        GL_PIXEL_UNPACK_BUFFER_EXT          = 0x88EC,
+        GL_PIXEL_PACK_BUFFER_BINDING_EXT    = 0x88ED,
+        GL_PIXEL_UNPACK_BUFFER_BINDING_EXT  = 0x88EF,
+
+        // GL_EXT_framebuffer_object
+        GL_INVALID_FRAMEBUFFER_OPERATION_EXT = 0x0506,
+        GL_MAX_RENDERBUFFER_SIZE_EXT        = 0x84E8,
+        GL_FRAMEBUFFER_BINDING_EXT          = 0x8CA6,
+        GL_RENDERBUFFER_BINDING_EXT         = 0x8CA7,
+        GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE_EXT = 0x8CD0,
+        GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME_EXT = 0x8CD1,
+        GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL_EXT = 0x8CD2,
+        GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE_EXT = 0x8CD3,
+        GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_3D_ZOFFSET_EXT = 0x8CD4,
+        GL_FRAMEBUFFER_COMPLETE_EXT         = 0x8CD5,
+        GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT = 0x8CD6,
+        GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT_EXT = 0x8CD7,
+        GL_FRAMEBUFFER_INCOMPLETE_DIMENSIONS_EXT = 0x8CD9,
+        GL_FRAMEBUFFER_INCOMPLETE_FORMATS_EXT = 0x8CDA,
+        GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER_EXT = 0x8CDB,
+        GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT = 0x8CDC,
+        GL_FRAMEBUFFER_UNSUPPORTED_EXT      = 0x8CDD,
+        GL_MAX_COLOR_ATTACHMENTS_EXT        = 0x8CDF,
+        GL_COLOR_ATTACHMENT0_EXT            = 0x8CE0,
+        GL_COLOR_ATTACHMENT1_EXT            = 0x8CE1,
+        GL_COLOR_ATTACHMENT2_EXT            = 0x8CE2,
+        GL_COLOR_ATTACHMENT3_EXT            = 0x8CE3,
+        GL_COLOR_ATTACHMENT4_EXT            = 0x8CE4,
+        GL_COLOR_ATTACHMENT5_EXT            = 0x8CE5,
+        GL_COLOR_ATTACHMENT6_EXT            = 0x8CE6,
+        GL_COLOR_ATTACHMENT7_EXT            = 0x8CE7,
+        GL_COLOR_ATTACHMENT8_EXT            = 0x8CE8,
+        GL_COLOR_ATTACHMENT9_EXT            = 0x8CE9,
+        GL_COLOR_ATTACHMENT10_EXT           = 0x8CEA,
+        GL_COLOR_ATTACHMENT11_EXT           = 0x8CEB,
+        GL_COLOR_ATTACHMENT12_EXT           = 0x8CEC,
+        GL_COLOR_ATTACHMENT13_EXT           = 0x8CED,
+        GL_COLOR_ATTACHMENT14_EXT           = 0x8CEE,
+        GL_COLOR_ATTACHMENT15_EXT           = 0x8CEF,
+        GL_DEPTH_ATTACHMENT_EXT             = 0x8D00,
+        GL_STENCIL_ATTACHMENT_EXT           = 0x8D20,
+        GL_FRAMEBUFFER_EXT                  = 0x8D40,
+        GL_RENDERBUFFER_EXT                 = 0x8D41,
+        GL_RENDERBUFFER_WIDTH_EXT           = 0x8D42,
+        GL_RENDERBUFFER_HEIGHT_EXT          = 0x8D43,
+        GL_RENDERBUFFER_INTERNAL_FORMAT_EXT = 0x8D44,
+        GL_STENCIL_INDEX1_EXT               = 0x8D46,
+        GL_STENCIL_INDEX4_EXT               = 0x8D47,
+        GL_STENCIL_INDEX8_EXT               = 0x8D48,
+        GL_STENCIL_INDEX16_EXT              = 0x8D49,
+        GL_RENDERBUFFER_RED_SIZE_EXT        = 0x8D50,
+        GL_RENDERBUFFER_GREEN_SIZE_EXT      = 0x8D51,
+        GL_RENDERBUFFER_BLUE_SIZE_EXT       = 0x8D52,
+        GL_RENDERBUFFER_ALPHA_SIZE_EXT      = 0x8D53,
+        GL_RENDERBUFFER_DEPTH_SIZE_EXT      = 0x8D54,
+        GL_RENDERBUFFER_STENCIL_SIZE_EXT    = 0x8D55,
+
+        // GL_EXT_packed_depth_stencil
+        GL_DEPTH_STENCIL_EXT                = 0x84F9,
+        GL_UNSIGNED_INT_24_8_EXT            = 0x84FA,
+        GL_DEPTH24_STENCIL8_EXT             = 0x88F0,
+        GL_TEXTURE_STENCIL_SIZE_EXT         = 0x88F1,
+
+        // GL_EXT_stencil_clear_tag
+        GL_STENCIL_TAG_BITS_EXT             = 0x88F2,
+        GL_STENCIL_CLEAR_TAG_VALUE_EXT      = 0x88F3,
+
+        // GL_EXT_texture_sRGB
+        GL_SRGB_EXT                         = 0x8C40,
+        GL_SRGB8_EXT                        = 0x8C41,
+        GL_SRGB_ALPHA_EXT                   = 0x8C42,
+        GL_SRGB8_ALPHA8_EXT                 = 0x8C43,
+        GL_SLUMINANCE_ALPHA_EXT             = 0x8C44,
+        GL_SLUMINANCE8_ALPHA8_EXT           = 0x8C45,
+        GL_SLUMINANCE_EXT                   = 0x8C46,
+        GL_SLUMINANCE8_EXT                  = 0x8C47,
+        GL_COMPRESSED_SRGB_EXT              = 0x8C48,
+        GL_COMPRESSED_SRGB_ALPHA_EXT        = 0x8C49,
+        GL_COMPRESSED_SLUMINANCE_EXT        = 0x8C4A,
+        GL_COMPRESSED_SLUMINANCE_ALPHA_EXT  = 0x8C4B,
+        GL_COMPRESSED_SRGB_S3TC_DXT1_EXT    = 0x8C4C,
+        GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT = 0x8C4D,
+        GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT = 0x8C4E,
+        GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT = 0x8C4F,
+
+        // GL_EXT_framebuffer_blit
+        GL_READ_FRAMEBUFFER_EXT             = 0x8CA8,
+        GL_DRAW_FRAMEBUFFER_EXT             = 0x8CA9,
+        GL_DRAW_FRAMEBUFFER_BINDING_EXT     = GL_FRAMEBUFFER_BINDING_EXT,
+        GL_READ_FRAMEBUFFER_BINDING_EXT     = 0x8CAA,
+
+        // GL_EXT_framebuffer_multisample
+        GL_RENDERBUFFER_SAMPLES_EXT         = 0x8CAB,
+        GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE_EXT = 0x8D56,
+        GL_MAX_SAMPLES_EXT                  = 0x8D57,
+
+        // GL_EXT_timer_query
+        GL_TIME_ELAPSED_EXT                 = 0x88BF,
+
+        // GL_EXT_geometry_shader4
+        GL_GEOMETRY_SHADER_EXT              = 0x8DD9,
+        GL_MAX_GEOMETRY_VARYING_COMPONENTS_EXT = 0x8DDD,
+        GL_MAX_VERTEX_VARYING_COMPONENTS_EXT = 0x8DDE,
+        GL_MAX_VARYING_COMPONENTS_EXT       = 0x8B4B,
+        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS_EXT = 0x8DDF,
+        GL_MAX_GEOMETRY_OUTPUT_VERTICES_EXT = 0x8DE0,
+        GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS_EXT = 0x8DE1,
+
+        // GL_EXT_gpu_shader4
+        GL_SAMPLER_1D_ARRAY_EXT             = 0x8DC0,
+        GL_SAMPLER_2D_ARRAY_EXT             = 0x8DC1,
+        GL_SAMPLER_BUFFER_EXT               = 0x8DC2,
+        GL_SAMPLER_1D_ARRAY_SHADOW_EXT      = 0x8DC3,
+        GL_SAMPLER_2D_ARRAY_SHADOW_EXT      = 0x8DC4,
+        GL_SAMPLER_CUBE_SHADOW_EXT          = 0x8DC5,
+        GL_UNSIGNED_INT_VEC2_EXT            = 0x8DC6,
+        GL_UNSIGNED_INT_VEC3_EXT            = 0x8DC7,
+        GL_UNSIGNED_INT_VEC4_EXT            = 0x8DC8,
+        GL_INT_SAMPLER_1D_EXT               = 0x8DC9,
+        GL_INT_SAMPLER_2D_EXT               = 0x8DCA,
+        GL_INT_SAMPLER_3D_EXT               = 0x8DCB,
+        GL_INT_SAMPLER_CUBE_EXT             = 0x8DCC,
+        GL_INT_SAMPLER_2D_RECT_EXT          = 0x8DCD,
+        GL_INT_SAMPLER_1D_ARRAY_EXT         = 0x8DCE,
+        GL_INT_SAMPLER_2D_ARRAY_EXT         = 0x8DCF,
+        GL_INT_SAMPLER_BUFFER_EXT           = 0x8DD0,
+        GL_UNSIGNED_INT_SAMPLER_1D_EXT      = 0x8DD1,
+        GL_UNSIGNED_INT_SAMPLER_2D_EXT      = 0x8DD2,
+        GL_UNSIGNED_INT_SAMPLER_3D_EXT      = 0x8DD3,
+        GL_UNSIGNED_INT_SAMPLER_CUBE_EXT    = 0x8DD4,
+        GL_UNSIGNED_INT_SAMPLER_2D_RECT_EXT = 0x8DD5,
+        GL_UNSIGNED_INT_SAMPLER_1D_ARRAY_EXT = 0x8DD6,
+        GL_UNSIGNED_INT_SAMPLER_2D_ARRAY_EXT = 0x8DD7,
+        GL_UNSIGNED_INT_SAMPLER_BUFFER_EXT  = 0x8DD8,
+
+        // GL_EXT_packed_float
+        GL_R11F_G11F_B10F_EXT               = 0x8C3A,
+        GL_UNSIGNED_INT_10F_11F_11F_REV_EXT = 0x8C3B,
+        GL_RGBA_SIGNED_COMPONENTS_EXT       = 0x8C3C,
+
+        // GL_EXT_texture_array
+        GL_TEXTURE_1D_ARRAY_EXT             = 0x8C18,
+        GL_PROXY_TEXTURE_1D_ARRAY_EXT       = 0x8C19,
+        GL_TEXTURE_2D_ARRAY_EXT             = 0x8C1A,
+        GL_PROXY_TEXTURE_2D_ARRAY_EXT       = 0x8C1B,
+        GL_TEXTURE_BINDING_1D_ARRAY_EXT     = 0x8C1C,
+        GL_TEXTURE_BINDING_2D_ARRAY_EXT     = 0x8C1D,
+        GL_MAX_ARRAY_TEXTURE_LAYERS_EXT     = 0x88FF,
+        GL_COMPARE_REF_DEPTH_TO_TEXTURE_EXT = 0x884E,
+
+        // GL_EXT_texture_buffer_object
+        GL_TEXTURE_BUFFER_EXT               = 0x8C2A,
+        GL_MAX_TEXTURE_BUFFER_SIZE_EXT      = 0x8C2B,
+        GL_TEXTURE_BINDING_BUFFER_EXT       = 0x8C2C,
+        GL_TEXTURE_BUFFER_DATA_STORE_BINDING_EXT = 0x8C2D,
+        GL_TEXTURE_BUFFER_FORMAT_EXT        = 0x8C2E,
+
+        // GL_EXT_texture_compression_latc
+        GL_COMPRESSED_LUMINANCE_LATC1_EXT   = 0x8C70,
+        GL_COMPRESSED_SIGNED_LUMINANCE_LATC1_EXT = 0x8C71,
+        GL_COMPRESSED_LUMINANCE_ALPHA_LATC2_EXT = 0x8C72,
+        GL_COMPRESSED_SIGNED_LUMINANCE_ALPHA_LATC2_EXT = 0x8C73,
+
+        // GL_EXT_texture_compression_rgtc
+        GL_COMPRESSED_RED_RGTC1_EXT         = 0x8DBB,
+        GL_COMPRESSED_SIGNED_RED_RGTC1_EXT  = 0x8DBC,
+        GL_COMPRESSED_RED_GREEN_RGTC2_EXT   = 0x8DBD,
+        GL_COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT = 0x8DBE,
+
+        // GL_EXT_texture_shared_exponent
+        GL_RGB9_E5_EXT                      = 0x8C3D,
+        GL_UNSIGNED_INT_5_9_9_9_REV_EXT     = 0x8C3E,
+        GL_TEXTURE_SHARED_SIZE_EXT          = 0x8C3F,
+
+        // GL_EXT_framebuffer_sRGB
+        GL_FRAMEBUFFER_SRGB_EXT             = 0x8DB9,
+        GL_FRAMEBUFFER_SRGB_CAPABLE_EXT     = 0x8DBA,
+
+        // GL_EXT_bindable_uniform
+        GL_MAX_VERTEX_BINDABLE_UNIFORMS_EXT = 0x8DE2,
+        GL_MAX_FRAGMENT_BINDABLE_UNIFORMS_EXT = 0x8DE3,
+        GL_MAX_GEOMETRY_BINDABLE_UNIFORMS_EXT = 0x8DE4,
+        GL_MAX_BINDABLE_UNIFORM_SIZE_EXT    = 0x8DED,
+        GL_UNIFORM_BUFFER_EXT               = 0x8DEE,
+        GL_UNIFORM_BUFFER_BINDING_EXT       = 0x8DEF,
+
+        // GL_EXT_texture_integer
+        GL_RGBA32UI_EXT                     = 0x8D70,
+        GL_RGB32UI_EXT                      = 0x8D71,
+        GL_ALPHA32UI_EXT                    = 0x8D72,
+        GL_INTENSITY32UI_EXT                = 0x8D73,
+        GL_LUMINANCE32UI_EXT                = 0x8D74,
+        GL_LUMINANCE_ALPHA32UI_EXT          = 0x8D75,
+        GL_RGBA16UI_EXT                     = 0x8D76,
+        GL_RGB16UI_EXT                      = 0x8D77,
+        GL_ALPHA16UI_EXT                    = 0x8D78,
+        GL_INTENSITY16UI_EXT                = 0x8D79,
+        GL_LUMINANCE16UI_EXT                = 0x8D7A,
+        GL_LUMINANCE_ALPHA16UI_EXT          = 0x8D7B,
+        GL_RGBA8UI_EXT                      = 0x8D7C,
+        GL_RGB8UI_EXT                       = 0x8D7D,
+        GL_ALPHA8UI_EXT                     = 0x8D7E,
+        GL_INTENSITY8UI_EXT                 = 0x8D7F,
+        GL_LUMINANCE8UI_EXT                 = 0x8D80,
+        GL_LUMINANCE_ALPHA8UI_EXT           = 0x8D81,
+        GL_RGBA32I_EXT                      = 0x8D82,
+        GL_RGB32I_EXT                       = 0x8D83,
+        GL_ALPHA32I_EXT                     = 0x8D84,
+        GL_INTENSITY32I_EXT                 = 0x8D85,
+        GL_LUMINANCE32I_EXT                 = 0x8D86,
+        GL_LUMINANCE_ALPHA32I_EXT           = 0x8D87,
+        GL_RGBA16I_EXT                      = 0x8D88,
+        GL_RGB16I_EXT                       = 0x8D89,
+        GL_ALPHA16I_EXT                     = 0x8D8A,
+        GL_INTENSITY16I_EXT                 = 0x8D8B,
+        GL_LUMINANCE16I_EXT                 = 0x8D8C,
+        GL_LUMINANCE_ALPHA16I_EXT           = 0x8D8D,
+        GL_RGBA8I_EXT                       = 0x8D8E,
+        GL_RGB8I_EXT                        = 0x8D8F,
+        GL_ALPHA8I_EXT                      = 0x8D90,
+        GL_INTENSITY8I_EXT                  = 0x8D91,
+        GL_LUMINANCE8I_EXT                  = 0x8D92,
+        GL_LUMINANCE_ALPHA8I_EXT            = 0x8D93,
+        GL_RED_INTEGER_EXT                  = 0x8D94,
+        GL_GREEN_INTEGER_EXT                = 0x8D95,
+        GL_BLUE_INTEGER_EXT                 = 0x8D96,
+        GL_ALPHA_INTEGER_EXT                = 0x8D97,
+        GL_RGB_INTEGER_EXT                  = 0x8D98,
+        GL_RGBA_INTEGER_EXT                 = 0x8D99,
+        GL_BGR_INTEGER_EXT                  = 0x8D9A,
+        GL_BGRA_INTEGER_EXT                 = 0x8D9B,
+        GL_LUMINANCE_INTEGER_EXT            = 0x8D9C,
+        GL_LUMINANCE_ALPHA_INTEGER_EXT      = 0x8D9D,
+        GL_RGBA_INTEGER_MODE_EXT            = 0x8D9E,
     }
 }
 
@@ -1821,41 +1948,83 @@ version(DerelictGL_NV)
 
         // GL_NV_texture_expand_normal
         GL_TEXTURE_UNSIGNED_REMAP_MODE_NV   = 0x888F,
-        
+
         // GL_NV_fragment_program2
-		GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV = 0x88F4,
-		GL_MAX_PROGRAM_CALL_DEPTH_NV      	= 0x88F5,
-		GL_MAX_PROGRAM_IF_DEPTH_NV        	= 0x88F6,
-		GL_MAX_PROGRAM_LOOP_DEPTH_NV      	= 0x88F7,
-		GL_MAX_PROGRAM_LOOP_COUNT_NV      	= 0x88F8,  
-		
-		// GL_NV_gpu_program4
-		GL_MIN_PROGRAM_TEXEL_OFFSET_NV    	= 0x8904,
-		GL_MAX_PROGRAM_TEXEL_OFFSET_NV    	= 0x8905,
-		GL_PROGRAM_ATTRIB_COMPONENTS_NV   	= 0x8906,
-		GL_PROGRAM_RESULT_COMPONENTS_NV   	= 0x8907,
-		GL_MAX_PROGRAM_ATTRIB_COMPONENTS_NV = 0x8908,
-		GL_MAX_PROGRAM_RESULT_COMPONENTS_NV = 0x8909,
-		GL_MAX_PROGRAM_GENERIC_ATTRIBS_NV 	= 0x8DA5,
-		GL_MAX_PROGRAM_GENERIC_RESULTS_NV 	= 0x8DA6,
-		
-		// GL_NV_geometry_program4
-		GL_LINES_ADJACENCY_EXT            	= 0x000A,
-		GL_LINE_STRIP_ADJACENCY_EXT       	= 0x000B,
-		GL_TRIANGLES_ADJACENCY_EXT        	= 0x000C,
-		GL_TRIANGLE_STRIP_ADJACENCY_EXT   	= 0x000D,
-		GL_GEOMETRY_PROGRAM_NV            	= 0x8C26,
-		GL_MAX_PROGRAM_OUTPUT_VERTICES_NV 	= 0x8C27,
-		GL_MAX_PROGRAM_TOTAL_OUTPUT_COMPONENTS_NV = 0x8C28,
-		GL_GEOMETRY_VERTICES_OUT_EXT      	= 0x8DDA,
-		GL_GEOMETRY_INPUT_TYPE_EXT        	= 0x8DDB,
-		GL_GEOMETRY_OUTPUT_TYPE_EXT       	= 0x8DDC,
-		GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_EXT = 0x8C29,
-		GL_FRAMEBUFFER_ATTACHMENT_LAYERED_EXT = 0x8DA7,
-		GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_EXT = 0x8DA8,
-		GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT = 0x8DA9,
-		GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER_EXT = 0x8CD4,
-		GL_PROGRAM_POINT_SIZE_EXT         	= 0x8642,	     
+        GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV = 0x88F4,
+        GL_MAX_PROGRAM_CALL_DEPTH_NV        = 0x88F5,
+        GL_MAX_PROGRAM_IF_DEPTH_NV          = 0x88F6,
+        GL_MAX_PROGRAM_LOOP_DEPTH_NV        = 0x88F7,
+        GL_MAX_PROGRAM_LOOP_COUNT_NV        = 0x88F8,
+
+        // GL_NV_gpu_program4
+        GL_MIN_PROGRAM_TEXEL_OFFSET_NV      = 0x8904,
+        GL_MAX_PROGRAM_TEXEL_OFFSET_NV      = 0x8905,
+        GL_PROGRAM_ATTRIB_COMPONENTS_NV     = 0x8906,
+        GL_PROGRAM_RESULT_COMPONENTS_NV     = 0x8907,
+        GL_MAX_PROGRAM_ATTRIB_COMPONENTS_NV = 0x8908,
+        GL_MAX_PROGRAM_RESULT_COMPONENTS_NV = 0x8909,
+        GL_MAX_PROGRAM_GENERIC_ATTRIBS_NV   = 0x8DA5,
+        GL_MAX_PROGRAM_GENERIC_RESULTS_NV   = 0x8DA6,
+
+        // GL_NV_geometry_program4
+        GL_LINES_ADJACENCY_EXT              = 0x000A,
+        GL_LINE_STRIP_ADJACENCY_EXT         = 0x000B,
+        GL_TRIANGLES_ADJACENCY_EXT          = 0x000C,
+        GL_TRIANGLE_STRIP_ADJACENCY_EXT     = 0x000D,
+        GL_GEOMETRY_PROGRAM_NV              = 0x8C26,
+        GL_MAX_PROGRAM_OUTPUT_VERTICES_NV   = 0x8C27,
+        GL_MAX_PROGRAM_TOTAL_OUTPUT_COMPONENTS_NV = 0x8C28,
+        GL_GEOMETRY_VERTICES_OUT_EXT        = 0x8DDA,
+        GL_GEOMETRY_INPUT_TYPE_EXT          = 0x8DDB,
+        GL_GEOMETRY_OUTPUT_TYPE_EXT         = 0x8DDC,
+        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS_EXT = 0x8C29,
+        GL_FRAMEBUFFER_ATTACHMENT_LAYERED_EXT = 0x8DA7,
+        GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_EXT = 0x8DA8,
+        GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT = 0x8DA9,
+        GL_FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER_EXT = 0x8CD4,
+        GL_PROGRAM_POINT_SIZE_EXT           = 0x8642,
+
+        // GL_NV_vertex_program4
+        GL_VERTEX_ATTRIB_ARRAY_INTEGER_NV   = 0x88FD,
+
+        // GL_NV_depth_buffer_float
+        GL_DEPTH_COMPONENT32F_NV            = 0x8DAB,
+        GL_DEPTH32F_STENCIL8_NV             = 0x8DAC,
+        GL_FLOAT_32_UNSIGNED_INT_24_8_REV_NV = 0x8DAD,
+        GL_DEPTH_BUFFER_FLOAT_MODE_NV       = 0x8DAF,
+
+        // GL_NV_framebuffer_multisample_coverage
+        GL_RENDERBUFFER_COVERAGE_SAMPLES_NV = 0x8CAB,
+        GL_RENDERBUFFER_COLOR_SAMPLES_NV    = 0x8E10,
+        GL_MAX_MULTISAMPLE_COVERAGE_MODES_NV = 0x8E11,
+        GL_MULTISAMPLE_COVERAGE_MODES_NV    = 0x8E12,
+
+        // GL_NV_transform_feedback
+        GL_BACK_PRIMARY_COLOR_NV            = 0x8C77,
+        GL_BACK_SECONDARY_COLOR_NV          = 0x8C78,
+        GL_TEXTURE_COORD_NV                 = 0x8C79,
+        GL_CLIP_DISTANCE_NV                 = 0x8C7A,
+        GL_VERTEX_ID_NV                     = 0x8C7B,
+        GL_PRIMITIVE_ID_NV                  = 0x8C7C,
+        GL_GENERIC_ATTRIB_NV                = 0x8C7D,
+        GL_TRANSFORM_FEEDBACK_ATTRIBS_NV    = 0x8C7E,
+        GL_TRANSFORM_FEEDBACK_BUFFER_MODE_NV = 0x8C7F,
+        GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_NV = 0x8C80,
+        GL_ACTIVE_VARYINGS_NV               = 0x8C81,
+        GL_ACTIVE_VARYING_MAX_LENGTH_NV     = 0x8C82,
+        GL_TRANSFORM_FEEDBACK_VARYINGS_NV   = 0x8C83,
+        GL_TRANSFORM_FEEDBACK_BUFFER_START_NV = 0x8C84,
+        GL_TRANSFORM_FEEDBACK_BUFFER_SIZE_NV = 0x8C85,
+        GL_TRANSFORM_FEEDBACK_RECORD_NV     = 0x8C86,
+        GL_PRIMITIVES_GENERATED_NV          = 0x8C87,
+        GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN_NV = 0x8C88,
+        GL_RASTERIZER_DISCARD_NV            = 0x8C89,
+        GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_ATTRIBS_NV = 0x8C8A,
+        GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_NV = 0x8C8B,
+        GL_INTERLEAVED_ATTRIBS_NV           = 0x8C8C,
+        GL_SEPARATE_ATTRIBS_NV              = 0x8C8D,
+        GL_TRANSFORM_FEEDBACK_BUFFER_NV     = 0x8C8E,
+        GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_NV = 0x8C8F,
     }
 }
 
@@ -2642,10 +2811,10 @@ version(DerelictGL_APPLE)
         GL_YCBCR_422_APPLE                  = 0x85B9,
         GL_UNSIGNED_SHORT_8_8_APPLE         = 0x85BA,
         GL_UNSIGNED_SHORT_8_8_REV_APPLE     = 0x85BB,
-        
+
         // GL_APPLE_flush_buffer_range
-		GL_BUFFER_SERIALIZED_MODIFY_APPLE 	= 0x8A12,
-		GL_BUFFER_FLUSHING_UNMAP_APPLE    	= 0x8A13,       
+        GL_BUFFER_SERIALIZED_MODIFY_APPLE   = 0x8A12,
+        GL_BUFFER_FLUSHING_UNMAP_APPLE      = 0x8A13,
     }
 }
 
@@ -2719,16 +2888,16 @@ version(DerelictGL_INGR)
 
 version(DerelictGL_MESA)
 {
-	enum : GLenum
-	{
-		// GL_MESA_pack_invert
-		GL_PACK_INVERT_MESA               	= 0x8758,
-		
-		// GL_MESA_ycbcr_texture
-		GL_UNSIGNED_SHORT_8_8_MESA       	= 0x85BA,
-		GL_UNSIGNED_SHORT_8_8_REV_MESA    	= 0x85BB,
-		GL_YCBCR_MESA                     	= 0x8757,	
-	}
+    enum : GLenum
+    {
+        // GL_MESA_pack_invert
+        GL_PACK_INVERT_MESA                 = 0x8758,
+
+        // GL_MESA_ycbcr_texture
+        GL_UNSIGNED_SHORT_8_8_MESA          = 0x85BA,
+        GL_UNSIGNED_SHORT_8_8_REV_MESA      = 0x85BB,
+        GL_YCBCR_MESA                       = 0x8757,
+    }
 }
 
 version(DerelictGL_3DFX)
@@ -2774,21 +2943,21 @@ version(DerelictGL_S3)
     enum : GLenum
     {
         // GL_S3_s3tc
-        GL_RGB_S3TC                       	= 0x83A0,
-        GL_RGB4_S3TC                      	= 0x83A1,
-        GL_RGBA_S3TC                      	= 0x83A2,
-        GL_RGBA4_S3TC                     	= 0x83A3,
+        GL_RGB_S3TC                         = 0x83A0,
+        GL_RGB4_S3TC                        = 0x83A1,
+        GL_RGBA_S3TC                        = 0x83A2,
+        GL_RGBA4_S3TC                       = 0x83A3,
     }
 }
 
 version(DerelictGL_OES)
 {
-	enum : GLenum
-	{
-		// GL_OES_read_format
-		GL_IMPLEMENTATION_COLOR_READ_TYPE_OES = 0x8B9A,
-		GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES = 0x8B9B,
-	}
+    enum : GLenum
+    {
+        // GL_OES_read_format
+        GL_IMPLEMENTATION_COLOR_READ_TYPE_OES = 0x8B9A,
+        GL_IMPLEMENTATION_COLOR_READ_FORMAT_OES = 0x8B9B,
+    }
 }
 
 version(DerelictGL_GREMEDY)
@@ -2797,16 +2966,16 @@ version(DerelictGL_GREMEDY)
 
 version(DerelictGL_MESAX)
 {
-	enum : GLenum
-	{
-		// GL_MESAX_texture_stack
-		GL_TEXTURE_1D_STACK_MESAX         	= 0x8759,
-		GL_TEXTURE_2D_STACK_MESAX         	= 0x875A,
-		GL_PROXY_TEXTURE_1D_STACK_MESAX   	= 0x875B,
-		GL_PROXY_TEXTURE_2D_STACK_MESAX   	= 0x875C,
-		GL_TEXTURE_1D_STACK_BINDING_MESAX 	= 0x875D,
-		GL_TEXTURE_2D_STACK_BINDING_MESAX 	= 0x875E,		
-	}
+    enum : GLenum
+    {
+        // GL_MESAX_texture_stack
+        GL_TEXTURE_1D_STACK_MESAX           = 0x8759,
+        GL_TEXTURE_2D_STACK_MESAX           = 0x875A,
+        GL_PROXY_TEXTURE_1D_STACK_MESAX     = 0x875B,
+        GL_PROXY_TEXTURE_2D_STACK_MESAX     = 0x875C,
+        GL_TEXTURE_1D_STACK_BINDING_MESAX   = 0x875D,
+        GL_TEXTURE_2D_STACK_BINDING_MESAX   = 0x875E,
+    }
 }
 
 version(Windows)
