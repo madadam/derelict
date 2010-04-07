@@ -11,6 +11,7 @@ ALL_SRC= \
     derelict/util/exception.d \
     derelict/util/loader.d \
     derelict/util/sharedlib.d \
+    derelict/util/wintypes.d \
     derelict/util/xtypes.d
 
 $(LIB_PRE)DerelictUtil.$(LIB_EXT) :

@@ -10,6 +10,7 @@ all : DerelictGL DerelictGLU
 GL_VERSIONS=-version=DerelictGL_ARB -version=DerelictGL_EXT -version=DerelictGL_NV -version=DerelictGL_ATI
 
 GL_SRC= \
+	derelict/opengl/cgl.d \
     derelict/opengl/extfuncs.d \
     derelict/opengl/extloader.d \
     derelict/opengl/exttypes.d \
@@ -17,7 +18,8 @@ GL_SRC= \
     derelict/opengl/glext.d \
     derelict/opengl/glfuncs.d \
     derelict/opengl/gltypes.d \
-    derelict/opengl/glx.d
+    derelict/opengl/glx.d \
+    derelict/opengl/wgl.d \
     
 GLU_SRC= \
     derelict/opengl/glu.d \

@@ -221,7 +221,7 @@ version(DerelictGL_ARB)
         GL_MATRIX_INDEX_ARRAY_STRIDE_ARB        = 0x8848,
         GL_MATRIX_INDEX_ARRAY_POINTER_ARB       = 0x8849,
 
-        // GL_texture_env_combine
+        // GL_ARB_texture_env_combine
         GL_COMBINE_ARB                    = 0x8570,
         GL_COMBINE_RGB_ARB                = 0x8571,
         GL_COMBINE_ALPHA_ARB              = 0x8572,
@@ -1561,6 +1561,35 @@ version(DerelictGL_EXT)
         GL_LUMINANCE_INTEGER_EXT            = 0x8D9C,
         GL_LUMINANCE_ALPHA_INTEGER_EXT      = 0x8D9D,
         GL_RGBA_INTEGER_MODE_EXT            = 0x8D9E,
+
+        // GL_EXT_transform_feedback
+        GL_TRANSFORM_FEEDBACK_BUFFER_EXT    = 0x8C8E,
+        GL_TRANSFORM_FEEDBACK_BUFFER_START_EXT = 0x8C84,
+        GL_TRANSFORM_FEEDBACK_BUFFER_SIZE_EXT = 0x8C85,
+        GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_EXT = 0x8C8F,
+        GL_INTERLEAVED_ATTRIBS_EXT          = 0x8C8C,
+        GL_SEPARATE_ATTRIBS_EXT             = 0x8C8D,
+        GL_PRIMITIVES_GENERATED_EXT         = 0x8C87,
+        GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN_EXT = 0x8C88,
+        GL_RASTERIZER_DISCARD_EXT           = 0x8C89,
+        GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS_EXT = 0x8C8A,
+        GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS_EXT = 0x8C8B,
+        GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS_EXT = 0x8C80,
+        GL_TRANSFORM_FEEDBACK_VARYINGS_EXT  = 0x8C83,
+        GL_TRANSFORM_FEEDBACK_BUFFER_MODE_EXT = 0x8C7F,
+        GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH_EXT = 0x8C76,
+
+        // GL_EXT_direct_state_access
+        GL_PROGRAM_MATRIX_EXT               = 0x8E2D,
+        GL_TRANSPOSE_PROGRAM_MATRIX_EXT     = 0x8E2E,
+        GL_PROGRAM_MATRIX_STACK_DEPTH_EXT   = 0x8E2F,
+
+        // GL_EXT_texture_swizzle
+        GL_TEXTURE_SWIZZLE_R_EXT            = 0x8E42,
+        GL_TEXTURE_SWIZZLE_G_EXT            = 0x8E43,
+        GL_TEXTURE_SWIZZLE_B_EXT            = 0x8E44,
+        GL_TEXTURE_SWIZZLE_A_EXT            = 0x8E45,
+        GL_TEXTURE_SWIZZLE_RGBA_EXT         = 0x8E46,
     }
 }
 
@@ -2025,6 +2054,20 @@ version(DerelictGL_NV)
         GL_SEPARATE_ATTRIBS_NV              = 0x8C8D,
         GL_TRANSFORM_FEEDBACK_BUFFER_NV     = 0x8C8E,
         GL_TRANSFORM_FEEDBACK_BUFFER_BINDING_NV = 0x8C8F,
+
+        // GL_NV_conditional_render
+        GL_QUERY_WAIT_NV                    = 0x8E13,
+        GL_QUERY_NO_WAIT_NV                 = 0x8E14,
+        GL_QUERY_BY_REGION_WAIT_NV          = 0x8E15,
+        GL_QUERY_BY_REGION_NO_WAIT_NV       = 0x8E16,
+
+        // GL_NV_present_video
+        GL_FRAME_NV                         = 0x8E26,
+        GL_FIELDS_NV                        = 0x8E27,
+        GL_CURRENT_TIME_NV                  = 0x8E28,
+        GL_NUM_FILL_STREAMS_NV              = 0x8E29,
+        GL_PRESENT_TIME_NV                  = 0x8E2A,
+        GL_PRESENT_DURATION_NV              = 0x8E2B,
     }
 }
 
