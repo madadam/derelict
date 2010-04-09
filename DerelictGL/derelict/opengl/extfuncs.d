@@ -44,6 +44,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_EXT;
     version = DerelictGL_NV;
     version = DerelictGL_ATI;
+    version = DerelictGL_AMD;
     version = DerelictGL_SGI;
     version = DerelictGL_SGIS;
     version = DerelictGL_SGIX;
@@ -910,6 +911,14 @@ extern(System)
         void function(GLuint, GLenum, GLuint, GLint, GLenum) glNamedFramebufferTextureFaceEXT;
         void function(GLuint, GLenum, GLuint) glTextureRenderbufferEXT;
         void function(GLenum, GLenum, GLuint) glMultiTexRenderbufferEXT;
+
+        // GL_EXT_provoking_vertex
+        void function(GLenum) glProvokingVertexEXT;
+
+        // GL_EXT_separate_shader_objects
+        void function(GLenum, GLuint) glUseShaderProgramEXT;
+        void function(GLuint) glActiveProgramEXT;
+        GLuint function(GLenum, in GLchar*) glCreateShaderProgramEXT;
     }
 
     version(DerelictGL_NV)
@@ -1183,6 +1192,70 @@ extern(System)
         void function(GLuint, GLenum, GLuint*) glGetVideouivNV;
         void function(GLuint, GLenum, GLint64EXT*) glGetVideoi64vNV;
         void function(GLuint, GLenum, GLuint64EXT*) glGetVideoui64vNV;
+
+        // GL_NV_explicit_multisample
+        void function(GLenum, GLuint, GLfloat*) glGetMultisamplefvNV;
+        void function(GLuint, GLbitfield) glSampleMaskIndexedNV;
+        void function(GLenum, GLuint) glTexRenderbufferNV;
+
+        // GL_NV_transform_feedback2
+        void function(GLenum, GLuint) glBindTransformFeedbackNV;
+        void function(GLsizei, in GLuint*) glDeleteTransformFeedbacksNV;
+        void function(GLsizei, GLuint*) glGenTransformFeedbacksNV;
+        GLboolean function(GLuint) glIsTransformFeedbackNV;
+        void function() glPauseTransformFeedbackNV;
+        void function() glResumeTransformFeedbackNV;
+        void function(GLenum, GLuint) glDrawTransformFeedbackNV;
+
+        // GL_NV_video_capture
+        void function(GLuint) glBeginVideoCaptureNV;
+        void function(GLuint, GLuint, GLenum, GLintptrARB) glBindVideoCaptureStreamBufferNV;
+        void function(GLuint, GLuint, GLenum, GLenum, GLuint) glBindVideoCaptureStreamTextureNV;
+        void function(GLuint) glEndVideoCaptureNV;
+        void function(GLuint, GLenum, GLint*) glGetVideoCaptureivNV;
+        void function(GLuint, GLuint, GLenum, GLint*) glGetVideoCaptureStreamivNV;
+        void function(GLuint, GLuint, GLenum, GLfloat*) glGetVideoCaptureStreamfvNV;
+        void function(GLuint, GLuint, GLenum, GLdouble*) glGetVideoCaptureStreamdvNV;
+        GLenum function(GLuint, GLuint*, GLuint64EXT*) glVideoCaptureNV;
+        void function(GLuint, GLuint, GLenum, in GLint*) glVideoCaptureStreamParameterivNV;
+        void function(GLuint, GLuint, GLenum, in GLfloat*) glVideoCaptureStreamParameterfvNV;
+        void function(GLuint, GLuint, GLenum, in GLdouble*) glVideoCaptureStreamParameterdvNV;
+
+        // GL_NV_copy_image
+        void function(GLuint, GLenum, GLint, GLint, GLint, GLint, GLuint, GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei) glCopyImageSubDataNV;
+
+        // GL_NV_shader_buffer_load
+        void function(GLenum, GLenum) glMakeBufferResidentNV;
+        void function(GLenum) glMakeBufferNonResidentNV;
+        GLboolean function(GLenum) glIsBufferResidentNV;
+        void function(GLuint, GLenum) glNamedMakeBufferResidentNV;
+        void function(GLuint) glNamedMakeBufferNonResidentNV;
+        GLboolean function(GLuint) glIsNamedBufferResidentNV;
+        void function(GLenum, GLenum, GLuint64EXT*) glGetBufferParameterui64vNV;
+        void function(GLuint, GLenum, GLuint64EXT*) glGetNamedBufferParameterui64vNV;
+        void function(GLenum, GLuint64EXT*) glGetIntegerui64vNV;
+        void function(GLint, GLuint64EXT) glUniformui64NV;
+        void function(GLint, GLsizei, in GLuint64EXT*) glUniformui64vNV;
+        void function(GLuint, GLint, GLuint64EXT*) glGetUniformui64vNV;
+        void function(GLuint, GLint, GLuint64EXT) glProgramUniformui64NV;
+        void function(GLuint, GLint, GLsizei, in GLuint64EXT*) glProgramUniformui64vNV;
+
+        // GL_NV_vertex_buffer_unified_memory
+        void function(GLenum, GLuint, GLuint64EXT, GLsizeiptr) glBufferAddressRangeNV;
+        void function(GLint, GLenum, GLsizei) glVertexFormatNV;
+        void function(GLenum, GLsizei) glNormalFormatNV;
+        void function(GLint, GLenum, GLsizei) glColorFormatNV;
+        void function(GLenum, GLsizei) glIndexFormatNV;
+        void function(GLint, GLenum, GLsizei) glTexCoordFormatNV;
+        void function(GLsizei) glEdgeFlagFormatNV;
+        void function(GLint, GLenum, GLsizei) glSecondaryColorFormatNV;
+        void function(GLenum, GLsizei) glFogCoordFormatNV;
+        void function(GLuint, GLint, GLenum, GLboolean, GLsizei) glVertexAttribFormatNV;
+        void function(GLuint, GLint, GLenum, GLsizei) glVertexAttribIFormatNV;
+        void function(GLenum, GLuint, GLuint64EXT*) glGetIntegerui64i_vNV;
+
+        // GL_NV_texture_barrier
+        void function() glTextureBarrierNV;
     }
 
     version(DerelictGL_ATI)
@@ -1294,6 +1367,32 @@ extern(System)
         void function(GLuint, GLint, GLenum, GLboolean, GLsizei, GLuint, GLuint) glVertexAttribArrayObjectATI;
         void function(GLuint, GLenum, GLfloat*) glGetVertexAttribArrayObjectfvATI;
         void function(GLuint, GLenum, GLint*) glGetVertexAttribArrayObjectivATI;
+    }
+
+    version(DerelictGL_AMD)
+    {
+        // GL_AMD_performance_monitor
+        void function(GLint*, GLsizei, GLuint*) glGetPerfMonitorGroupsAMD;
+        void function(GLuint, GLint*, GLint*, GLsizei, GLuint*) glGetPerfMonitorCountersAMD;
+        void function(GLuint, GLsizei, GLsizei*, GLchar*) glGetPerfMonitorGroupStringAMD;
+        void function(GLuint, GLuint, GLsizei, GLsizei*, GLchar*) glGetPerfMonitorCounterStringAMD;
+        void function(GLuint, GLuint, GLenum, void*) glGetPerfMonitorCounterInfoAMD;
+        void function(GLsizei, GLuint*) glGenPerfMonitorsAMD;
+        void function(GLsizei, GLuint*) glDeletePerfMonitorsAMD;
+        void function(GLuint, GLboolean, GLuint, GLint, GLuint*) glSelectPerfMonitorCountersAMD;
+        void function(GLuint) glBeginPerfMonitorAMD;
+        void function(GLuint) glEndPerfMonitorAMD;
+        void function(GLuint, GLenum, GLsizei, GLuint*, GLint*) glGetPerfMonitorCounterDataAMD;
+
+        // GL_AMD_vertex_shader_tesselator
+        void function(GLfloat) glTessellationFactorAMD;
+        void function(GLenum) glTessellationModeAMD;
+
+        // GL_AMD_draw_buffers_blend
+        void function(GLuint, GLenum, GLenum) glBlendFuncIndexedAMD;
+        void function(GLuint, GLenum, GLenum, GLenum, GLenum) glBlendFuncSeparateIndexedAMD;
+        void function(GLuint, GLenum) glBlendEquationIndexedAMD;
+        void function(GLuint, GLenum, GLenum) glBlendEquationSeparateIndexedAMD;
     }
 
     version(DerelictGL_SGI)
@@ -1508,6 +1607,24 @@ extern(System)
         // GL_APPLE_flush_buffer_range
         void function(GLenum, GLenum, GLint) glBufferParameteriAPPLE;
         void function(GLenum, GLintptr, GLsizeiptr) glFlushMappedBufferRangeAPPLE;
+
+        // GL_APPLE_texture_range
+        void function(GLenum, GLsizei, in GLvoid*) glTextureRangeAPPLE;
+        void function(GLenum, GLenum, GLvoid**) glGetTexParameterPointervAPPLE;
+
+        // GL_APPLE_vertex_program_evaluators
+        void function(GLuint, GLenum) glEnableVertexAttribAPPLE;
+        void function(GLuint, GLenum) glDisableVertexAttribAPPLE;
+        GLboolean function(GLuint, GLenum) glIsVertexAttribAPPLE;
+        void function(GLuint, GLuint, GLdouble, GLdouble, GLint, GLint, in GLdouble*) glMapVertexAttrib1dAPPLE;
+        void function(GLuint, GLuint, GLfloat, GLfloat, GLint, GLint, in GLfloat*) glMapVertexAttrib1fAPPLE;
+        void function(GLuint, GLuint, GLdouble, GLdouble, GLint, GLint, GLdouble, GLdouble, GLint, GLint, in GLdouble*) glMapVertexAttrib2dAPPLE;
+        void function(GLuint, GLuint, GLfloat, GLfloat, GLint, GLint, GLfloat, GLfloat, GLint, GLint, in GLfloat*) glMapVertexAttrib2fAPPLE;
+
+        // GL_APPLE_object_purgeable
+        GLenum function(GLenum, GLuint, GLenum) glObjectPurgeableAPPLE;
+        GLenum function(GLenum, GLuint, GLenum) glObjectUnpurgeableAPPLE;
+        void function(GLenum, GLuint, GLenum, GLuint*) glGetObjectParameterivAPPLE;
     }
 
     version(DerelictGL_SUNX)

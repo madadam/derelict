@@ -53,6 +53,7 @@ version(DerelictGL_ALL)
     version = DerelictGL_EXT;
     version = DerelictGL_NV;
     version = DerelictGL_ATI;
+    version = DerelictGL_AMD;
     version = DerelictGL_SGI;
     version = DerelictGL_SGIS;
     version = DerelictGL_SGIX;
@@ -283,6 +284,9 @@ private
             loaded["GL_EXT_direct_state_access"] = load_GL_EXT_direct_state_access();
             loaded["GL_EXT_vertex_array_bgra"] = load_GL_EXT_vertex_array_bgra();
             loaded["GL_EXT_texture_swizzle"] = load_GL_EXT_texture_swizzle();
+            loaded["GL_EXT_provoking_vertex"] = load_GL_EXT_provoking_vertex();
+            loaded["GL_EXT_texture_snorm"] = load_GL_EXT_texture_snorm();
+            loaded["GL_EXT_separate_shader_objects"] = load_GL_EXT_separate_shader_objects();
         }
 
         version(DerelictGL_NV)
@@ -333,6 +337,14 @@ private
             loaded["GL_NV_transform_feedback"] = load_GL_NV_transform_feedback();
             loaded["GL_NV_conditional_render"] = load_GL_NV_conditional_render();
             loaded["GL_NV_present_video"] = load_GL_NV_present_video();
+            loaded["GL_NV_explicit_multisample"] = load_GL_NV_explicit_multisample();
+            loaded["GL_NV_transform_feedback2"] = load_GL_NV_transform_feedback2();
+            loaded["GL_NV_video_capture"] = load_GL_NV_video_capture();
+            loaded["GL_NV_copy_image"] = load_GL_NV_copy_image();
+            loaded["GL_NV_parameter_buffer_object2"] = load_GL_NV_parameter_buffer_object2();
+            loaded["GL_NV_shader_buffer_load"] = load_GL_NV_shader_buffer_load();
+            loaded["GL_NV_vertex_buffer_unified_memory"] = load_GL_NV_vertex_buffer_unified_memory();
+            loaded["GL_NV_texture_barrier"] = load_GL_NV_texture_barrier();
         }
 
         version(DerelictGL_ATI)
@@ -352,6 +364,15 @@ private
             loaded["GL_ATI_map_object_buffer"] = load_GL_ATI_map_object_buffer();
             loaded["GL_ATI_separate_stencil"] = load_GL_ATI_separate_stencil();
             loaded["GL_ATI_vertex_attrib_array_object"] = load_GL_ATI_vertex_attrib_array_object();
+            loaded["GL_ATI_meminfo"] = load_GL_ATI_meminfo();
+        }
+
+        version(DerelictGL_AMD)
+        {
+            loaded["GL_AMD_performance_monitor"] = load_GL_AMD_performance_monitor();
+            loaded["GL_AMD_texture_texture4"] = load_GL_AMD_texture_texture4();
+            loaded["GL_AMD_vertex_shader_tesselator"] = load_GL_AMD_vertex_shader_tesselator();
+            loaded["GL_AMD_draw_buffers_blend"] = load_GL_AMD_draw_buffers_blend();
         }
 
         version(DerelictGL_SGI)
@@ -474,6 +495,13 @@ private
             loaded["GL_APPLE_vertex_array_range"] = load_GL_APPLE_vertex_array_range();
             loaded["GL_APPLE_ycbcr_422"] = load_GL_APPLE_ycbcr_422();
             loaded["GL_APPLE_flush_buffer_range"] = load_GL_APPLE_flush_buffer_range();
+            loaded["GL_APPLE_texture_range"] = load_GL_APPLE_texture_range();
+            loaded["GL_APPLE_float_pixels"] = load_GL_APPLE_float_pixels();
+            loaded["GL_APPLE_vertex_program_evaluators"] = load_GL_APPLE_vertex_program_evaluators();
+            loaded["GL_APPLE_aux_depth_stencil"] = load_GL_APPLE_aux_depth_stencil();
+            loaded["GL_APPLE_object_purgeable"] = load_GL_APPLE_object_purgeable();
+            loaded["GL_APPLE_row_bytes"] = load_GL_APPLE_row_bytes();
+            loaded["GL_APPLE_rgb_422"] = load_GL_APPLE_rgb_422();
         }
 
         version(DerelictGL_SUNX)
@@ -2963,6 +2991,35 @@ private
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_EXT_provoking_vertex()
+        {
+            if(!extIsSupported("GL_EXT_provoking_vertex"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glProvokingVertexEXT, "glProvokingVertexEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_texture_snorm()
+        {
+            if(!extIsSupported("GL_EXT_texture_snorm"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_EXT_separate_shader_objects()
+        {
+            if(!extIsSupported("GL_EXT_separate_shader_objects"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glUseShaderProgramEXT, "glUseShaderProgramEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glActiveProgramEXT, "glActiveProgramEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glCreateShaderProgramEXT, "glCreateShaderProgramEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_NV)
@@ -3742,6 +3799,162 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
+
+        GLExtensionState load_GL_NV_explicit_multisample()
+        {
+            if(!extIsSupported("GL_NV_explicit_multisample"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGetMultisamplefvNV, "glGetMultisamplefvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSampleMaskIndexedNV, "glSampleMaskIndexedNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexRenderbufferNV, "glTexRenderbufferNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_transform_feedback2()
+        {
+            if(!extIsSupported("GL_NV_transform_feedback2"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBindTransformFeedbackNV, "glBindTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeleteTransformFeedbacksNV, "glDeleteTransformFeedbacksNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenTransformFeedbacksNV, "glGenTransformFeedbacksNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsTransformFeedbackNV, "glIsTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glPauseTransformFeedbackNV, "glPauseTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glResumeTransformFeedbackNV, "glResumeTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDrawTransformFeedbackNV, "glDrawTransformFeedbackNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_video_capture()
+        {
+            if(!extIsSupported("GL_NV_video_capture"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBeginVideoCaptureNV, "glBeginVideoCaptureNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindVideoCaptureStreamBufferNV, "glBindVideoCaptureStreamBufferNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBindVideoCaptureStreamTextureNV, "glBindVideoCaptureStreamTextureNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEndVideoCaptureNV, "glEndVideoCaptureNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVideoCaptureivNV, "glGetVideoCaptureivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVideoCaptureStreamivNV, "glGetVideoCaptureStreamivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVideoCaptureStreamfvNV, "glGetVideoCaptureStreamfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetVideoCaptureStreamdvNV, "glGetVideoCaptureStreamdvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVideoCaptureNV, "glVideoCaptureNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVideoCaptureStreamParameterivNV, "glVideoCaptureStreamParameterivNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVideoCaptureStreamParameterfvNV, "glVideoCaptureStreamParameterfvNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVideoCaptureStreamParameterdvNV, "glVideoCaptureStreamParameterdvNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_copy_image()
+        {
+            if(!extIsSupported("GL_NV_copy_image"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glCopyImageSubDataNV, "glCopyImageSubDataNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_parameter_buffer_object2()
+        {
+            if(!extIsSupported("GL_NV_parameter_buffer_object2"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_shader_buffer_load()
+        {
+            if(!extIsSupported("GL_NV_shader_buffer_load"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glMakeBufferResidentNV, "glMakeBufferResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMakeBufferNonResidentNV, "glMakeBufferNonResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsBufferResidentNV, "glIsBufferResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNamedMakeBufferResidentNV, "glNamedMakeBufferResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNamedMakeBufferNonResidentNV, "glNamedMakeBufferNonResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsNamedBufferResidentNV, "glIsNamedBufferResidentNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetBufferParameterui64vNV, "glGetBufferParameterui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetNamedBufferParameterui64vNV, "glGetNamedBufferParameterui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetIntegerui64vNV, "glGetIntegerui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniformui64NV, "glUniformui64NV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glUniformui64vNV, "glUniformui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetUniformui64vNV, "glGetUniformui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramUniformui64NV, "glProgramUniformui64NV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glProgramUniformui64vNV, "glProgramUniformui64vNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_vertex_buffer_unified_memory()
+        {
+            if(!extIsSupported("GL_NV_vertex_buffer_unified_memory"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBufferAddressRangeNV, "glBufferAddressRangeNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexFormatNV, "glVertexFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glNormalFormatNV, "glNormalFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glColorFormatNV, "glColorFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIndexFormatNV, "glIndexFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTexCoordFormatNV, "glTexCoordFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEdgeFlagFormatNV, "glEdgeFlagFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSecondaryColorFormatNV, "glSecondaryColorFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glFogCoordFormatNV, "glFogCoordFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribFormatNV, "glVertexAttribFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glVertexAttribIFormatNV, "glVertexAttribIFormatNV"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetIntegerui64i_vNV, "glGetIntegerui64i_vNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_NV_texture_barrier()
+        {
+            if(!extIsSupported("GL_NV_texture_barrier"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTextureBarrierNV, "glTextureBarrierNV"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
     }
 
     version(DerelictGL_ATI)
@@ -4023,6 +4236,78 @@ private
             if(!bindExtFunc(cast(void**)&glGetVertexAttribArrayObjectfvATI, "glGetVertexAttribArrayObjectfvATI"))
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glGetVertexAttribArrayObjectivATI, "glGetVertexAttribArrayObjectivATI"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_ATI_meminfo()
+        {
+            if(!extIsSupported("GL_ATI_meminfo"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+    }
+
+    version(DerelictGL_AMD)
+    {
+        GLExtensionState load_GL_AMD_performance_monitor()
+        {
+            if(!extIsSupported("GL_AMD_performance_monitor"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorGroupsAMD, "glGetPerfMonitorGroupsAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorCountersAMD, "glGetPerfMonitorCountersAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorGroupStringAMD, "glGetPerfMonitorGroupStringAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorCounterStringAMD, "glGetPerfMonitorCounterStringAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorCounterInfoAMD, "glGetPerfMonitorCounterInfoAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGenPerfMonitorsAMD, "glGenPerfMonitorsAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDeletePerfMonitorsAMD, "glDeletePerfMonitorsAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glSelectPerfMonitorCountersAMD, "glSelectPerfMonitorCountersAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBeginPerfMonitorAMD, "glBeginPerfMonitorAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glEndPerfMonitorAMD, "glEndPerfMonitorAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetPerfMonitorCounterDataAMD, "glGetPerfMonitorCounterDataAMD"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_AMD_texture_texture4()
+        {
+            if(!extIsSupported("GL_AMD_texture_texture4"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_AMD_vertex_shader_tesselator()
+        {
+            if(!extIsSupported("GL_AMD_vertex_shader_tesselator"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTessellationFactorAMD, "glTessellationFactorAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glTessellationModeAMD, "glTessellationModeAMD"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_AMD_draw_buffers_blend()
+        {
+            if(!extIsSupported("GL_AMD_draw_buffers_blend"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glBlendFuncIndexedAMD, "glBlendFuncIndexedAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBlendFuncSeparateIndexedAMD, "glBlendFuncSeparateIndexedAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBlendEquationIndexedAMD, "glBlendEquationIndexedAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glBlendEquationSeparateIndexedAMD, "glBlendEquationSeparateIndexedAMD"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
@@ -4862,6 +5147,79 @@ private
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&glFlushMappedBufferRangeAPPLE, "glFlushMappedBufferRangeAPPLE"))
                 return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_texture_range()
+        {
+            if(!extIsSupported("GL_APPLE_texture_range"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glTextureRangeAPPLE, "glTextureRangeAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetTexParameterPointervAPPLE, "glGetTexParameterPointervAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_float_pixels()
+        {
+            if(!extIsSupported("GL_APPLE_float_pixels"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_vertex_program_evaluators()
+        {
+            if(!extIsSupported("GL_APPLE_vertex_program_evaluators"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glEnableVertexAttribAPPLE, "glEnableVertexAttribAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glDisableVertexAttribAPPLE, "glDisableVertexAttribAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glIsVertexAttribAPPLE, "glIsVertexAttribAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapVertexAttrib1dAPPLE, "glMapVertexAttrib1dAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapVertexAttrib1fAPPLE, "glMapVertexAttrib1fAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapVertexAttrib2dAPPLE, "glMapVertexAttrib2dAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glMapVertexAttrib2fAPPLE, "glMapVertexAttrib2fAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_aux_depth_stencil()
+        {
+            if(!extIsSupported("GL_APPLE_aux_depth_stencil"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_object_purgeable()
+        {
+            if(!extIsSupported("GL_APPLE_object_purgeable"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&glObjectPurgeableAPPLE, "glObjectPurgeableAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glObjectUnpurgeableAPPLE, "glObjectUnpurgeableAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&glGetObjectParameterivAPPLE, "glGetObjectParameterivAPPLE"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_row_bytes()
+        {
+            if(!extIsSupported("GL_APPLE_row_bytes"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_GL_APPLE_rgb_422()
+        {
+            if(!extIsSupported("GL_APPLE_rgb_422"))
+                return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
     }

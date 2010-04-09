@@ -5,9 +5,8 @@ PACKAGE_PATH=derelict/opengl
 
 all : DerelictGL DerelictGLU
 
-# GL_VERSIONS=-version=DerelictGL_ALL
-
-GL_VERSIONS=-version=DerelictGL_ARB -version=DerelictGL_EXT -version=DerelictGL_NV -version=DerelictGL_ATI
+#GL_VERSIONS=-version=DerelictGL_ALL
+GL_VERSIONS=-version=DerelictGL_ARB -version=DerelictGL_EXT -version=DerelictGL_NV -version=DerelictGL_ATI -version=DerelictGL_AMD
 
 GL_SRC= \
 	derelict/opengl/cgl.d \
