@@ -46,7 +46,7 @@ public:
         super(
             "OpenAl32.dll",
             "libal.so, libAL.so, libopenal.so, libopenal.so.1, libopenal.so.0",
-            ""
+            "../Frameworks/OpenAL.framework/OpenAL, /Library/Frameworks/OpenAL.framework/OpenAL, /System/Library/Frameworks/OpenAL.framework/OpenAL"
         );
     }
 
