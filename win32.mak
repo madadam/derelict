@@ -9,7 +9,7 @@ DerelictAL_ALL :
 	cd ..
 	
 DerelictFMODEX_ALL:
-	cd DerelictFMODEX
+	cd DerelictFMOD
 	$(DMAKE) all PLATFORM=win32
 	cd ..
 		

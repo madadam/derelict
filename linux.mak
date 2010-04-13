@@ -7,7 +7,7 @@ DerelictAL_ALL :
 	$(DMAKE) -C DerelictAL all PLATFORM=linux
 	
 DerelictFMODEX_ALL :
-	$(DMAKE) -C DerelictFMODEX all PLATFORM=linux	
+	$(DMAKE) -C DerelictFMOD all PLATFORM=linux	
 
 DerelictFT_ALL :
 	$(DMAKE) -C DerelictFT all PLATFORM=linux
