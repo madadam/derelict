@@ -385,7 +385,7 @@ extern(C)
     int function(dBodyID) dBodyGetFiniteRotationMode;
     void function(dBodyID, dVector3) dBodyGetFiniteRotationAxis;
     int function(dBodyID) dBodyGetNumJoints;
-    dJointID function(dBodyID) dBodyGetJoint;
+    dJointID function(dBodyID, int) dBodyGetJoint;
     void function(dBodyID) dBodySetDynamic;
     void function(dBodyID) dBodySetKinematic;
     int function(dBodyID) dBodyIsKinematic;
