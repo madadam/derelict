@@ -29,6 +29,7 @@ module derelict.ogg.vorbisenc;
 
 public
 {
+	import derelict.ogg.vorbistypes;
     import derelict.ogg.vorbisenctypes;
     import derelict.ogg.vorbisencfuncs;
 }

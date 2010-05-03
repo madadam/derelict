@@ -25,13 +25,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.ogg.vorbisfuncs;
+module derelict.ogg.vorbisfilefuncs;
 
 private
 {
     import derelict.util.compat;
     import derelict.ogg.oggtypes;
+    import derelict.ogg.vorbistypes;
     import derelict.ogg.vorbisfiletypes;
+    
+    version(Tango)
+    	import tango.stdc.stdio : FILE, fclose, fread, ftell, fseek;
+    else
+    	import std.c.stdio : FILE, fclose, fread, ftell, fseek;
 }
 
 extern(C)
@@ -116,7 +122,7 @@ int ov_open(FILE *f, OggVorbis_File *vf, char *initial, long ibytes)
     vorbisCallbacks.seek_func  = &Derelict_VorbisSeek;
     vorbisCallbacks.tell_func  = &Derelict_VorbisTell;
 
-    return ov_open_callbacks(f, vf, initial, cast(int)ibytes, vorbisCallbacks);
+    return ov_open_callbacks(cast(void *)f, vf, initial, cast(int)ibytes, vorbisCallbacks);
 }
 
 // ditto for ov_test
@@ -129,5 +135,5 @@ int ov_test(FILE *f, OggVorbis_File *vf, char *initial, long ibytes)
     vorbisCallbacks.seek_func  = &Derelict_VorbisSeek;
     vorbisCallbacks.tell_func  = &Derelict_VorbisTell;
 
-    return ov_test_callbacks(f, vf, initial, cast(int)ibytes, vorbisCallbacks);
+    return ov_test_callbacks(cast(void *)f, vf, initial, cast(int)ibytes, vorbisCallbacks);
 }

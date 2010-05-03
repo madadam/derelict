@@ -30,6 +30,8 @@ module derelict.ogg.vorbisfiletypes;
 private
 {
     import derelict.ogg.oggtypes;
+    import derelict.ogg.vorbistypes;
+    import derelict.ogg.vorbisenctypes;
 }
 
 extern (C)

@@ -25,12 +25,12 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
 */
-module derelict.ogg.vorbisenc;
+module derelict.ogg.vorbisfile;
 
 public
 {
-    import derelict.ogg.vorbisenctypes;
-    import derelict.ogg.vorbisencfuncs;
+	import derelict.ogg.vorbisfiletypes;
+    import derelict.ogg.vorbisfilefuncs;
 }
 
 private
