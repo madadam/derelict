@@ -1,6 +1,6 @@
 include inc\win32_inc.mak
 
-all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictODE_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictODE_ALL DerelictOgg_ALL DerelictPA_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
@@ -38,6 +38,11 @@ DerelictOgg_ALL:
 	$(DMAKE) all PLATFORM=win32
 	cd ..
 
+DerelictPA_ALL:
+	cd DerelictPA
+	$(DMAKE) all PLATFORM=win32
+	cd ..
+	
 DerelictSDL_ALL :
 	cd DerelictSDL
 	$(DMAKE) all PLATFORM=win32
@@ -97,6 +102,9 @@ DerelictOgg :
 	cd DerelictOgg
 	$(DMAKE) DerelictOgg PLATFORM=win32
 	cd ..
+	
+# There's only one DerelictPA target
+DerelictPA : DerelictPA_ALL
 	
 DerelictVorbis :
 	cd DerelictOgg

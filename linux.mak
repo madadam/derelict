@@ -1,6 +1,6 @@
 include inc/linux_inc.mak
 
-all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictODE_ALL DerelictOgg_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
+all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL_ALL DerelictODE_ALL DerelictOgg_ALL DerelictPA_ALL DerelictSDL_ALL DerelictSFML_ALL DerelictUtil_ALL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
@@ -23,6 +23,9 @@ DerelictODE_ALL :
 	
 DerelictOgg_ALL :
 	$(DMAKE) -C DerelictOgg all PLATFORM=linux
+	
+DerelictPA_ALL:
+	$(DMAKE) -C DerelictPA all PLATFORM=linux
 
 DerelictSDL_ALL :
 	$(DMAKE) -C DerelictSDL all PLATFORM=linux
@@ -65,6 +68,9 @@ DerelictODE : DerelictODE_ALL
 # Individual DerelictOgg targets
 DerelictOgg :
 	$(DMAKE) -C DerelictOgg DerelictOgg PLATFORM=linux
+	
+# There's only one target for DerelictPA
+DerelictPA : DerelictPA_ALL	
 	
 DerelictVorbis :
 	$(DMAKE) -C DerelictOgg DerelictVorbis PLATFORM=linux
