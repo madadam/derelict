@@ -1,0 +1,92 @@
+/* Generic Links */
+a:link, a:visited	{
+	color			: #0000BB;
+	text-decoration	: none;
+}
+
+a:hover 	{
+	color			: #808080;
+	text-decoration	: underline;
+}
+
+/* No margins at the edge of the page */
+body{
+	font-family 	: Verdana, Helvetica, sans-serif;
+	font-size		: 11pt;
+	color 			: #404040;
+	line-height		: 14pt;
+}
+
+/* Decrease border above and below list */
+ul {
+	margin-top 		: 0.25em;
+}
+
+/* Change color of pre text */
+pre {
+	color			: #000080;
+	background-color: #E6EAEC;
+	font-weight		: bold;
+}
+
+tt {
+	color: #000080;
+	font-weight: bold;
+	background-color: #F8F8FF;
+}
+
+/* Headers */
+h2 {
+	font-family 	: Verdana, Helvetica, sans-serif;
+	font-size		: 20pt;
+	color 			: #408050;
+	margin-top 		: .1em;
+	margin-bottom	: .1em;
+}
+
+h3 {
+	font-family 	: Verdana, Helvetica, sans-serif;
+	font-size		: 12pt;
+	color 			: #705030;
+	background-color: #CCCCCC;
+	margin-bottom	: .5em;
+}
+
+h4 {
+	text-decoration: underline;
+	margin-bottom: .5em;
+}
+
+ul {
+	background-color: #EEEEEE;
+}
+
+blockquote {
+	font-style: italic;
+}
+
+.note {
+	font-weight: bold;
+	background-color: #EEEEEE;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+.note tt {
+	background-color: #EEEEEE;
+}
+
+.important {
+	font-weight: bold;
+	color: #FF0000;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.emph {
+	font-style: italic;
+}
