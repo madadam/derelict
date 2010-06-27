@@ -42,7 +42,7 @@ import derelict.util.loader;
 
 package:
 
-const NSApplication NSApp;
+NSApplication NSApp;
 
 static this ()
 {

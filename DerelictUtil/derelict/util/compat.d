@@ -34,6 +34,7 @@ version(D_Version2)
     mixin("alias const(dchar)* CDCPTR;");
     mixin("alias const(ubyte)* CUBPTR;");
     mixin("alias const(void)* CVPTR;");
+    mixin("alias immutable(char)* ICPTR;");
 }
 else
 {
@@ -42,6 +43,7 @@ else
     alias dchar* CDCPTR;
     alias ubyte* CUBPTR;
     alias void* CVPTR;
+    alias char* ICPTR;
 }
 
 version(Tango)
@@ -54,7 +56,16 @@ version(Tango)
         import tango.core.Version;
     }
 
-    alias char[] string;
+    version (PhobosCompatibility) {}
+    else
+    {
+        alias char[] string;
+        alias wchar[] wstring;
+        alias dchar[] dstring;
+    }
+    
+    alias tango.stdc.stringz.fromStringz fromStringz;
+    alias tango.stdc.stringz.toStringz toStringz;
 }
 else
 {
@@ -66,6 +77,31 @@ else
         }
         import std.string;
         import std.c.string;
+    }
+    
+    string fromStringz (CCPTR str)
+    {
+        version (D_Version2)
+            return str ? str[0 .. strlenz(str)].idup : null;
+            
+        else
+            return str ? str[0 .. strlenz(str)] : null;
+    }
+    
+    CCPTR toStringz (string str)
+    {
+        return (str ~ '\0').ptr;
+    }
+    
+    size_t strlenz (CCPTR str)
+    {
+        size_t i;
+        
+        if (str)
+            while(str++)
+                i++;
+                
+        return i;
     }
 }
 

@@ -84,7 +84,7 @@ extern (C)
     bool function(CFURLRef url, bool resolveAgainstBase, ubyte* buffer, CFIndex maxBufLen) CFURLGetFileSystemRepresentation;");
 }
 
-void load (void delegate(void**, string) bindFunc)
+void load (void delegate(void**, string, bool doThrow = true) bindFunc)
 {
     bindFunc(cast(void**)&CFRelease, "CFRelease");
     bindFunc(cast(void**)&CFBundleGetInfoDictionary, "CFBundleGetInfoDictionary");

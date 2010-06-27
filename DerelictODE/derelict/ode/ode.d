@@ -36,6 +36,7 @@ public
 private
 {
     import derelict.util.loader;
+    import derelict.util.compat;
 }
 
 class DerelictODELoader : SharedLibLoader

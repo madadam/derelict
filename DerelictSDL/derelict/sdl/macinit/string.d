@@ -37,7 +37,7 @@ version (Tango)
 
 else
 {
-    import std.string : rfind;
+    import std.string;
     import std.utf : toUTF32;
 }
 
@@ -54,7 +54,14 @@ public size_t lastIndexOf (T)(T[] str, T ch, size_t formIndex)
         res = str.locatePrior(ch, formIndex);
 
     else
-        return  str.rfind(toUTF32([ch])[0]);
+    {
+        version (D_Version2)
+            return str.lastIndexOf(toUTF32([c]), CaseSensitive.yes);
+            
+        else
+            return  str.rfind(toUTF32([ch])[0]);
+    }
+        
 
     version (Tango)
         if (res is str.length)

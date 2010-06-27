@@ -27,6 +27,8 @@ private
         import std.c.linux.linux;
         import std.c.stdlib;
         import std.c.string;
+        
+        static import std.string;
     }
 
     import derelict.sdl.sdltypes;
@@ -80,7 +82,7 @@ version (SDL_USE_CPS)
         OSErr function (CPSProcessSerNum *psn) CPSSetFrontProcess;");
     }
 
-    void load (void delegate(void**, string) bindFunc)
+    void load (void delegate(void**, string, bool doThrow = true) bindFunc)
     {
         bindFunc(cast(void**)&CPSGetCurrentProcess, "CPSGetCurrentProcess");
         bindFunc(cast(void**)&CPSEnableForegroundOperation, "CPSEnableForegroundOperation");
@@ -218,7 +220,7 @@ private void registerClass (string className) (Class superClass, objc_method_lis
          * to share this copy of the name, but this is not a requirement
          * imposed by the runtime.
          */
-        newClass.name = ((className ~ '\0').dup).ptr;
+        newClass.name = toStringz(className);
         metaClass.name = newClass.name;
 
         // Allocate method lists.

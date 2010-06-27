@@ -34,17 +34,6 @@ version (darwin):
 import derelict.sdl.macinit.string;
 import derelict.util.compat;
 
-version (Tango)
-    import tango.stdc.stringz : fromStringz, toStringz;
-
-else
-{
-    static import std.string;
-
-    alias std.string.toStringz toStringz;
-    alias std.string.toString fromStringz;
-}
-
 import derelict.sdl.macinit.NSGeometry;
 import derelict.util.loader;
 import derelict.util.exception;
@@ -55,7 +44,7 @@ alias objc_ivar* Ivar;
 alias objc_method* Method;
 alias objc_object Protocol;
 
-alias char* SEL;
+alias CCPTR SEL;
 alias objc_class* Class;
 alias objc_object* id;
 
@@ -76,7 +65,7 @@ struct objc_class
 {
     Class isa;
     Class super_class;
-    /*const*/ char* name;
+    CCPTR name;
     int versionn;
     int info;
     int instance_size;
@@ -88,8 +77,8 @@ struct objc_class
 
 struct objc_ivar
 {
-    char* ivar_name;
-    char* ivar_type;
+    CCPTR ivar_name;
+    CCPTR ivar_type;
     int ivar_offset;
 
     version (X86_64)
@@ -110,7 +99,7 @@ struct objc_ivar_list
 struct objc_method
 {
     SEL method_name;
-    char* method_types;
+    CCPTR method_types;
     IMP method_imp;
 }
 
@@ -145,11 +134,11 @@ struct objc_protocol_list
 extern (C)
 {
     mixin(gsharedString!() ~ "
-    Class function (Class superclass, /*const*/char* name, size_t extraBytes) c_objc_allocateClassPair;
+    Class function (Class superclass, CCPTR name, size_t extraBytes) c_objc_allocateClassPair;
     Class function (Class superclass) objc_registerClassPair;
-    id function (/*const*/char* name) c_objc_getClass;
+    id function (CCPTR name) c_objc_getClass;
     id function (id theReceiver, SEL theSelector, ...) c_objc_msgSend;
-    SEL function (/*const*/char* str) c_sel_registerName;
+    SEL function (CCPTR str) c_sel_registerName;
 
     bool function () NSApplicationLoad;
 
@@ -157,7 +146,7 @@ extern (C)
     void function (Class arg0, objc_method_list* arg1) class_addMethods;");
 }
 
-void load (void delegate(void**, string) bindFunc)
+void load (void delegate(void**, string, bool doThrow = true) bindFunc)
 {
     bindFunc(cast(void**)&objc_addClass, "objc_addClass");
 

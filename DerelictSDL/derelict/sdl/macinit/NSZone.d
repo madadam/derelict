@@ -44,7 +44,7 @@ extern (C)
     void function (void* ptr, NSUInteger bytes) NSDeallocateMemoryPages;");
 }
 
-void load (void delegate(void**, string) bindFunc)
+void load (void delegate(void**, string, bool doThrow = true) bindFunc)
 {
     bindFunc(cast(void**)&NSAllocateMemoryPages, "NSAllocateMemoryPages");
     bindFunc(cast(void**)&NSDeallocateMemoryPages, "NSDeallocateMemoryPages");

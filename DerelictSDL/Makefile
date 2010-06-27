@@ -8,7 +8,29 @@ all : DerelictSDL DerelictSDLImage DerelictSDLMixer DerelictSDLNet DerelictSDLtt
 SDL_SRC= \
 	derelict/sdl/sdl.d \
     derelict/sdl/sdlfuncs.d \
-    derelict/sdl/sdltypes.d
+    derelict/sdl/sdltypes.d \
+	derelict/sdl/macinit/CoreFoundation.d \
+	derelict/sdl/macinit/DerelictSDLMacLoader.d \
+	derelict/sdl/macinit/ID.d \
+	derelict/sdl/macinit/MacTypes.d \
+	derelict/sdl/macinit/NSApplication.d \
+	derelict/sdl/macinit/NSArray.d \
+	derelict/sdl/macinit/NSAutoreleasePool.d \
+	derelict/sdl/macinit/NSDictionary.d \
+	derelict/sdl/macinit/NSEnumerator.d \
+	derelict/sdl/macinit/NSEvent.d \
+	derelict/sdl/macinit/NSGeometry.d \
+	derelict/sdl/macinit/NSMenu.d \
+	derelict/sdl/macinit/NSMenuItem.d \
+	derelict/sdl/macinit/NSNotification.d \
+	derelict/sdl/macinit/NSObject.d \
+	derelict/sdl/macinit/NSProcessInfo.d \
+	derelict/sdl/macinit/NSString.d \
+	derelict/sdl/macinit/NSZone.d \
+	derelict/sdl/macinit/runtime.d \
+	derelict/sdl/macinit/SDLMain.d \
+	derelict/sdl/macinit/selectors.d \
+	derelict/sdl/macinit/string.d
     
 IMG_SRC= derelict/sdl/image.d
 

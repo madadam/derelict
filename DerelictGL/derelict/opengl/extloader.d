@@ -34,6 +34,12 @@ private
     import derelict.opengl.glfuncs;
     import derelict.util.compat;
     import derelict.util.exception;
+    
+    version (darwin) version = CGL;
+    else version (OSX) version = CGL;
+    else version (linux) version = GLX;
+    else version (freebsd) version = GLX;
+    else version (FreeBSD) version = GLX;    
 
     version(Windows)
     {
@@ -41,10 +47,15 @@ private
         import derelict.util.wintypes;
     }
 
-    version(linux)
+    version(GLX)
     {
         import derelict.opengl.glx;
     }
+    
+    version (CGL)
+    {
+        import derelict.opengl.cgl;
+    }   
 }
 
 version(DerelictGL_ALL)

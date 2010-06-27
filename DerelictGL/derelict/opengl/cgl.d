@@ -336,7 +336,7 @@ version (CGL)
 
     package
     {
-        void loadPlatformGL(void delegate(void**, string) bindFunc)
+        void loadPlatformGL(void delegate(void**, string, bool doThrow = true) bindFunc)
         {
             bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
             bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
@@ -443,5 +443,9 @@ version (CGL)
             bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
         }
 
+		void* loadGLSymbol(string symName)
+        {
+            assert(false, `"loadGLSymbol" is currently not implemented on Mac OS X`);
+        }
     }
 }// version(CGL)
