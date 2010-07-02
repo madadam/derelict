@@ -523,7 +523,7 @@ public:
         }
         else
         {
-            assert(0, "DerelictGLLoader.hasValidContext is unimplemented for this platform");
+            static assert(0, "DerelictGLLoader.hasValidContext is unimplemented for this platform");
         }
 
         return true;
