@@ -45,19 +45,23 @@ private
 
     version(darwin)
         version = MacOSX;
+
     version(OSX)
         version = MacOSX;
 
     version (MacOSX)
         import derelict.opengl.cgl;
 
-    version (linux)
-        import derelict.opengl.glx;
+    version(linux)
+        version = GLX;
 
-    version (FreeBSD)
+    version(FreeBSD)
         version = freebsd;
 
-    version (freebsd)
+    version(freebsd)
+        version = GLX;
+
+    version(GLX)
         import derelict.opengl.glx;
 }
 
@@ -511,7 +515,7 @@ public:
             if(wglGetCurrentContext() is null)
                 return false;
         }
-        else version(UsingGLX)
+        else version(GLX)
         {
             if(glXGetCurrentContext() is null)
                 return false;
