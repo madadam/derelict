@@ -32,32 +32,32 @@ NET_SRC= \
 	derelict/sfml/network.d
 
 $(LIB_TARGET) :
-	$(DC) $(DFLAGS) $(ALL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ALL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictSFMLWindow.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(WIN_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(WIN_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictSFMLSystem.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(SYS_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SYS_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictSFMLGraphics.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GFX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GFX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictSFMLAudio.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(AUDIO_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(AUDIO_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictSFMLNetwork.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

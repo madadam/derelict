@@ -11,7 +11,7 @@ PACKAGE_PATH=derelict/openal
 all : DerelictAL
 
 $(LIB_PRE)DerelictAL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(AL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(AL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

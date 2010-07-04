@@ -11,7 +11,7 @@ PACKAGE_PATH=derelict/ode
 all : DerelictODE
 
 $(LIB_PRE)DerelictODE.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ODE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ODE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

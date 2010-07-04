@@ -10,132 +10,121 @@
 <hr>
 <hr>
 <h3>Introduction</h3>
-Derelict 2 is a collection of D bindings to C shared (dynamic) libraries which are
+Derelict is a collection of D bindings to C shared (dynamic) libraries which are
 useful for multimedia applications, with a heavy bias toward libraries commonly
-used in game development. Derelict 2 can be used with both D1 and D2, as well as
+used in game development. Derelict can be used with both D1 and D2, as well as
 with both the Phobos standard library and the alternative, Tango. It is
-also a goal to ensure that Derelict 2 is available on every platform where D is available
+also a goal to ensure that Derelict is available on every platform where D is available
 and, ultimately, that it is compatibile with the main D compilers. Neither of those goals has
 been completely met yet, but Derelict 2 is currently usable out of the box on Windows
-and Linux, mostly Mac-ready, and has seen limited use on FreeBSD.
+and Linux, mostly Mac-ready, and has seen some use on FreeBSD.
 <p>
-What makes Derelict 2 different from other bindings to C libraries is in the method
+What makes Derelict different from other D bindings to C libraries is in the method
 used to link. Most bindings are designed to be linked at compile time either with a
-static version of a C library, or with the dynamic version. Derelict 2 does not support static 
-linking in any form. Instead, it requires the bound libraries to always be in shared form and then
-they are loaded manually at runtime. The following sections outline the rationale behind this.
+static version of a C library, or with the dynamic version. Derelict does not support static
+linking in any form. Instead, it requires the bound libraries to always be in shared form. The shared
+libraries are loaded manually at runtime.
 </p>
-<h4>Issues When Linking a Shared Lib at Compile Time</h4>
-On Windows, you must typically link with a static import library in order to use
-a shared library (DLL), though these days it is possible to link directly with
-the DLL itself depending on the compiler used (though not in D that I'm aware). 
-Other operating systems that support shared libraries in the shared object format
-(SO) do not require static import libraries. Instead, the shared libraries used
-are directly linked with at compile time. No matter the approach, the end result
-is the same. By linking with the shared library at compile time, enought information
-is stored in the executable to let the OS know which shared libraries to load
-when at runtime.
-<p>
-One issue with this approach is that of the object format used. If the
-D linker on your platform does not support a particular object format for a library
-you wish to link with at compile time, then you need to go through the step of converting the
-library to the proper format, or, if the library's source is available, compile
-the library with a compiler that outputs the proper object format (in practice,
-this is only an issue on Windows). This is only a minor annoyance that can usually be 
-handled once and forgotten until you upgrade to a new version of a library. A more
-serious concern is that of flexibility and robustness.
-</p><p>
-When an application is linked with a shared library  at compile time, the shared library will be loaded 
-automatically at application startup. If the shared library is missing or corrupt, 
-then the application will fail to load and the operating system will display an error message to the user.
-This could also occur if the only version of a shared library available on the
-user's system is older than the version the application linked with. The
-error message displayed may not be very user-friendly. Some users who do not
-understand the concepts behind the error message could become frustrated with
-you as the developer, and may even view you as unprofessional. When it comes to
-software, there is no such thing as one-size-fits-all. A large company like Adobe,
-or someone making free software, may not find such errors a concern. A solo
-game developer attempting to sell casual games online may find such errors costly.
-For that developer, having the option to avoid them is ideal.
-</p>
-<h4>Derelict 2's Solution</h4>
-Derelict 2 solves both potential problems by eliminating the requirement of linking with
-the shared library at compile time. Instead, Derelict 2 loads shared libraries
-manually after the application has already started. This gives a great amount of
-flexibility to the application developer. Object file formats are irrelevant, as
-the application will be linked to a D library rather than a C library. The case
-of missing or corrupt shared libraries can be handled gracefully in an application
-specific manner. For example, the application could display an error message
-that details how to solve the problem, or where to go for technical support. But
-the benefits don't stop there.
-</p><p>
-With Derelict 2, shared libraries can be loaded and unloaded at will. When you
-consider that each shared library, when loaded, consumes system resources, then
-you might find it beneficial to only load the library when it is needed and
-not before. Some applications could also benefit from a hot-swap system. For
-example, a game might have a generic audio interface with implementations
-for both OpenAL and FMOD, and provide a means for players to switch between
-the two at runtime. Derelict 2 makes implementing such a feature a snap.
-</p>
-<h4>Special Features</h4>
-Derelict 2 goes one step further and allows selective loading of shared library
-symbols. This gives you the freedom to do things like falling back to older
-versions of a shared library when a current version is not available. For example,
-if a particular Derelict 2 package is setup to load version 2 of a shared library,
-but your application does not use any exported functions or variables that are
-specific to version 2, then you can use selective symbol loading to allow
-version 1 of the shared library to be loaded if version 2 fails to load.
-</p><p>
-While some of the functionality that Derelict 2 provides is baked into the process
-of manually loading libraries, other features (such as 
-selective symbol exceptions) are provided through the DerelictUtil package.
-As a side effect, all Derelict 2 packages have an implicit dependency upon DerelictUtil.
-This means that when compiling any individual packages, DerelictUtil <b>must</b>
-be available on the import path, and when linking, DerelictUtil <b>must be</b>
-linked into the application. See the DerelictUtil documentation
-for more details.
 
-<h4>The Future</h4>
-Derelict has evolved quite a bit since its humble beginnnings as OpenGL and SDL
-bindings created by one guy as a hobby project. It's still a hobby project, but
-it has been contributed to by a number of users over the years. Derelict 2 represents
-a complete overhaul, taking in consideration lessons learned and mistakes made
-with the first version.
-<p>
-As more users come on board, there is always a demand for more packages. Rather than adding
-just any old binding to Derelict 2, there must be some guidelines in place to
-keep things under control. The following (loose) criteria are used to determine
-the fitness of bindings to any given library for inclusion in the Derelict 2 trunk:
+<h3>Building the Derelict Packages</h3>
+It is recommended that when you use Derelict you first build the packages you need via the supplied
+makefiles or supported IDE project files, even if you are using a build tool that allows you to bypass
+this step. Doing so places all of the Derelict libraries in one convenient location and generates .di
+files in a hierarchy, independent of the package tree, that can be easily imported into your applications.
 
+<h4>All Platforms</h4>
+Make files have been created for all the platforms Derelict currently supports. They are designed to be
+configurable to some degree. Configuration options will be discussed shortly. First, let's get straight into
+compiling.
+
+<p>
+In order to build the packages via the make files, you must execute the make command with the -f command line
+option to specify the platform-specific make file. Henceforth, this documentation will refer to the top-level
+Derelict directory as $(DERELICT).
+
+<pre><code>
+cd $(DERELICT)
+
+# on Windows
+make -fwin32.mak
+
+#on Linux or FreeBSD
+make -flinux.mak
+
+#on MacOS X
+make -fdarwin.mak
+</code></pre>
+
+This will build all Derelict packages into several libraries in the $(DERELICT)/lib directory. It will also create
+a hierarchy of .di files in $(DERELICT)/import. When compiling your application, you can easily add these
+paths to your build so that your compiler can find the files. The output path for both the libraries and the
+.di files is configurable.
+</p>
+<p>
+The default name of each compiled library is that of the package (DerelictGL.lib, DerelictOgg.lib, etc..., on Windows,
+and libDerelictGL.a, libDerelictOgg.a, etc..., on other platforms). However, some Derelict packages bind to multiple shared libraries. 
+For example, DerelictGL includes bindings for both OpenGL and GLU. Issuing the above make commands without
+specifying any targets results in all bindings in a package being compiled into a single library file. But there are
+targets to build each binding into separate libraries. Doing so will result in some libraries named differently than
+the package. They will be named the same as the make target instead.
+
+<pre><code>
+make -fwin32.mak DerelictGL DerelictGLU
+</code></pre>
+
+This results in two libraries being generated, DerelictGL.lib and DerelictGLU.lib. You can also build both bindings
+into a single library, while not building any other packages, by using the DerelictGL_ALL make target. The make targets
+supported for each package can be found in the package-specific documentation.
+</p>
+<p>
+There are also three cleanup targets.
 <ul>
-<li>Is the library useful for games or other multimedia applications?</li>
-<li>Is the library in widespread use or at least well-known in its domain?</li>
-<li>Is the library too complex to easily port to D?</li>
-<li>Does the library abstract away cross-platform APIs?</li>
-<li>Is the library easily compiled into DLL form?</li>
-<li>Does the library use a non-viral license that would not require commercial
-applications to release source code?</li>
+<li><pre>cleanlib</pre> Removes all compiled libraries from the configured library output path.</li>
+<li><pre>cleandi</pre> Removes all generated .di files from the configured .di output path.</li>
+<li><pre>clean</pre> A synonym for >cleanlib</li>
+<li><pre>cleanall</pre> Executes both the cleanlib and cleandi targets.</li>
 </ul>
-
-If "yes" can be answered to all of the above questions for any given library,
-its chances for inclusion into Derelict 2 are high, but not guaranteed. While the given criteria are
-not etched in stone and anything is possible, you can be certain that no library
-licensed under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> will
-ever make it into Derelict 2. Keeping Derelict 2 free of viral licenses like the GPL
-allows users to make their own decision about whether or not to open their source,
-rather than being forced to do so.
+There are no targets to remove intermediate files, as they are currently not needed. As support
+for more compilers is added, this will become necessary.
 </p>
-<h4>Dependencies</h4>
-On Windows, Derelict 2 has no external dependencies for compilation other than the Win32 API
-libraries which are linked in automatically. However, on Unix-like platforms (such as
-Linux and Mac) there is a dependency upon libdl. Therefore, any time you compile a Derelict 2
-application on such a platform you must link with libdl. Failure to do so will result in
-linker errors.
 <p>
-Internally, every Derelict 2 package depends upon DerelictUtil, so it 
-must be on the import path when you compile the Derelict 2 libraries and
-when compiling Derelict 2 applications. Additionally, DerelictUtil must be linked or compiled with
-Derelict applications along with any Derelict 2 packages you use.
+Configuring the make-based build system can be done by modifying the files found in $(DERELICT).inc. There, you
+will find the following files:
+<ul>
+<li><pre>compiler_inc.mak</pre> Changing the import statement at the top of this file controls which compiler is used. Currently, only DMD is supported.</li>
+<li><pre>dmd_inc.mak</pre> Configuration options for the DMD compiler.</li>
+<li><pre>darwin_inc.mak</pre> Configuration options for MacOS X.</li>
+<li><pre>linux_inc.mak</pre> Configuration options for Linux and FreeBSD.</li>
+<li><pre>win32_inc.mak</pre> Configuration options for Windows.</li>
+</ul>
 </p>
+
+<h5>Compiler Config</h5>
+There is only one configurable option in the compiler include file: DFLAGS. Consider the other options hardcoded. The DFLAGS
+variable allows you to specify compiler options to control the build output. By default, it is set to fully optimize the generated
+code. This is where you would make the changes necessary to build debug versions of the libraries, or to add any other option
+that <em>directly affects the generated code</em>. This is <em>not</em> where you adjust the locations of the .di files or
+the libraries themselves. That is handled in the platform configuration files.
+
+<h5>Platform Config</h5>
+There are two configurable options in each platform-specific include: LIB_DEST and IMPORT_DEST. The former determines where
+the compiled library files will be output, while the latter specifies the output path for the generated .di files. You can change these
+to any valid path on your system.
+
+<h4>Windows</h4>
+Aside from the make file build system described above, project files are also provided for the <a href="http://www.dsource.org/projects/visuald/wiki/">VisualD IDE</a>.
+To build via VisualD, follow these steps.
+<ol>
+<li>From within VisualD, go to File->Open->Project/Solution (or pres Ctrl-Shift-O).</li>
+<li>In the file selection window, navigate to $(DERELICT)/project/visuald and select the file Derelict.sln.</li>
+<li>In the toolbar, selecte the build configuration you want (Release or Debug -- usually you'll want Release).</li>
+<li>You can alternatively press Ctrl-Shift-B or right-click on the solution in the Solution Explorer window and select 'Build Solution
+from the popup menu to build all packages, or you can right click on any of the project names in the Solution Explorer window and
+select 'Build' to build individual packages.</li>
+</ol>
+As with the make-based build system, libraries are created in $(DERELICT)/lib and .di files in $(DERELICT)/import by default. 
+You can change this for each build configuration in the settings dialog for each project. Unfortunately, I don't know of a way
+to configure this globally.
+
 </body>
 </html>

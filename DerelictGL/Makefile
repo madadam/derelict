@@ -26,12 +26,12 @@ GLU_SRC= \
     derelict/opengl/glutypes.d     
 
 $(LIB_PRE)DerelictGL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictGLU.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

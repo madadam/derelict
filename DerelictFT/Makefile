@@ -11,7 +11,7 @@ FT_SRC= \
     derelict/freetype/fttypes.d
 
 $(LIB_PRE)DerelictFT.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(FT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

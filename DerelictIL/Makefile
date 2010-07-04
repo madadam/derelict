@@ -21,17 +21,17 @@ ILUT_SRC= \
     derelict/devil/iluttypes.d
     
 $(LIB_PRE)DerelictIL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(IL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictILU.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ILU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ILU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictILUT.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ILUT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ILUT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

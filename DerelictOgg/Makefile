@@ -26,22 +26,22 @@ VF_SRC= \
 	derelict/ogg/vorbisfiletypes.d 
     
 $(LIB_PRE)DerelictOgg.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(OGG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(OGG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictVorbis.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(V_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(V_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictVorbisEnc.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	
 $(LIB_PRE)DerelictVorbisFile.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

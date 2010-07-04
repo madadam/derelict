@@ -41,27 +41,27 @@ NET_SRC= derelict/sdl/net.d
 TTF_SRC= derelict/sdl/ttf.d
 
 $(LIB_PRE)DerelictSDL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(SDL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SDL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLImage.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLMixer.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(MIX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(MIX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLNet.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
 $(LIB_PRE)DerelictSDLttf.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(TTF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(TTF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

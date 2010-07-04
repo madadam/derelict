@@ -11,7 +11,7 @@ PACKAGE_PATH=derelict/portaudio
 all : DerelictPA
 
 $(LIB_PRE)DerelictPA.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(PA_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(PA_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 

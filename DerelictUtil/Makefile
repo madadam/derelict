@@ -15,7 +15,7 @@ ALL_SRC= \
     derelict/util/xtypes.d
 
 $(LIB_PRE)DerelictUtil.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(ALL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ALL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 	

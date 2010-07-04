@@ -11,7 +11,7 @@ PACKAGE_PATH=derelict/fmod
 all : DerelictFMODEX
 
 $(LIB_PRE)DerelictFMODEX.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(AL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(AL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
 	$(CP) $@ $(LIB_DEST)
 	$(RM) $@
 
