@@ -5,7 +5,7 @@ all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL
 # Targets for all libs in each package
 DerelictAL_ALL :
 	cd DerelictAL
-	$(DMAKE) all PLATFORM=win32
+	$(DMAKE) all PLATFORM=win32 DC=$(DC)
 	cd ..
 	
 DerelictFMODEX_ALL:
