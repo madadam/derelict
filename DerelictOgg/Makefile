@@ -5,7 +5,7 @@ PACKAGE_PATH=derelict/ogg
 OGG_LIB=$(LIB_PRE)DerelictOGG.$(LIB_EXT)
 V_LIB=$(LIB_PRE)DerelictVorbis.$(LIB_EXT)
 VE_LIB=$(LIB_PRE)DerelictVorbisEnc.$(LIB_EXT)
-VF_LIB=$(LIB_PRE)DerelictVorisFile.$(LIB_EXT)
+VF_LIB=$(LIB_PRE)DerelictVorbisFile.$(LIB_EXT)
 
 all : $(OGG_LIB) $(V_LIB) $(VE_LIB) $(VF_LIB) copylib
 DerleictOGG : $(OGG_LIB) copylib
