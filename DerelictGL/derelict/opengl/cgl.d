@@ -442,10 +442,5 @@ version (CGL)
             bindFunc(cast(void**)&CGLSetCurrentContext, "CGLSetCurrentContext");
             bindFunc(cast(void**)&CGLGetCurrentContext, "CGLGetCurrentContext");
         }
-
-		void* loadGLSymbol(string symName)
-        {
-            assert(false, `"loadGLSymbol" is currently not implemented on Mac OS X`);
-        }
     }
 }// version(CGL)

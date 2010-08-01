@@ -876,7 +876,7 @@ protected:
         _maxVersion = GLVersion.GL11;
     }
 
-    void bindExtendedFunc(void** ptr, string funcName, bool doThrow)
+    public void bindExtendedFunc(void** ptr, string funcName, bool doThrow)
     {
         version(MacOSX)
         {

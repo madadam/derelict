@@ -55,6 +55,7 @@ private
     version (CGL)
     {
         import derelict.opengl.cgl;
+        import derelict.opengl.gl;
     }   
 }
 
@@ -611,13 +612,26 @@ private
 
     bool bindExtFunc(void** ptr, string funcName)
     {
-        *ptr = loadGLSymbol(funcName);
-        debug
+        version(CGL)
         {
-            if(*ptr is null)
-                throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
+            debug bool doThrow = true;
+            else bool doThrow = false;
+                
+            DerelictGL.bindExtendedFunc(ptr, funcName, doThrow);
+            
+            return (*ptr !is null);
         }
-        return (*ptr !is null);
+        
+        else
+        {
+            *ptr = loadGLSymbol(funcName);
+            debug
+            {
+                if(*ptr is null)
+                    throw new SymbolLoadException("Failed to load OpenGL extension " ~ funcName);
+            }
+            return (*ptr !is null);
+        }
     }
 
     version(DerelictGL_ARB)
