@@ -1,18 +1,28 @@
 include ../inc/$(PLATFORM)_inc.mak
-include ../inc/compiler_inc.mak
+include ../inc/$(DC)_inc.mak
+
+PACKAGE_PATH=derelict/portaudio
+PA_LIB=$(LIB_PRE)DerelictPA.$(LIB_EXT)
+
+all : DerelictPA
+DerelictPA : $(PA_LIB) copylib
 
 PA_SRC= \
     derelict/portaudio/pa.d \
     derelict/portaudio/pafuncs.d \
-    derelict/portaudio/patypes.d   
-    
-PACKAGE_PATH=derelict/portaudio
+    derelict/portaudio/patypes.d     
 
-all : DerelictPA
+$(PA_LIB) : $(DC)_build
 
-$(LIB_PRE)DerelictPA.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(PA_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+dmd_build :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(PA_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(PA_LIB)
 
-DerelictPA : $(LIB_PRE)DerelictPA.$(LIB_EXT)
+ldc_build:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(PA_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(PA_LIB) *.o
+	$(RM) *.o
+	
+copylib:		
+	$(CP) *.$(LIB_EXT) $(LIB_DEST)
+	$(RM) *.$(LIB_EXT)
+

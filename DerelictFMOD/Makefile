@@ -1,18 +1,28 @@
 include ../inc/$(PLATFORM)_inc.mak
-include ../inc/compiler_inc.mak
+include ../inc/$(DC)_inc.mak
 
-AL_SRC= \
+PACKAGE_PATH=derelict/fmod
+FMOD_LIB=$(LIB_PRE)DerelictFMODEX.$(LIB_EXT)
+
+all : DerelictFMODEX
+DerelictFMODEX : $(FMOD_LIB) copylib
+
+FMOD_SRC= \
     derelict/fmod/fmodex.d \
     derelict/fmod/fmodexfuncs.d \
     derelict/fmod/fmodextypes.d   
-    
-PACKAGE_PATH=derelict/fmod
 
-all : DerelictFMODEX
+$(FMOD_LIB) : $(DC)_build
 
-$(LIB_PRE)DerelictFMODEX.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(AL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+dmd_build :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FMOD_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(FMOD_LIB)
 
-DerelictFMODEX : $(LIB_PRE)DerelictFMODEX.$(LIB_EXT)
+ldc_build:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FMOD_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(FMOD_LIB) *.o
+	$(RM) *.o
+	
+copylib:		
+	$(CP) *.$(LIB_EXT) $(LIB_DEST)
+	$(RM) *.$(LIB_EXT)
+

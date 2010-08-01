@@ -1,12 +1,16 @@
 include ../inc/$(PLATFORM)_inc.mak
-include ../inc/compiler_inc.mak
+include ../inc/$(DC)_inc.mak
 
 PACKAGE_PATH=derelict/opengl
+GL_LIB=$(LIB_PRE)DerelictGL.$(LIB_EXT)
+GLU_LIB=$(LIB_PRE)DerelictGLU.$(LIB_EXT)
 
-all : DerelictGL DerelictGLU
+all : $(GL_LIB) $(GLU_LIB) copylib
+DerelictGL : $(GL_LIB) copylib
+DerelictGLU : $(GLU_LIB) copylib
 
-#GL_VERSIONS=-version=DerelictGL_ALL
-GL_VERSIONS=-version=DerelictGL_ARB -version=DerelictGL_EXT -version=DerelictGL_NV -version=DerelictGL_ATI -version=DerelictGL_AMD
+#GL_VERSIONS=$(VER)DerelictGL_ALL
+GL_VERSIONS=$(VER)DerelictGL_ARB $(VER)DerelictGL_EXT $(VER)DerelictGL_NV $(VER)DerelictGL_ATI $(VER)DerelictGL_AMD
 
 GL_SRC= \
 	derelict/opengl/cgl.d \
@@ -25,15 +29,30 @@ GLU_SRC= \
     derelict/opengl/glufuncs.d \
     derelict/opengl/glutypes.d     
 
-$(LIB_PRE)DerelictGL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+$(GL_LIB) : $(DC)_build_gl
 
-$(LIB_PRE)DerelictGLU.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+$(GLU_LIB) : $(DC)_build_glu
 
-DerelictGL : $(LIB_PRE)DerelictGL.$(LIB_EXT)
-DerelictGLU : $(LIB_PRE)DerelictGLU.$(LIB_EXT)
+# DMD ##############################################
+dmd_build_gl:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(GL_LIB)
+	
+dmd_build_glu:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(GLU_LIB)
+	
+# LDC ##############################################
+ldc_build_gl:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(GL_LIB) *.o
+	$(RM) *.o
+
+ldc_build_glu:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GLU_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(GLU_LIB) *.o
+	$(RM) *.o
+	
+####################################################
+copylib:		
+	$(CP) *.$(LIB_EXT) $(LIB_DEST)
+	$(RM) *.$(LIB_EXT)
+

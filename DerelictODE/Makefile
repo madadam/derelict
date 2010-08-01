@@ -1,18 +1,28 @@
 include ../inc/$(PLATFORM)_inc.mak
-include ../inc/compiler_inc.mak
+include ../inc/$(DC)_inc.mak
+
+PACKAGE_PATH=derelict/ode
+ODE_LIB=$(LIB_PRE)DerelictODE.$(LIB_EXT)
+
+all : DerelictODE
+DerelictODE : $(ODE_LIB) copylib
 
 ODE_SRC= \
     derelict/ode/ode.d \
     derelict/ode/odefuncs.d \
     derelict/ode/odetypes.d   
+
+$(ODE_LIB) : $(DC)_build
     
-PACKAGE_PATH=derelict/ode
+dmd_build :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ODE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(ODE_LIB)
 
-all : DerelictODE
+ldc_build:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ODE_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(ODE_LIB) *.o
+	$(RM) *.o
+	
+copylib:		
+	$(CP) *.$(LIB_EXT) $(LIB_DEST)
+	$(RM) *.$(LIB_EXT)
 
-$(LIB_PRE)DerelictODE.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ODE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
-
-DerelictODE : $(LIB_PRE)DerelictODE.$(LIB_EXT)

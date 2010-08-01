@@ -1,9 +1,19 @@
 include ../inc/$(PLATFORM)_inc.mak
-include ../inc/compiler_inc.mak
+include ../inc/$(DC)_inc.mak
 
 PACKAGE_PATH=derelict/sdl
+SDL_LIB=$(LIB_PRE)DerelictSDL.$(LIB_EXT)
+IMG_LIB=$(LIB_PRE)DerelictSDLImage.$(LIB_EXT)
+MIX_LIB=$(LIB_PRE)DerelictSDLMixer.$(LIB_EXT)
+NET_LIB=$(LIB_PRE)DerelictSDLNet.$(LIB_EXT)
+TTF_LIB=$(LIB_PRE)DerelictSDLttf.$(LIB_EXT)
 
-all : DerelictSDL DerelictSDLImage DerelictSDLMixer DerelictSDLNet DerelictSDLttf
+all : $(SDL_LIB) $(IMG_LIB) $(MIX_LIB) $(NET_LIB) $(TTF_LIB) copylib
+DerelictSDL : $(SDL_LIB) copylib
+DerelictSDLImage : $(IMG_LIB) copylib
+DerelictSDLMixer : $(MIX_LIB) copylib
+DerelictSDLNet : $(NET_LIB) copylib
+DerelictSDLttf : $(TTF_LIB) copylib
 
 SDL_SRC= \
 	derelict/sdl/sdl.d \
@@ -40,33 +50,56 @@ NET_SRC= derelict/sdl/net.d
 
 TTF_SRC= derelict/sdl/ttf.d
 
-$(LIB_PRE)DerelictSDL.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SDL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+$(SDL_LIB) : $(DC)_build_sdl
+$(IMG_LIB) : $(DC)_build_img
+$(MIX_LIB) : $(DC)_build_mix
+$(NET_LIB) : $(DC)_build_net
+$(TTF_LIB) : $(DC)_build_ttf
 
-$(LIB_PRE)DerelictSDLImage.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+# DMD ##############################################
+dmd_build_sdl :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SDL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(SDL_LIB)
 
-$(LIB_PRE)DerelictSDLMixer.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(MIX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+dmd_build_img :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(IMG_LIB)
 
-$(LIB_PRE)DerelictSDLNet.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+dmd_build_mix :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(MIX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(MIX_LIB)
 
-$(LIB_PRE)DerelictSDLttf.$(LIB_EXT) :
-	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(TTF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$@
-	$(CP) $@ $(LIB_DEST)
-	$(RM) $@
+dmd_build_net :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(NET_LIB)
 
-DerelictSDL : $(LIB_PRE)DerelictSDL.$(LIB_EXT)
-DerelictSDLImage : $(LIB_PRE)DerelictSDLImage.$(LIB_EXT)
-DerelictSDLMixer : $(LIB_PRE)DerelictSDLMixer.$(LIB_EXT)
-DerelictSDLNet : $(LIB_PRE)DerelictSDLNet.$(LIB_EXT)
-DerelictSDLttf : $(LIB_PRE)DerelictSDLttf.$(LIB_EXT)
+dmd_build_ttf :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(TTF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(TTF_LIB)
+
+# LDC ##############################################
+ldc_build_sdl :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SDL_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(SDL_LIB) *.o
+	$(RM) *.o
+
+ldc_build_img :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IMG_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(IMG_LIB) *.o
+	$(RM) *.o
+
+ldc_build_mix :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(MIX_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(MIX_LIB) *.o
+	$(RM) *.o
+
+ldc_build_net :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(NET_LIB) *.o
+	$(RM) *.o
+
+ldc_build_ttf :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(TTF_SRC) $(HD)/$(PACKAGE_PATH)
+	ar rcs $(TTF_LIB) *.o
+	$(RM) *.o
+
+####################################################
+copylib:		
+	$(CP) *.$(LIB_EXT) $(LIB_DEST)
+	$(RM) *.$(LIB_EXT)
+

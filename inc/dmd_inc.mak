@@ -10,5 +10,6 @@ DFLAGS=-release -O -inline
 ######################################################################
 DC=dmd
 OF=-of
+VER=-version=
 HD=-Hd$(IMPORT_DEST)
 DFLAGS_REQ=-lib -I../DerelictUtil
