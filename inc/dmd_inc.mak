@@ -8,7 +8,6 @@ DFLAGS=-release -O -inline
 # The following are used to enable a common build interface across platforms.
 # They aren't intended to be modified. Doing so can easliy break the build.
 ######################################################################
-DC=dmd
 OF=-of
 VER=-version=
 HD=-Hd$(IMPORT_DEST)
