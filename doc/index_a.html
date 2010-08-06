@@ -33,32 +33,37 @@ this step. Doing so places all of the Derelict libraries in one convenient locat
 files in a hierarchy, independent of the package tree, that can be easily imported into your applications.
 
 <h4>All Platforms</h4>
-Make files have been created for all the platforms Derelict currently supports. They are designed to be
+Make files have been created for the platforms Derelict currently supports. They are designed to be
 configurable to some degree. Configuration options will be discussed shortly. First, let's get straight into
 compiling.
 
 <p>
 In order to build the packages via the make files, you must execute the make command with the -f command line
-option to specify the platform-specific make file. Henceforth, this documentation will refer to the top-level
-Derelict directory as $(DERELICT).
+option to specify the platform-specific make file. You must also specify a compiler to use via the DC variable.
+Henceforth, this documentation will refer to the top-level Derelict directory as $(DERELICT).
 
 <pre><code>
 cd $(DERELICT)
 
 # on Windows
-make -fwin32.mak
+make -fwin32.mak DC=dmd
 
 #on Linux or FreeBSD
-make -flinux.mak
+make -flinux.mak DC=dmd
 
 #on MacOS X
-make -fdarwin.mak
+make -fdarwin.mak DC=dmd
 </code></pre>
 
 This will build all Derelict packages into several libraries in the $(DERELICT)/lib directory. It will also create
 a hierarchy of .di files in $(DERELICT)/import. When compiling your application, you can easily add these
 paths to your build so that your compiler can find the files. The output path for both the libraries and the
 .di files is configurable.
+</p>
+<p>
+Valid values for the DC variable are 'dmd' or 'ldc'. However, the LDC compiler is currently not fully functional on
+Windows, so it is recommended that you build with DMD on that OS. Note that there is no error detection at
+all in the makefiles, so if you pass an unsupported DC value you will get error messages from make.
 </p>
 <p>
 The default name of each compiled library is that of the package (DerelictGL.lib, DerelictOgg.lib, etc..., on Windows,
@@ -69,7 +74,7 @@ targets to build each binding into separate libraries. Doing so will result in s
 the package. They will be named the same as the make target instead.
 
 <pre><code>
-make -fwin32.mak DerelictGL DerelictGLU
+make -fwin32.mak DerelictGL DerelictGLU DC=dmd
 </code></pre>
 
 This results in two libraries being generated, DerelictGL.lib and DerelictGLU.lib. You can also build both bindings
