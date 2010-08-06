@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+	<title>Building the Derelict Packages</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+
+
+<h2>Building the Derelict Packages</h2>
+It is recommended that when you use Derelict you first build the packages you need via the supplied
+makefiles or supported IDE project files, even if you are using a build tool that allows you to bypass
+this step. Doing so places all of the Derelict libraries in one convenient location and generates .di
+files in a hierarchy, independent of the package tree, that can be easily imported into your applications.
+
+<h3>All Platforms</h3>
+Make files have been created for the platforms Derelict currently supports. They are designed to be
+configurable to some degree. Configuration options will be discussed shortly. First, let's get straight into
+compiling.
+
+<p>
+In order to build the packages via the make files, you must execute the make command with the -f command line
+option to specify the platform-specific make file. You must also specify a compiler to use via the DC variable.
+Henceforth, this documentation will refer to the top-level Derelict directory as $(DERELICT).
+
+<pre><code>
+cd $(DERELICT)
+
+# on Windows
+make -fwin32.mak DC=dmd
+
+#on Linux or FreeBSD
+make -flinux.mak DC=dmd
+
+#on MacOS X
+make -fdarwin.mak DC=dmd
+</code></pre>
+
+This will build all Derelict packages into several libraries in the $(DERELICT)/lib directory. It will also create
+a hierarchy of .di files in $(DERELICT)/import. When compiling your application, you can easily add these
+paths to your build so that your compiler can find the files. The output path for both the libraries and the
+.di files is configurable.
+</p>
+<p>
+Valid values for the DC variable are 'dmd' or 'ldc'. However, the LDC compiler is currently not fully functional on
+Windows, so it is recommended that you build with DMD on that OS. Note that there is no error detection at
+all in the makefiles, so if you pass an unsupported DC value you will get error messages from make.
+</p>
+<p>
+The default name of each compiled library is that of the package (DerelictGL.lib, DerelictOgg.lib, etc..., on Windows,
+and libDerelictGL.a, libDerelictOgg.a, etc..., on other platforms). However, some Derelict packages bind to multiple shared libraries. 
+For example, DerelictGL includes bindings for both OpenGL and GLU. Issuing the above make commands without
+specifying any targets results in all bindings in a package being compiled into a single library file. But there are
+targets to build each binding into separate libraries. Doing so will result in some libraries named differently than
+the package. They will be named the same as the make target instead.
+
+<pre><code>
+make -fwin32.mak DerelictGL DerelictGLU DC=dmd
+</code></pre>
+
+This results in two libraries being generated, DerelictGL.lib and DerelictGLU.lib. You can also build both bindings
+into a single library, while not building any other packages, by using the DerelictGL_ALL make target. The make targets
+supported for each package can be found in the package-specific documentation.
+</p>
+<p>
+There are also three cleanup targets.
+<ul>
+<li><pre>cleanlib</pre> Removes all compiled libraries from the configured library output path.</li>
+<li><pre>cleandi</pre> Removes all generated .di files from the configured .di output path.</li>
+<li><pre>clean</pre> A synonym for >cleanlib</li>
+<li><pre>cleanall</pre> Executes both the cleanlib and cleandi targets.</li>
+</ul>
+There are no targets to remove intermediate files, as they are currently not needed. As support
+for more compilers is added, this will become necessary.
+</p>
+<p>
+Configuring the make-based build system can be done by modifying the files found in $(DERELICT).inc. There, you
+will find the following files:
+<ul>
+<li><pre>compiler_inc.mak</pre> Changing the import statement at the top of this file controls which compiler is used. Currently, only DMD is supported.</li>
+<li><pre>dmd_inc.mak</pre> Configuration options for the DMD compiler.</li>
+<li><pre>darwin_inc.mak</pre> Configuration options for MacOS X.</li>
+<li><pre>linux_inc.mak</pre> Configuration options for Linux and FreeBSD.</li>
+<li><pre>win32_inc.mak</pre> Configuration options for Windows.</li>
+</ul>
+</p>
+
+<h4>Compiler Config</h4>
+There is only one configurable option in the compiler include file: DFLAGS. Consider the other options hardcoded. The DFLAGS
+variable allows you to specify compiler options to control the build output. By default, it is set to fully optimize the generated
+code. This is where you would make the changes necessary to build debug versions of the libraries, or to add any other option
+that <em>directly affects the generated code</em>. This is <em>not</em> where you adjust the locations of the .di files or
+the libraries themselves. That is handled in the platform configuration files.
+
+<h4>Platform Config</h4>
+There are two configurable options in each platform-specific include: LIB_DEST and IMPORT_DEST. The former determines where
+the compiled library files will be output, while the latter specifies the output path for the generated .di files. You can change these
+to any valid path on your system.
+
+<h3>Windows</h3>
+Aside from the make file build system described above, project files are also provided for the <a href="http://www.dsource.org/projects/visuald/wiki/">VisualD IDE</a>.
+To build via VisualD, follow these steps.
+<ol>
+<li>From within VisualD, go to File->Open->Project/Solution (or pres Ctrl-Shift-O).</li>
+<li>In the file selection window, navigate to $(DERELICT)/project/visuald and select the file Derelict.sln.</li>
+<li>In the toolbar, selecte the build configuration you want (Release or Debug -- usually you'll want Release).</li>
+<li>You can alternatively press Ctrl-Shift-B or right-click on the solution in the Solution Explorer window and select 'Build Solution
+from the popup menu to build all packages, or you can right click on any of the project names in the Solution Explorer window and
+select 'Build' to build individual packages.</li>
+</ol>
+As with the make-based build system, libraries are created in $(DERELICT)/lib and .di files in $(DERELICT)/import by default. 
+You can change this for each build configuration in the settings dialog for each project. Unfortunately, I don't know of a way
+to configure this globally.
+
+</body>
+</html>

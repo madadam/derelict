@@ -1,6 +1,5 @@
-/* Generic Links */
 a:link, a:visited	{
-	color			: #0000BB;
+	color			: #0000FF;
 	text-decoration	: none;
 }
 
@@ -9,7 +8,6 @@ a:hover 	{
 	text-decoration	: underline;
 }
 
-/* No margins at the edge of the page */
 body{
 	font-family 	: Verdana, Helvetica, sans-serif;
 	font-size		: 11pt;
@@ -17,15 +15,12 @@ body{
 	line-height		: 14pt;
 }
 
-/* Decrease border above and below list */
 ul {
 	margin-top 		: 0.25em;
 }
 
-/* Change color of pre text */
 pre {
 	color			: #000080;
-	background-color: #E6EAEC;
 	font-weight		: bold;
 }
 
@@ -35,30 +30,29 @@ tt {
 	background-color: #F8F8FF;
 }
 
-/* Headers */
 h2 {
 	font-family 	: Verdana, Helvetica, sans-serif;
 	font-size		: 20pt;
-	color 			: #408050;
-	margin-top 		: .1em;
-	margin-bottom	: .1em;
+	color 			: #705030;
+	margin-top 		: .5em;
+	margin-bottom	: .5em;
+	border-bottom : 2px solid black;
+	padding-top : 4px;
+	padding-bottom : 4px;
 }
 
 h3 {
 	font-family 	: Verdana, Helvetica, sans-serif;
 	font-size		: 12pt;
 	color 			: #705030;
-	background-color: #CCCCCC;
+	background-color: #FECCCC;
 	margin-bottom	: .5em;
+	border : 4px double black;
 }
 
 h4 {
 	text-decoration: underline;
 	margin-bottom: .5em;
-}
-
-ul {
-	background-color: #EEEEEE;
 }
 
 blockquote {
