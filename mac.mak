@@ -4,37 +4,37 @@ all : DerelictAL_ALL DerelictFMODEX_ALL DerelictFT_ALL DerelictGL_ALL DerelictIL
 
 # Targets for all libs in each package
 DerelictAL_ALL :
-	$(DMAKE) -C DerelictAL all PLATFORM=darwin
+	$(DMAKE) -C DerelictAL all PLATFORM=mac
 	
 DerelictFMODEX_ALL :
-	$(DMAKE) -C DerelictFMOD all PLATFORM=darwin	
+	$(DMAKE) -C DerelictFMOD all PLATFORM=mac	
 
 DerelictFT_ALL :
-	$(DMAKE) -C DerelictFT all PLATFORM=darwin
+	$(DMAKE) -C DerelictFT all PLATFORM=mac
 		
 DerelictGL_ALL :
-	$(DMAKE) -C DerelictGL all PLATFORM=darwin
+	$(DMAKE) -C DerelictGL all PLATFORM=mac
 	
 DerelictIL_ALL :
-	$(DMAKE) -C DerelictIL all PLATFORM=darwin
+	$(DMAKE) -C DerelictIL all PLATFORM=mac
 	
 DerelictODE_ALL :
-	$(DMAKE) -C DerelictODE all PLATFORM=darwin
+	$(DMAKE) -C DerelictODE all PLATFORM=mac
 	
 DerelictOgg_ALL :
-	$(DMAKE) -C DerelictOgg all PLATFORM=darwin
+	$(DMAKE) -C DerelictOgg all PLATFORM=mac
 	
 DerelictPA_ALL:
-	$(DMAKE) -C DerelictPA all PLATFORM=darwin
+	$(DMAKE) -C DerelictPA all PLATFORM=mac
 
 DerelictSDL_ALL :
-	$(DMAKE) -C DerelictSDL all PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL all PLATFORM=mac
 
 DerelictSFML_ALL :
-	$(DMAKE) -C DerelictSFML all PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML all PLATFORM=mac
 	
 DerelictUtil_ALL :
-	$(DMAKE) -C DerelictUtil all PLATFORM=darwin
+	$(DMAKE) -C DerelictUtil all PLATFORM=mac
 	
 # There's only one DerelictAL target
 DerelictAL : DerelictAL_ALL
@@ -47,71 +47,71 @@ DerelictFT : DerelictFT_ALL
 	
 # Individual DerelictGL targets
 DerelictGL :
-	$(DMAKE) -C DerelictGL DerelictGL PLATFORM=darwin
+	$(DMAKE) -C DerelictGL DerelictGL PLATFORM=mac
 	
 DerelictGLU :
-	$(DMAKE) -C DerelictGL DerelictGLU PLATFORM=darwin
+	$(DMAKE) -C DerelictGL DerelictGLU PLATFORM=mac
 	
 # Individual DerelictIL targets
 DerelictIL :
-	$(DMAKE) -C DerelictIL DerelictIL PLATFORM=darwin
+	$(DMAKE) -C DerelictIL DerelictIL PLATFORM=mac
 	
 DerelictILU :
-	$(DMAKE) -C DerelictIL DerelictILU PLATFORM=darwin
+	$(DMAKE) -C DerelictIL DerelictILU PLATFORM=mac
 	
 DerelictILUT :
-	$(DMAKE) -C DerelictIL DerelictILUT PLATFORM=darwin
+	$(DMAKE) -C DerelictIL DerelictILUT PLATFORM=mac
 	
 # There's only one target for DerelictODE
 DerelictODE : DerelictODE_ALL
 	
 # Individual DerelictOgg targets
 DerelictOgg :
-	$(DMAKE) -C DerelictOgg DerelictOgg PLATFORM=darwin
+	$(DMAKE) -C DerelictOgg DerelictOgg PLATFORM=mac
 	
 # There's only one target for DerelictPA
 DerelictPA : DerelictPA_ALL	
 	
 DerelictVorbis :
-	$(DMAKE) -C DerelictOgg DerelictVorbis PLATFORM=darwin
+	$(DMAKE) -C DerelictOgg DerelictVorbis PLATFORM=mac
 	
 DerelictVorbisEnc :
-	$(DMAKE) -C DerelictOgg DerelictVorbisEnc PLATFORM=darwin
+	$(DMAKE) -C DerelictOgg DerelictVorbisEnc PLATFORM=mac
 	
 DerelictVorbisFile :
-	$(DMAKE) -C DerelictOgg DerelictVorbisFile PLATFORM=darwin	
+	$(DMAKE) -C DerelictOgg DerelictVorbisFile PLATFORM=mac	
 	
 # Individual DerelictSDL targets
 DerelictSDL :
-	$(DMAKE) -C DerelictSDL DerelictSDL PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL DerelictSDL PLATFORM=mac
 	
 DerelictSDLImage :
-	$(DMAKE) -C DerelictSDL DerelictSDLImage PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL DerelictSDLImage PLATFORM=mac
 
 DerelictSDLMixer :
-	$(DMAKE) -C DerelictSDL DerelictSDLMixer PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL DerelictSDLMixer PLATFORM=mac
 
 DerelictSDLNet :
-	$(DMAKE) -C DerelictSDL DerelictSDLNet PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL DerelictSDLNet PLATFORM=mac
 	
 DerelictSDLttf :
-	$(DMAKE) -C DerelictSDL DerelictSDLttf PLATFORM=darwin
+	$(DMAKE) -C DerelictSDL DerelictSDLttf PLATFORM=mac
 	
 # Individual DerelictSFML targets
 DerelictSFMLWindow :
-	$(DMAKE) -C DerelictSFML DerelictSFMLWindow PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML DerelictSFMLWindow PLATFORM=mac
 	
 DerelictSFMLSystem :
-	$(DMAKE) -C DerelictSFML DerelictSFMLSystem PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML DerelictSFMLSystem PLATFORM=mac
 	
 DerelictSFMLGraphics :
-	$(DMAKE) -C DerelictSFML DerelictSFMLGraphics PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML DerelictSFMLGraphics PLATFORM=mac
 	
 DerelictSFMLAudio :
-	$(DMAKE) -C DerelictSFML DerelictSFMLAudio PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML DerelictSFMLAudio PLATFORM=mac
 	
 DerelictSFMLNetwork :
-	$(DMAKE) -C DerelictSFML DerelictSFMLNetwork PLATFORM=darwin
+	$(DMAKE) -C DerelictSFML DerelictSFMLNetwork PLATFORM=mac
 	
 # There's only one DerelictUtil target
 DerelictUtil : DerelictUtil_All

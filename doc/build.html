@@ -33,7 +33,7 @@ make -fwin32.mak DC=dmd
 make -flinux.mak DC=dmd
 
 #on MacOS X
-make -fdarwin.mak DC=dmd
+make -fmac.mak DC=dmd
 </code></pre>
 
 This will build all Derelict packages into several libraries in the $(DERELICT)/lib directory. It will also create
@@ -79,8 +79,8 @@ will find the following files:
 <ul>
 <li><pre>dmd_inc.mak</pre> Configuration options for the DMD compiler.</li>
 <li><pre>ldc_inc.mak</pre> Configuration options for the LDC compiler.</li>
-<li><pre>darwin_inc.mak</pre> Configuration options for MacOS X.</li>
 <li><pre>linux_inc.mak</pre> Configuration options for Linux and FreeBSD.</li>
+<li><pre>mac_inc.mak</pre> Configuration options for MacOS X.</li>
 <li><pre>win32_inc.mak</pre> Configuration options for Windows.</li>
 </ul>
 </p>
