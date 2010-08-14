@@ -77,8 +77,8 @@ for more compilers is added, this will become necessary.
 Configuring the make-based build system can be done by modifying the files found in $(DERELICT).inc. There, you
 will find the following files:
 <ul>
-<li><pre>compiler_inc.mak</pre> Changing the import statement at the top of this file controls which compiler is used. Currently, only DMD is supported.</li>
 <li><pre>dmd_inc.mak</pre> Configuration options for the DMD compiler.</li>
+<li><pre>ldc_inc.mak</pre> Configuration options for the LDC compiler.</li>
 <li><pre>darwin_inc.mak</pre> Configuration options for MacOS X.</li>
 <li><pre>linux_inc.mak</pre> Configuration options for Linux and FreeBSD.</li>
 <li><pre>win32_inc.mak</pre> Configuration options for Windows.</li>
@@ -86,7 +86,7 @@ will find the following files:
 </p>
 
 <h4>Compiler Config</h4>
-There is only one configurable option in the compiler include file: DFLAGS. Consider the other options hardcoded. The DFLAGS
+There is only one configurable option in the compiler include files: DFLAGS. Consider the other options hardcoded. The DFLAGS
 variable allows you to specify compiler options to control the build output. By default, it is set to fully optimize the generated
 code. This is where you would make the changes necessary to build debug versions of the libraries, or to add any other option
 that <em>directly affects the generated code</em>. This is <em>not</em> where you adjust the locations of the .di files or
