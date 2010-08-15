@@ -125,29 +125,6 @@ private:
 
 alias SymbolLoadException SharedLibProcLoadException;
 
-/**
-* This exception *might* be thrown when an attempt is made to use a shared library
-* handle that references an unloaded shared library.
-*/
-class InvalidSharedLibHandleException : DerelictException
-{
-public:
-
-    this(string sharedLibName)
-    {
-        super("Attempted to use handle to unloaded shared library " ~ sharedLibName);
-        _sharedLibName = sharedLibName;
-    }
-
-    string sharedLibName()
-    {
-        return _sharedLibName;
-    }
-
-private:
-    string _sharedLibName;
-}
-
 //******************************************************************************
 
 /**
