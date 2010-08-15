@@ -170,7 +170,7 @@ id objc_getClass (string name) ()
 
 string sel_registerName (string str) ()
 {
-    return fromStringz(c_sel_registerName(str.ptr));
+    return toDString(c_sel_registerName(str.ptr));
 }
 
 id objc_msgSend (ARGS...)(id theReceiver, string theSelector, ARGS args)

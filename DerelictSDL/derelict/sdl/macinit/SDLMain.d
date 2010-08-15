@@ -220,7 +220,7 @@ private void registerClass (string className) (Class superClass, objc_method_lis
          * to share this copy of the name, but this is not a requirement
          * imposed by the runtime.
          */
-        newClass.name = toStringz(className);
+        newClass.name = toCString(className);
         metaClass.name = newClass.name;
 
         // Allocate method lists.

@@ -70,7 +70,7 @@ dmd_mac_build_sdl :
 	$(DC) $(DFLAGS) -I../DerelictUtil -c $(SDL_SRC) $(HD)/$(PACKAGE_PATH)
 	$(DC) $(DFLAGS) -I../DerelictUtil -c $(MACINIT_SRC) $(HD)/$(MACINIT_PATH)
 	$(DC) $(DFLAGS) -lib *.o $(OF)$(SDL_LIB)
-	$(RM)*.(OBJ_EXT)
+	$(RM) *.$(OBJ_EXT)
 
 dmd_build_img :
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IMG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(IMG_LIB)
