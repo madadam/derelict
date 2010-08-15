@@ -63,9 +63,6 @@ version(Tango)
         alias wchar[] wstring;
         alias dchar[] dstring;
     }
-    
-    alias tango.stdc.stringz.fromStringz fromStringz;
-    alias tango.stdc.stringz.toStringz toStringz;
 }
 else
 {
@@ -78,31 +75,7 @@ else
         import std.string;
         import std.c.string;
     }
-    
-    string fromStringz (CCPTR str)
-    {
-        version (D_Version2)
-            return str ? str[0 .. strlenz(str)].idup : null;
-            
-        else
-            return str ? str[0 .. strlenz(str)] : null;
-    }
-    
-    CCPTR toStringz (string str)
-    {
-        return (str ~ '\0').ptr;
-    }
-    
-    size_t strlenz (CCPTR str)
-    {
-        size_t i;
-        
-        if (str)
-            while(str++)
-                i++;
-                
-        return i;
-    }
+ 
 }
 
 template gsharedString ()
@@ -113,18 +86,6 @@ template gsharedString ()
     else
         const gsharedString = "";
 }
-
-/*string gsharedString()
-{
-    version(D_Version2)
-    {
-        return "__gshared: ";
-    }
-    else
-    {
-        return "";
-    }
-}*/
 
 CCPTR toCString(string str)
 {
