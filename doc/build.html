@@ -40,10 +40,16 @@ paths to your build so that your compiler can find the files. The output path fo
 .di files is configurable.
 </p>
 <p>
-Valid values for the DC variable are 'dmd' or 'ldc'. However, the LDC compiler is currently not fully functional on
-Windows, so it is recommended that you build with DMD on that OS. Note that there is no error detection at
-all in the makefiles, so if you pass an unsupported DC value you will get error messages from make.
+The following table shows supported compilers and the values that should be passed as the DC parameter when executing make.
 </p>
+
+<table border="1" cellpadding="5">
+<tr><th>Compiler</th><th>DC Value</th></tr>
+<tr><td>DMD</td><td>dmd</td></tr>
+<tr><td>LDC</td><td>ldc</td></tr>
+<tr><td>GDC</td>><td>gdmd</td></tr>
+</table>
+
 <p>
 The default name of each compiled library is that of the package (DerelictGL.lib, DerelictOgg.lib, etc..., on Windows,
 and libDerelictGL.a, libDerelictOgg.a, etc..., on other platforms). However, some Derelict packages bind to multiple shared libraries. 
@@ -51,11 +57,13 @@ For example, DerelictGL includes bindings for both OpenGL and GLU. Issuing the a
 specifying any targets results in all bindings in a package being compiled into a single library file. But there are
 targets to build each binding into separate libraries. Doing so will result in some libraries named differently than
 the package. They will be named the same as the make target instead.
+</p>
 
 <pre><code>
 make -fwin32.mak DerelictGL DerelictGLU DC=dmd
 </code></pre>
 
+<p>
 This results in two libraries being generated, DerelictGL.lib and DerelictGLU.lib. You can also build both bindings
 into a single library, while not building any other packages, by using the DerelictGL_ALL make target. The make targets
 supported for each package can be found in the package-specific documentation.

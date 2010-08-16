@@ -84,3 +84,7 @@ blockquote {
 .emph {
 	font-style: italic;
 }
+
+td, th {
+	text-align: center;
+}
