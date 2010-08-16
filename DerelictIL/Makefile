@@ -55,6 +55,16 @@ ldc_build_ilut :
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ILUT_SRC) $(HD)/$(PACKAGE_PATH)
 	ar rcs $(ILUT_LIB) *.o
 	$(RM) *.o
+	
+# GDMD/GDC ##############################################
+gdmd_build_il :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(IL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(IL_LIB)
+
+gdmd_build_ilu :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ILU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(ILU_LIB)
+
+gdmd_build_ilut :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ILUT_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(ILUT_LIB)
 
 ####################################################
 copylib:		

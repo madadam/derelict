@@ -22,6 +22,9 @@ ldc_build:
 	ar rcs $(ODE_LIB) *.o
 	$(RM) *.o
 	
+gdmd_build :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(ODE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(ODE_LIB)
+	
 copylib:		
 	$(CP) *.$(LIB_EXT) $(LIB_DEST)
 	$(RM) *.$(LIB_EXT)

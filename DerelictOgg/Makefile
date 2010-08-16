@@ -72,6 +72,19 @@ ldc_build_vf :
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(VF_SRC) $(HD)/$(PACKAGE_PATH)
 	ar rcs $(VF_LIB) *.o
 	$(RM) *.o
+	
+# GDMD/GDC ##############################################
+gdmd_build_ogg :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(OGG_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(OGG_LIB)
+
+gdmd_build_v :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(V_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(V_LIB)
+
+gdmd_build_ve :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(VE_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(VE_LIB)
+
+gdmd_build_vf :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(VF_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(VF_LIB)
 
 ####################################################
 copylib:		

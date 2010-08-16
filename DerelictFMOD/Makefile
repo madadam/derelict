@@ -16,11 +16,14 @@ $(FMOD_LIB) : $(DC)_build
 
 dmd_build :
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FMOD_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(FMOD_LIB)
-
+	
 ldc_build:
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FMOD_SRC) $(HD)/$(PACKAGE_PATH)
 	ar rcs $(FMOD_LIB) *.o
 	$(RM) *.o
+	
+gdmd_build :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(FMOD_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(FMOD_LIB)
 	
 copylib:		
 	$(CP) *.$(LIB_EXT) $(LIB_DEST)

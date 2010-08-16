@@ -51,6 +51,13 @@ ldc_build_glu:
 	ar rcs $(GLU_LIB) *.o
 	$(RM) *.o
 	
+# GDMD/GDC ##############################################
+gdmd_build_gl:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GL_VERSIONS) $(GL_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(GL_LIB)
+	
+gdmd_build_glu:
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GLU_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(GLU_LIB)
+	
 ####################################################
 copylib:		
 	$(CP) *.$(LIB_EXT) $(LIB_DEST)

@@ -88,6 +88,22 @@ ldc_build_win :
 	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(WIN_SRC) $(HD)/$(PACKAGE_PATH)
 	ar rcs $(WIN_LIB) *.o
 	$(RM) *.o
+	
+# GDMD/GDC ##############################################
+gdmd_build_audio :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(AUDIO_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(AUDIO_LIB)
+
+gdmd_build_gfx :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(GFX_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(GFX_LIB)
+
+gdmd_build_net :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(NET_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(NET_LIB)
+
+gdmd_build_sys :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(SYS_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(SYS_LIB)
+
+gdmd_build_win :
+	$(DC) $(DFLAGS) $(DFLAGS_REQ) $(WIN_SRC) $(HD)/$(PACKAGE_PATH) $(OF)$(WIN_LIB)
 
 ####################################################
 copylib:		
