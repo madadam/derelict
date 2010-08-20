@@ -607,6 +607,13 @@ private
             loaded["WGL_ARB_render_texture"] = load_WGL_ARB_render_texture();
             loaded["WGL_ARB_pixel_format_float"] = load_WGL_ARB_pixel_format_float();
             loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
+            loaded["WGL_ARB_create_context_profile"] = load_WGL_ARB_create_context_profile();
+            loaded["WGL_ARB_framebuffer_sRGB"] = load_WGL_ARB_framebuffer_sRGB();
+            loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();            
+            
+            loaded["WGL_3DFX_multisample"] = load_WGL_3DFX_multisample();
+            loaded["WGL_3DL_stereo_control"] = load_WGL_3DL_stereo_control();
+            loaded["WGL_AMD_gpu_association"] = load_WGL_AMD_gpu_association();
         }
     }
 
@@ -5677,6 +5684,8 @@ private
         {
             if(!extIsSupported("WGL_ARB_pbuffer"))
                 return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglCreatePbufferARB, "wglCreatePbufferARB"))
+                return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&wglGetPbufferDCARB, "wglGetPbufferDCARB"))
                 return GLExtensionState.FailedToLoad;
             if(!bindExtFunc(cast(void**)&wglReleasePbufferDCARB, "wglReleasePbufferDCARB"))
@@ -5716,6 +5725,74 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
+        
+        GLExtensionState load_WGL_ARB_framebuffer_sRGB()
+        {
+            if(!extIsSupported("WGL_ARB_framebuffer_sRGB"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+        
+        GLExtensionState load_WGL_ARB_create_context_profile()
+        {
+            if(!extIsSupported("WGL_ARB_create_context_profile"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+        
+        GLExtensionState load_WGL_ARB_make_current_read()
+        {
+            if(!extIsSupported("WGL_ARB_make_current_read"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglGetCurrentReadDCARB, "wglGetCurrentReadDCARB"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglMakeContextCurrentARB, "wglMakeContextCurrentARB"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+        
+        GLExtensionState load_WGL_3DFX_multisample()
+        {
+            if(!extIsSupported("WGL_3DFX_multisample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+        
+        GLExtensionState load_WGL_3DL_stereo_control()
+        {
+            if(!extIsSupported("WGL_3DL_stereo_control"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglSetStereoEmitterState3DL, "wglSetStereoEmitterState3DL"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+        
+        GLExtensionState load_WGL_AMD_gpu_association()
+        {
+            if(!extIsSupported("WGL_AMD_gpu_association"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglBlitContextFramebufferAMD, "wglBlitContextFramebufferAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglCreateAssociatedContextAMD, "wglCreateAssociatedContextAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglCreateAssociatedContextAttribsAMD, "wglCreateAssociatedContextAttribsAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglDeleteAssociatedContextAMD, "wglDeleteAssociatedContextAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetContextGPUIDAMD, "wglGetContextGPUIDAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetCurrentAssociatedContextAMD, "wglGetCurrentAssociatedContextAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetGPUIDsAMD, "wglGetGPUIDsAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetGPUInfoAMD, "wglGetGPUInfoAMD"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglMakeAssociatedContextCurrentAMD, "wglMakeAssociatedContextCurrentAMD"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+        
+        
 
     }
 }

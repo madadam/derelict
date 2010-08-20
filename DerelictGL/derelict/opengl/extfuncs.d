@@ -1801,6 +1801,24 @@ extern(System)
 
         // WGL_ARB_create_context
         HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
+        
+        // WGL_ARB_make_current_read
+        HDC function() wglGetCurrentReadDCARB;
+        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentARB;
+        
+        // WGL_3DL_stereo_control
+        BOOL function(HDC, UINT) wglSetStereoEmitterState3DL;
+        
+        // WGL_AMD_gpu_association
+        void function(HGLRC, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) wglBlitContextFramebufferAMD;
+        HGLRC function(UINT) wglCreateAssociatedContextAMD;
+        HGLRC function(UINT, HGLRC, in int*) wglCreateAssociatedContextAttribsAMD;
+        BOOL function(HGLRC) wglDeleteAssociatedContextAMD;
+        UINT function(HGLRC) wglGetContextGPUIDAMD;
+        HGLRC function() wglGetCurrentAssociatedContextAMD;
+        UINT function(UINT, UINT*) wglGetGPUIDsAMD;
+        INT function(UINT, INT, GLenum, UINT, void*) wglGetGPUInfoAMD;
+        BOOL function(HGLRC) wglMakeAssociatedContextCurrentAMD;
     }
     ");
 }
