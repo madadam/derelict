@@ -42,6 +42,7 @@ version(Windows)
     alias uint DWORD;
     alias ushort WORD;
     alias uint UINT;
+    alias int INT;
     alias int LONG;
     alias ubyte BYTE;
     alias float FLOAT;

@@ -1801,14 +1801,39 @@ extern(System)
 
         // WGL_ARB_create_context
         HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
-        
-        // WGL_ARB_make_current_read
-        HDC function() wglGetCurrentReadDCARB;
-        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentARB;
-        
+
+        // WGL_EXT_display_color_table
+        GLboolean function(GLushort) wglBindDisplayColorTableEXT;
+        GLboolean function(GLushort) wglCreateDisplayColorTableEXT;
+        void function(GLushort) wglDestroyDisplayColorTableEXT;
+        GLboolean function(GLushort*, GLuint) wglLoadDisplayColorTableEXT;
+
+        // WGL_EXT_extensions_string
+        CCPTR function() wglGetExtensionsStringEXT;
+
+        // WGL_EXT_make_current_read
+        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentEXT;
+        HDC function() wglGetCurrentReadDCEXT;
+
+        // WGL_EXT_pbuffer
+        HPBUFFEREXT function(HDC, int, int, int, in int*) wglCreatePbufferEXT;
+        BOOL function(HPBUFFEREXT) wglDestroyPbufferEXT;
+        HDC function(HPBUFFEREXT) wglGetPbufferDCEXT;
+        BOOL function(HPBUFFEREXT, int, int*) wglQueryPbufferEXT;
+        int function(HPBUFFEREXT, HDC) wglReleasePbufferDCEXT;
+
+        // WGL_EXT_pixel_format
+        BOOL function(HDC, in int*, in FLOAT*, UINT, int*, UINT*) wglChoosePixelFormatEXT;
+        BOOL function(HDC, int, int, UINT, int*, FLOAT*) wglGetPixelFormatAttribfvEXT;
+        BOOL function(HDC, int, int, UINT, int*, int*) wglGetPixelFormatAttribivEXT;
+
+        // WGL_EXT_swap_control
+        int function() wglGetSwapIntervalEXT;
+        BOOL function(int) wglSwapIntervalEXT;
+
         // WGL_3DL_stereo_control
         BOOL function(HDC, UINT) wglSetStereoEmitterState3DL;
-        
+
         // WGL_AMD_gpu_association
         void function(HGLRC, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) wglBlitContextFramebufferAMD;
         HGLRC function(UINT) wglCreateAssociatedContextAMD;

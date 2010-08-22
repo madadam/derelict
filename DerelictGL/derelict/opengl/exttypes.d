@@ -3207,6 +3207,7 @@ version(DerelictGL_MESAX)
 version(Windows)
 {
     alias void* HPBUFFERARB;
+    alias void* HPBUFFEREXT;
 
     enum : GLenum
     {
@@ -3271,7 +3272,7 @@ version(Windows)
         WGL_TYPE_RGBA_ARB                   = 0x202B,
         WGL_TYPE_COLORINDEX_ARB             = 0x202C,
 
-        // WGL_ARB_make_current
+        // WGL_ARB_make_current_read
         ERROR_INVALID_PIXEL_TYPE_ARB            = 0x2043,
         ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB  = 0x2054,
 
@@ -3331,39 +3332,118 @@ version(Windows)
         WGL_CONTEXT_LAYER_PLANE_ARB             = 0x2093,
         WGL_CONTEXT_FLAGS_ARB                   = 0x2094,
         ERROR_INVALID_VERSION_ARB               = 0x2095,
-        
+
         // WGL_ARB_create_context_profile
-		WGL_CONTEXT_CORE_PROFILE_BIT_ARB 			= 0x00000001,
-		WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 	= 0x00000002,
-		WGL_CONTEXT_PROFILE_MASK_ARB 				= 0x9126,    
-		
-		// WGL_ARB_framebuffer_sRGB
-		WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB 	= 0x20A9,
-		
-		// WGL_ARB_make_current_read
-		ERROR_INVALID_PIXEL_TYPE_ARB			= 0x2043,
-		ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB	= 0x2054,
-		    
+        WGL_CONTEXT_CORE_PROFILE_BIT_ARB            = 0x00000001,
+        WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB   = 0x00000002,
+        WGL_CONTEXT_PROFILE_MASK_ARB                = 0x9126,
+
+        // WGL_ARB_framebuffer_sRGB
+        WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB    = 0x20A9,
+
+        // WGL_EXT_depth_float
+        WGL_DEPTH_FLOAT_EXT                 = 0x2040,
+
+        // WGL_EXT_framebuffer_sRGB
+        WGL_FRAMEBUFFER_SRGB_CAPABLE_EXT    = 0x20A9,
+
+        // WGL_EXT_make_current_read
+        ERROR_INVALID_PIXEL_TYPE_EXT        = 0x2043,
+
+        // WGL_EXT_multisample
+        WGL_SAMPLE_BUFFERS_EXT              = 0x2041,
+        WGL_SAMPLES_EXT                     = 0x2042,
+
+        // WGL_EXT_pbuffer
+        WGL_DRAW_TO_PBUFFER_EXT             = 0x202D,
+        WGL_MAX_PBUFFER_PIXELS_EXT          = 0x202E,
+        WGL_MAX_PBUFFER_WIDTH_EXT           = 0x202F,
+        WGL_MAX_PBUFFER_HEIGHT_EXT          = 0x2030,
+        WGL_OPTIMAL_PBUFFER_WIDTH_EXT       = 0x2031,
+        WGL_OPTIMAL_PBUFFER_HEIGHT_EXT      = 0x2032,
+        WGL_PBUFFER_LARGEST_EXT             = 0x2033,
+        WGL_PBUFFER_WIDTH_EXT               = 0x2034,
+        WGL_PBUFFER_HEIGHT_EXT              = 0x2035,
+
+        // WGL_EXT_pixel_format
+        WGL_NUMBER_PIXEL_FORMATS_EXT        = 0x2000,
+        WGL_DRAW_TO_WINDOW_EXT              = 0x2001,
+        WGL_DRAW_TO_BITMAP_EXT              = 0x2002,
+        WGL_ACCELERATION_EXT                = 0x2003,
+        WGL_NEED_PALETTE_EXT                = 0x2004,
+        WGL_NEED_SYSTEM_PALETTE_EXT         = 0x2005,
+        WGL_SWAP_LAYER_BUFFERS_EXT          = 0x2006,
+        WGL_SWAP_METHOD_EXT                 = 0x2007,
+        WGL_NUMBER_OVERLAYS_EXT             = 0x2008,
+        WGL_NUMBER_UNDERLAYS_EXT            = 0x2009,
+        WGL_TRANSPARENT_EXT                 = 0x200A,
+        WGL_TRANSPARENT_VALUE_EXT           = 0x200B,
+        WGL_SHARE_DEPTH_EXT                 = 0x200C,
+        WGL_SHARE_STENCIL_EXT               = 0x200D,
+        WGL_SHARE_ACCUM_EXT                 = 0x200E,
+        WGL_SUPPORT_GDI_EXT                 = 0x200F,
+        WGL_SUPPORT_OPENGL_EXT              = 0x2010,
+        WGL_DOUBLE_BUFFER_EXT               = 0x2011,
+        WGL_STEREO_EXT                      = 0x2012,
+        WGL_PIXEL_TYPE_EXT                  = 0x2013,
+        WGL_COLOR_BITS_EXT                  = 0x2014,
+        WGL_RED_BITS_EXT                    = 0x2015,
+        WGL_RED_SHIFT_EXT                   = 0x2016,
+        WGL_GREEN_BITS_EXT                  = 0x2017,
+        WGL_GREEN_SHIFT_EXT                 = 0x2018,
+        WGL_BLUE_BITS_EXT                   = 0x2019,
+        WGL_BLUE_SHIFT_EXT                  = 0x201A,
+        WGL_ALPHA_BITS_EXT                  = 0x201B,
+        WGL_ALPHA_SHIFT_EXT                 = 0x201C,
+        WGL_ACCUM_BITS_EXT                  = 0x201D,
+        WGL_ACCUM_RED_BITS_EXT              = 0x201E,
+        WGL_ACCUM_GREEN_BITS_EXT            = 0x201F,
+        WGL_ACCUM_BLUE_BITS_EXT             = 0x2020,
+        WGL_ACCUM_ALPHA_BITS_EXT            = 0x2021,
+        WGL_DEPTH_BITS_EXT                  = 0x2022,
+        WGL_STENCIL_BITS_EXT                = 0x2023,
+        WGL_AUX_BUFFERS_EXT                 = 0x2024,
+        WGL_NO_ACCELERATION_EXT             = 0x2025,
+        WGL_GENERIC_ACCELERATION_EXT        = 0x2026,
+        WGL_FULL_ACCELERATION_EXT           = 0x2027,
+        WGL_SWAP_EXCHANGE_EXT               = 0x2028,
+        WGL_SWAP_COPY_EXT                   = 0x2029,
+        WGL_SWAP_UNDEFINED_EXT              = 0x202A,
+        WGL_TYPE_RGBA_EXT                   = 0x202B,
+        WGL_TYPE_COLORINDEX_EXT             = 0x202C,
+
+        // WGL_EXT_pixel_format_packed_float
+        WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT    = 0x20A8,
+
         // WGL_3DFX_multisample
-        WGL_SAMPLE_BUFFERS_3DFX				= 0x2060,
-        WGL_SAMPLES_3DFX					= 0x2061,
-        
+        WGL_SAMPLE_BUFFERS_3DFX             = 0x2060,
+        WGL_SAMPLES_3DFX                    = 0x2061,
+
         // WGL_3DL_stereo_control
-		WGL_STEREO_EMITTER_ENABLE_3DL 		= 0x2055,
-		WGL_STEREO_EMITTER_DISABLE_3DL 		= 0x2056,
-		WGL_STEREO_POLARITY_NORMAL_3DL 		= 0x2057,
-		WGL_STEREO_POLARITY_INVERT_3DL 		= 0x2058,
-		
-		// WGL_AMD_gpu_association
-		WGL_GPU_VENDOR_AMD 					= 0x1F00,
-		WGL_GPU_RENDERER_STRING_AMD 		= 0x1F01,
-		WGL_GPU_OPENGL_VERSION_STRING_AMD 	= 0x1F02,
-		WGL_GPU_FASTEST_TARGET_GPUS_AMD 	= 0x21A2,
-		WGL_GPU_RAM_AMD 					= 0x21A3,
-		WGL_GPU_CLOCK_AMD 					= 0x21A4,
-		WGL_GPU_NUM_PIPES_AMD 				= 0x21A5,
-		WGL_GPU_NUM_SIMD_AMD 				= 0x21A6,
-		WGL_GPU_NUM_RB_AMD 					= 0x21A7,
-		WGL_GPU_NUM_SPI_AMD 				= 0x21A8,              
+        WGL_STEREO_EMITTER_ENABLE_3DL       = 0x2055,
+        WGL_STEREO_EMITTER_DISABLE_3DL      = 0x2056,
+        WGL_STEREO_POLARITY_NORMAL_3DL      = 0x2057,
+        WGL_STEREO_POLARITY_INVERT_3DL      = 0x2058,
+
+        // WGL_AMD_gpu_association
+        WGL_GPU_VENDOR_AMD                  = 0x1F00,
+        WGL_GPU_RENDERER_STRING_AMD         = 0x1F01,
+        WGL_GPU_OPENGL_VERSION_STRING_AMD   = 0x1F02,
+        WGL_GPU_FASTEST_TARGET_GPUS_AMD     = 0x21A2,
+        WGL_GPU_RAM_AMD                     = 0x21A3,
+        WGL_GPU_CLOCK_AMD                   = 0x21A4,
+        WGL_GPU_NUM_PIPES_AMD               = 0x21A5,
+        WGL_GPU_NUM_SIMD_AMD                = 0x21A6,
+        WGL_GPU_NUM_RB_AMD                  = 0x21A7,
+        WGL_GPU_NUM_SPI_AMD                 = 0x21A8,
+
+        // WGL_ATI_pixel_format_float
+        WGL_TYPE_RGBA_FLOAT_ATI             = 0x21A0,
+        GL_RGBA_FLOAT_MODE_ATI              = 0x8820,
+        //GL_COLOR_CLEAR_UNCLAMPED_VALUE_ATI    = 0x8835, <-- Already declared above.
+
+        // WGL_ATI_render_texture_rectangle
+        WGL_TEXTURE_RECTANGLE_ATI           = 0x21A5,
+
     }
 }

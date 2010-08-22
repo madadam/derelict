@@ -34,12 +34,12 @@ private
     import derelict.opengl.glfuncs;
     import derelict.util.compat;
     import derelict.util.exception;
-    
+
     version (darwin) version = CGL;
     else version (OSX) version = CGL;
     else version (linux) version = GLX;
     else version (freebsd) version = GLX;
-    else version (FreeBSD) version = GLX;    
+    else version (FreeBSD) version = GLX;
 
     version(Windows)
     {
@@ -51,12 +51,12 @@ private
     {
         import derelict.opengl.glx;
     }
-    
+
     version (CGL)
     {
         import derelict.opengl.cgl;
         import derelict.opengl.gl;
-    }   
+    }
 }
 
 version(DerelictGL_ALL)
@@ -609,11 +609,24 @@ private
             loaded["WGL_ARB_create_context"] = load_WGL_ARB_create_context();
             loaded["WGL_ARB_create_context_profile"] = load_WGL_ARB_create_context_profile();
             loaded["WGL_ARB_framebuffer_sRGB"] = load_WGL_ARB_framebuffer_sRGB();
-            loaded["WGL_ARB_make_current_read"] = load_WGL_ARB_make_current_read();            
-            
+
+            loaded["WGL_EXT_depth_float"] = load_WGL_EXT_depth_float();
+            loaded["WGL_EXT_display_color_table"] = load_WGL_EXT_display_color_table();
+            loaded["WGL_EXT_extensions_string"] = load_WGL_EXT_extensions_string();
+            loaded["WGL_EXT_framebuffer_sRGB"] = load_WGL_EXT_framebuffer_sRGB();
+            loaded["WGL_EXT_make_current_read"] = load_WGL_EXT_make_current_read();
+            loaded["WGL_EXT_multisample"] = load_WGL_EXT_multisample();
+            loaded["WGL_EXT_pbuffer"] = load_WGL_EXT_pbuffer();
+            loaded["WGL_EXT_pixel_format"] = load_WGL_EXT_pixel_format();
+            loaded["WGL_EXT_pixel_format_packed_float"] = load_WGL_EXT_pixel_format_packed_float();
+            loaded["WGL_EXT_swap_control"] = load_WGL_EXT_swap_control();
+
             loaded["WGL_3DFX_multisample"] = load_WGL_3DFX_multisample();
             loaded["WGL_3DL_stereo_control"] = load_WGL_3DL_stereo_control();
             loaded["WGL_AMD_gpu_association"] = load_WGL_AMD_gpu_association();
+            loaded["WGL_ATI_pixel_format_float"] = load_WGL_ATI_pixel_format_float();
+            loaded["WGL_ATI_render_texture_rectangle"] = load_WGL_ATI_render_texture_rectangle();
+
         }
     }
 
@@ -623,12 +636,12 @@ private
         {
             debug bool doThrow = true;
             else bool doThrow = false;
-                
+
             DerelictGL.bindExtendedFunc(ptr, funcName, doThrow);
-            
+
             return (*ptr !is null);
         }
-        
+
         else
         {
             *ptr = loadGLSymbol(funcName);
@@ -5725,39 +5738,130 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_WGL_ARB_framebuffer_sRGB()
         {
             if(!extIsSupported("WGL_ARB_framebuffer_sRGB"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_WGL_ARB_create_context_profile()
         {
             if(!extIsSupported("WGL_ARB_create_context_profile"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
-        GLExtensionState load_WGL_ARB_make_current_read()
+
+        GLExtensionState load_WGL_EXT_depth_float()
         {
-            if(!extIsSupported("WGL_ARB_make_current_read"))
+            if(!extIsSupported("WGL_EXT_depth_float"))
                 return GLExtensionState.DriverUnsupported;
-            if(!bindExtFunc(cast(void**)&wglGetCurrentReadDCARB, "wglGetCurrentReadDCARB"))
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_display_color_table()
+        {
+            if(!extIsSupported("WGL_EXT_display_color_table"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglBindDisplayColorTableEXT, "wglBindDisplayColorTableEXT"))
                 return GLExtensionState.FailedToLoad;
-            if(!bindExtFunc(cast(void**)&wglMakeContextCurrentARB, "wglMakeContextCurrentARB"))
+            if(!bindExtFunc(cast(void**)&wglCreateDisplayColorTableEXT, "wglCreateDisplayColorTableEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglDestroyDisplayColorTableEXT, "wglDestroyDisplayColorTableEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglLoadDisplayColorTableEXT, "wglLoadDisplayColorTableEXT"))
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
+        GLExtensionState load_WGL_EXT_extensions_string()
+        {
+            if(!extIsSupported("WGL_EXT_extensions_string"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_framebuffer_sRGB()
+        {
+            if(!extIsSupported("WGL_EXT_framebuffer_sRGB"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_make_current_read()
+        {
+            if(!extIsSupported("WGL_EXT_make_current_read"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglMakeContextCurrentEXT, "wglMakeContextCurrentEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetCurrentReadDCEXT, "wglGetCurrentReadDCEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_multisample()
+        {
+            if(!extIsSupported("WGL_EXT_multisample"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_pbuffer()
+        {
+            if(!extIsSupported("WGL_EXT_pbuffer"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglCreatePbufferEXT, "wglCreatePbufferEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglDestroyPbufferEXT, "wglDestroyPbufferEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetPbufferDCEXT, "wglGetPbufferDCEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglQueryPbufferEXT, "wglQueryPbufferEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglReleasePbufferDCEXT, "wglReleasePbufferDCEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_pixel_format()
+        {
+            if(!extIsSupported("WGL_EXT_pixel_format"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglChoosePixelFormatEXT, "wglChoosePixelFormatEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetPixelFormatAttribfvEXT, "wglGetPixelFormatAttribfvEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglGetPixelFormatAttribivEXT, "wglGetPixelFormatAttribivEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_pixel_format_packed_float()
+        {
+            if(!extIsSupported("WGL_EXT_pixel_format_packed_float"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_EXT_swap_control()
+        {
+            if(!extIsSupported("WGL_EXT_swap_control"))
+                return GLExtensionState.DriverUnsupported;
+            if(!bindExtFunc(cast(void**)&wglGetSwapIntervalEXT, "wglGetSwapIntervalEXT"))
+                return GLExtensionState.FailedToLoad;
+            if(!bindExtFunc(cast(void**)&wglSwapIntervalEXT, "wglSwapIntervalEXT"))
+                return GLExtensionState.FailedToLoad;
+            return GLExtensionState.Loaded;
+        }
+
         GLExtensionState load_WGL_3DFX_multisample()
         {
             if(!extIsSupported("WGL_3DFX_multisample"))
                 return GLExtensionState.DriverUnsupported;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_WGL_3DL_stereo_control()
         {
             if(!extIsSupported("WGL_3DL_stereo_control"))
@@ -5766,7 +5870,7 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
+
         GLExtensionState load_WGL_AMD_gpu_association()
         {
             if(!extIsSupported("WGL_AMD_gpu_association"))
@@ -5791,8 +5895,22 @@ private
                 return GLExtensionState.FailedToLoad;
             return GLExtensionState.Loaded;
         }
-        
-        
+
+        GLExtensionState load_WGL_ATI_pixel_format_float()
+        {
+            if(!extIsSupported("WGL_ATI_pixel_format_float"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+        GLExtensionState load_WGL_ATI_render_texture_rectangle()
+        {
+            if(!extIsSupported("WGL_ATI_render_texture_rectangle"))
+                return GLExtensionState.DriverUnsupported;
+            return GLExtensionState.Loaded;
+        }
+
+
 
     }
 }
