@@ -41,6 +41,7 @@ version(Windows)
 {
     alias uint DWORD;
     alias ushort WORD;
+    alias ushort USHORT;
     alias uint UINT;
     alias int INT;
     alias int LONG;
@@ -50,7 +51,7 @@ version(Windows)
     alias DWORD COLORREF;
 
     alias CCPTR LPCSTR;
-    alias void* LPCVOID;
+    alias void* LPVOID;
 
     alias void* HANDLE;
     alias HANDLE HDC;
@@ -140,9 +141,7 @@ version(Windows)
         DWORD dwDamageMask;
     }
 
-    struct VA_LIST
-    {
-    }
+    struct VA_LIST {}
 
     enum : BYTE
     {
@@ -214,6 +213,14 @@ version(Windows)
         RGBQUAD             bmiColors[1];
     }
 
+    struct RECT
+    {
+        LONG    left;
+        LONG    top;
+        LONG    right;
+        LONG    bottom;
+    }
+
     extern(Windows)
     {
         int ChoosePixelFormat(HDC,PIXELFORMATDESCRIPTOR*);
@@ -225,7 +232,7 @@ version(Windows)
         FARPROC GetProcAddress(HMODULE, LPCSTR);
         void FreeLibrary(HMODULE);
         DWORD GetLastError();
-        DWORD FormatMessageA(DWORD, LPCVOID, DWORD, DWORD, LPCSTR, DWORD, VA_LIST*);
+        DWORD FormatMessageA(DWORD, in void*, DWORD, DWORD, LPCSTR, DWORD, VA_LIST*);
         HLOCAL LocalFree(HLOCAL);
     }
 

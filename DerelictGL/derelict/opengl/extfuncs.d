@@ -65,6 +65,8 @@ version(DerelictGL_ALL)
     version = DerelictGL_OES;
     version = DerelictGL_GREMEDY;
     version = DerelictGL_MESAX;
+    version = DerelictGL_I3D;
+    version = DerelictGL_3DL;
 }
 
 extern(System)
@@ -1769,81 +1771,187 @@ extern(System)
 
     version(Windows)
     {
-        // WGL_ARB_buffer_region
-        HANDLE function(HDC, int, UINT) wglCreateBufferRegionARB;
-        void function(HANDLE) wglDeleteBufferRegionARB;
-        BOOL function(HANDLE, int, int, int, int) wglSaveBufferRegionARB;
-        BOOL function(HANDLE, int, int, int, int, int, int) wglRestoreBufferRegionARB;
+        version(DerelictGL_ARB)
+        {
+            // WGL_ARB_buffer_region
+            HANDLE function(HDC, int, UINT) wglCreateBufferRegionARB;
+            void function(HANDLE) wglDeleteBufferRegionARB;
+            BOOL function(HANDLE, int, int, int, int) wglSaveBufferRegionARB;
+            BOOL function(HANDLE, int, int, int, int, int, int) wglRestoreBufferRegionARB;
 
-        // WGL_ARB_extensions_string
-        CCPTR function(HDC) wglGetExtensionsStringARB;
+            // WGL_ARB_extensions_string
+            CCPTR function(HDC) wglGetExtensionsStringARB;
 
-        // WGL_ARB_pixel_format
-        BOOL function(HDC, int, int, UINT, in int*, int*) wglGetPixelFormatAttribivARB;
-        BOOL function(HDC, int, int, UINT, in int*, float*) wglGetPixelFormatAttribfvARB;
-        BOOL function(HDC, in int*, in float*, UINT, int*, UINT) wglChoosePixelFormatARB;
+            // WGL_ARB_pixel_format
+            BOOL function(HDC, int, int, UINT, in int*, int*) wglGetPixelFormatAttribivARB;
+            BOOL function(HDC, int, int, UINT, in int*, float*) wglGetPixelFormatAttribfvARB;
+            BOOL function(HDC, in int*, in float*, UINT, int*, UINT) wglChoosePixelFormatARB;
 
-        // WGL_ARB_make_current_read
-        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentARB;
-        HDC function() wglGetCurrentReadDCARB;
+            // WGL_ARB_make_current_read
+            BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentARB;
+            HDC function() wglGetCurrentReadDCARB;
 
-        // WGL_ARB_pbuffer
-        HPBUFFERARB function(HDC, int, int, int, in int*) wglCreatePbufferARB;
-        HDC function(HPBUFFERARB) wglGetPbufferDCARB;
-        int function(HPBUFFERARB, HDC) wglReleasePbufferDCARB;
-        BOOL function(HPBUFFERARB) wglDestroyPbufferARB;
-        BOOL function(HPBUFFERARB, int, int*) wglQueryPbufferARB;
+            // WGL_ARB_pbuffer
+            HPBUFFERARB function(HDC, int, int, int, in int*) wglCreatePbufferARB;
+            HDC function(HPBUFFERARB) wglGetPbufferDCARB;
+            int function(HPBUFFERARB, HDC) wglReleasePbufferDCARB;
+            BOOL function(HPBUFFERARB) wglDestroyPbufferARB;
+            BOOL function(HPBUFFERARB, int, int*) wglQueryPbufferARB;
 
-        // WGL_ARB_render_texture
-        BOOL function(HPBUFFERARB, int) wglBindTexImageARB;
-        BOOL function(HPBUFFERARB, int) wglReleaseTexImageARB;
-        BOOL function(HPBUFFERARB, in int*) wglSetPbufferAttribARB;
+            // WGL_ARB_render_texture
+            BOOL function(HPBUFFERARB, int) wglBindTexImageARB;
+            BOOL function(HPBUFFERARB, int) wglReleaseTexImageARB;
+            BOOL function(HPBUFFERARB, in int*) wglSetPbufferAttribARB;
 
-        // WGL_ARB_create_context
-        HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
+            // WGL_ARB_create_context
+            HGLRC function(HDC, HGLRC, in int*) wglCreateContextAttribsARB;
+        }
 
-        // WGL_EXT_display_color_table
-        GLboolean function(GLushort) wglBindDisplayColorTableEXT;
-        GLboolean function(GLushort) wglCreateDisplayColorTableEXT;
-        void function(GLushort) wglDestroyDisplayColorTableEXT;
-        GLboolean function(GLushort*, GLuint) wglLoadDisplayColorTableEXT;
+        version(DerelictGL_EXT)
+        {
+            // WGL_EXT_display_color_table
+            GLboolean function(GLushort) wglBindDisplayColorTableEXT;
+            GLboolean function(GLushort) wglCreateDisplayColorTableEXT;
+            void function(GLushort) wglDestroyDisplayColorTableEXT;
+            GLboolean function(GLushort*, GLuint) wglLoadDisplayColorTableEXT;
 
-        // WGL_EXT_extensions_string
-        CCPTR function() wglGetExtensionsStringEXT;
+            // WGL_EXT_extensions_string
+            CCPTR function() wglGetExtensionsStringEXT;
 
-        // WGL_EXT_make_current_read
-        BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentEXT;
-        HDC function() wglGetCurrentReadDCEXT;
+            // WGL_EXT_make_current_read
+            BOOL function(HDC, HDC, HGLRC) wglMakeContextCurrentEXT;
+            HDC function() wglGetCurrentReadDCEXT;
 
-        // WGL_EXT_pbuffer
-        HPBUFFEREXT function(HDC, int, int, int, in int*) wglCreatePbufferEXT;
-        BOOL function(HPBUFFEREXT) wglDestroyPbufferEXT;
-        HDC function(HPBUFFEREXT) wglGetPbufferDCEXT;
-        BOOL function(HPBUFFEREXT, int, int*) wglQueryPbufferEXT;
-        int function(HPBUFFEREXT, HDC) wglReleasePbufferDCEXT;
+            // WGL_EXT_pbuffer
+            HPBUFFEREXT function(HDC, int, int, int, in int*) wglCreatePbufferEXT;
+            BOOL function(HPBUFFEREXT) wglDestroyPbufferEXT;
+            HDC function(HPBUFFEREXT) wglGetPbufferDCEXT;
+            BOOL function(HPBUFFEREXT, int, int*) wglQueryPbufferEXT;
+            int function(HPBUFFEREXT, HDC) wglReleasePbufferDCEXT;
 
-        // WGL_EXT_pixel_format
-        BOOL function(HDC, in int*, in FLOAT*, UINT, int*, UINT*) wglChoosePixelFormatEXT;
-        BOOL function(HDC, int, int, UINT, int*, FLOAT*) wglGetPixelFormatAttribfvEXT;
-        BOOL function(HDC, int, int, UINT, int*, int*) wglGetPixelFormatAttribivEXT;
+            // WGL_EXT_pixel_format
+            BOOL function(HDC, in int*, in FLOAT*, UINT, int*, UINT*) wglChoosePixelFormatEXT;
+            BOOL function(HDC, int, int, UINT, int*, FLOAT*) wglGetPixelFormatAttribfvEXT;
+            BOOL function(HDC, int, int, UINT, int*, int*) wglGetPixelFormatAttribivEXT;
 
-        // WGL_EXT_swap_control
-        int function() wglGetSwapIntervalEXT;
-        BOOL function(int) wglSwapIntervalEXT;
+            // WGL_EXT_swap_control
+            int function() wglGetSwapIntervalEXT;
+            BOOL function(int) wglSwapIntervalEXT;
+        }
 
-        // WGL_3DL_stereo_control
-        BOOL function(HDC, UINT) wglSetStereoEmitterState3DL;
+        version(DerelictGL_NV)
+        {
+            // WGL_NV_copy_image
+            BOOL function(HGLRC, GLuint, GLenum, GLint, GLint, GLint, GLint, HGLRC, GLuint, GLenum, GLint, GLint, GLint, GLint, GLsizei, GLsizei, GLsizei) wglCopyImageSubDataNV;
 
-        // WGL_AMD_gpu_association
-        void function(HGLRC, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) wglBlitContextFramebufferAMD;
-        HGLRC function(UINT) wglCreateAssociatedContextAMD;
-        HGLRC function(UINT, HGLRC, in int*) wglCreateAssociatedContextAttribsAMD;
-        BOOL function(HGLRC) wglDeleteAssociatedContextAMD;
-        UINT function(HGLRC) wglGetContextGPUIDAMD;
-        HGLRC function() wglGetCurrentAssociatedContextAMD;
-        UINT function(UINT, UINT*) wglGetGPUIDsAMD;
-        INT function(UINT, INT, GLenum, UINT, void*) wglGetGPUInfoAMD;
-        BOOL function(HGLRC) wglMakeAssociatedContextCurrentAMD;
+            // WGL_NV_gpu_affinity
+            HDC function(in HGPUNV*) wglCreateAffinityDCNV;
+            BOOL function(HDC) wglDeleteDCNV;
+            BOOL function(HGPUNV, UINT, PGPU_DEVICE) wglEnumGpuDevicesNV;
+            BOOL function(HDC, UINT, HGPUNV*) wglEnumGpusFromAffinityDCNV;
+            BOOL function(UINT, HGPUNV*) wglEnumGpusNV;
+
+            // WGL_NV_present_video
+            BOOL function(HDC, uint, HVIDEOOUTPUTDEVICENV, in int*) wglBindVideoDeviceNV;
+            int function(HDC, HVIDEOOUTPUTDEVICENV*) wglEnumerateVideoDevicesNV;
+            BOOL function(HDC, int, int*) wglQueryCurrentContextNV;
+
+            // WGL_NV_swap_group
+            BOOL function(GLuint, GLuint) wglBindSwapBarrierNV;
+            BOOL function(HDC, GLuint) wglJoinSwapGroupNV;
+            BOOL function(HDC, GLuint*) wglQueryFrameCountNV;
+            BOOL function(HDC, GLuint*, GLuint*) wglQueryMaxSwapGroupsNV;
+            BOOL function(HDC, GLuint*, GLuint*) wglQuerySwapGroupNV;
+            BOOL function(HDC) wglResetFrameCountNV;
+
+            // WGL_NV_vertex_array_range
+            void* function(GLsizei, GLfloat, GLfloat, GLfloat) wglAllocateMemoryNV;
+            void function(void*) wglFreeMemoryNV;
+
+            // WGL_NV_video_output
+            BOOL function(HPVIDEODEV, HPBUFFERARB, int) wglBindVideoImageNV;
+            BOOL function(HDC, int, HPVIDEODEV*) wglGetVideoDeviceNV;
+            BOOL function(HPVIDEODEV, uint*, uint*) wglGetVideoInfoNV;
+            BOOL function(HPVIDEODEV) wglReleaseVideoDeviceNV;
+            BOOL function(HPBUFFERARB, int) wglReleaseVideoImageNV;
+            BOOL function(HPBUFFERARB, int, uint*, BOOL) wglSendPbufferToVideoNV;
+        }
+
+        version(DerelictGL_AMD)
+        {
+            // WGL_AMD_gpu_association
+            void function(HGLRC, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) wglBlitContextFramebufferAMD;
+            HGLRC function(UINT) wglCreateAssociatedContextAMD;
+            HGLRC function(UINT, HGLRC, in int*) wglCreateAssociatedContextAttribsAMD;
+            BOOL function(HGLRC) wglDeleteAssociatedContextAMD;
+            UINT function(HGLRC) wglGetContextGPUIDAMD;
+            HGLRC function() wglGetCurrentAssociatedContextAMD;
+            UINT function(UINT, UINT*) wglGetGPUIDsAMD;
+            INT function(UINT, INT, GLenum, UINT, void*) wglGetGPUInfoAMD;
+            BOOL function(HGLRC) wglMakeAssociatedContextCurrentAMD;
+        }
+
+        version(DerelictGL_I3D)
+        {
+            // WGL_I3D_digital_video_control
+            BOOL function(HDC, int, int*) wglGetDigitalVideoParametersI3D;
+            BOOL function(HDC, int, in int*) wglSetDigitalVideoParametersI3D;
+
+            // WGL_I3D_gamma
+            BOOL function(HDC, int, USHORT*, USHORT*, USHORT*) wglGetGammaTableI3D;
+            BOOL function(HDC, int, int*) wglGetGammaTableParametersI3D;
+            BOOL function(HDC, int, in USHORT*, in USHORT*, in USHORT*) wglSetGammaTableI3D;
+            BOOL function(HDC, int, in int*) wglSetGammaTableParametersI3D;
+
+            // WGL_I3D_genlock
+            BOOL function(HDC) wglDisableGenlockI3D;
+            BOOL function(HDC) wglEnableGenlockI3D;
+            BOOL function(HDC, UINT) wglGenlockSampleRateI3D;
+            BOOL function(HDC, UINT) wglGenlockSourceDelayI3D;
+            BOOL function(HDC, UINT) wglGenlockSourceEdgeI3D;
+            BOOL function(HDC, UINT) wglGenlockSourceI3D;
+            BOOL function(HDC, UINT*) wglGetGenlockSampleRateI3D;
+            BOOL function(HDC, UINT*) wglGetGenlockSourceDelayI3D;
+            BOOL function(HDC, UINT*) wglGetGenlockSourceEdgeI3D;
+            BOOL function(HDC, UINT*) wglGetGenlockSourceI3D;
+            BOOL function(HDC, BOOL*) wglIsEnabledGenlockI3D;
+            BOOL function(HDC, UINT*, UINT*) wglQueryGenlockMaxSourceDelayI3D;
+
+            // WGL_I3D_image_buffer
+            BOOL function(HDC, HANDLE*, LPVOID*, DWORD*, UINT) wglAssociateImageBufferEventsI3D;
+            LPVOID function(HDC, DWORD, UINT) wglCreateImageBufferI3D;
+            BOOL function(HDC, LPVOID) wglDestroyImageBufferI3D;
+            BOOL function(HDC, LPVOID*, UINT) wglReleaseImageBufferEventsI3D;
+
+            // WGL_I3D_swap_frame_lock
+            BOOL function() wglDisableFrameLockI3D;
+            BOOL function() wglEnableFrameLockI3D;
+            BOOL function(BOOL*) wglIsEnabledFrameLockI3D;
+            BOOL function(BOOL*) wglQueryFrameLockMasterI3D;
+
+            // WGL_I3D_swap_frame_usage
+            BOOL function() wglBeginFrameTrackingI3D;
+            BOOL function() wglEndFrameTrackingI3D;
+            BOOL function(float*) wglGetFrameUsageI3D;
+            BOOL function(DWORD*, DWORD*, float*) wglQueryFrameTrackingI3D;
+        }
+
+        version(DerelictGL_OML)
+        {
+            // WGL_OML_sync_control
+            BOOL function(HDC, int*, int*) wglGetMscRateOML;
+            BOOL function(HDC, long*, long*, long*) wglGetSyncValuesOML;
+            long function(HDC, long, long, long) wglSwapBuffersMscOML;
+            long function(HDC, int, long, long, long) wglSwapLayerBuffersMscOML;
+            BOOL function(HDC, long, long, long, long*, long*, long*) wglWaitForMscOML;
+            BOOL function(HDC, long, long*, long*, long*) wglWaitForSbcOML;
+        }
+
+        version(DerelictGL_3DL)
+        {
+            // WGL_3DL_stereo_control
+            BOOL function(HDC, UINT) wglSetStereoEmitterState3DL;
+        }
     }
     ");
 }
