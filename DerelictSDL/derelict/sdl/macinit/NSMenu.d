@@ -100,9 +100,9 @@ class NSMenu : NSObject
         objc_msgSend(this.id_, sel_sizeToFit);
     }
 
-    NSMenuItem addItemWithTitle (NSString str, string selector, NSString keyEquiv)
+    NSMenuItem addItemWithTitle (NSString str, SEL selector, NSString keyEquiv)
     {
-        id result = objc_msgSend(this.id_, sel_addItemWithTitle_action_keyEquivalent, str ? str.id_ : null, cast(SEL) selector.ptr, keyEquiv ? keyEquiv.id_ : null);
+        id result = objc_msgSend(this.id_, sel_addItemWithTitle_action_keyEquivalent, str ? str.id_ : null, selector, keyEquiv ? keyEquiv.id_ : null);
         return result ? new NSMenuItem(result) : null;
     }
 

@@ -44,11 +44,17 @@ alias objc_ivar* Ivar;
 alias objc_method* Method;
 alias objc_object Protocol;
 
-alias CCPTR SEL;
+alias objc_selector* SEL;
 alias objc_class* Class;
 alias objc_object* id;
 
 alias extern (C) id function(id, SEL, ...) IMP;
+
+struct objc_selector
+{
+	void* sel_id;
+	char* sel_types;
+}
 
 struct objc_object
 {
@@ -168,12 +174,12 @@ id objc_getClass (string name) ()
     return c_objc_getClass(name.ptr);
 }
 
-string sel_registerName (string str) ()
+SEL sel_registerName (string str) ()
 {
-    return toDString(c_sel_registerName(str.ptr));
+    return c_sel_registerName(str.ptr);
 }
 
-id objc_msgSend (ARGS...)(id theReceiver, string theSelector, ARGS args)
+id objc_msgSend (ARGS...)(id theReceiver, SEL theSelector, ARGS args)
 {
-    return c_objc_msgSend(theReceiver, theSelector.ptr, args);
+    return c_objc_msgSend(theReceiver, theSelector, args);
 }

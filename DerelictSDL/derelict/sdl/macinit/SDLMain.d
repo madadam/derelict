@@ -123,8 +123,8 @@ private void registerSubclasses ()
 {
     objc_method terminateMethod;
     terminateMethod.method_imp = cast(IMP) &terminate;
-    terminateMethod.method_name = sel_terminate.ptr;
-    terminateMethod.method_types = sel_registerName!("v@:").ptr;
+    terminateMethod.method_name = sel_terminate;
+    terminateMethod.method_types = "v@:";
 
     objc_method_list* terminateMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
     terminateMethodList.method_count = 1;
@@ -134,8 +134,8 @@ private void registerSubclasses ()
 
     objc_method setupWorkingDirectoryMethod;
     setupWorkingDirectoryMethod.method_imp = cast(IMP) &setupWorkingDirectory;
-    setupWorkingDirectoryMethod.method_name = sel_setupWorkingDirectory.ptr;
-    setupWorkingDirectoryMethod.method_types = sel_registerName!("v@:B").ptr;
+    setupWorkingDirectoryMethod.method_name = sel_setupWorkingDirectory;
+    setupWorkingDirectoryMethod.method_types = "v@:B";
 
     objc_method_list* setupWorkingDirectoryMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
     setupWorkingDirectoryMethodList.method_count = 1;
@@ -145,8 +145,8 @@ private void registerSubclasses ()
 
     objc_method applicationMethod;
     applicationMethod.method_imp = cast(IMP) &application;
-    applicationMethod.method_name = sel_application.ptr;
-    applicationMethod.method_types = sel_registerName!("B@:@@").ptr;
+    applicationMethod.method_name = sel_application;
+    applicationMethod.method_types = "B@:@@";
 
     objc_method_list* applicationMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
     applicationMethodList.method_count = 1;
@@ -156,8 +156,8 @@ private void registerSubclasses ()
 
     objc_method applicationDidFinishLaunchingMethod;
     applicationDidFinishLaunchingMethod.method_imp = cast(IMP) &applicationDidFinishLaunching;
-    applicationDidFinishLaunchingMethod.method_name = sel_applicationDidFinishLaunching.ptr;
-    applicationDidFinishLaunchingMethod.method_types = sel_registerName!("v@:@").ptr;
+    applicationDidFinishLaunchingMethod.method_name = sel_applicationDidFinishLaunching;
+    applicationDidFinishLaunchingMethod.method_types = "v@:@";
 
     objc_method_list* applicationDidFinishLaunchingMethodList = cast(objc_method_list*) calloc(1, (objc_method_list).sizeof);
     applicationDidFinishLaunchingMethodList.method_count = 1;
